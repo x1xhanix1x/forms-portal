@@ -6,58 +6,58 @@
     "icon": "📋",
     "color": "#16455B",
     "downloads": 234,
-    "fileUrl": "#",
-    "description": "استمارة رسمية لتقديم طلب انتداب وظيفي"
+    "fileUrl": "https://drive.google.com/file/d/1ylN07nfZDXWA-SUmpN-rfeNtzIY61uWs/view?usp=drive_link",
+    "description": "استمارة طلب انتداب"
   },
   {
     "id": 2,
-    "name": "استمارة طلب بدل",
+    "name": "وثيقة أداء مهمة انتداب",
     "category": "requests",
     "icon": "💰",
     "color": "#309694",
     "downloads": 189,
-    "fileUrl": "#",
-    "description": "نموذج طلب صرف بدل مالي للموظفين"
+    "fileUrl": "https://drive.google.com/file/d/1sUhkt74Ag8fQFiAdO2fs037uchhK4rmP/view?usp=drive_link",
+    "description": "وثيقة أداء مهمة انتداب"
   },
   {
     "id": 3,
-    "name": "استمارة طلب إجازة",
+    "name": "نماذج صرف بدل ضرر",
     "category": "requests",
     "icon": "🏖️",
     "color": "#38A18A",
     "downloads": 156,
-    "fileUrl": "#",
-    "description": "استمارة تقديم طلب إجازة سنوية أو استثنائية"
+    "fileUrl": "https://drive.google.com/file/d/17fWUZmtG8lPplqSe10dIVoQPw81pmQ6b/view?usp=drive_link",
+    "description": "نماذج صرف بدل ضرر"
   },
   {
     "id": 4,
-    "name": "شهادة راتب",
+    "name": "نموذج طلب صرف بدل مناطق نائية",
     "category": "prints",
     "icon": "📄",
     "color": "#16455B",
     "downloads": 412,
-    "fileUrl": "#",
-    "description": "شهادة رسمية بقيمة الراتب الشهري"
+    "fileUrl": "https://drive.google.com/file/d/1BDCA6i_evwNA229rzPZyScTl-CvtdD_S/view?usp=drive_link",
+    "description": "نموذج طلب صرف بدل مناطق نائية"
   },
   {
     "id": 5,
-    "name": "تعريف بالراتب",
+    "name": "نموذج طلب صرف تعويض تذاكر",
     "category": "prints",
     "icon": "📃",
     "color": "#309694",
     "downloads": 378,
-    "fileUrl": "#",
-    "description": "خطاب تعريف بالراتب للجهات الخارجية"
+    "fileUrl": "https://drive.google.com/file/d/1SYDCCX-XGwmkDxWX60uG6ETUmGnhhf6g/view?usp=drive_link",
+    "description": "نموذج طلب صرف تعويض تذاكر"
   },
   {
     "id": 6,
-    "name": "تقرير أداء شهري",
-    "category": "reports",
+    "name": "نموذج انهاء مهمة خارج دوام",
+    "category": "requests",
     "icon": "📊",
     "color": "#216273",
     "downloads": 98,
-    "fileUrl": "#",
-    "description": "نموذج تقييم الأداء الوظيفي الشهري"
+    "fileUrl": "https://drive.google.com/file/d/1qW12jgemzpqzxgJIB3jlKtYp1SH3cnqa/view?usp=drive_link",
+    "description": "نموذج انهاء مهمة خارج دوام"
   },
   {
     "id": 7,
@@ -71,32 +71,22 @@
   },
   {
     "id": 8,
-    "name": "عقد عمل",
-    "category": "prints",
+    "name": "الالئحة التنفيذية للموارد البشرية في الخدمة المدنية",
+    "category": "reports",
     "icon": "📝",
     "color": "#309694",
     "downloads": 145,
-    "fileUrl": "#",
-    "description": "نسخة من عقد العمل للمراجعين"
+    "fileUrl": "https://drive.google.com/file/d/1rey6G0HLPdK8M-q3KCvy5u4TUTN1OwHg/view?usp=sharing",
+    "description": "الالئحة التنفيذية للموارد البشرية في الخدمة المدنية"
   },
   {
     "id": 9,
-    "name": "تقرير إنجاز سنوي",
+    "name": "لائحة الحقوق والمزايا المالية",
     "category": "reports",
     "icon": "📈",
     "color": "#16455B",
     "downloads": 54,
-    "fileUrl": "#",
-    "description": "تقرير ملخص الإنجازات السنوية"
-  },
-  {
-    "id": 10,
-    "name": "استمارة طلب تدريب",
-    "category": "requests",
-    "icon": "🎓",
-    "color": "#309694",
-    "downloads": 123,
-    "fileUrl": "#",
-    "description": "طلب الالتحاق بدورة تدريبية"
+    "fileUrl": "https://drive.google.com/file/d/12MHofIhzHpzpeO0XDgtokf7-OmLOkdtA/view?usp=sharing",
+    "description": "لائحة الحقوق والمزايا المالية"
   }
 ]
