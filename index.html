@@ -384,6 +384,29 @@ body, .stat-num, .download-count, .priority-input, .ticker-item, .card-meta-item
 .deadline-badge { display: inline-flex; align-items: center; gap: 4px; background: #fff3cd; color: #856404; padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: 700; margin-right: 4px; }
 .deadline-badge.urgent { background: #f8d7da; color: #721c24; animation: pulse 2s infinite; }
 
+/* Read Status Indicator */
+.read-status { position: absolute; top: 12px; right: 12px; width: 10px; height: 10px; border-radius: 50%; background: #28a745; border: 2px solid var(--card-bg); z-index: 5; animation: pulse-green 2s infinite; }
+.read-status.read { background: #ccc; animation: none; border-color: var(--moe-border); }
+@keyframes pulse-green { 0%,100% { box-shadow: 0 0 0 0 rgba(40,167,69,0.4); } 50% { box-shadow: 0 0 0 6px rgba(40,167,69,0); } }
+
+/* Confetti Canvas */
+.confetti-canvas { position: fixed; inset: 0; pointer-events: none; z-index: 500; }
+
+/* Tooltips */
+[data-tooltip] { position: relative; }
+[data-tooltip]::after { content: attr(data-tooltip); position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%) scale(0.9); background: var(--moe-teal); color: white; padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; white-space: nowrap; opacity: 0; pointer-events: none; transition: all 0.2s; z-index: 100; }
+[data-tooltip]::before { content: ''; position: absolute; bottom: calc(100% + 2px); left: 50%; transform: translateX(-50%); border: 6px solid transparent; border-top-color: var(--moe-teal); opacity: 0; transition: all 0.2s; }
+[data-tooltip]:hover::after, [data-tooltip]:hover::before { opacity: 1; transform: translateX(-50%) scale(1); }
+
+/* Search Suggestions */
+.search-suggestions { position: absolute; top: calc(100% + 8px); right: 0; left: 0; background: var(--card-bg); border: 2px solid var(--moe-border); border-radius: 14px; box-shadow: var(--shadow-hover); z-index: 50; display: none; overflow: hidden; }
+.search-suggestions.active { display: block; }
+.search-suggestion-item { padding: 12px 16px; cursor: pointer; font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 10px; transition: all 0.15s; border-bottom: 1px solid var(--moe-border); }
+.search-suggestion-item:last-child { border-bottom: none; }
+.search-suggestion-item:hover { background: var(--moe-cream); }
+.search-suggestion-item .sugg-icon { font-size: 18px; }
+.search-suggestion-item .sugg-meta { font-size: 11px; color: #888; font-weight: 400; margin-right: auto; }
+
 /* Print styles for PDF export */
 .pdf-export-content { display: none; }
 @media print {
@@ -416,6 +439,7 @@ body, .stat-num, .download-count, .priority-input, .ticker-item, .card-meta-item
 </head>
 <body>
 
+<canvas class="confetti-canvas" id="confettiCanvas"></canvas>
 <div class="loading-overlay" id="loadingOverlay">
   <div class="spinner"></div>
   <p style="color:#555;font-size:16px;">جاري تحميل الاستمارات...</p>
@@ -653,9 +677,10 @@ body, .stat-num, .download-count, .priority-input, .ticker-item, .card-meta-item
 </div>
 
 <div class="controls">
-  <div class="search-box">
+  <div class="search-box" style="position:relative;">
     <span class="search-icon">🔍</span>
-    <input type="text" id="searchInput" placeholder="ابحث في الاسم، الوصف، التصنيف، أو الوسوم...">
+    <input type="text" id="searchInput" placeholder="ابحث في الاسم، الوصف، التصنيف، أو الوسوم..." autocomplete="off">
+    <div class="search-suggestions" id="searchSuggestions"></div>
   </div>
   <div class="filter-tabs">
     <button class="filter-btn active" data-filter="all">الكل</button>
@@ -750,6 +775,7 @@ body, .stat-num, .download-count, .priority-input, .ticker-item, .card-meta-item
 <div class="batch-bar" id="batchBar">
   <span id="batchCount">0 استمارات محددة</span>
   <button onclick="downloadBatch()">⬇️ تحميل الكل</button>
+  <button onclick="printBatch()">🖨️ طباعة الكل</button>
   <button onclick="clearBatch()">❌ إلغاء</button>
 </div>
 
@@ -1103,9 +1129,11 @@ function renderForms() {
     const sourceBadge = isBroken ? `<span class="broken-badge">⚠️ لا يوجد رابط</span>` : (isDrive ? `<span class="drive-badge">▶️ Google Drive</span>` : '');
     const isNew = isNewForm(form.updatedAt);
     const newBadge = isNew ? `<span class="new-badge">جديد</span>` : '';
+    const isRead = getStorage('readForms', []).includes(form.id);
+    const readDot = `<span class="read-status ${isRead ? 'read' : ''}" data-tooltip="${isRead ? 'تمت القراءة' : 'جديد - لم تقرأ بعد'}"></span>`;
     // Show fileSize only if it's NOT a Drive link (to avoid duplicate "Google Drive" text)
     const sizeDisplay = (form.fileSize && !isBroken && !isDrive) ? `<span class="card-meta-item">📄 ${form.fileSize}</span>` : '';
-    return `<div class="form-card ${isBroken ? 'no-link' : ''}" style="--card-color: ${form.color}; --card-color-bg: ${form.color}15; animation-delay: ${delay}s;" onclick="${batchMode ? 'event.stopPropagation(); toggleBatch(' + form.id + ')' : 'openModal(' + form.id + ')'}">${newBadge}<input type="checkbox" class="batch-checkbox" ${isBatch ? 'checked' : ''} onclick="event.stopPropagation(); toggleBatch(${form.id})" title="تحديد للتنزيل المتعدد"><div class="card-header"><div class="card-icon">${form.icon}</div><div class="card-info"><h3 title="${form.name}">${form.name}</h3><span class="category-tag">${categoryNames[currentLang][form.category] || form.category}</span><div class="card-meta">${sourceBadge}${sizeDisplay}${form.pages ? `<span class="card-meta-item">📑 ${form.pages} صفحة</span>` : ''}${form.updatedAt ? `<span class="card-meta-item">📅 ${form.updatedAt}</span>` : ''}</div><div class="card-tags">${tagsHtml}</div><div class="star-rating" title="تقييم الاستمارة">${starsHtml}</div></div></div><div class="card-footer"><span class="download-count">${(form.downloads || 0).toLocaleString('en-US')} تحميل</span><div class="card-actions"><button class="card-action-btn ${isFav ? 'fav-active' : ''}" onclick="event.stopPropagation(); toggleFav(${form.id})" title="${isFav ? 'إزالة من المفضلة' : 'إضافة للمفضلة'}">${isFav ? '★' : '☆'}</button><button class="card-action-btn" onclick="event.stopPropagation(); shareFormById(${form.id})" title="مشاركة">📤</button></div></div><div class="quick-preview"><h4>👁️ معاينة سريعة</h4><p>${form.description || 'لا يوجد وصف'}</p><div class="quick-actions"><button class="quick-btn" onclick="event.stopPropagation(); openModal(${form.id})">فتح</button><button class="quick-btn" onclick="event.stopPropagation(); toggleFav(${form.id})">${isFav ? 'إزالة' : 'مفضلة'}</button></div></div></div>`;
+    return `<div class="form-card ${isBroken ? 'no-link' : ''}" style="--card-color: ${form.color}; --card-color-bg: ${form.color}15; animation-delay: ${delay}s;" onclick="${batchMode ? 'event.stopPropagation(); toggleBatch(' + form.id + ')' : 'openModal(' + form.id + ')'}">${readDot}${newBadge}<input type="checkbox" class="batch-checkbox" ${isBatch ? 'checked' : ''} onclick="event.stopPropagation(); toggleBatch(${form.id})" title="تحديد للتنزيل المتعدد"><div class="card-header"><div class="card-icon">${form.icon}</div><div class="card-info"><h3 title="${form.name}">${form.name}</h3><span class="category-tag">${categoryNames[currentLang][form.category] || form.category}</span><div class="card-meta">${sourceBadge}${sizeDisplay}${form.pages ? `<span class="card-meta-item">📑 ${form.pages} صفحة</span>` : ''}${form.updatedAt ? `<span class="card-meta-item">📅 ${form.updatedAt}</span>` : ''}</div><div class="card-tags">${tagsHtml}</div><div class="star-rating" title="تقييم الاستمارة">${starsHtml}</div></div></div><div class="card-footer"><span class="download-count">${(form.downloads || 0).toLocaleString('en-US')} تحميل</span><div class="card-actions"><button class="card-action-btn ${isFav ? 'fav-active' : ''}" onclick="event.stopPropagation(); toggleFav(${form.id})" data-tooltip="${isFav ? 'إزالة من المفضلة' : 'إضافة للمفضلة'}">${isFav ? '★' : '☆'}</button><button class="card-action-btn" onclick="event.stopPropagation(); shareFormById(${form.id})" data-tooltip="مشاركة الاستمارة">📤</button></div></div><div class="quick-preview"><h4>👁️ معاينة سريعة</h4><p>${form.description || 'لا يوجد وصف'}</p><div class="quick-actions"><button class="quick-btn" onclick="event.stopPropagation(); openModal(${form.id})">فتح</button><button class="quick-btn" onclick="event.stopPropagation(); toggleFav(${form.id})">${isFav ? 'إزالة' : 'مفضلة'}</button></div></div></div>`;
   }).join('');
 
   // List view
@@ -1137,7 +1165,7 @@ function clearBatch() { batchSelected = []; updateBatchBar(); renderForms(); sho
 document.querySelectorAll('.filter-btn').forEach(btn => { btn.addEventListener('click', () => { document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); currentFilter = btn.dataset.filter; renderForms(); }); });
 document.getElementById('searchInput').addEventListener('input', (e) => { searchQuery = e.target.value.trim(); renderForms(); });
 
-function openModal(formId) { if (batchMode) return; selectedForm = formsData.find(f => f.id === formId); if (!selectedForm) return; document.getElementById('modalIcon').textContent = selectedForm.icon; document.getElementById('modalIcon').style.background = selectedForm.color + '20'; document.getElementById('modalTitle').textContent = selectedForm.name; document.getElementById('modalDesc').textContent = selectedForm.description; const meta = []; const hasLink = selectedForm.fileUrl && selectedForm.fileUrl !== '#' && selectedForm.fileUrl !== ''; if (!hasLink) meta.push(`⚠️ لا يوجد رابط للملف`); if (selectedForm.fileSize && hasLink) meta.push(`📄 ${selectedForm.fileSize}`); if (selectedForm.pages) meta.push(`📑 ${selectedForm.pages} صفحة`); if (selectedForm.updatedAt) meta.push(`📅 ${selectedForm.updatedAt}`); document.getElementById('modalMeta').innerHTML = meta.map(m => `<span>${m}</span>`).join(''); const btnDownload = document.getElementById('btnDownload'); const btnPreview = document.getElementById('btnPreview'); if (btnDownload) { btnDownload.style.opacity = hasLink ? '1' : '0.4'; btnDownload.style.pointerEvents = hasLink ? 'auto' : 'none'; btnDownload.textContent = hasLink ? (selectedForm.fileUrl.includes('drive.google.com') ? '⬇️ فتح في Google Drive' : '⬇️ فتح الملف') : '⬇️ لا يوجد رابط'; } if (btnPreview) { btnPreview.style.opacity = hasLink ? '1' : '0.4'; btnPreview.style.pointerEvents = hasLink ? 'auto' : 'none'; } updateFavButton(); document.getElementById('modalOverlay').classList.add('active'); document.body.style.overflow = 'hidden'; }
+function openModal(formId) { if (batchMode) return; markAsRead(formId); selectedForm = formsData.find(f => f.id === formId); if (!selectedForm) return; document.getElementById('modalIcon').textContent = selectedForm.icon; document.getElementById('modalIcon').style.background = selectedForm.color + '20'; document.getElementById('modalTitle').textContent = selectedForm.name; document.getElementById('modalDesc').textContent = selectedForm.description; const meta = []; const hasLink = selectedForm.fileUrl && selectedForm.fileUrl !== '#' && selectedForm.fileUrl !== ''; if (!hasLink) meta.push(`⚠️ لا يوجد رابط للملف`); if (selectedForm.fileSize && hasLink) meta.push(`📄 ${selectedForm.fileSize}`); if (selectedForm.pages) meta.push(`📑 ${selectedForm.pages} صفحة`); if (selectedForm.updatedAt) meta.push(`📅 ${selectedForm.updatedAt}`); document.getElementById('modalMeta').innerHTML = meta.map(m => `<span>${m}</span>`).join(''); const btnDownload = document.getElementById('btnDownload'); const btnPreview = document.getElementById('btnPreview'); if (btnDownload) { btnDownload.style.opacity = hasLink ? '1' : '0.4'; btnDownload.style.pointerEvents = hasLink ? 'auto' : 'none'; btnDownload.textContent = hasLink ? (selectedForm.fileUrl.includes('drive.google.com') ? '⬇️ فتح في Google Drive' : '⬇️ فتح الملف') : '⬇️ لا يوجد رابط'; } if (btnPreview) { btnPreview.style.opacity = hasLink ? '1' : '0.4'; btnPreview.style.pointerEvents = hasLink ? 'auto' : 'none'; } updateFavButton(); document.getElementById('modalOverlay').classList.add('active'); document.body.style.overflow = 'hidden'; }
 function closeModal() { document.getElementById('modalOverlay').classList.remove('active'); document.body.style.overflow = ''; selectedForm = null; }
 document.getElementById('modalOverlay').addEventListener('click', (e) => { if (e.target === document.getElementById('modalOverlay')) closeModal(); });
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeModal(); closeQRModal(); closeShortcutModal(); } });
@@ -1175,6 +1203,90 @@ function showQRCode() {
   document.getElementById('qrModalOverlay').classList.add('active');
 }
 function closeQRModal() { document.getElementById('qrModalOverlay').classList.remove('active'); }
+
+/* ===== Confetti Effect ===== */
+function fireConfetti() {
+  const canvas = document.getElementById('confettiCanvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  const particles = [];
+  const colors = ['#16455B', '#309694', '#38A18A', '#C5A059', '#e94560', '#f9a825', '#667eea'];
+  for (let i = 0; i < 80; i++) {
+    particles.push({
+      x: canvas.width / 2, y: canvas.height / 2,
+      vx: (Math.random() - 0.5) * 15, vy: (Math.random() - 0.5) * 15 - 5,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      size: Math.random() * 8 + 4, rotation: Math.random() * 360,
+      rotationSpeed: (Math.random() - 0.5) * 10, life: 1
+    });
+  }
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    let alive = false;
+    particles.forEach(p => {
+      if (p.life <= 0) return;
+      alive = true;
+      p.x += p.vx; p.y += p.vy; p.vy += 0.3;
+      p.rotation += p.rotationSpeed; p.life -= 0.015;
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rotation * Math.PI / 180);
+      ctx.globalAlpha = p.life;
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size);
+      ctx.restore();
+    });
+    if (alive) requestAnimationFrame(animate);
+    else ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+  animate();
+}
+
+/* ===== Read Status ===== */
+function markAsRead(formId) {
+  const readForms = getStorage('readForms', []);
+  if (!readForms.includes(formId)) {
+    readForms.push(formId);
+    setStorage('readForms', readForms);
+    renderForms();
+  }
+}
+
+/* ===== Print Batch ===== */
+function printBatch() {
+  const selected = formsData.filter(f => batchSelected.includes(f.id));
+  if (!selected.length) return;
+  let printWindow = window.open('', '_blank');
+  let html = `<!DOCTYPE html><html dir="rtl" lang="ar"><head><meta charset="UTF-8"><title>طباعة الاستمارات</title><style>body{font-family:'Tajawal',sans-serif;padding:20px;}h1{color:#16455B;text-align:center;}table{width:100%;border-collapse:collapse;margin-top:20px;}th{background:#16455B;color:white;padding:12px;text-align:right;}td{padding:10px;border:1px solid #ddd;text-align:right;}tr:nth-child(even){background:#f5f7f6;}</style></head><body><h1>📋 استمارات محددة للطباعة</h1><p>تاريخ الطباعة: ${new Date().toLocaleDateString('ar-SA')}</p><table><thead><tr><th>#</th><th>الاستمارة</th><th>التصنيف</th><th>الوصف</th><th>الرابط</th></tr></thead><tbody>${selected.map((f,i)=>`<tr><td>${i+1}</td><td>${f.icon} ${f.name}</td><td>${categoryNames.ar[f.category]||f.category}</td><td>${f.description||'-'}</td><td>${f.fileUrl!=='#'?f.fileUrl:'-'}</td></tr>`).join('')}</tbody></table></body></html>`;
+  printWindow.document.write(html);
+  printWindow.document.close();
+  printWindow.print();
+  showToast('🖨️ تم فتح نافذة الطباعة', 'success');
+}
+
+/* ===== Search Suggestions ===== */
+const searchInput = document.getElementById('searchInput');
+const searchSuggestions = document.getElementById('searchSuggestions');
+
+searchInput.addEventListener('input', (e) => {
+  searchQuery = e.target.value.trim();
+  renderForms();
+  if (!searchQuery) { searchSuggestions.classList.remove('active'); return; }
+  const q = searchQuery.toLowerCase();
+  const matches = formsData.filter(f => f.name.toLowerCase().includes(q)).slice(0, 5);
+  if (!matches.length) { searchSuggestions.classList.remove('active'); return; }
+  searchSuggestions.innerHTML = matches.map(f => `<div class="search-suggestion-item" onclick="selectSuggestion(${f.id})"><span class="sugg-icon">${f.icon}</span><span>${f.name}</span><span class="sugg-meta">${categoryNames.ar[f.category]||f.category}</span></div>`).join('');
+  searchSuggestions.classList.add('active');
+});
+
+searchInput.addEventListener('blur', () => { setTimeout(() => searchSuggestions.classList.remove('active'), 200); });
+searchInput.addEventListener('focus', () => { if (searchQuery && formsData.filter(f => f.name.toLowerCase().includes(searchQuery.toLowerCase())).length) searchSuggestions.classList.add('active'); });
+
+function selectSuggestion(formId) {
+  searchSuggestions.classList.remove('active');
+  openModal(formId);
+}
 
 /* Keyboard Shortcuts */
 function openShortcutModal() { document.getElementById('shortcutModal').classList.add('active'); }
