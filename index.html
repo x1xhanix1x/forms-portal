@@ -6,11 +6,16 @@
 <title>الإدارة العامة للتعليم بجدة - بوابة الاستمارات</title>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
+/* ============================================
+   هوية وزارة التعليم السعودية + تحسينات شاملة
+   أزرق داكن: #16455B | أخضر مائي: #309694 | أخضر: #38A18A
+   ============================================ */
 :root {
   --moe-teal: #16455B;
   --moe-teal-light: #216273;
   --moe-teal-dark: #0f3548;
   --moe-green: #38A18A;
+  --moe-green-light: #4DB89F;
   --moe-aqua: #309694;
   --moe-aqua-light: #3CB5B3;
   --moe-white: #ffffff;
@@ -21,18 +26,37 @@
   --moe-border: #d8e0dc;
   --shadow: 0 4px 20px rgba(22,69,91,0.08);
   --shadow-hover: 0 12px 40px rgba(22,69,91,0.15);
+  --card-bg: #ffffff;
+  --body-bg: #f5f7f6;
 }
+
+/* Dark Mode */
+[data-theme="dark"] {
+  --moe-white: #1a1a2e;
+  --moe-cream: #16213e;
+  --moe-gray: #1f2a40;
+  --moe-text: #e0e0e0;
+  --moe-text-light: #a0a0a0;
+  --moe-border: #2a3a55;
+  --card-bg: #1a1a2e;
+  --body-bg: #16213e;
+  --shadow: 0 4px 20px rgba(0,0,0,0.3);
+  --shadow-hover: 0 12px 40px rgba(0,0,0,0.4);
+}
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
   font-family: 'Tajawal', sans-serif;
-  background: var(--moe-cream);
+  background: var(--body-bg);
   color: var(--moe-text);
   min-height: 100vh;
+  transition: background 0.3s, color 0.3s;
 }
 
+/* ===== Header ===== */
 .header {
   background: linear-gradient(135deg, var(--moe-teal) 0%, var(--moe-teal-dark) 100%);
-  padding: 20px 24px;
+  padding: 16px 24px;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -46,7 +70,7 @@ body {
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 12px;
 }
 .logo-area {
   display: flex;
@@ -54,40 +78,61 @@ body {
   gap: 14px;
 }
 .logo-icon {
-  width: 52px; height: 52px;
+  width: 48px; height: 48px;
   background: var(--moe-aqua);
   border-radius: 12px;
   display: flex; align-items: center; justify-content: center;
-  font-size: 26px;
-  border: 2px solid var(--moe-white);
+  font-size: 24px;
+  border: 2px solid rgba(255,255,255,0.3);
 }
 .logo-text h1 {
   color: var(--moe-white);
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 800;
   line-height: 1.4;
 }
 .logo-text p {
-  color: rgba(255,255,255,0.8);
-  font-size: 12px;
+  color: rgba(255,255,255,0.75);
+  font-size: 11px;
   margin-top: 2px;
+}
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 .status-badge {
   background: rgba(48,150,148,0.2);
   color: var(--moe-aqua-light);
-  padding: 6px 16px;
+  padding: 6px 14px;
   border-radius: 20px;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
-  display: flex; align-items: center; gap: 6px;
+  display: flex; align-items: center;
+  gap: 6px;
   border: 1px solid var(--moe-aqua);
 }
+.theme-toggle, .lang-toggle {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.1);
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.3s;
+}
+.theme-toggle:hover, .lang-toggle:hover {
+  background: rgba(255,255,255,0.2);
+  transform: scale(1.1);
+}
 
-/* Loading */
+/* ===== Loading ===== */
 .loading-overlay {
   position: fixed;
   inset: 0;
-  background: var(--moe-cream);
+  background: var(--body-bg);
   z-index: 999;
   display: flex;
   flex-direction: column;
@@ -105,7 +150,33 @@ body {
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* Login Panel */
+/* ===== Notification Banner ===== */
+.notif-banner {
+  max-width: 1100px;
+  margin: 16px auto 0;
+  padding: 0 20px;
+  display: none;
+}
+.notif-banner.active { display: block; animation: slideDown 0.4s ease; }
+.notif-box {
+  background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+  border: 1px solid #ffc107;
+  border-radius: 14px;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.notif-box p { color: #856404; font-size: 14px; font-weight: 700; margin: 0; }
+.notif-close {
+  background: none; border: none; font-size: 20px; cursor: pointer;
+  color: #856404; padding: 0; width: 32px; height: 32px;
+  border-radius: 8px; display: flex; align-items: center; justify-content: center;
+}
+.notif-close:hover { background: rgba(0,0,0,0.05); }
+
+/* ===== Login Panel ===== */
 .login-panel {
   max-width: 1100px;
   margin: 24px auto;
@@ -114,7 +185,7 @@ body {
 }
 .login-panel.active { display: block; }
 .login-box {
-  background: var(--moe-white);
+  background: var(--card-bg);
   border-radius: 20px;
   padding: 32px;
   max-width: 400px;
@@ -123,16 +194,8 @@ body {
   box-shadow: var(--shadow-hover);
   text-align: center;
 }
-.login-box h3 {
-  color: var(--moe-teal);
-  font-size: 20px;
-  margin-bottom: 8px;
-}
-.login-box p {
-  color: var(--moe-text-light);
-  font-size: 14px;
-  margin-bottom: 20px;
-}
+.login-box h3 { color: var(--moe-teal); font-size: 20px; margin-bottom: 8px; }
+.login-box p { color: var(--moe-text-light); font-size: 14px; margin-bottom: 20px; }
 .login-box input {
   width: 100%;
   padding: 14px 16px;
@@ -143,11 +206,10 @@ body {
   margin-bottom: 12px;
   text-align: center;
   letter-spacing: 4px;
+  background: var(--card-bg);
+  color: var(--moe-text);
 }
-.login-box input:focus {
-  outline: none;
-  border-color: var(--moe-teal);
-}
+.login-box input:focus { outline: none; border-color: var(--moe-teal); }
 .login-box button {
   width: 100%;
   padding: 14px;
@@ -161,15 +223,10 @@ body {
   cursor: pointer;
 }
 .login-box button:hover { background: var(--moe-teal-dark); }
-.login-error {
-  color: #dc3545;
-  font-size: 13px;
-  margin-top: 8px;
-  display: none;
-}
+.login-error { color: #dc3545; font-size: 13px; margin-top: 8px; display: none; }
 .login-error.active { display: block; }
 
-/* Admin Panel */
+/* ===== Admin Panel ===== */
 .admin-panel {
   max-width: 1100px;
   margin: 0 auto 24px;
@@ -212,7 +269,7 @@ body {
   cursor: pointer;
 }
 .admin-form {
-  background: var(--moe-white);
+  background: var(--card-bg);
   border-radius: 20px;
   padding: 28px;
   margin-top: 16px;
@@ -247,7 +304,8 @@ body {
   margin-bottom: 6px;
 }
 .form-group input,
-.form-group select {
+.form-group select,
+.form-group textarea {
   width: 100%;
   padding: 12px 14px;
   border: 2px solid var(--moe-border);
@@ -255,9 +313,12 @@ body {
   font-family: inherit;
   font-size: 14px;
   transition: all 0.3s;
+  background: var(--card-bg);
+  color: var(--moe-text);
 }
 .form-group input:focus,
-.form-group select:focus {
+.form-group select:focus,
+.form-group textarea:focus {
   outline: none;
   border-color: var(--moe-teal);
 }
@@ -284,6 +345,57 @@ body {
 .admin-btn-danger { background: #dc3545; color: white; }
 .admin-btn-danger:hover { background: #c82333; }
 
+/* Forms Table */
+.forms-table-wrapper { margin-top: 24px; overflow-x: auto; }
+.forms-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card-bg);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.forms-table th {
+  background: var(--moe-teal);
+  color: white;
+  padding: 14px 12px;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: right;
+}
+.forms-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--moe-border);
+  font-size: 13px;
+  color: var(--moe-text);
+}
+.forms-table tr:hover td { background: var(--moe-cream); }
+.table-actions { display: flex; gap: 4px; flex-wrap: wrap; }
+.table-btn {
+  padding: 5px 10px;
+  border-radius: 6px;
+  border: none;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.table-btn-edit { background: var(--moe-aqua); color: white; }
+.table-btn-edit:hover { background: var(--moe-teal); }
+.table-btn-delete { background: #dc3545; color: white; }
+.table-btn-delete:hover { background: #c82333; }
+.table-btn-up { background: #28a745; color: white; }
+.table-btn-up:hover { background: #218838; }
+.table-btn-down { background: #17a2b8; color: white; }
+.table-btn-down:hover { background: #138496; }
+
+/* Priority input */
+.priority-input {
+  width: 60px !important;
+  text-align: center;
+  padding: 6px !important;
+}
+
 /* JSON Export */
 .json-export {
   margin-top: 24px;
@@ -293,17 +405,8 @@ body {
   display: none;
 }
 .json-export.active { display: block; }
-.json-export h4 {
-  color: var(--moe-aqua-light);
-  font-size: 14px;
-  margin-bottom: 12px;
-}
-.json-export p {
-  color: #B0C4DE;
-  font-size: 13px;
-  margin-bottom: 12px;
-  line-height: 1.6;
-}
+.json-export h4 { color: var(--moe-aqua-light); font-size: 14px; margin-bottom: 12px; }
+.json-export p { color: #B0C4DE; font-size: 13px; margin-bottom: 12px; line-height: 1.6; }
 .json-export textarea {
   width: 100%;
   height: 250px;
@@ -330,49 +433,53 @@ body {
   cursor: pointer;
 }
 
-/* Forms Table */
-.forms-table-wrapper {
-  margin-top: 24px;
-  overflow-x: auto;
+/* ===== Favorites Bar ===== */
+.fav-bar {
+  max-width: 1100px;
+  margin: 16px auto 0;
+  padding: 0 20px;
+  display: none;
 }
-.forms-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: var(--moe-white);
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: var(--shadow);
-}
-.forms-table th {
-  background: var(--moe-teal);
-  color: white;
-  padding: 14px 16px;
+.fav-bar.active { display: block; }
+.fav-bar-title {
   font-size: 14px;
   font-weight: 700;
-  text-align: right;
+  color: var(--moe-teal);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
-.forms-table td {
-  padding: 12px 16px;
-  border-bottom: 1px solid var(--moe-border);
-  font-size: 14px;
+.fav-chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
 }
-.forms-table tr:hover td { background: var(--moe-cream); }
-.table-actions { display: flex; gap: 6px; }
-.table-btn {
-  padding: 6px 12px;
-  border-radius: 8px;
-  border: none;
-  font-family: inherit;
-  font-size: 12px;
+.fav-chip {
+  background: linear-gradient(135deg, var(--moe-aqua), var(--moe-teal));
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 13px;
   font-weight: 700;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: none;
+  font-family: inherit;
+  transition: all 0.3s;
 }
-.table-btn-edit { background: var(--moe-aqua); color: white; }
-.table-btn-edit:hover { background: var(--moe-teal); }
-.table-btn-delete { background: #dc3545; color: white; }
-.table-btn-delete:hover { background: #c82333; }
+.fav-chip:hover { transform: scale(1.05); box-shadow: 0 4px 15px rgba(48,150,148,0.3); }
+.fav-chip .remove-fav {
+  background: rgba(255,255,255,0.2);
+  border-radius: 50%;
+  width: 18px; height: 18px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px;
+}
 
-/* Controls */
+/* ===== Controls ===== */
 .controls {
   max-width: 1100px;
   margin: 24px auto;
@@ -389,7 +496,8 @@ body {
   border-radius: 16px;
   font-size: 16px;
   font-family: inherit;
-  background: var(--moe-white);
+  background: var(--card-bg);
+  color: var(--moe-text);
   transition: all 0.3s;
 }
 .search-box input:focus {
@@ -414,7 +522,7 @@ body {
   padding: 10px 22px;
   border-radius: 12px;
   border: 2px solid var(--moe-border);
-  background: var(--moe-white);
+  background: var(--card-bg);
   color: var(--moe-text-light);
   font-family: inherit;
   font-size: 14px;
@@ -433,7 +541,7 @@ body {
   box-shadow: 0 4px 15px rgba(22,69,91,0.3);
 }
 
-/* Stats */
+/* ===== Stats Bar ===== */
 .stats-bar {
   max-width: 1100px;
   margin: 0 auto 20px;
@@ -443,14 +551,16 @@ body {
   gap: 12px;
 }
 .stat-card {
-  background: var(--moe-white);
+  background: var(--card-bg);
   border-radius: 14px;
   padding: 16px;
   text-align: center;
   border: 1px solid var(--moe-border);
   box-shadow: var(--shadow);
   border-top: 3px solid var(--moe-aqua);
+  transition: all 0.3s;
 }
+.stat-card:hover { transform: translateY(-3px); }
 .stat-card .stat-num {
   font-size: 28px;
   font-weight: 800;
@@ -462,7 +572,7 @@ body {
   margin-top: 4px;
 }
 
-/* Grid */
+/* ===== Grid ===== */
 .forms-grid {
   max-width: 1100px;
   margin: 0 auto;
@@ -472,7 +582,7 @@ body {
   gap: 20px;
 }
 .form-card {
-  background: var(--moe-white);
+  background: var(--card-bg);
   border-radius: 18px;
   padding: 24px;
   border: 1px solid var(--moe-border);
@@ -481,6 +591,12 @@ body {
   position: relative;
   overflow: hidden;
   cursor: pointer;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.5s ease forwards;
+}
+@keyframes fadeInUp {
+  to { opacity: 1; transform: translateY(0); }
 }
 .form-card::before {
   content: '';
@@ -526,6 +642,7 @@ body {
   background: var(--card-color-bg, rgba(22,69,91,0.1));
   color: var(--card-color, var(--moe-teal));
 }
+
 .card-footer {
   display: flex;
   align-items: center;
@@ -537,6 +654,24 @@ body {
   color: var(--moe-text-light);
   display: flex; align-items: center; gap: 4px;
 }
+.card-actions {
+  display: flex;
+  gap: 6px;
+}
+.card-action-btn {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  border: none;
+  background: var(--moe-gray);
+  color: var(--moe-text-light);
+  font-size: 16px;
+  cursor: pointer;
+  display: flex; align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+.card-action-btn:hover { background: var(--moe-border); transform: scale(1.1); }
+.card-action-btn.fav-active { background: #ffc107; color: #856404; }
 .print-btn {
   padding: 8px 18px;
   border-radius: 10px;
@@ -551,7 +686,7 @@ body {
 }
 .print-btn:hover { opacity: 0.9; transform: scale(1.05); }
 
-/* Empty */
+/* ===== Empty State ===== */
 .empty-state {
   grid-column: 1 / -1;
   text-align: center;
@@ -560,7 +695,7 @@ body {
 .empty-state .empty-icon { font-size: 64px; margin-bottom: 16px; opacity: 0.3; }
 .empty-state h3 { font-size: 20px; color: var(--moe-text-light); }
 
-/* Modal */
+/* ===== Modal ===== */
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -574,7 +709,7 @@ body {
 }
 .modal-overlay.active { display: flex; }
 .modal {
-  background: var(--moe-white);
+  background: var(--card-bg);
   border-radius: 24px;
   max-width: 500px;
   width: 100%;
@@ -603,11 +738,7 @@ body {
 .modal-header h2 { font-size: 22px; font-weight: 800; color: var(--moe-text); }
 .modal-header p { color: var(--moe-text-light); font-size: 14px; margin-top: 6px; }
 .modal-body { padding: 24px 28px; }
-.modal-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
+.modal-actions { display: flex; flex-direction: column; gap: 10px; }
 .modal-btn {
   padding: 14px 20px;
   border-radius: 14px;
@@ -636,25 +767,47 @@ body {
 }
 .modal-close:hover { color: var(--moe-teal); }
 
-/* Footer */
+/* ===== Back to Top ===== */
+.back-to-top {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: var(--moe-teal);
+  color: white;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(22,69,91,0.3);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 99;
+  transition: all 0.3s;
+}
+.back-to-top:hover { transform: translateY(-4px); background: var(--moe-teal-dark); }
+.back-to-top.visible { display: flex; }
+
+/* ===== Footer ===== */
 .footer {
   text-align: center;
   padding: 24px;
   color: var(--moe-text-light);
   font-size: 13px;
   border-top: 1px solid var(--moe-border);
-  background: var(--moe-white);
+  background: var(--card-bg);
 }
 .footer .moe-brand { color: var(--moe-teal); font-weight: 700; }
 
-/* Responsive */
+/* ===== Responsive ===== */
 @media (max-width: 600px) {
   .header-inner { justify-content: center; text-align: center; }
   .logo-area { flex-direction: column; }
   .forms-grid { grid-template-columns: 1fr; }
   .stat-card .stat-num { font-size: 22px; }
   .form-row { grid-template-columns: 1fr; }
-  .forms-table th, .forms-table td { padding: 10px 8px; font-size: 12px; }
+  .forms-table th, .forms-table td { padding: 8px 6px; font-size: 11px; }
 }
 </style>
 </head>
@@ -672,13 +825,25 @@ body {
     <div class="logo-area">
       <div class="logo-icon">📋</div>
       <div class="logo-text">
-        <h1>الإدارة العامة للتعليم بمحافظة جدة</h1>
-        <p>الموارد البشرية — الانتدابات والبدلات</p>
+        <h1 data-ar="الإدارة العامة للتعليم بمحافظة جدة" data-en="Jeddah Education Administration">الإدارة العامة للتعليم بمحافظة جدة</h1>
+        <p data-ar="الموارد البشرية — الانتدابات والبدلات" data-en="HR — Delegations & Allowances">الموارد البشرية — الانتدابات والبدلات</p>
       </div>
     </div>
-    <div class="status-badge"><span>🟢</span> النظام متاح</div>
+    <div class="header-actions">
+      <button class="theme-toggle" id="themeToggle" title="تبديل الوضع" onclick="toggleTheme()">🌙</button>
+      <button class="lang-toggle" id="langToggle" title="Switch Language" onclick="toggleLang()">EN</button>
+      <div class="status-badge"><span>🟢</span> <span id="statusText">متاح</span></div>
+    </div>
   </div>
 </header>
+
+<!-- Notification Banner -->
+<div class="notif-banner" id="notifBanner">
+  <div class="notif-box">
+    <p>🔔 تم إضافة استمارات جديدة! تحقق من القائمة أدناه</p>
+    <button class="notif-close" onclick="closeNotif()">✕</button>
+  </div>
+</div>
 
 <!-- Login Panel -->
 <div class="login-panel" id="loginPanel">
@@ -723,6 +888,10 @@ body {
         <label>اللون (Hex Code)</label>
         <input type="text" id="adminColor" placeholder="#16455B" value="#16455B">
       </div>
+      <div class="form-group">
+        <label>الأولوية (رقم أصغر = أولاً)</label>
+        <input type="number" id="adminPriority" placeholder="1" value="1" min="1">
+      </div>
     </div>
     <div class="form-row">
       <div class="form-group">
@@ -757,13 +926,19 @@ body {
 
     <!-- Forms Table -->
     <div class="forms-table-wrapper">
-      <h3 style="color:var(--moe-teal);margin:24px 0 12px;font-size:16px;">📋 الاستمارات الحالية</h3>
+      <h3 style="color:var(--moe-teal);margin:24px 0 12px;font-size:16px;">📋 الاستمارات الحالية (مرتبة حسب الأولوية)</h3>
       <table class="forms-table" id="adminTable">
-        <thead><tr><th>#</th><th>الأيقونة</th><th>الاسم</th><th>التصنيف</th><th>التحميلات</th><th>الإجراءات</th></tr></thead>
+        <thead><tr><th>#</th><th>أولوية</th><th>أيقونة</th><th>الاسم</th><th>التصنيف</th><th>التحميلات</th><th>الإجراءات</th></tr></thead>
         <tbody id="adminTableBody"></tbody>
       </table>
     </div>
   </div>
+</div>
+
+<!-- Favorites Bar -->
+<div class="fav-bar" id="favBar">
+  <div class="fav-bar-title">⭐ المفضلة</div>
+  <div class="fav-chips" id="favChips"></div>
 </div>
 
 <!-- Controls -->
@@ -777,14 +952,16 @@ body {
     <button class="filter-btn" data-filter="requests">📨 طلبات</button>
     <button class="filter-btn" data-filter="prints">🖨️ طباعات</button>
     <button class="filter-btn" data-filter="reports">📊 تقارير</button>
+    <button class="filter-btn" data-filter="favorites">⭐ المفضلة</button>
   </div>
 </div>
 
 <!-- Stats -->
 <div class="stats-bar">
-  <div class="stat-card"><div class="stat-num" id="statTotal">0</div><div class="stat-label">إجمالي المستندات</div></div>
-  <div class="stat-card"><div class="stat-num" id="statDownloads">0</div><div class="stat-label">إجمالي التحميلات</div></div>
-  <div class="stat-card"><div class="stat-num" id="statToday">0</div><div class="stat-label">تحميلات اليوم</div></div>
+  <div class="stat-card"><div class="stat-num" id="statTotal">0</div><div class="stat-label" data-ar="إجمالي المستندات" data-en="Total Forms">إجمالي المستندات</div></div>
+  <div class="stat-card"><div class="stat-num" id="statDownloads">0</div><div class="stat-label" data-ar="إجمالي التحميلات" data-en="Total Downloads">إجمالي التحميلات</div></div>
+  <div class="stat-card"><div class="stat-num" id="statToday">0</div><div class="stat-label" data-ar="تحميلات اليوم" data-en="Today">تحميلات اليوم</div></div>
+  <div class="stat-card"><div class="stat-num" id="statFavs">0</div><div class="stat-label" data-ar="المفضلة" data-en="Favorites">المفضلة</div></div>
 </div>
 
 <!-- Grid -->
@@ -803,16 +980,22 @@ body {
         <button class="modal-btn modal-btn-primary" onclick="handlePrint()">🖨️ طباعة المستند</button>
         <button class="modal-btn modal-btn-secondary" onclick="handleDownload()">⬇️ تحميل PDF</button>
         <button class="modal-btn modal-btn-secondary" onclick="handlePreview()">👁️ معاينة المستند</button>
+        <button class="modal-btn modal-btn-secondary" onclick="shareForm()">📤 مشاركة الاستمارة</button>
+        <button class="modal-btn modal-btn-secondary" onclick="toggleFavFromModal()" id="favModalBtn">⭐ إضافة للمفضلة</button>
       </div>
     </div>
     <div class="modal-close" onclick="closeModal()">إغلاق</div>
   </div>
 </div>
 
+<!-- Back to Top -->
+<button class="back-to-top" id="backToTop" onclick="scrollToTop()">⬆️</button>
+
 <!-- Footer -->
 <footer class="footer">
-  <span class="moe-brand">وزارة التعليم السعودية</span> — الإدارة العامة للتعليم بمحافظة جدة — الموارد البشرية — الانتدابات والبدلات
-  <br>جميع الحقوق محفوظة © 2026
+  <span class="moe-brand" data-ar="وزارة التعليم السعودية" data-en="Ministry of Education">وزارة التعليم السعودية</span> — 
+  <span data-ar="الإدارة العامة للتعليم بمحافظة جدة — الموارد البشرية — الانتدابات والبدلات" data-en="Jeddah Education — HR — Delegations & Allowances">الإدارة العامة للتعليم بمحافظة جدة — الموارد البشرية — الانتدابات والبدلات</span>
+  <br><span data-ar="جميع الحقوق محفوظة © 2026" data-en="All Rights Reserved © 2026">جميع الحقوق محفوظة © 2026</span>
 </footer>
 
 <script>
@@ -827,12 +1010,12 @@ let searchQuery = '';
 let selectedForm = null;
 let nextId = 1;
 let editingId = null;
+let favorites = getStorage('favorites', []);
+let currentLang = getStorage('lang', 'ar');
 
 const categoryNames = {
-  all: 'الكل',
-  requests: 'طلبات',
-  prints: 'طباعات',
-  reports: 'تقارير'
+  ar: { all: 'الكل', requests: 'طلبات', prints: 'طباعات', reports: 'تقارير', favorites: 'المفضلة' },
+  en: { all: 'All', requests: 'Requests', prints: 'Prints', reports: 'Reports', favorites: 'Favorites' }
 };
 
 // ==================== التخزين المحلي ====================
@@ -844,42 +1027,46 @@ function setStorage(key, val) {
   try { localStorage.setItem(key, JSON.stringify(val)); } catch {}
 }
 
-// ==================== تحميل البيانات من JSON ====================
+// ==================== تحميل البيانات ====================
 async function loadForms() {
   showLoading(true);
   try {
-    // نحاول تحميل من forms.json على نفس المستودع
     const response = await fetch('forms.json?v=' + Date.now());
     if (response.ok) {
       formsData = await response.json();
+      // Sort by priority
+      formsData.sort((a, b) => (a.priority || 999) - (b.priority || 999));
       console.log('✅ Loaded from forms.json:', formsData.length, 'forms');
     } else {
       throw new Error('forms.json not found');
     }
   } catch (e) {
     console.warn('⚠️ Could not load forms.json, using defaults:', e);
-    // fallback للبيانات الافتراضية إذا ما لقى الملف
     formsData = getDefaultForms();
   }
 
   nextId = Math.max(...formsData.map(f => f.id), 0) + 1;
   showLoading(false);
+  applyTheme();
+  applyLang();
+  renderFavorites();
   renderForms();
   initAuth();
+  checkNewForms();
 }
 
 function getDefaultForms() {
   return [
-    { id: 1, name: "استمارة طلب انتداب", category: "requests", icon: "📋", color: "#16455B", downloads: 234, fileUrl: "#", description: "استمارة رسمية لتقديم طلب انتداب وظيفي" },
-    { id: 2, name: "استمارة طلب بدل", category: "requests", icon: "💰", color: "#309694", downloads: 189, fileUrl: "#", description: "نموذج طلب صرف بدل مالي للموظفين" },
-    { id: 3, name: "استمارة طلب إجازة", category: "requests", icon: "🏖️", color: "#38A18A", downloads: 156, fileUrl: "#", description: "استمارة تقديم طلب إجازة سنوية أو استثنائية" },
-    { id: 4, name: "شهادة راتب", category: "prints", icon: "📄", color: "#16455B", downloads: 412, fileUrl: "#", description: "شهادة رسمية بقيمة الراتب الشهري" },
-    { id: 5, name: "تعريف بالراتب", category: "prints", icon: "📃", color: "#309694", downloads: 378, fileUrl: "#", description: "خطاب تعريف بالراتب للجهات الخارجية" },
-    { id: 6, name: "تقرير أداء شهري", category: "reports", icon: "📊", color: "#216273", downloads: 98, fileUrl: "#", description: "نموذج تقييم الأداء الوظيفي الشهري" },
-    { id: 7, name: "استمارة طلب نقل", category: "requests", icon: "🚚", color: "#16455B", downloads: 67, fileUrl: "#", description: "استمارة طلب نقل وظيفي أو إداري" },
-    { id: 8, name: "عقد عمل", category: "prints", icon: "📝", color: "#309694", downloads: 145, fileUrl: "#", description: "نسخة من عقد العمل للمراجعين" },
-    { id: 9, name: "تقرير إنجاز سنوي", category: "reports", icon: "📈", color: "#16455B", downloads: 54, fileUrl: "#", description: "تقرير ملخص الإنجازات السنوية" },
-    { id: 10, name: "استمارة طلب تدريب", category: "requests", icon: "🎓", color: "#309694", downloads: 123, fileUrl: "#", description: "طلب الالتحاق بدورة تدريبية" }
+    { id: 1, name: "استمارة طلب انتداب", category: "requests", icon: "📋", color: "#16455B", priority: 1, downloads: 234, fileUrl: "#", description: "استمارة رسمية لتقديم طلب انتداب وظيفي" },
+    { id: 2, name: "استمارة طلب بدل", category: "requests", icon: "💰", color: "#309694", priority: 2, downloads: 189, fileUrl: "#", description: "نموذج طلب صرف بدل مالي للموظفين" },
+    { id: 3, name: "استمارة طلب إجازة", category: "requests", icon: "🏖️", color: "#38A18A", priority: 3, downloads: 156, fileUrl: "#", description: "استمارة تقديم طلب إجازة سنوية أو استثنائية" },
+    { id: 4, name: "شهادة راتب", category: "prints", icon: "📄", color: "#16455B", priority: 4, downloads: 412, fileUrl: "#", description: "شهادة رسمية بقيمة الراتب الشهري" },
+    { id: 5, name: "تعريف بالراتب", category: "prints", icon: "📃", color: "#309694", priority: 5, downloads: 378, fileUrl: "#", description: "خطاب تعريف بالراتب للجهات الخارجية" },
+    { id: 6, name: "تقرير أداء شهري", category: "reports", icon: "📊", color: "#216273", priority: 6, downloads: 98, fileUrl: "#", description: "نموذج تقييم الأداء الوظيفي الشهري" },
+    { id: 7, name: "استمارة طلب نقل", category: "requests", icon: "🚚", color: "#16455B", priority: 7, downloads: 67, fileUrl: "#", description: "استمارة طلب نقل وظيفي أو إداري" },
+    { id: 8, name: "عقد عمل", category: "prints", icon: "📝", color: "#309694", priority: 8, downloads: 145, fileUrl: "#", description: "نسخة من عقد العمل للمراجعين" },
+    { id: 9, name: "تقرير إنجاز سنوي", category: "reports", icon: "📈", color: "#16455B", priority: 9, downloads: 54, fileUrl: "#", description: "تقرير ملخص الإنجازات السنوية" },
+    { id: 10, name: "استمارة طلب تدريب", category: "requests", icon: "🎓", color: "#309694", priority: 10, downloads: 123, fileUrl: "#", description: "طلب الالتحاق بدورة تدريبية" }
   ];
 }
 
@@ -887,7 +1074,105 @@ function showLoading(show) {
   document.getElementById('loadingOverlay').classList.toggle('hidden', !show);
 }
 
-// ==================== تسجيل الدخول ====================
+// ==================== Theme ====================
+function applyTheme() {
+  const theme = getStorage('theme', 'light');
+  document.documentElement.setAttribute('data-theme', theme);
+  document.getElementById('themeToggle').textContent = theme === 'dark' ? '☀️' : '🌙';
+}
+function toggleTheme() {
+  const current = document.documentElement.getAttribute('data-theme') || 'light';
+  const next = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  setStorage('theme', next);
+  document.getElementById('themeToggle').textContent = next === 'dark' ? '☀️' : '🌙';
+}
+
+// ==================== Language ====================
+function applyLang() {
+  const els = document.querySelectorAll('[data-ar][data-en]');
+  els.forEach(el => {
+    el.textContent = el.getAttribute('data-' + currentLang);
+  });
+  document.getElementById('langToggle').textContent = currentLang === 'ar' ? 'EN' : 'ع';
+  document.body.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+
+  // Update filter buttons
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    const filter = btn.dataset.filter;
+    if (categoryNames[currentLang][filter]) {
+      const icon = { all: '', requests: '📨 ', prints: '🖨️ ', reports: '📊 ', favorites: '⭐ ' }[filter] || '';
+      btn.innerHTML = icon + categoryNames[currentLang][filter];
+    }
+  });
+}
+function toggleLang() {
+  currentLang = currentLang === 'ar' ? 'en' : 'ar';
+  setStorage('lang', currentLang);
+  applyLang();
+  renderForms();
+  renderFavorites();
+}
+
+// ==================== Notifications ====================
+function checkNewForms() {
+  const lastVisit = getStorage('lastVisit', 0);
+  const now = Date.now();
+  const newForms = formsData.filter(f => f.addedAt && f.addedAt > lastVisit);
+  if (newForms.length > 0) {
+    document.getElementById('notifBanner').classList.add('active');
+  }
+  setStorage('lastVisit', now);
+}
+function closeNotif() {
+  document.getElementById('notifBanner').classList.remove('active');
+}
+
+// ==================== Favorites ====================
+function toggleFav(formId) {
+  const idx = favorites.indexOf(formId);
+  if (idx > -1) {
+    favorites.splice(idx, 1);
+  } else {
+    favorites.push(formId);
+  }
+  setStorage('favorites', favorites);
+  renderFavorites();
+  renderForms();
+}
+function toggleFavFromModal() {
+  if (!selectedForm) return;
+  toggleFav(selectedForm.id);
+  updateFavButton();
+}
+function updateFavButton() {
+  if (!selectedForm) return;
+  const btn = document.getElementById('favModalBtn');
+  const isFav = favorites.includes(selectedForm.id);
+  btn.textContent = isFav ? '❌ إزالة من المفضلة' : '⭐ إضافة للمفضلة';
+}
+function renderFavorites() {
+  const bar = document.getElementById('favBar');
+  const chips = document.getElementById('favChips');
+  const favForms = formsData.filter(f => favorites.includes(f.id));
+
+  document.getElementById('statFavs').textContent = favForms.length;
+
+  if (favForms.length === 0) {
+    bar.classList.remove('active');
+    return;
+  }
+
+  bar.classList.add('active');
+  chips.innerHTML = favForms.map(f => `
+    <button class="fav-chip" onclick="openModal(${f.id})">
+      ${f.icon} ${f.name}
+      <span class="remove-fav" onclick="event.stopPropagation(); toggleFav(${f.id})">✕</span>
+    </button>
+  `).join('');
+}
+
+// ==================== Auth ====================
 function initAuth() {
   if (isAdmin) {
     document.getElementById('loginPanel').classList.remove('active');
@@ -897,7 +1182,6 @@ function initAuth() {
     document.getElementById('adminPanel').classList.remove('active');
   }
 }
-
 function doLogin() {
   const password = document.getElementById('loginPassword').value;
   if (password === ADMIN_PASSWORD) {
@@ -913,9 +1197,8 @@ function doLogin() {
     document.getElementById('loginPassword').value = '';
   }
 }
-
 function doLogout() {
-  if (!confirm('هل أنت متأكد من تسجيل الخروج؟')) return;
+  if (!confirm(currentLang === 'ar' ? 'هل أنت متأكد من تسجيل الخروج؟' : 'Are you sure you want to logout?')) return;
   isAdmin = false;
   setStorage('isAdmin', false);
   document.getElementById('adminPanel').classList.remove('active');
@@ -923,7 +1206,7 @@ function doLogout() {
   document.getElementById('adminForm').classList.remove('active');
 }
 
-// ==================== لوحة الإدارة ====================
+// ==================== Admin Panel ====================
 function toggleAdmin() {
   document.getElementById('adminForm').classList.toggle('active');
   if (document.getElementById('adminForm').classList.contains('active')) {
@@ -934,24 +1217,63 @@ function toggleAdmin() {
 function renderAdminTable() {
   const tbody = document.getElementById('adminTableBody');
   if (!formsData.length) {
-    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:#999;padding:20px;">لا توجد استمارات</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:#999;padding:20px;">لا توجد استمارات</td></tr>';
     return;
   }
-  tbody.innerHTML = formsData.map((form, idx) => `
+
+  // Sort by priority for admin table too
+  const sorted = [...formsData].sort((a, b) => (a.priority || 999) - (b.priority || 999));
+
+  tbody.innerHTML = sorted.map((form, idx) => `
     <tr>
       <td>${idx + 1}</td>
+      <td><input type="number" class="priority-input" value="${form.priority || 1}" onchange="changePriority(${form.id}, this.value)"></td>
       <td style="font-size:20px;text-align:center;">${form.icon}</td>
       <td><strong>${form.name}</strong></td>
-      <td>${categoryNames[form.category]}</td>
+      <td>${categoryNames.ar[form.category]}</td>
       <td>${form.downloads || 0}</td>
       <td>
         <div class="table-actions">
-          <button class="table-btn table-btn-edit" onclick="editForm(${form.id})">✏️ تعديل</button>
-          <button class="table-btn table-btn-delete" onclick="deleteForm(${form.id})">🗑️ حذف</button>
+          <button class="table-btn table-btn-up" onclick="moveUp(${form.id})">⬆️</button>
+          <button class="table-btn table-btn-down" onclick="moveDown(${form.id})">⬇️</button>
+          <button class="table-btn table-btn-edit" onclick="editForm(${form.id})">✏️</button>
+          <button class="table-btn table-btn-delete" onclick="deleteForm(${form.id})">🗑️</button>
         </div>
       </td>
     </tr>
   `).join('');
+}
+
+function changePriority(id, newPriority) {
+  const form = formsData.find(f => f.id === id);
+  if (form) {
+    form.priority = parseInt(newPriority) || 1;
+    formsData.sort((a, b) => (a.priority || 999) - (b.priority || 999));
+    renderForms();
+    renderAdminTable();
+    exportJSON();
+  }
+}
+
+function moveUp(id) {
+  const form = formsData.find(f => f.id === id);
+  if (!form) return;
+  form.priority = (form.priority || 1) - 1;
+  if (form.priority < 1) form.priority = 1;
+  formsData.sort((a, b) => (a.priority || 999) - (b.priority || 999));
+  renderForms();
+  renderAdminTable();
+  exportJSON();
+}
+
+function moveDown(id) {
+  const form = formsData.find(f => f.id === id);
+  if (!form) return;
+  form.priority = (form.priority || 1) + 1;
+  formsData.sort((a, b) => (a.priority || 999) - (b.priority || 999));
+  renderForms();
+  renderAdminTable();
+  exportJSON();
 }
 
 function saveForm() {
@@ -959,6 +1281,7 @@ function saveForm() {
   const category = document.getElementById('adminCategory').value;
   const icon = document.getElementById('adminIcon').value.trim() || '📄';
   const color = document.getElementById('adminColor').value.trim() || '#16455B';
+  const priority = parseInt(document.getElementById('adminPriority').value) || 1;
   const fileUrl = document.getElementById('adminUrl').value.trim() || '#';
   const desc = document.getElementById('adminDesc').value.trim() || name;
 
@@ -967,14 +1290,15 @@ function saveForm() {
   if (editingId) {
     const idx = formsData.findIndex(f => f.id === editingId);
     if (idx !== -1) {
-      formsData[idx] = { ...formsData[idx], name, category, icon, color, fileUrl, description: desc };
-      alert('✅ تم تعديل الاستمارة! الآن اضغط "تصدير JSON" وارفع الملف على GitHub.');
+      formsData[idx] = { ...formsData[idx], name, category, icon, color, priority, fileUrl, description: desc };
+      alert('✅ تم تعديل الاستمارة! اضغط "تصدير JSON" وارفع الملف.');
     }
   } else {
-    formsData.push({ id: nextId++, name, category, icon, color, downloads: 0, fileUrl, description: desc });
-    alert('✅ تمت إضافة الاستمارة! الآن اضغط "تصدير JSON" وارفع الملف على GitHub.');
+    formsData.push({ id: nextId++, name, category, icon, color, priority, downloads: 0, fileUrl, description: desc, addedAt: Date.now() });
+    alert('✅ تمت إضافة الاستمارة! اضغط "تصدير JSON" وارفع الملف.');
   }
 
+  formsData.sort((a, b) => (a.priority || 999) - (b.priority || 999));
   resetForm();
   renderForms();
   renderAdminTable();
@@ -989,6 +1313,7 @@ function editForm(id) {
   document.getElementById('adminCategory').value = form.category;
   document.getElementById('adminIcon').value = form.icon;
   document.getElementById('adminColor').value = form.color;
+  document.getElementById('adminPriority').value = form.priority || 1;
   document.getElementById('adminUrl').value = form.fileUrl === '#' ? '' : form.fileUrl;
   document.getElementById('adminDesc').value = form.description;
   document.getElementById('formTitle').textContent = '✏️ تعديل استمارة';
@@ -1002,11 +1327,14 @@ function deleteForm(id) {
   if (!form) return;
   if (!confirm(`⚠️ هل أنت متأكد من حذف "${form.name}"؟`)) return;
   formsData = formsData.filter(f => f.id !== id);
+  favorites = favorites.filter(fid => fid !== id);
+  setStorage('favorites', favorites);
   if (editingId === id) resetForm();
   renderForms();
+  renderFavorites();
   renderAdminTable();
   exportJSON();
-  alert('🗑️ تم حذف الاستمارة! ارفع ملف JSON المحدث على GitHub.');
+  alert('🗑️ تم حذف الاستمارة!');
 }
 
 function resetForm() {
@@ -1015,6 +1343,7 @@ function resetForm() {
   document.getElementById('adminCategory').value = 'requests';
   document.getElementById('adminIcon').value = '📄';
   document.getElementById('adminColor').value = '#16455B';
+  document.getElementById('adminPriority').value = '1';
   document.getElementById('adminUrl').value = '';
   document.getElementById('adminDesc').value = '';
   document.getElementById('formTitle').textContent = '➕ إضافة استمارة جديدة';
@@ -1031,7 +1360,7 @@ function copyJSON() {
   const area = document.getElementById('exportArea');
   area.select();
   document.execCommand('copy');
-  alert('✅ تم نسخ JSON! الآن أنشئ ملف forms.json على GitHub والصق المحتوى.');
+  alert('✅ تم نسخ JSON!');
 }
 
 function downloadJSON() {
@@ -1043,27 +1372,42 @@ function downloadJSON() {
   a.download = 'forms.json';
   a.click();
   URL.revokeObjectURL(url);
-  alert('✅ تم تحميل ملف forms.json! ارفعه على GitHub الآن.');
+  alert('✅ تم تحميل ملف forms.json!');
 }
 
 function clearAll() {
   if (!confirm('⚠️ هل أنت متأكد من حذف جميع الاستمارات؟')) return;
   formsData = [];
+  favorites = [];
+  setStorage('favorites', favorites);
   nextId = 1;
   resetForm();
   renderForms();
+  renderFavorites();
   renderAdminTable();
   exportJSON();
-  alert('🗑️ تم حذف جميع الاستمارات! ارفع ملف JSON الفارغ على GitHub.');
+  alert('🗑️ تم حذف جميع الاستمارات!');
 }
 
-// ==================== العرض ====================
+// ==================== Render Forms ====================
 function getFilteredForms() {
-  return formsData.filter(form => {
-    const matchesCategory = currentFilter === 'all' || form.category === currentFilter;
-    const matchesSearch = form.name.includes(searchQuery) || (form.description && form.description.includes(searchQuery));
-    return matchesCategory && matchesSearch;
-  });
+  let filtered = formsData;
+
+  if (currentFilter === 'favorites') {
+    filtered = formsData.filter(f => favorites.includes(f.id));
+  } else if (currentFilter !== 'all') {
+    filtered = formsData.filter(f => f.category === currentFilter);
+  }
+
+  if (searchQuery) {
+    filtered = filtered.filter(form => 
+      form.name.includes(searchQuery) || 
+      (form.description && form.description.includes(searchQuery))
+    );
+  }
+
+  // Already sorted by priority from loadForms
+  return filtered;
 }
 
 function renderForms() {
@@ -1071,26 +1415,35 @@ function renderForms() {
   const filtered = getFilteredForms();
 
   if (filtered.length === 0) {
-    grid.innerHTML = `<div class="empty-state"><div class="empty-icon">🔍</div><h3>لا توجد نتائج مطابقة للبحث</h3></div>`;
+    grid.innerHTML = `<div class="empty-state"><div class="empty-icon">🔍</div><h3>${currentLang === 'ar' ? 'لا توجد نتائج' : 'No results found'}</h3></div>`;
     updateStats();
     return;
   }
 
-  grid.innerHTML = filtered.map(form => `
-    <div class="form-card" style="--card-color: ${form.color}; --card-color-bg: ${form.color}15;" onclick="openModal(${form.id})">
-      <div class="card-header">
-        <div class="card-icon">${form.icon}</div>
-        <div class="card-info">
-          <h3>${form.name}</h3>
-          <span class="category-tag">${categoryNames[form.category]}</span>
+  grid.innerHTML = filtered.map((form, idx) => {
+    const isFav = favorites.includes(form.id);
+    const delay = idx * 0.05;
+    return `
+      <div class="form-card" style="--card-color: ${form.color}; --card-color-bg: ${form.color}15; animation-delay: ${delay}s;" onclick="openModal(${form.id})">
+        <div class="card-header">
+          <div class="card-icon">${form.icon}</div>
+          <div class="card-info">
+            <h3>${form.name}</h3>
+            <span class="category-tag">${categoryNames[currentLang][form.category]}</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <span class="download-count">⬇️ ${(form.downloads || 0).toLocaleString(currentLang === 'ar' ? 'ar-SA' : 'en')}</span>
+          <div class="card-actions">
+            <button class="card-action-btn ${isFav ? 'fav-active' : ''}" onclick="event.stopPropagation(); toggleFav(${form.id})" title="${isFav ? 'إزالة من المفضلة' : 'إضافة للمفضلة'}">
+              ${isFav ? '★' : '☆'}
+            </button>
+            <button class="card-action-btn" onclick="event.stopPropagation(); shareFormById(${form.id})" title="مشاركة">📤</button>
+          </div>
         </div>
       </div>
-      <div class="card-footer">
-        <span class="download-count">⬇️ ${(form.downloads || 0).toLocaleString('ar-SA')}</span>
-        <button class="print-btn">اطبع الآن</button>
-      </div>
-    </div>
-  `).join('');
+    `;
+  }).join('');
 
   updateStats();
 }
@@ -1099,11 +1452,12 @@ function updateStats() {
   const total = formsData.length;
   const totalDownloads = formsData.reduce((sum, f) => sum + (f.downloads || 0), 0);
   document.getElementById('statTotal').textContent = total;
-  document.getElementById('statDownloads').textContent = totalDownloads.toLocaleString('ar-SA');
+  document.getElementById('statDownloads').textContent = totalDownloads.toLocaleString(currentLang === 'ar' ? 'ar-SA' : 'en');
   document.getElementById('statToday').textContent = getStorage('todayDownloads', { count: 0 }).count;
+  document.getElementById('statFavs').textContent = favorites.length;
 }
 
-// ==================== الفلاتر ====================
+// ==================== Filters ====================
 document.querySelectorAll('.filter-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -1113,7 +1467,7 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
   });
 });
 
-// ==================== البحث ====================
+// ==================== Search ====================
 document.getElementById('searchInput').addEventListener('input', (e) => {
   searchQuery = e.target.value.trim();
   renderForms();
@@ -1127,6 +1481,7 @@ function openModal(formId) {
   document.getElementById('modalIcon').style.background = selectedForm.color + '20';
   document.getElementById('modalTitle').textContent = selectedForm.name;
   document.getElementById('modalDesc').textContent = selectedForm.description;
+  updateFavButton();
   document.getElementById('modalOverlay').classList.add('active');
   document.body.style.overflow = 'hidden';
 }
@@ -1142,14 +1497,14 @@ document.getElementById('modalOverlay').addEventListener('click', (e) => {
 });
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
-// ==================== الإجراءات ====================
+// ==================== Actions ====================
 function handlePrint() {
   if (!selectedForm) return;
   if (selectedForm.fileUrl && selectedForm.fileUrl !== '#') {
     const win = window.open(selectedForm.fileUrl, '_blank');
     if (win) win.onload = () => win.print();
   } else {
-    alert('ℹ️ رابط الملف غير متوفر حاليًا.\n\nيرجى إضافة رابط الملف PDF في إعدادات الاستمارة.');
+    alert(currentLang === 'ar' ? 'ℹ️ رابط الملف غير متوفر حاليًا.' : 'ℹ️ File URL not available.');
   }
   closeModal();
 }
@@ -1162,7 +1517,7 @@ function handleDownload() {
     a.download = selectedForm.name + '.pdf';
     a.click();
   } else {
-    alert('ℹ️ رابط الملف غير متوفر حاليًا.\n\nيرجى إضافة رابط الملف PDF في إعدادات الاستمارة.');
+    alert(currentLang === 'ar' ? 'ℹ️ رابط الملف غير متوفر حاليًا.' : 'ℹ️ File URL not available.');
   }
   closeModal();
 }
@@ -1172,12 +1527,45 @@ function handlePreview() {
   if (selectedForm.fileUrl && selectedForm.fileUrl !== '#') {
     window.open(selectedForm.fileUrl, '_blank');
   } else {
-    alert('ℹ️ رابط الملف غير متوفر حاليًا.\n\nيرجى إضافة رابط الملف PDF في إعدادات الاستمارة.');
+    alert(currentLang === 'ar' ? 'ℹ️ رابط الملف غير متوفر حاليًا.' : 'ℹ️ File URL not available.');
   }
   closeModal();
 }
 
-// ==================== التشغيل ====================
+function shareForm() {
+  if (!selectedForm) return;
+  shareFormById(selectedForm.id);
+  closeModal();
+}
+
+function shareFormById(id) {
+  const form = formsData.find(f => f.id === id);
+  if (!form) return;
+  const text = `${form.name} - ${form.description}\n${form.fileUrl !== '#' ? form.fileUrl : 'https://x1xhanix1x.github.io/forms-portal/'}`;
+
+  if (navigator.share) {
+    navigator.share({ title: form.name, text: form.description, url: form.fileUrl !== '#' ? form.fileUrl : 'https://x1xhanix1x.github.io/forms-portal/' });
+  } else {
+    // WhatsApp share
+    const waUrl = `https://wa.me/?text=${encodeURIComponent(text)}`;
+    window.open(waUrl, '_blank');
+  }
+}
+
+// ==================== Back to Top ====================
+window.addEventListener('scroll', () => {
+  const btn = document.getElementById('backToTop');
+  if (window.scrollY > 400) {
+    btn.classList.add('visible');
+  } else {
+    btn.classList.remove('visible');
+  }
+});
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ==================== Run ====================
 loadForms();
 </script>
 
