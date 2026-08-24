@@ -267,6 +267,7 @@ body, .stat-num, .download-count, .priority-input, .ticker-item, .card-meta-item
   .filter-btn { padding: 8px 14px; font-size: 12px; }
 }
 </style>
+<base target="_blank">
 </head>
 <body>
 
@@ -592,23 +593,45 @@ function resetForm() { editingId = null; document.getElementById('adminName').va
 function exportJSON() { const jsonStr = JSON.stringify(formsData, null, 2); document.getElementById('exportArea').value = jsonStr; document.getElementById('jsonExport').classList.add('active'); }
 
 function exportCSV() {
-  // FIX: Use semicolon separator and add BOM + sep declaration for Excel compatibility
-  const separator = ';';
-  const headers = ['id', 'name', 'category', 'icon', 'color', 'priority', 'downloads', 'fileSize', 'pages', 'updatedAt', 'tags', 'description', 'fileUrl'];
-  const rows = formsData.map(f => [f.id, f.name, f.category, f.icon, f.color, f.priority, f.downloads, f.fileSize || '', f.pages || '', f.updatedAt || '', (f.tags || []).join(';'), f.description, f.fileUrl]);
-  const csvContent = [headers.join(separator), ...rows.map(r => r.map(v => `"${String(v).replace(/"/g, '""')}"`).join(separator))].join('\n');
-  const bom = "\uFEFF";
-  const sepLine = `sep=${separator}\n`;
-  const blob = new Blob([bom + sepLine + csvContent], { type: 'text/csv;charset=utf-8;' });
+  // FIX: Create HTML table that opens correctly in Excel with RTL support
+  const headers = ['#', 'الاسم', 'التصنيف', 'الأيقونة', 'اللون', 'الأولوية', 'التحميلات', 'الحجم', 'الصفحات', 'آخر تحديث', 'الوسوم', 'الوصف', 'الرابط'];
+  const rows = formsData.map((f, i) => [i + 1, f.name, categoryNames.ar[f.category] || f.category, f.icon, f.color, f.priority || 1, f.downloads || 0, f.fileSize || '-', f.pages || '-', f.updatedAt || '-', (f.tags || []).join('، '), f.description || '-', f.fileUrl]);
+
+  let html = `<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="UTF-8">
+<style>
+  body { font-family: 'Segoe UI', Tahoma, sans-serif; direction: rtl; }
+  table { border-collapse: collapse; width: 100%; direction: rtl; }
+  th { background: #16455B; color: white; padding: 10px; border: 1px solid #ddd; font-weight: bold; text-align: right; }
+  td { padding: 8px; border: 1px solid #ddd; text-align: right; }
+  tr:nth-child(even) { background: #f5f7f6; }
+  tr:hover { background: #e8f4f8; }
+</style>
+</head>
+<body>
+<h2 style="color:#16455B;text-align:right;">تقرير الاستمارات - الإدارة العامة للتعليم بجدة</h2>
+<p style="text-align:right;color:#666;">تاريخ التصدير: ${new Date().toLocaleDateString('ar-SA')}</p>
+<table>
+<thead><tr>${headers.map(h => `<th>${h}</th>`).join('')}</tr></thead>
+<tbody>
+${rows.map(r => `<tr>${r.map(c => `<td>${String(c).replace(/</g, '&lt;').replace(/>/g, '&gt;')}</td>`).join('')}</tr>`).join('')}
+</tbody>
+</table>
+</body>
+</html>`;
+
+  const blob = new Blob(["\uFEFF" + html], { type: 'application/vnd.ms-excel;charset=utf-8;' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = 'forms_export.csv';
+  a.download = 'forms_report.xls';
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
-  showToast('✅ تم تصدير ملف Excel/CSV بنجاح!', 'success');
+  showToast('✅ تم تصدير ملف Excel بنجاح! (يفتح من اليمين)', 'success');
 }
 
 function copyJSON() { const area = document.getElementById('exportArea'); area.select(); document.execCommand('copy'); showToast('✅ تم نسخ JSON!', 'success'); }
@@ -715,29 +738,27 @@ function updateBatchBar() {
 }
 function downloadBatch() { 
   const selected = formsData.filter(f => batchSelected.includes(f.id)); 
-  if (selected.length === 0) return; 
-  let downloaded = 0; 
-  selected.forEach(form => { 
-    if (form.fileUrl && form.fileUrl !== '#') { 
-      const a = document.createElement('a'); 
-      a.href = form.fileUrl; 
-      a.download = form.name + '.pdf'; 
-      a.target = '_blank';
-      document.body.appendChild(a);
-      a.click(); 
-      document.body.removeChild(a);
-      downloaded++; 
-      form.downloads = (form.downloads || 0) + 1; 
-    } 
-  }); 
-  if (downloaded === 0) { showToast('ℹ️ روابط الملفات غير متوفرة. يرجى إضافة روابط PDF أولاً.', 'info'); return; } 
-  batchSelected = []; 
-  updateBatchBar(); 
-  renderForms(); 
-  renderPopular(); 
-  updateStats(); 
-  exportJSON(); 
-  showToast(`✅ تم تحميل ${downloaded.toLocaleString('en-US')} استمارة!`, 'success'); 
+  if (selected.length === 0) return;
+  const validForms = selected.filter(form => form.fileUrl && form.fileUrl !== '#');
+  if (validForms.length === 0) { showToast('ℹ️ روابط الملفات غير متوفرة. يرجى إضافة روابط PDF أولاً.', 'info'); return; }
+
+  // FIX: Open each file in new tab with delay to avoid browser blocking
+  validForms.forEach((form, index) => {
+    setTimeout(() => {
+      window.open(form.fileUrl, '_blank');
+      form.downloads = (form.downloads || 0) + 1;
+    }, index * 800);
+  });
+
+  setTimeout(() => {
+    batchSelected = []; 
+    updateBatchBar(); 
+    renderForms(); 
+    renderPopular(); 
+    updateStats(); 
+    exportJSON(); 
+    showToast(`✅ تم فتح ${validForms.length.toLocaleString('en-US')} ملف في نوافذ جديدة!`, 'success');
+  }, validForms.length * 800 + 500);
 }
 function clearBatch() { batchSelected = []; updateBatchBar(); renderForms(); showToast('تم إلغاء التحديد', 'info'); }
 
@@ -766,7 +787,7 @@ document.getElementById('modalOverlay').addEventListener('click', (e) => { if (e
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
 function handlePrint() { if (!selectedForm) return; if (selectedForm.fileUrl && selectedForm.fileUrl !== '#') { const win = window.open(selectedForm.fileUrl, '_blank'); if (win) win.onload = () => win.print(); } else { showToast('ℹ️ رابط الملف غير متوفر حاليًا.', 'info'); } closeModal(); }
-function handleDownload() { if (!selectedForm) return; if (selectedForm.fileUrl && selectedForm.fileUrl !== '#') { const a = document.createElement('a'); a.href = selectedForm.fileUrl; a.download = selectedForm.name + '.pdf'; a.target = '_blank'; document.body.appendChild(a); a.click(); document.body.removeChild(a); selectedForm.downloads = (selectedForm.downloads || 0) + 1; renderForms(); renderPopular(); updateStats(); exportJSON(); showToast('تم التحميل بنجاح', 'success'); } else { showToast('ℹ️ رابط الملف غير متوفر حاليًا.', 'info'); } closeModal(); }
+function handleDownload() { if (!selectedForm) return; if (selectedForm.fileUrl && selectedForm.fileUrl !== '#') { window.open(selectedForm.fileUrl, '_blank'); selectedForm.downloads = (selectedForm.downloads || 0) + 1; renderForms(); renderPopular(); updateStats(); exportJSON(); showToast('تم فتح الملف في نافذة جديدة', 'success'); } else { showToast('ℹ️ رابط الملف غير متوفر حاليًا.', 'info'); } closeModal(); }
 function handlePreview() { if (!selectedForm) return; if (selectedForm.fileUrl && selectedForm.fileUrl !== '#') { window.open(selectedForm.fileUrl, '_blank'); } else { showToast('ℹ️ رابط الملف غير متوفر حاليًا.', 'info'); } closeModal(); }
 function shareForm() { if (!selectedForm) return; shareFormById(selectedForm.id); closeModal(); }
 function shareFormById(id) { const form = formsData.find(f => f.id === id); if (!form) return; const text = `${form.name} - ${form.description}\n${form.fileUrl !== '#' ? form.fileUrl : 'https://x1xhanix1x.github.io/forms-portal/'}`; if (navigator.share) { navigator.share({ title: form.name, text: form.description, url: form.fileUrl !== '#' ? form.fileUrl : 'https://x1xhanix1x.github.io/forms-portal/' }); } else { const waUrl = `https://wa.me/?text=${encodeURIComponent(text)}`; window.open(waUrl, '_blank'); } }
