@@ -8,7 +8,16 @@
     "downloads": 234,
     "fileUrl": "https://drive.google.com/file/d/1ylN07nfZDXWA-SUmpN-rfeNtzIY61uWs/view?usp=drive_link",
     "description": "استمارة طلب انتداب",
-    "priority": 1
+    "priority": 1,
+    "tags": [
+      "شهري",
+      "إلزامي",
+      "سنوي",
+      "شائع"
+    ],
+    "fileSize": "",
+    "pages": 1,
+    "updatedAt": "2026-08-24"
   },
   {
     "id": 2,
@@ -19,7 +28,16 @@
     "downloads": 189,
     "fileUrl": "https://drive.google.com/file/d/1sUhkt74Ag8fQFiAdO2fs037uchhK4rmP/view?usp=drive_link",
     "description": "وثيقة أداء مهمة انتداب",
-    "priority": 2
+    "priority": 2,
+    "tags": [
+      "شهري",
+      "مالي",
+      "إلزامي",
+      "سنوي"
+    ],
+    "fileSize": "",
+    "pages": 1,
+    "updatedAt": "2026-08-24"
   },
   {
     "id": 3,
@@ -30,7 +48,15 @@
     "downloads": 156,
     "fileUrl": "https://drive.google.com/file/d/17fWUZmtG8lPplqSe10dIVoQPw81pmQ6b/view?usp=drive_link",
     "description": "نماذج صرف بدل ضرر",
-    "priority": 3
+    "priority": 3,
+    "tags": [
+      "إلزامي",
+      "مالي",
+      "بنكي"
+    ],
+    "fileSize": "",
+    "pages": 1,
+    "updatedAt": "2026-08-24"
   },
   {
     "id": 7,
@@ -41,7 +67,16 @@
     "downloads": 67,
     "fileUrl": "#",
     "description": "استمارة طلب نقل وظيفي أو إداري",
-    "priority": 4
+    "priority": 4,
+    "tags": [
+      "إلزامي",
+      "مالي",
+      "بنكي",
+      "شهري"
+    ],
+    "fileSize": "",
+    "pages": 1,
+    "updatedAt": "2026-08-24"
   },
   {
     "id": 5,
@@ -52,7 +87,16 @@
     "downloads": 378,
     "fileUrl": "https://drive.google.com/file/d/1SYDCCX-XGwmkDxWX60uG6ETUmGnhhf6g/view?usp=drive_link",
     "description": "نموذج طلب صرف تعويض تذاكر",
-    "priority": 5
+    "priority": 5,
+    "tags": [
+      "فوري",
+      "بنكي",
+      "مالي",
+      "عاجل"
+    ],
+    "fileSize": "",
+    "pages": 1,
+    "updatedAt": "2026-08-24"
   },
   {
     "id": 4,
@@ -63,7 +107,16 @@
     "downloads": 412,
     "fileUrl": "https://drive.google.com/file/d/1BDCA6i_evwNA229rzPZyScTl-CvtdD_S/view?usp=drive_link",
     "description": "نموذج طلب صرف بدل مناطق نائية",
-    "priority": 6
+    "priority": 6,
+    "tags": [
+      "قانوني",
+      "مالي",
+      "بنكي",
+      "شهري"
+    ],
+    "fileSize": "",
+    "pages": 1,
+    "updatedAt": "2026-08-24"
   },
   {
     "id": 6,
@@ -74,7 +127,14 @@
     "downloads": 98,
     "fileUrl": "https://drive.google.com/file/d/1qW12jgemzpqzxgJIB3jlKtYp1SH3cnqa/view?usp=drive_link",
     "description": "نموذج انهاء مهمة خارج دوام",
-    "priority": 7
+    "priority": 7,
+    "tags": [
+      "سنوي",
+      "مالي"
+    ],
+    "fileSize": "",
+    "pages": 1,
+    "updatedAt": "2026-08-24"
   },
   {
     "id": 8,
@@ -85,7 +145,15 @@
     "downloads": 145,
     "fileUrl": "https://drive.google.com/file/d/1rey6G0HLPdK8M-q3KCvy5u4TUTN1OwHg/view?usp=sharing",
     "description": "الالئحة التنفيذية للموارد البشرية في الخدمة المدنية",
-    "priority": 8
+    "priority": 8,
+    "tags": [
+      "قانوني",
+      "تطوير",
+      "إداري"
+    ],
+    "fileSize": "",
+    "pages": 1,
+    "updatedAt": "2026-08-24"
   },
   {
     "id": 9,
@@ -96,6 +164,15 @@
     "downloads": 54,
     "fileUrl": "https://drive.google.com/file/d/12MHofIhzHpzpeO0XDgtokf7-OmLOkdtA/view?usp=sharing",
     "description": "لائحة الحقوق والمزايا المالية",
-    "priority": 9
+    "priority": 9,
+    "tags": [
+      "قانوني",
+      "تطوير",
+      "سنوي",
+      "مالي"
+    ],
+    "fileSize": "",
+    "pages": 1,
+    "updatedAt": "2026-08-24"
   }
 ]
