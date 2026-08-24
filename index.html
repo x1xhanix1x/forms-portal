@@ -57,9 +57,11 @@ body, .stat-num, .download-count, .priority-input, .ticker-item, .card-meta-item
 .ticker-wrap.hidden { display: none; }
 .ticker-close { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.1); border: none; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; font-size: 14px; color: #856404; z-index: 10; display: flex; align-items: center; justify-content: center; }
 .ticker-close:hover { background: rgba(0,0,0,0.2); }
-.ticker { display: inline-block; white-space: nowrap; padding: 10px 0; animation: ticker 30s linear infinite; padding-left: 100%; }
-@keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
-.ticker-item { display: inline-block; padding: 0 40px; color: #856404; font-size: 14px; font-weight: 700; }
+.ticker-track { display: flex; width: max-content; animation: tickerScroll 25s linear infinite; }
+.ticker-track:hover { animation-play-state: paused; }
+@keyframes tickerScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+.ticker-group { display: flex; align-items: center; white-space: nowrap; }
+.ticker-item { display: inline-block; padding: 10px 40px; color: #856404; font-size: 14px; font-weight: 700; }
 
 .loading-overlay { position: fixed; inset: 0; background: var(--body-bg); z-index: 999; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; }
 .loading-overlay.hidden { display: none; }
@@ -231,8 +233,15 @@ body, .stat-num, .download-count, .priority-input, .ticker-item, .card-meta-item
 .stat-card .stat-label { font-size: 13px; color: var(--moe-text-light); margin-top: 4px; }
 
 /* Grid view (default) */
-.forms-grid { max-width: 1100px; margin: 0 auto; padding: 0 20px 40px; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+.forms-grid { max-width: 1100px; margin: 0 auto; padding: 0 20px 40px; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; align-items: stretch; }
 .form-card { background: var(--card-bg); border-radius: 18px; padding: 24px; border: 1px solid var(--moe-border); box-shadow: var(--shadow); transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; cursor: pointer; opacity: 0; transform: translateY(20px); animation: fadeInUp 0.5s ease forwards; }
+.form-card.no-link { border-color: #e94560; background: linear-gradient(135deg, var(--card-bg), rgba(233,69,96,0.03)); }
+.form-card.no-link::before { background: #e94560 !important; }
+.drive-badge { display: inline-flex; align-items: center; gap: 4px; background: #4285F4; color: white; padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: 700; }
+.broken-badge { display: inline-flex; align-items: center; gap: 4px; background: #e94560; color: white; padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: 700; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.7; } }
+.card-info h3 { font-size: 16px; font-weight: 800; color: var(--moe-text); line-height: 1.4; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.list-info h3 { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
 .form-card::before { content: ''; position: absolute; top: 0; right: 0; width: 5px; height: 100%; background: var(--card-color, var(--moe-teal)); transition: width 0.3s; }
 .form-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
@@ -324,6 +333,47 @@ body, .stat-num, .download-count, .priority-input, .ticker-item, .card-meta-item
 .toast.info { border-right-color: var(--moe-aqua); }
 @keyframes toastIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
 
+/* New Badge */
+.new-badge { position: absolute; top: 12px; right: 12px; background: linear-gradient(135deg, #e94560, #ff6b6b); color: white; padding: 3px 10px; border-radius: 20px; font-size: 10px; font-weight: 800; z-index: 5; animation: pulse 2s infinite; box-shadow: 0 2px 8px rgba(233,69,96,0.3); }
+@keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+
+/* Quick Preview Tooltip */
+.quick-preview { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%) translateY(10px); background: var(--card-bg); border: 2px solid var(--moe-aqua); border-radius: 16px; padding: 16px; width: 280px; box-shadow: var(--shadow-hover); opacity: 0; pointer-events: none; transition: all 0.3s ease; z-index: 20; margin-bottom: 12px; }
+.quick-preview::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 8px solid transparent; border-top-color: var(--moe-aqua); }
+.form-card:hover .quick-preview { opacity: 1; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+.quick-preview h4 { color: var(--moe-teal); font-size: 14px; margin-bottom: 8px; }
+.quick-preview p { color: var(--moe-text-light); font-size: 12px; line-height: 1.6; margin-bottom: 8px; }
+.quick-preview .quick-actions { display: flex; gap: 6px; }
+.quick-preview .quick-btn { flex: 1; padding: 8px; border-radius: 8px; border: none; background: var(--moe-teal); color: white; font-family: inherit; font-size: 12px; font-weight: 700; cursor: pointer; }
+
+/* User notification bell */
+.notif-btn { position: relative; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); width: 40px; height: 40px; border-radius: 10px; color: white; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
+.notif-btn:hover { background: rgba(255,255,255,0.2); transform: scale(1.1); }
+.notif-badge { position: absolute; top: -4px; left: -4px; background: #e94560; color: white; width: 18px; height: 18px; border-radius: 50%; font-size: 10px; font-weight: 800; display: flex; align-items: center; justify-content: center; animation: pulse 2s infinite; }
+.notif-dropdown { position: absolute; top: 50px; left: 0; background: var(--card-bg); border: 2px solid var(--moe-border); border-radius: 14px; width: 320px; max-height: 400px; overflow-y: auto; box-shadow: var(--shadow-hover); z-index: 150; display: none; padding: 16px; }
+.notif-dropdown.active { display: block; }
+.notif-dropdown h4 { color: var(--moe-teal); font-size: 14px; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--moe-border); }
+.notif-item { padding: 10px; border-radius: 10px; margin-bottom: 8px; background: var(--moe-cream); font-size: 13px; }
+.notif-item.approved { border-right: 3px solid #28a745; }
+.notif-item.rejected { border-right: 3px solid #dc3545; }
+.notif-item.pending { border-right: 3px solid #ffc107; }
+.notif-item .notif-time { font-size: 11px; color: #888; margin-top: 4px; }
+.notif-empty { text-align: center; color: #888; font-size: 13px; padding: 20px; }
+
+/* Export PDF button */
+.pdf-export-btn { padding: 10px 18px; border-radius: 12px; border: 2px solid #e94560; background: var(--card-bg); color: #e94560; font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 6px; }
+.pdf-export-btn:hover { background: #e94560; color: white; }
+
+/* Deadline badge */
+.deadline-badge { display: inline-flex; align-items: center; gap: 4px; background: #fff3cd; color: #856404; padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: 700; margin-right: 4px; }
+.deadline-badge.urgent { background: #f8d7da; color: #721c24; animation: pulse 2s infinite; }
+
+/* Print styles for PDF export */
+.pdf-export-content { display: none; }
+@media print {
+  .pdf-export-content { display: block !important; }
+}
+
 .footer { text-align: center; padding: 24px; color: var(--moe-text-light); font-size: 13px; border-top: 1px solid var(--moe-border); background: var(--card-bg); }
 .footer .moe-brand { color: var(--moe-teal); font-weight: 700; }
 
@@ -367,6 +417,14 @@ body, .stat-num, .download-count, .priority-input, .ticker-item, .card-meta-item
       </div>
     </div>
     <div class="header-actions">
+      <button class="notif-btn" id="notifBtn" onclick="toggleNotifDropdown()" title="الإشعارات">
+        🔔
+        <span class="notif-badge" id="notifBadge" style="display:none;">0</span>
+      </button>
+      <div class="notif-dropdown" id="notifDropdown">
+        <h4>🔔 إشعاراتي</h4>
+        <div id="notifList"><div class="notif-empty">لا توجد إشعارات جديدة</div></div>
+      </div>
       <button class="theme-toggle" id="themeToggle" title="تبديل الوضع" onclick="toggleTheme()">🌙</button>
       <button class="lang-toggle" id="langToggle" title="Switch Language" onclick="toggleLang()">EN</button>
       <div class="status-badge"><span>🟢</span> <span id="statusText">متاح</span></div>
@@ -376,13 +434,23 @@ body, .stat-num, .download-count, .priority-input, .ticker-item, .card-meta-item
 
 <div class="ticker-wrap" id="tickerWrap">
   <button class="ticker-close" onclick="closeTicker()" title="إغلاق">✕</button>
-  <div class="ticker" id="tickerContent">
-    <span class="ticker-item">🔔 تم إضافة استمارات جديدة! تحقق من القائمة أدناه</span>
-    <span class="ticker-item">📱 يمكنك الآن حفظ الاستمارات في المفضلة للوصول السريع</span>
-    <span class="ticker-item">🌙 جرب الوضع الداكن للراحة في الليل</span>
-    <span class="ticker-item">📊 شاهد أكثر الاستمارات طلباً في قسم "الأكثر زيارة"</span>
-    <span class="ticker-item">📝 يمكنك الآن طلب استمارة جديدة من خلال زر "طلب استمارة جديدة"</span>
-    <span class="ticker-item">⌨️ اضغط "?" لمعرفة اختصارات لوحة المفاتيح</span>
+  <div class="ticker-track" id="tickerContent">
+    <div class="ticker-group">
+      <span class="ticker-item">🔔 تم إضافة استمارات جديدة! تحقق من القائمة أدناه</span>
+      <span class="ticker-item">📱 يمكنك الآن حفظ الاستمارات في المفضلة للوصول السريع</span>
+      <span class="ticker-item">🌙 جرب الوضع الداكن للراحة في الليل</span>
+      <span class="ticker-item">📊 شاهد أكثر الاستمارات طلباً في قسم "الأكثر زيارة"</span>
+      <span class="ticker-item">📝 يمكنك الآن طلب استمارة جديدة من خلال زر "طلب استمارة جديدة"</span>
+      <span class="ticker-item">⌨️ اضغط "?" لمعرفة اختصارات لوحة المفاتيح</span>
+    </div>
+    <div class="ticker-group">
+      <span class="ticker-item">🔔 تم إضافة استمارات جديدة! تحقق من القائمة أدناه</span>
+      <span class="ticker-item">📱 يمكنك الآن حفظ الاستمارات في المفضلة للوصول السريع</span>
+      <span class="ticker-item">🌙 جرب الوضع الداكن للراحة في الليل</span>
+      <span class="ticker-item">📊 شاهد أكثر الاستمارات طلباً في قسم "الأكثر زيارة"</span>
+      <span class="ticker-item">📝 يمكنك الآن طلب استمارة جديدة من خلال زر "طلب استمارة جديدة"</span>
+      <span class="ticker-item">⌨️ اضغط "?" لمعرفة اختصارات لوحة المفاتيح</span>
+    </div>
   </div>
 </div>
 
@@ -536,6 +604,8 @@ body, .stat-num, .download-count, .priority-input, .ticker-item, .card-meta-item
     <button class="filter-btn" data-filter="print">🖨️ طباعة</button>
     <button class="filter-btn" data-filter="reports">📊 تقارير</button>
     <button class="filter-btn" data-filter="favorites">⭐ المفضلة</button>
+    <button class="filter-btn" data-filter="nolink" style="border-color:#e94560;color:#e94560;">🔗 بدون رابط</button>
+    <button class="pdf-export-btn" onclick="exportCurrentToPDF()" title="تصدير النتائج الحالية كـ PDF">📄 PDF</button>
     <button class="batch-toggle-btn" id="batchToggleBtn" onclick="toggleBatchMode()">
       <span>☐</span>
       <span>تحديد متعدد</span>
@@ -580,8 +650,8 @@ body, .stat-num, .download-count, .priority-input, .ticker-item, .card-meta-item
     <div class="modal-body">
       <div class="modal-actions">
         <button class="modal-btn modal-btn-primary" onclick="handlePrint()">🖨️ طباعة المستند</button>
-        <button class="modal-btn modal-btn-secondary" onclick="handleDownload()">⬇️ تحميل PDF</button>
-        <button class="modal-btn modal-btn-secondary" onclick="handlePreview()">👁️ معاينة المستند</button>
+        <button class="modal-btn modal-btn-secondary" onclick="handleDownload()" id="btnDownload">⬇️ فتح الملف</button>
+        <button class="modal-btn modal-btn-secondary" onclick="handlePreview()" id="btnPreview">👁️ معاينة</button>
         <button class="modal-btn modal-btn-secondary" onclick="shareForm()">📤 مشاركة الاستمارة</button>
         <button class="modal-btn modal-btn-secondary" onclick="copyFormLink()">📋 نسخ الرابط</button>
         <button class="modal-btn modal-btn-secondary" onclick="showQRCode()">📱 QR Code</button>
@@ -627,6 +697,19 @@ body, .stat-num, .download-count, .priority-input, .ticker-item, .card-meta-item
 <button class="back-to-top" id="backToTop" onclick="scrollToTop()">⬆️</button>
 <button class="shortcut-hint" onclick="openShortcutModal()" title="اختصارات لوحة المفاتيح">?</button>
 
+<!-- Hidden PDF export content -->
+<div class="pdf-export-content" id="pdfExportContent">
+  <div style="text-align:center;margin-bottom:20px;">
+    <h1 style="color:#16455B;font-size:24px;">الإدارة العامة للتعليم بمحافظة جدة</h1>
+    <h2 style="color:#309694;font-size:18px;">قائمة الاستمارات</h2>
+    <p style="color:#666;">تاريخ التقرير: <span id="pdfDate"></span></p>
+  </div>
+  <table style="width:100%;border-collapse:collapse;" id="pdfTable">
+    <thead><tr style="background:#16455B;color:white;"><th style="padding:10px;border:1px solid #ddd;">#</th><th style="padding:10px;border:1px solid #ddd;">الاستمارة</th><th style="padding:10px;border:1px solid #ddd;">التصنيف</th><th style="padding:10px;border:1px solid #ddd;">الوسوم</th><th style="padding:10px;border:1px solid #ddd;">التحميلات</th></tr></thead>
+    <tbody id="pdfTableBody"></tbody>
+  </table>
+</div>
+
 <footer class="footer">
   <span class="moe-brand" data-ar="وزارة التعليم" data-en="Ministry of Education">وزارة التعليم</span> — 
   <span data-ar="الإدارة العامة للتعليم بمحافظة جدة — الموارد البشرية — الانتدابات والبدلات" data-en="Jeddah Education — HR — Delegations & Allowances">الإدارة العامة للتعليم بمحافظة جدة — الموارد البشرية — الانتدابات والبدلات</span>
@@ -655,7 +738,23 @@ function showToast(message, type = 'info') {
 
 async function loadForms() {
   showLoading(true);
-  visitorCount++; setStorage('visitorCount', visitorCount);
+  // Reset all stats to zero (fresh start)
+  const currentVersion = 'v2.0-fresh';
+  const savedVersion = localStorage.getItem('appVersion');
+  if (savedVersion !== currentVersion) {
+    localStorage.setItem('appVersion', currentVersion);
+    visitorCount = 1;
+    setStorage('visitorCount', 1);
+    setStorage('todayDownloads', { count: 0, date: new Date().toDateString() });
+    setStorage('favorites', []);
+    setStorage('recentDownloads', []);
+    setStorage('ratings', {});
+    setStorage('userRequests', []);
+    setStorage('tickerClosed', false);
+    favorites = []; recentDownloads = []; ratings = {}; userRequests = [];
+  } else {
+    visitorCount++; setStorage('visitorCount', visitorCount);
+  }
   try {
     const response = await fetch('forms.json?v=' + Date.now());
     if (response.ok) { formsData = await response.json(); }
@@ -664,21 +763,78 @@ async function loadForms() {
   nextId = Math.max(...formsData.map(f => f.id), 0) + 1;
   applySort();
   showLoading(false);
-  applyTheme(); applyLang(); initViewMode(); renderFavorites(); renderRecent(); renderPopular(); renderForms(); updateStats(); initAuth(); initTicker(); renderAdminRequests();
+  applyTheme(); applyLang(); initViewMode(); renderFavorites(); renderRecent(); renderPopular(); renderForms(); updateStats(); initAuth(); initTicker(); renderAdminRequests(); renderNotifications();
+}
+
+/* ===== Notification System ===== */
+function toggleNotifDropdown() {
+  const dd = document.getElementById('notifDropdown');
+  dd.classList.toggle('active');
+  if (dd.classList.contains('active')) markNotifsRead();
+}
+document.addEventListener('click', (e) => {
+  const btn = document.getElementById('notifBtn');
+  const dd = document.getElementById('notifDropdown');
+  if (!btn.contains(e.target) && !dd.contains(e.target)) dd.classList.remove('active');
+});
+
+function renderNotifications() {
+  const myRequests = userRequests.filter(r => r.status !== 'pending');
+  const badge = document.getElementById('notifBadge');
+  const list = document.getElementById('notifList');
+  const unread = myRequests.filter(r => !r.read).length;
+  if (unread > 0) { badge.style.display = 'flex'; badge.textContent = unread; }
+  else { badge.style.display = 'none'; }
+  if (!myRequests.length) { list.innerHTML = '<div class="notif-empty">لا توجد إشعارات جديدة</div>'; return; }
+  list.innerHTML = myRequests.slice().reverse().map(r => {
+    const statusText = r.status === 'approved' ? '✅ تمت الموافقة على طلبك' : '❌ تم رفض طلبك';
+    const statusClass = r.status === 'approved' ? 'approved' : 'rejected';
+    return `<div class="notif-item ${statusClass}"><strong>${r.formName}</strong><div>${statusText}</div><div class="notif-time">📅 ${r.date} ${r.time}</div></div>`;
+  }).join('');
+}
+
+function markNotifsRead() {
+  userRequests.forEach(r => { if (r.status !== 'pending') r.read = true; });
+  setStorage('userRequests', userRequests);
+  document.getElementById('notifBadge').style.display = 'none';
+}
+
+// Override approve/reject to trigger notification
+const _origApprove = approveRequest;
+approveRequest = function(id) { _origApprove(id); renderNotifications(); };
+const _origReject = rejectRequest;
+rejectRequest = function(id) { _origReject(id); renderNotifications(); };
+
+/* ===== New Badge Helper ===== */
+function isNewForm(updatedAt) {
+  if (!updatedAt) return false;
+  const updated = new Date(updatedAt);
+  const now = new Date();
+  const diffDays = (now - updated) / (1000 * 60 * 60 * 24);
+  return diffDays <= 7;
+}
+
+/* ===== PDF Export ===== */
+function exportCurrentToPDF() {
+  const filtered = getFilteredForms();
+  if (!filtered.length) { showToast('لا توجد نتائج للتصدير', 'info'); return; }
+  document.getElementById('pdfDate').textContent = new Date().toLocaleDateString('ar-SA');
+  document.getElementById('pdfTableBody').innerHTML = filtered.map((f, i) => `<tr><td style="padding:8px;border:1px solid #ddd;text-align:center;">${i+1}</td><td style="padding:8px;border:1px solid #ddd;">${f.icon} ${f.name}</td><td style="padding:8px;border:1px solid #ddd;">${categoryNames.ar[f.category]||f.category}</td><td style="padding:8px;border:1px solid #ddd;">${(f.tags||[]).join('، ')}</td><td style="padding:8px;border:1px solid #ddd;text-align:center;">${f.downloads||0}</td></tr>`).join('');
+  window.print();
+  showToast('✅ تم فتح نافذة الطباعة. اختر "حفظ كـ PDF"', 'success');
 }
 
 function getDefaultForms() {
   return [
-    { id: 1, name: "استمارة طلب انتداب", category: "requests", icon: "📋", color: "#16455B", priority: 1, downloads: 234, fileUrl: "#", fileSize: "120 KB", pages: 2, updatedAt: "2026-08-20", tags: ["عاجل", "شهري"], description: "استمارة رسمية لتقديم طلب انتداب وظيفي" },
-    { id: 2, name: "استمارة طلب بدل", category: "requests", icon: "💰", color: "#309694", priority: 2, downloads: 189, fileUrl: "#", fileSize: "85 KB", pages: 1, updatedAt: "2026-08-18", tags: ["مالي", "شهري"], description: "نموذج طلب صرف بدل مالي للموظفين" },
-    { id: 3, name: "استمارة طلب إجازة", category: "requests", icon: "🏖️", color: "#38A18A", priority: 3, downloads: 156, fileUrl: "#", fileSize: "95 KB", pages: 1, updatedAt: "2026-08-15", tags: ["شائع", "إلزامي"], description: "استمارة تقديم طلب إجازة سنوية أو استثنائية" },
-    { id: 4, name: "شهادة راتب", category: "print", icon: "📄", color: "#16455B", priority: 4, downloads: 412, fileUrl: "#", fileSize: "150 KB", pages: 1, updatedAt: "2026-08-22", tags: ["شائع", "فوري"], description: "شهادة رسمية بقيمة الراتب الشهري" },
-    { id: 5, name: "تعريف بالراتب", category: "print", icon: "📃", color: "#309694", priority: 5, downloads: 378, fileUrl: "#", fileSize: "110 KB", pages: 1, updatedAt: "2026-08-21", tags: ["شائع", "بنكي"], description: "خطاب تعريف بالراتب للجهات الخارجية" },
-    { id: 6, name: "تقرير أداء شهري", category: "reports", icon: "📊", color: "#216273", priority: 6, downloads: 98, fileUrl: "#", fileSize: "200 KB", pages: 3, updatedAt: "2026-08-10", tags: ["شهري", "إداري"], description: "نموذج تقييم الأداء الوظيفي الشهري" },
-    { id: 7, name: "استمارة طلب نقل", category: "requests", icon: "🚚", color: "#16455B", priority: 7, downloads: 67, fileUrl: "#", fileSize: "130 KB", pages: 2, updatedAt: "2026-07-25", tags: ["إداري"], description: "استمارة طلب نقل وظيفي أو إداري" },
-    { id: 8, name: "عقد عمل", category: "print", icon: "📝", color: "#309694", priority: 8, downloads: 145, fileUrl: "#", fileSize: "250 KB", pages: 4, updatedAt: "2026-08-05", tags: ["قانوني", "إلزامي"], description: "نسخة من عقد العمل للمراجعين" },
-    { id: 9, name: "تقرير إنجاز سنوي", category: "reports", icon: "📈", color: "#16455B", priority: 9, downloads: 54, fileUrl: "#", fileSize: "300 KB", pages: 5, updatedAt: "2026-06-30", tags: ["سنوي", "إداري"], description: "تقرير ملخص الإنجازات السنوية" },
-    { id: 10, name: "استمارة طلب تدريب", category: "requests", icon: "🎓", color: "#309694", priority: 10, downloads: 123, fileUrl: "#", fileSize: "140 KB", pages: 2, updatedAt: "2026-08-12", tags: ["تطوير", "اختياري"], description: "طلب الالتحاق بدورة تدريبية" }
+    { id: 1, name: "استمارة طلب انتداب", category: "requests", icon: "📋", color: "#16455B", priority: 1, downloads: 0, fileUrl: "https://drive.google.com/file/d/1ylN07nfZDXWA-SUmpN-rfeNtzIY61uWs/view?usp=drive_link", fileSize: "Google Drive", pages: 1, updatedAt: "2026-08-24", tags: ["شهري", "إلزامي", "سنوي", "شائع"], description: "استمارة طلب انتداب" },
+    { id: 2, name: "وثيقة أداء مهمة انتداب", category: "requests", icon: "📄", color: "#309694", priority: 2, downloads: 0, fileUrl: "https://drive.google.com/file/d/1sUhkt74Ag8fQFiAdO2fs037uchhK4rmP/view?usp=drive_link", fileSize: "Google Drive", pages: 1, updatedAt: "2026-08-24", tags: ["شهري", "مالي", "إلزامي", "سنوي"], description: "وثيقة أداء مهمة انتداب" },
+    { id: 3, name: "نماذج صرف بدل ضرر", category: "requests", icon: "💰", color: "#38A18A", priority: 3, downloads: 0, fileUrl: "https://drive.google.com/file/d/17fWUZmtG8lPplqSe10dIVoQPw81pmQ6b/view?usp=drive_link", fileSize: "Google Drive", pages: 1, updatedAt: "2026-08-24", tags: ["إلزامي", "مالي", "بنكي"], description: "نماذج صرف بدل ضرر" },
+    { id: 4, name: "نموذج طلب صرف بدل مناطق نائية", category: "requests", icon: "🗺️", color: "#16455B", priority: 6, downloads: 0, fileUrl: "https://drive.google.com/file/d/1BDCA6i_evwNA229rzPZyScTl-CvtdD_S/view?usp=drive_link", fileSize: "Google Drive", pages: 1, updatedAt: "2026-08-24", tags: ["قانوني", "مالي", "بنكي", "شهري"], description: "نموذج طلب صرف بدل مناطق نائية" },
+    { id: 5, name: "نموذج طلب صرف تعويض تذاكر", category: "requests", icon: "🎫", color: "#309694", priority: 5, downloads: 0, fileUrl: "https://drive.google.com/file/d/1SYDCCX-XGwmkDxWX60uG6ETUmGnhhf6g/view?usp=drive_link", fileSize: "Google Drive", pages: 1, updatedAt: "2026-08-24", tags: ["فوري", "بنكي", "مالي", "عاجل"], description: "نموذج طلب صرف تعويض تذاكر" },
+    { id: 6, name: "نموذج انهاء مهمة خارج دوام", category: "requests", icon: "⏰", color: "#216273", priority: 7, downloads: 0, fileUrl: "https://drive.google.com/file/d/1qW12jgemzpqzxgJIB3jlKtYp1SH3cnqa/view?usp=drive_link", fileSize: "Google Drive", pages: 1, updatedAt: "2026-08-24", tags: ["سنوي", "مالي"], description: "نموذج انهاء مهمة خارج دوام" },
+    { id: 7, name: "استمارة طلب نقل", category: "requests", icon: "🚚", color: "#16455B", priority: 4, downloads: 0, fileUrl: "#", fileSize: "—", pages: 1, updatedAt: "2026-08-24", tags: ["إلزامي", "مالي", "بنكي", "شهري"], description: "استمارة طلب نقل وظيفي أو إداري" },
+    { id: 8, name: "الالئحة التنفيذية للموارد البشرية", category: "reports", icon: "📑", color: "#309694", priority: 8, downloads: 0, fileUrl: "https://drive.google.com/file/d/1rey6G0HLPdK8M-q3KCvy5u4TUTN1OwHg/view?usp=sharing", fileSize: "Google Drive", pages: 1, updatedAt: "2026-08-24", tags: ["قانوني", "تطوير", "إداري"], description: "الالئحة التنفيذية للموارد البشرية في الخدمة المدنية" },
+    { id: 9, name: "لائحة الحقوق والمزايا المالية", category: "reports", icon: "⚖️", color: "#16455B", priority: 9, downloads: 0, fileUrl: "https://drive.google.com/file/d/12MHofIhzHpzpeO0XDgtokf7-OmLOkdtA/view?usp=sharing", fileSize: "Google Drive", pages: 1, updatedAt: "2026-08-24", tags: ["قانوني", "تطوير", "سنوي", "مالي"], description: "لائحة الحقوق والمزايا المالية" }
   ];
 }
 
@@ -782,7 +938,7 @@ function submitUserRequest() {
   const formType = document.getElementById('reqFormType').value;
   const formDesc = document.getElementById('reqFormDesc').value.trim();
   if (!name || !dept || !formName) { showToast('❌ يرجى ملء جميع الحقول المطلوبة', 'error'); return; }
-  const request = { id: Date.now(), userName: name, dept, formName, formType, formDesc, status: 'pending', date: new Date().toISOString().split('T')[0], time: new Date().toLocaleTimeString('en-US') };
+  const request = { id: Date.now(), userName: name, dept, formName, formType, formDesc, status: 'pending', date: new Date().toISOString().split('T')[0], time: new Date().toLocaleTimeString('en-US'), read: false };
   userRequests.push(request);
   setStorage('userRequests', userRequests);
   document.getElementById('reqUserName').value = '';
@@ -863,6 +1019,7 @@ function toggleBatchMode() {
 function getFilteredForms() {
   let filtered = formsData;
   if (currentFilter === 'favorites') filtered = formsData.filter(f => favorites.includes(f.id));
+  else if (currentFilter === 'nolink') filtered = formsData.filter(f => !f.fileUrl || f.fileUrl === '#' || f.fileUrl === '');
   else if (currentFilter !== 'all') filtered = formsData.filter(f => f.category === currentFilter);
   if (searchQuery) { const q = searchQuery.toLowerCase(); filtered = filtered.filter(form => { const inName = form.name.toLowerCase().includes(q); const inDesc = (form.description || '').toLowerCase().includes(q); const inCat = (form.category || '').toLowerCase().includes(q); const inTags = (form.tags || []).some(t => t.toLowerCase().includes(q)); return inName || inDesc || inCat || inTags; }); }
   return filtered;
@@ -882,7 +1039,14 @@ function renderForms() {
     const tagsHtml = (form.tags || []).map(t => { const cls = tagClasses[t] || ''; return `<span class="tag ${cls}">${t}</span>`; }).join('');
     const formRating = ratings[form.id] || 0;
     const starsHtml = [1,2,3,4,5].map(s => `<button class="star-btn ${s <= formRating ? 'active' : ''}" onclick="event.stopPropagation(); rateForm(${form.id}, ${s})">★</button>`).join('');
-    return `<div class="form-card" style="--card-color: ${form.color}; --card-color-bg: ${form.color}15; animation-delay: ${delay}s;" onclick="${batchMode ? 'event.stopPropagation(); toggleBatch(' + form.id + ')' : 'openModal(' + form.id + ')'}"><input type="checkbox" class="batch-checkbox" ${isBatch ? 'checked' : ''} onclick="event.stopPropagation(); toggleBatch(${form.id})" title="تحديد للتنزيل المتعدد"><div class="card-header"><div class="card-icon">${form.icon}</div><div class="card-info"><h3>${form.name}</h3><span class="category-tag">${categoryNames[currentLang][form.category] || form.category}</span><div class="card-meta">${form.fileSize ? `<span class="card-meta-item">📄 ${form.fileSize}</span>` : ''}${form.pages ? `<span class="card-meta-item">📑 ${form.pages} صفحة</span>` : ''}${form.updatedAt ? `<span class="card-meta-item">📅 ${form.updatedAt}</span>` : ''}</div><div class="card-tags">${tagsHtml}</div><div class="star-rating" title="تقييم الاستمارة">${starsHtml}</div></div></div><div class="card-footer"><span class="download-count">${(form.downloads || 0).toLocaleString('en-US')} تحميل</span><div class="card-actions"><button class="card-action-btn ${isFav ? 'fav-active' : ''}" onclick="event.stopPropagation(); toggleFav(${form.id})" title="${isFav ? 'إزالة من المفضلة' : 'إضافة للمفضلة'}">${isFav ? '★' : '☆'}</button><button class="card-action-btn" onclick="event.stopPropagation(); shareFormById(${form.id})" title="مشاركة">📤</button></div></div></div>`;
+    const isDrive = form.fileUrl && form.fileUrl.includes('drive.google.com');
+    const isBroken = !form.fileUrl || form.fileUrl === '#' || form.fileUrl === '';
+    const sourceBadge = isBroken ? `<span class="broken-badge">⚠️ لا يوجد رابط</span>` : (isDrive ? `<span class="drive-badge">▶️ Google Drive</span>` : '');
+    const isNew = isNewForm(form.updatedAt);
+    const newBadge = isNew ? `<span class="new-badge">جديد</span>` : '';
+    // Show fileSize only if it's NOT a Drive link (to avoid duplicate "Google Drive" text)
+    const sizeDisplay = (form.fileSize && !isBroken && !isDrive) ? `<span class="card-meta-item">📄 ${form.fileSize}</span>` : '';
+    return `<div class="form-card ${isBroken ? 'no-link' : ''}" style="--card-color: ${form.color}; --card-color-bg: ${form.color}15; animation-delay: ${delay}s;" onclick="${batchMode ? 'event.stopPropagation(); toggleBatch(' + form.id + ')' : 'openModal(' + form.id + ')'}">${newBadge}<input type="checkbox" class="batch-checkbox" ${isBatch ? 'checked' : ''} onclick="event.stopPropagation(); toggleBatch(${form.id})" title="تحديد للتنزيل المتعدد"><div class="card-header"><div class="card-icon">${form.icon}</div><div class="card-info"><h3 title="${form.name}">${form.name}</h3><span class="category-tag">${categoryNames[currentLang][form.category] || form.category}</span><div class="card-meta">${sourceBadge}${sizeDisplay}${form.pages ? `<span class="card-meta-item">📑 ${form.pages} صفحة</span>` : ''}${form.updatedAt ? `<span class="card-meta-item">📅 ${form.updatedAt}</span>` : ''}</div><div class="card-tags">${tagsHtml}</div><div class="star-rating" title="تقييم الاستمارة">${starsHtml}</div></div></div><div class="card-footer"><span class="download-count">${(form.downloads || 0).toLocaleString('en-US')} تحميل</span><div class="card-actions"><button class="card-action-btn ${isFav ? 'fav-active' : ''}" onclick="event.stopPropagation(); toggleFav(${form.id})" title="${isFav ? 'إزالة من المفضلة' : 'إضافة للمفضلة'}">${isFav ? '★' : '☆'}</button><button class="card-action-btn" onclick="event.stopPropagation(); shareFormById(${form.id})" title="مشاركة">📤</button></div></div><div class="quick-preview"><h4>👁️ معاينة سريعة</h4><p>${form.description || 'لا يوجد وصف'}</p><div class="quick-actions"><button class="quick-btn" onclick="event.stopPropagation(); openModal(${form.id})">فتح</button><button class="quick-btn" onclick="event.stopPropagation(); toggleFav(${form.id})">${isFav ? 'إزالة' : 'مفضلة'}</button></div></div></div>`;
   }).join('');
 
   // List view
@@ -890,7 +1054,13 @@ function renderForms() {
     const isFav = favorites.includes(form.id);
     const isBatch = batchSelected.includes(form.id);
     const tagsHtml = (form.tags || []).map(t => { const cls = tagClasses[t] || ''; return `<span class="tag ${cls}">${t}</span>`; }).join('');
-    return `<div class="list-item" style="--card-color: ${form.color}; --card-color-bg: ${form.color}15;" onclick="${batchMode ? 'event.stopPropagation(); toggleBatch(' + form.id + ')' : 'openModal(' + form.id + ')'}"><input type="checkbox" class="batch-checkbox" ${isBatch ? 'checked' : ''} onclick="event.stopPropagation(); toggleBatch(${form.id})"><div class="list-icon">${form.icon}</div><div class="list-info"><h3>${form.name}</h3><div class="list-meta"><span>${categoryNames[currentLang][form.category] || form.category}</span>${form.fileSize ? `<span>📄 ${form.fileSize}</span>` : ''}${form.pages ? `<span>📑 ${form.pages} صفحة</span>` : ''}<span>⬇️ ${(form.downloads || 0).toLocaleString('en-US')}</span>${form.updatedAt ? `<span>📅 ${form.updatedAt}</span>` : ''}</div><div class="card-tags">${tagsHtml}</div></div><div class="list-actions"><button class="list-action-btn ${isFav ? 'fav-active' : ''}" onclick="event.stopPropagation(); toggleFav(${form.id})" title="مفضلة">${isFav ? '★' : '☆'}</button><button class="list-action-btn" onclick="event.stopPropagation(); shareFormById(${form.id})" title="مشاركة">📤</button></div></div>`;
+    const isDrive = form.fileUrl && form.fileUrl.includes('drive.google.com');
+    const isBroken = !form.fileUrl || form.fileUrl === '#' || form.fileUrl === '';
+    const sourceBadge = isBroken ? `<span class="broken-badge">⚠️ لا يوجد رابط</span>` : (isDrive ? `<span class="drive-badge">▶️ Drive</span>` : '');
+    const isNew = isNewForm(form.updatedAt);
+    const newBadge = isNew ? `<span class="new-badge" style="position:static;margin-left:8px;display:inline-block;">جديد</span>` : '';
+    const listSizeDisplay = (form.fileSize && !isBroken && !isDrive) ? `<span>📄 ${form.fileSize}</span>` : '';
+    return `<div class="list-item ${isBroken ? 'no-link' : ''}" style="--card-color: ${form.color}; --card-color-bg: ${form.color}15;" onclick="${batchMode ? 'event.stopPropagation(); toggleBatch(' + form.id + ')' : 'openModal(' + form.id + ')'}"><input type="checkbox" class="batch-checkbox" ${isBatch ? 'checked' : ''} onclick="event.stopPropagation(); toggleBatch(${form.id})"><div class="list-icon">${form.icon}</div><div class="list-info"><h3 title="${form.name}">${form.name}${newBadge}</h3><div class="list-meta"><span>${categoryNames[currentLang][form.category] || form.category}</span>${sourceBadge}${listSizeDisplay}${form.pages ? `<span>📑 ${form.pages} صفحة</span>` : ''}<span>⬇️ ${(form.downloads || 0).toLocaleString('en-US')}</span>${form.updatedAt ? `<span>📅 ${form.updatedAt}</span>` : ''}</div><div class="card-tags">${tagsHtml}</div></div><div class="list-actions"><button class="list-action-btn ${isFav ? 'fav-active' : ''}" onclick="event.stopPropagation(); toggleFav(${form.id})" title="مفضلة">${isFav ? '★' : '☆'}</button><button class="list-action-btn" onclick="event.stopPropagation(); shareFormById(${form.id})" title="مشاركة">📤</button></div></div>`;
   }).join('');
 
   updateStats();
@@ -898,26 +1068,26 @@ function renderForms() {
 
 function rateForm(formId, stars) { ratings[formId] = stars; setStorage('ratings', ratings); renderForms(); showToast(`تم التقييم بـ ${stars} نجوم`, 'success'); }
 
-function updateStats() { const total = formsData.length; const totalDownloads = formsData.reduce((sum, f) => sum + (f.downloads || 0), 0); document.getElementById('statTotal').textContent = total.toLocaleString('en-US'); document.getElementById('statDownloads').textContent = totalDownloads.toLocaleString('en-US'); document.getElementById('statToday').textContent = getStorage('todayDownloads', { count: 0 }).count.toLocaleString('en-US'); document.getElementById('statFavs').textContent = favorites.length.toLocaleString('en-US'); document.getElementById('statVisitors').textContent = visitorCount.toLocaleString('en-US'); }
+function updateStats() { const total = formsData.length; const totalDownloads = formsData.reduce((sum, f) => sum + (f.downloads || 0), 0); document.getElementById('statTotal').textContent = total.toLocaleString('en-US'); document.getElementById('statDownloads').textContent = totalDownloads.toLocaleString('en-US'); const todayData = getStorage('todayDownloads', { count: 0, date: '' }); const todayStr = new Date().toDateString(); if (todayData.date !== todayStr) { todayData = { count: 0, date: todayStr }; setStorage('todayDownloads', todayData); } document.getElementById('statToday').textContent = todayData.count.toLocaleString('en-US'); document.getElementById('statFavs').textContent = favorites.length.toLocaleString('en-US'); document.getElementById('statVisitors').textContent = visitorCount.toLocaleString('en-US'); }
 
 function toggleBatch(id) { if (!batchMode) return; const idx = batchSelected.indexOf(id); if (idx > -1) batchSelected.splice(idx, 1); else batchSelected.push(id); updateBatchBar(); renderForms(); }
 function updateBatchBar() { const bar = document.getElementById('batchBar'); const count = document.getElementById('batchCount'); if (batchSelected.length === 0) { bar.classList.remove('active'); return; } bar.classList.add('active'); count.textContent = `${batchSelected.length.toLocaleString('en-US')} استمارة محددة`; }
-function downloadBatch() { const selected = formsData.filter(f => batchSelected.includes(f.id)); if (selected.length === 0) return; const validForms = selected.filter(form => form.fileUrl && form.fileUrl !== '#'); if (validForms.length === 0) { showToast('ℹ️ روابط الملفات غير متوفرة. يرجى إضافة روابط PDF أولاً.', 'info'); return; } validForms.forEach((form, index) => { setTimeout(() => { window.open(form.fileUrl, '_blank'); form.downloads = (form.downloads || 0) + 1; addRecentDownload(form.id); }, index * 800); }); setTimeout(() => { batchSelected = []; updateBatchBar(); renderForms(); renderPopular(); updateStats(); exportJSON(); showToast(`✅ تم فتح ${validForms.length.toLocaleString('en-US')} ملف في نوافذ جديدة!`, 'success'); }, validForms.length * 800 + 500); }
+function downloadBatch() { const selected = formsData.filter(f => batchSelected.includes(f.id)); if (selected.length === 0) return; const validForms = selected.filter(form => form.fileUrl && form.fileUrl !== '#' && form.fileUrl !== ''); const brokenCount = selected.length - validForms.length; if (validForms.length === 0) { showToast('ℹ️ جميع الاستمارات المحددة لا تحتوي على روابط.', 'info'); return; } validForms.forEach((form, index) => { setTimeout(() => { window.open(form.fileUrl, '_blank'); form.downloads = (form.downloads || 0) + 1; addRecentDownload(form.id); }, index * 800); }); const todayData = getStorage('todayDownloads', { count: 0, date: new Date().toDateString() }); todayData.count += validForms.length; setStorage('todayDownloads', todayData); setTimeout(() => { batchSelected = []; updateBatchBar(); renderForms(); renderPopular(); updateStats(); exportJSON(); let msg = `✅ تم فتح ${validForms.length.toLocaleString('en-US')} ملف في نوافذ جديدة!`; if (brokenCount > 0) msg += ` (تم تخطي ${brokenCount} بدون رابط)`; showToast(msg, 'success'); }, validForms.length * 800 + 500); }
 function clearBatch() { batchSelected = []; updateBatchBar(); renderForms(); showToast('تم إلغاء التحديد', 'info'); }
 
 document.querySelectorAll('.filter-btn').forEach(btn => { btn.addEventListener('click', () => { document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); currentFilter = btn.dataset.filter; renderForms(); }); });
 document.getElementById('searchInput').addEventListener('input', (e) => { searchQuery = e.target.value.trim(); renderForms(); });
 
-function openModal(formId) { if (batchMode) return; selectedForm = formsData.find(f => f.id === formId); if (!selectedForm) return; document.getElementById('modalIcon').textContent = selectedForm.icon; document.getElementById('modalIcon').style.background = selectedForm.color + '20'; document.getElementById('modalTitle').textContent = selectedForm.name; document.getElementById('modalDesc').textContent = selectedForm.description; const meta = []; if (selectedForm.fileSize) meta.push(`📄 ${selectedForm.fileSize}`); if (selectedForm.pages) meta.push(`📑 ${selectedForm.pages} صفحة`); if (selectedForm.updatedAt) meta.push(`📅 ${selectedForm.updatedAt}`); document.getElementById('modalMeta').innerHTML = meta.map(m => `<span>${m}</span>`).join(''); updateFavButton(); document.getElementById('modalOverlay').classList.add('active'); document.body.style.overflow = 'hidden'; }
+function openModal(formId) { if (batchMode) return; selectedForm = formsData.find(f => f.id === formId); if (!selectedForm) return; document.getElementById('modalIcon').textContent = selectedForm.icon; document.getElementById('modalIcon').style.background = selectedForm.color + '20'; document.getElementById('modalTitle').textContent = selectedForm.name; document.getElementById('modalDesc').textContent = selectedForm.description; const meta = []; const hasLink = selectedForm.fileUrl && selectedForm.fileUrl !== '#' && selectedForm.fileUrl !== ''; if (!hasLink) meta.push(`⚠️ لا يوجد رابط للملف`); if (selectedForm.fileSize && hasLink) meta.push(`📄 ${selectedForm.fileSize}`); if (selectedForm.pages) meta.push(`📑 ${selectedForm.pages} صفحة`); if (selectedForm.updatedAt) meta.push(`📅 ${selectedForm.updatedAt}`); document.getElementById('modalMeta').innerHTML = meta.map(m => `<span>${m}</span>`).join(''); const btnDownload = document.getElementById('btnDownload'); const btnPreview = document.getElementById('btnPreview'); if (btnDownload) { btnDownload.style.opacity = hasLink ? '1' : '0.4'; btnDownload.style.pointerEvents = hasLink ? 'auto' : 'none'; btnDownload.textContent = hasLink ? (selectedForm.fileUrl.includes('drive.google.com') ? '⬇️ فتح في Google Drive' : '⬇️ فتح الملف') : '⬇️ لا يوجد رابط'; } if (btnPreview) { btnPreview.style.opacity = hasLink ? '1' : '0.4'; btnPreview.style.pointerEvents = hasLink ? 'auto' : 'none'; } updateFavButton(); document.getElementById('modalOverlay').classList.add('active'); document.body.style.overflow = 'hidden'; }
 function closeModal() { document.getElementById('modalOverlay').classList.remove('active'); document.body.style.overflow = ''; selectedForm = null; }
 document.getElementById('modalOverlay').addEventListener('click', (e) => { if (e.target === document.getElementById('modalOverlay')) closeModal(); });
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeModal(); closeQRModal(); closeShortcutModal(); } });
 
 function handlePrint() { if (!selectedForm) return; if (selectedForm.fileUrl && selectedForm.fileUrl !== '#') { const win = window.open(selectedForm.fileUrl, '_blank'); if (win) win.onload = () => win.print(); } else { showToast('ℹ️ رابط الملف غير متوفر حاليًا.', 'info'); } closeModal(); }
-function handleDownload() { if (!selectedForm) return; if (selectedForm.fileUrl && selectedForm.fileUrl !== '#') { window.open(selectedForm.fileUrl, '_blank'); selectedForm.downloads = (selectedForm.downloads || 0) + 1; addRecentDownload(selectedForm.id); renderForms(); renderPopular(); updateStats(); exportJSON(); showToast('تم فتح الملف في نافذة جديدة', 'success'); } else { showToast('ℹ️ رابط الملف غير متوفر حاليًا.', 'info'); } closeModal(); }
-function handlePreview() { if (!selectedForm) return; if (selectedForm.fileUrl && selectedForm.fileUrl !== '#') { window.open(selectedForm.fileUrl, '_blank'); } else { showToast('ℹ️ رابط الملف غير متوفر حاليًا.', 'info'); } closeModal(); }
+function handleDownload() { if (!selectedForm) return; if (selectedForm.fileUrl && selectedForm.fileUrl !== '#' && selectedForm.fileUrl !== '') { window.open(selectedForm.fileUrl, '_blank'); selectedForm.downloads = (selectedForm.downloads || 0) + 1; addRecentDownload(selectedForm.id); const todayData = getStorage('todayDownloads', { count: 0, date: new Date().toDateString() }); todayData.count++; setStorage('todayDownloads', todayData); renderForms(); renderPopular(); updateStats(); exportJSON(); showToast('تم فتح الملف في نافذة جديدة', 'success'); } else { showToast('ℹ️ رابط الملف غير متوفر حاليًا.', 'info'); } closeModal(); }
+function handlePreview() { if (!selectedForm) return; if (selectedForm.fileUrl && selectedForm.fileUrl !== '#' && selectedForm.fileUrl !== '') { window.open(selectedForm.fileUrl, '_blank'); } else { showToast('ℹ️ رابط الملف غير متوفر حاليًا.', 'info'); } closeModal(); }
 function shareForm() { if (!selectedForm) return; shareFormById(selectedForm.id); closeModal(); }
-function shareFormById(id) { const form = formsData.find(f => f.id === id); if (!form) return; const text = `${form.name} - ${form.description}\n${form.fileUrl !== '#' ? form.fileUrl : 'https://x1xhanix1x.github.io/forms-portal/'}`; if (navigator.share) { navigator.share({ title: form.name, text: form.description, url: form.fileUrl !== '#' ? form.fileUrl : 'https://x1xhanix1x.github.io/forms-portal/' }); } else { const waUrl = `https://wa.me/?text=${encodeURIComponent(text)}`; window.open(waUrl, '_blank'); } }
+function shareFormById(id) { const form = formsData.find(f => f.id === id); if (!form) return; const hasLink = form.fileUrl && form.fileUrl !== '#' && form.fileUrl !== ''; const url = hasLink ? form.fileUrl : window.location.href; const text = `${form.name} - ${form.description}\n${url}`; if (navigator.share) { navigator.share({ title: form.name, text: form.description, url: url }); } else { const waUrl = `https://wa.me/?text=${encodeURIComponent(text)}`; window.open(waUrl, '_blank'); } }
 
 /* Copy Link */
 function copyFormLink() { if (!selectedForm) return; const url = selectedForm.fileUrl !== '#' ? selectedForm.fileUrl : window.location.href; navigator.clipboard.writeText(url).then(() => showToast('✅ تم نسخ الرابط!', 'success')).catch(() => showToast('❌ لم يتم النسخ', 'error')); closeModal(); }
