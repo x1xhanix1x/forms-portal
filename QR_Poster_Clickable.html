@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>بوابة الاستمارات الذكية - وزارة التعليم</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Tajawal', sans-serif;
+  background: #e8ecef;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* The clickable poster */
+.poster-link {
+  display: block;
+  text-decoration: none;
+  max-width: 600px;
+  width: 100%;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.poster-link:hover {
+  transform: translateY(-4px) scale(1.01);
+}
+
+.poster-link:active {
+  transform: scale(0.99);
+}
+
+.poster {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+}
+
+/* Header */
+.header {
+  background: linear-gradient(135deg, #16455B 0%, #0f3548 100%);
+  padding: 28px 32px;
+  position: relative;
+  border-bottom: 4px solid #C5A059;
+}
+
+/* Green triangle accent */
+.triangle-accent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 80px 80px 0 0;
+  border-color: #309694 transparent transparent transparent;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1;
+}
+
+/* Logo dots */
+.logo-dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dot-cluster {
+  display: grid;
+  grid-template-columns: repeat(4, 10px);
+  gap: 6px;
+}
+
+.dot {
+  width: 10px; height: 10px;
+  background: white;
+  border-radius: 50%;
+}
+
+.dot-center {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0 4px;
+}
+
+.dot-center .dot {
+  width: 8px; height: 8px;
+}
+
+/* Header text */
+.header-text {
+  text-align: right;
+}
+
+.header-text .line1 {
+  color: #C5A059;
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.header-text .line2 {
+  color: white;
+  font-size: 26px;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.header-text .line3 {
+  color: rgba(255,255,255,0.7);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+/* Body */
+.body {
+  padding: 40px 32px;
+  text-align: center;
+}
+
+.title {
+  color: #16455B;
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  color: #309694;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.dept {
+  color: #666;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.office {
+  color: #C5A059;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.divider {
+  width: 120px;
+  height: 3px;
+  background: #309694;
+  margin: 0 auto 28px;
+  border-radius: 2px;
+}
+
+/* QR Section */
+.qr-card {
+  background: #f8fafb;
+  border: 2px solid #309694;
+  border-radius: 20px;
+  padding: 24px;
+  max-width: 380px;
+  margin: 0 auto 24px;
+  position: relative;
+}
+
+.qr-inner-border {
+  border: 2px solid #16455B;
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 14px;
+}
+
+.qr-img {
+  width: 100%;
+  max-width: 320px;
+  display: block;
+  margin: 0 auto;
+}
+
+.qr-label {
+  color: #16455B;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.qr-url {
+  color: #309694;
+  font-size: 15px;
+  font-weight: 600;
+  direction: ltr;
+}
+
+/* Instructions */
+.instructions {
+  background: #eef1f4;
+  border-radius: 14px;
+  padding: 20px;
+  max-width: 480px;
+  margin: 0 auto 20px;
+}
+
+.instructions p {
+  color: #16455B;
+  font-size: 14px;
+  line-height: 2;
+  margin: 0;
+}
+
+/* Click hint */
+.click-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #309694, #16455B);
+  color: white;
+  padding: 10px 24px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 700;
+  margin-top: 8px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* Footer */
+.footer {
+  background: #16455B;
+  padding: 28px 32px;
+  text-align: center;
+  border-top: 4px solid #C5A059;
+  position: relative;
+}
+
+.footer-triangle {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 60px 60px;
+  border-color: transparent transparent #309694 transparent;
+}
+
+.footer-title {
+  color: white;
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.footer-dept {
+  color: rgba(255,255,255,0.75);
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.footer-copy {
+  color: rgba(255,255,255,0.5);
+  font-size: 12px;
+}
+
+/* Tap effect overlay */
+.tap-effect {
+  position: fixed;
+  inset: 0;
+  background: rgba(22, 69, 91, 0.1);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.tap-effect.active {
+  display: flex;
+}
+
+.tap-spinner {
+  width: 50px; height: 50px;
+  border: 4px solid rgba(255,255,255,0.3);
+  border-top-color: #16455B;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Responsive */
+@media (max-width: 500px) {
+  .header { padding: 20px 20px; }
+  .header-text .line2 { font-size: 20px; }
+  .body { padding: 28px 20px; }
+  .title { font-size: 22px; }
+  .subtitle { font-size: 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Clickable Poster -->
+<a href="https://x1xhanix1x.github.io/forms-portal/" class="poster-link" id="posterLink">
+  <div class="poster">
+
+    <!-- Header -->
+    <div class="header">
+      <div class="triangle-accent"></div>
+      <div class="header-content">
+        <!-- Logo -->
+        <div class="logo-dots">
+          <div class="dot-cluster">
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+          </div>
+          <div class="dot-center">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+          <div class="dot-cluster">
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+          </div>
+        </div>
+
+        <!-- Header Text -->
+        <div class="header-text">
+          <div class="line1">المملكة العربية السعودية</div>
+          <div class="line2">وزارة التعليم</div>
+          <div class="line3">Ministry of Education</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Body -->
+    <div class="body">
+      <div class="title">بوابة الاستمارات الذكية</div>
+      <div class="subtitle">الإدارة العامة للتعليم بمحافظة جدة</div>
+      <div class="dept">الموارد البشرية — الانتدابات والبدلات</div>
+      <div class="office">مكتب B118</div>
+
+      <div class="divider"></div>
+
+      <!-- QR Code -->
+      <div class="qr-card">
+        <div class="qr-inner-border">
+          <img src="https://x1xhanix1x.github.io/forms-portal/QR.jpeg" 
+               alt="QR Code" 
+               class="qr-img"
+               onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22><rect fill=%22white%22 width=%22300%22 height=%22300%22/><text x=%22150%22 y=%22150%22 text-anchor=%22middle%22 fill=%22%2316455B%22 font-size=%2220%22>QR Code</text></svg>'">
+        </div>
+        <div class="qr-label">📱 امسح الباركود للوصول السريع إلى الاستمارات</div>
+        <div class="qr-url">x1xhanix1x.github.io/forms-portal</div>
+      </div>
+
+      <!-- Instructions -->
+      <div class="instructions">
+        <p>
+          ١. افتح تطبيق الكاميرا أو أي ماسح للباركود<br>
+          ٢. وجّه الكاميرا نحو رمز الاستجابة السريعة أعلاه<br>
+          ٣. اضغط على الرابط الظاهر للدخول إلى بوابة الاستمارات
+        </p>
+      </div>
+
+      <!-- Click hint -->
+      <div class="click-hint">
+        👆 اضغط هنا للدخول المباشر إلى الموقع
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="footer-triangle"></div>
+      <div class="footer-title">وزارة التعليم</div>
+      <div class="footer-dept">الإدارة العامة للتعليم بمحافظة جدة — الموارد البشرية — الانتدابات والبدلات — مكتب B118</div>
+      <div class="footer-copy">جميع الحقوق محفوظة © 2026</div>
+    </div>
+
+  </div>
+</a>
+
+<!-- Tap loading effect -->
+<div class="tap-effect" id="tapEffect">
+  <div class="tap-spinner"></div>
+</div>
+
+<script>
+// Show loading effect on click
+document.getElementById('posterLink').addEventListener('click', function(e) {
+  document.getElementById('tapEffect').classList.add('active');
+  // Hide after navigation starts
+  setTimeout(() => {
+    document.getElementById('tapEffect').classList.remove('active');
+  }, 2000);
+});
+
+// Also make the QR image itself clickable (in case user clicks directly on it)
+document.querySelector('.qr-img').addEventListener('click', function(e) {
+  e.preventDefault();
+  window.location.href = 'https://x1xhanix1x.github.io/forms-portal/';
+});
+</script>
+
+</body>
+</html>
