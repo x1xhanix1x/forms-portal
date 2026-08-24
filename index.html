@@ -137,6 +137,29 @@ body, .stat-num, .download-count, .priority-input, .ticker-item, .card-meta-item
 .table-btn-down { background: #17a2b8; color: white; }
 .priority-input { width: 60px !important; text-align: center; padding: 6px !important; }
 
+/* Tags Input System */
+.tags-input-container { display: flex; flex-direction: column; gap: 8px; }
+.tags-selected { display: flex; flex-wrap: wrap; gap: 6px; min-height: 36px; padding: 6px; border: 2px solid var(--moe-border); border-radius: 10px; background: var(--card-bg); align-items: center; }
+.tags-selected.focused { border-color: var(--moe-teal); box-shadow: 0 0 0 3px rgba(22,69,91,0.08); }
+.tag-chip { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 700; cursor: default; animation: tagPop 0.2s ease; }
+@keyframes tagPop { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.tag-chip .tag-remove { width: 16px; height: 16px; border-radius: 50%; background: rgba(0,0,0,0.15); border: none; color: inherit; font-size: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; line-height: 1; }
+.tag-chip .tag-remove:hover { background: rgba(0,0,0,0.3); }
+.tags-input-field { border: none; outline: none; background: transparent; font-family: inherit; font-size: 14px; color: var(--moe-text); flex: 1; min-width: 80px; padding: 4px; }
+.tags-dropdown { position: relative; }
+.tags-suggestions { position: absolute; top: 100%; right: 0; left: 0; background: var(--card-bg); border: 2px solid var(--moe-border); border-top: none; border-radius: 0 0 10px 10px; max-height: 200px; overflow-y: auto; z-index: 50; box-shadow: var(--shadow-hover); display: none; }
+.tags-suggestions.active { display: block; }
+.tags-suggestion-item { padding: 10px 14px; cursor: pointer; font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 8px; transition: all 0.15s; border-bottom: 1px solid var(--moe-border); }
+.tags-suggestion-item:last-child { border-bottom: none; }
+.tags-suggestion-item:hover, .tags-suggestion-item.focused { background: var(--moe-cream); }
+.tags-suggestion-item .suggest-check { width: 18px; height: 18px; border-radius: 4px; border: 2px solid var(--moe-border); display: flex; align-items: center; justify-content: center; font-size: 11px; color: white; flex-shrink: 0; }
+.tags-suggestion-item.selected .suggest-check { background: var(--moe-teal); border-color: var(--moe-teal); }
+.tags-preset-label { font-size: 11px; color: var(--moe-text-light); margin-top: 4px; padding: 0 4px; }
+.tags-preset-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.tags-preset-btn { padding: 5px 12px; border-radius: 16px; border: 1.5px solid var(--moe-border); background: var(--card-bg); font-family: inherit; font-size: 12px; font-weight: 700; cursor: pointer; transition: all 0.2s; color: var(--moe-text); }
+.tags-preset-btn:hover { border-color: var(--moe-aqua); color: var(--moe-teal); transform: translateY(-1px); }
+.tags-preset-btn.active { background: var(--moe-teal); color: white; border-color: var(--moe-teal); }
+
 .tag { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; margin: 2px; background: var(--moe-aqua); color: white; }
 .tag-urgent { background: #e94560; }
 .tag-monthly { background: #667eea; }
@@ -323,6 +346,7 @@ body, .stat-num, .download-count, .priority-input, .ticker-item, .card-meta-item
   .view-sort-bar { flex-direction: column; align-items: stretch; }
 }
 </style>
+<base target="_blank">
 </head>
 <body>
 
@@ -390,7 +414,33 @@ body, .stat-num, .download-count, .priority-input, .ticker-item, .card-meta-item
       <div class="form-group"><label>الأولوية (رقم أصغر = أولاً)</label><input type="number" id="adminPriority" placeholder="1" value="1" min="1"></div>
     </div>
     <div class="form-row">
-      <div class="form-group"><label>الوسوم (مفصولة بفاصلة)</label><input type="text" id="adminTags" placeholder="عاجل, شهري, إلزامي"></div>
+      <div class="form-group" style="grid-column: 1 / -1;">
+  <label>الوسوم (اختر من القائمة أو اكتب جديد)</label>
+  <div class="tags-input-container">
+    <div class="tags-selected" id="tagsSelected" onclick="focusTagInput()">
+      <input type="text" class="tags-input-field" id="tagInput" placeholder="اكتب أو اختر..." oninput="filterTagSuggestions()" onkeydown="handleTagKey(event)" onfocus="showTagSuggestions()" onblur="hideTagSuggestionsDelayed()">
+    </div>
+    <div class="tags-dropdown">
+      <div class="tags-suggestions" id="tagsSuggestions"></div>
+    </div>
+    <div class="tags-preset-label">🔥 الوسوم الشائعة (انقر للاختيار):</div>
+    <div class="tags-preset-list" id="tagsPresetList">
+      <button type="button" class="tags-preset-btn" data-tag="عاجل" onclick="togglePresetTag(this)">🔴 عاجل</button>
+      <button type="button" class="tags-preset-btn" data-tag="شهري" onclick="togglePresetTag(this)">📅 شهري</button>
+      <button type="button" class="tags-preset-btn" data-tag="شائع" onclick="togglePresetTag(this)">🔥 شائع</button>
+      <button type="button" class="tags-preset-btn" data-tag="إلزامي" onclick="togglePresetTag(this)">✅ إلزامي</button>
+      <button type="button" class="tags-preset-btn" data-tag="مالي" onclick="togglePresetTag(this)">💰 مالي</button>
+      <button type="button" class="tags-preset-btn" data-tag="فوري" onclick="togglePresetTag(this)">⚡ فوري</button>
+      <button type="button" class="tags-preset-btn" data-tag="بنكي" onclick="togglePresetTag(this)">🏦 بنكي</button>
+      <button type="button" class="tags-preset-btn" data-tag="إداري" onclick="togglePresetTag(this)">🏢 إداري</button>
+      <button type="button" class="tags-preset-btn" data-tag="قانوني" onclick="togglePresetTag(this)">⚖️ قانوني</button>
+      <button type="button" class="tags-preset-btn" data-tag="تطوير" onclick="togglePresetTag(this)">📈 تطوير</button>
+      <button type="button" class="tags-preset-btn" data-tag="سنوي" onclick="togglePresetTag(this)">📆 سنوي</button>
+      <button type="button" class="tags-preset-btn" data-tag="اختياري" onclick="togglePresetTag(this)">🔘 اختياري</button>
+    </div>
+  </div>
+  <input type="hidden" id="adminTags" value="">
+</div>
       <div class="form-group"><label>حجم الملف (مثال: 120 KB)</label><input type="text" id="adminFileSize" placeholder="120 KB"></div>
     </div>
     <div class="form-row">
@@ -912,6 +962,125 @@ document.addEventListener('keydown', (e) => {
 
 window.addEventListener('scroll', () => { const btn = document.getElementById('backToTop'); btn.classList.toggle('visible', window.scrollY > 400); });
 function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+
+/* ===== Tags Input System ===== */
+const ALL_TAGS = ['عاجل','شهري','شائع','إلزامي','مالي','فوري','بنكي','إداري','قانوني','تطوير','سنوي','اختياري'];
+const TAG_COLORS = { 'عاجل': '#e94560', 'شهري': '#667eea', 'شائع': '#f9a825', 'إلزامي': '#43e97b', 'مالي': '#38A18A', 'فوري': '#ff6b6b', 'بنكي': '#4ecdc4', 'إداري': '#95a5a6', 'قانوني': '#8e44ad', 'تطوير': '#e67e22', 'سنوي': '#3498db', 'اختياري': '#bdc3c7' };
+let selectedTags = [];
+
+function focusTagInput() { document.getElementById('tagInput').focus(); }
+
+function renderSelectedTags() {
+  const container = document.getElementById('tagsSelected');
+  const input = document.getElementById('tagInput');
+  // Remove existing chips
+  container.querySelectorAll('.tag-chip').forEach(el => el.remove());
+  // Insert chips before input
+  selectedTags.forEach((tag, idx) => {
+    const chip = document.createElement('span');
+    chip.className = 'tag-chip';
+    chip.style.background = TAG_COLORS[tag] || '#309694';
+    chip.style.color = (tag === 'إلزامي' || tag === 'اختياري') ? '#1a1a2e' : '#fff';
+    chip.innerHTML = `${tag} <button type="button" class="tag-remove" onclick="event.stopPropagation(); removeTag(${idx})" title="إزالة">✕</button>`;
+    container.insertBefore(chip, input);
+  });
+  document.getElementById('adminTags').value = selectedTags.join(', ');
+  updatePresetButtons();
+}
+
+function addTag(tag) {
+  tag = tag.trim();
+  if (!tag || selectedTags.includes(tag)) return;
+  selectedTags.push(tag);
+  renderSelectedTags();
+  document.getElementById('tagInput').value = '';
+  document.getElementById('tagsSuggestions').classList.remove('active');
+}
+
+function removeTag(index) {
+  selectedTags.splice(index, 1);
+  renderSelectedTags();
+}
+
+function togglePresetTag(btn) {
+  const tag = btn.dataset.tag;
+  if (selectedTags.includes(tag)) {
+    selectedTags = selectedTags.filter(t => t !== tag);
+  } else {
+    selectedTags.push(tag);
+  }
+  renderSelectedTags();
+  btn.classList.toggle('active', selectedTags.includes(tag));
+}
+
+function updatePresetButtons() {
+  document.querySelectorAll('.tags-preset-btn').forEach(btn => {
+    btn.classList.toggle('active', selectedTags.includes(btn.dataset.tag));
+  });
+}
+
+function filterTagSuggestions() {
+  const val = document.getElementById('tagInput').value.trim();
+  const dropdown = document.getElementById('tagsSuggestions');
+  if (!val) { dropdown.classList.remove('active'); return; }
+  const matches = ALL_TAGS.filter(t => t.includes(val) && !selectedTags.includes(t));
+  if (!matches.length) { dropdown.classList.remove('active'); return; }
+  dropdown.innerHTML = matches.map(t => `<div class="tags-suggestion-item" onclick="addTag('${t}')" onmousedown="event.preventDefault();"><span class="suggest-check">✓</span>${t}</div>`).join('');
+  dropdown.classList.add('active');
+}
+
+function showTagSuggestions() {
+  const dropdown = document.getElementById('tagsSuggestions');
+  const available = ALL_TAGS.filter(t => !selectedTags.includes(t));
+  if (!available.length) { dropdown.classList.remove('active'); return; }
+  dropdown.innerHTML = available.map(t => `<div class="tags-suggestion-item" onclick="addTag('${t}')" onmousedown="event.preventDefault();"><span class="suggest-check"></span>${t}</div>`).join('');
+  dropdown.classList.add('active');
+  document.getElementById('tagsSelected').classList.add('focused');
+}
+
+function hideTagSuggestionsDelayed() {
+  setTimeout(() => {
+    document.getElementById('tagsSuggestions').classList.remove('active');
+    document.getElementById('tagsSelected').classList.remove('focused');
+  }, 200);
+}
+
+function handleTagKey(e) {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    const val = e.target.value.trim();
+    if (val) { addTag(val); }
+  } else if (e.key === 'Backspace' && !e.target.value && selectedTags.length) {
+    selectedTags.pop();
+    renderSelectedTags();
+  }
+}
+
+// Override editForm to populate tags
+const originalEditForm = editForm;
+editForm = function(id) {
+  originalEditForm(id);
+  const form = formsData.find(f => f.id === id);
+  if (form && form.tags) {
+    selectedTags = [...form.tags];
+    renderSelectedTags();
+  }
+};
+
+// Override resetForm to clear tags
+const originalResetForm = resetForm;
+resetForm = function() {
+  originalResetForm();
+  selectedTags = [];
+  renderSelectedTags();
+};
+
+// Override saveForm to use selectedTags
+const originalSaveForm = saveForm;
+saveForm = function() {
+  document.getElementById('adminTags').value = selectedTags.join(', ');
+  originalSaveForm();
+};
 
 loadForms();
 </script>
