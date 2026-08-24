@@ -22,6 +22,15 @@
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: 'Tajawal', sans-serif; background: var(--body-bg); color: var(--moe-text); min-height: 100vh; transition: background 0.3s, color 0.3s; }
+
+/* Force English numerals globally */
+body, .stat-num, .download-count, .priority-input, .ticker-item, .card-meta-item, .modal-meta span, .popular-card .count, .batch-bar span, .stat-label, .empty-state h3, .form-card h3, .modal-header h2, .modal-header p, .login-box h3, .login-box p, .admin-form h3, .request-section h4, .json-export h4, .json-export p, .forms-table th, .forms-table td, .fav-bar-title, .popular-title, .footer, .controls input, .controls button, .form-group label, .form-group input, .form-group select, .form-group textarea, .table-btn, .tag, .category-tag, .card-action-btn, .print-btn, .modal-btn, .modal-close, .back-to-top, .admin-btn, .admin-toggle, .logout-btn, .status-badge, .logo-text h1, .logo-text p, .filter-btn, .search-box input, .search-box .search-icon, .ticker-wrap, .ticker, .ticker-item, .empty-state, .empty-icon, .empty-state h3, .stat-card, .stat-num, .stat-label, .forms-grid, .form-card, .card-header, .card-icon, .card-info, .card-meta, .card-tags, .card-footer, .card-actions, .batch-checkbox, .modal-overlay, .modal, .modal-header, .modal-icon, .modal-body, .modal-actions, .fav-bar, .fav-bar-title, .fav-chips, .fav-chip, .popular-section, .popular-title, .popular-grid, .popular-card, .popular-card .rank, .popular-card .info, .popular-card .name, .popular-card .count, .batch-bar, .batch-bar button, .back-to-top, .footer, .moe-brand, .login-panel, .login-box, .login-box input, .login-box button, .login-error, .admin-panel, .admin-header, .admin-toggle, .logout-btn, .admin-form, .form-row, .form-group, .admin-actions, .admin-btn, .request-section, .request-section h4, .request-list-item, .request-item-name, .request-item-date, .request-item-actions, .request-approve, .request-reject, .forms-table-wrapper, .forms-table, .forms-table th, .forms-table td, .table-actions, .table-btn, .table-btn-edit, .table-btn-delete, .table-btn-up, .table-btn-down, .priority-input, .tag, .tag-urgent, .tag-monthly, .tag-popular, .tag-mandatory, .json-export, .json-export h4, .json-export p, .json-export textarea, .json-export .copy-btn, .ticker-wrap, .ticker, .ticker-item, .loading-overlay, .spinner, .header, .header-inner, .logo-area, .logo-icon, .logo-text, .header-actions, .status-badge, .theme-toggle, .lang-toggle, .controls, .search-box, .search-box input, .search-box .search-icon, .filter-tabs, .filter-btn, .stats-bar, .stat-card, .stat-num, .stat-label, .forms-grid, .form-card, .card-header, .card-icon, .card-info, .card-info h3, .category-tag, .card-meta, .card-meta-item, .card-tags, .card-footer, .download-count, .card-actions, .card-action-btn, .card-action-btn.fav-active, .print-btn, .batch-checkbox, .empty-state, .empty-icon, .empty-state h3, .modal-overlay, .modal, .modal-header, .modal-icon, .modal-header h2, .modal-header p, .modal-meta, .modal-body, .modal-actions, .modal-btn, .modal-btn-primary, .modal-btn-secondary, .modal-close, .batch-bar, .batch-bar span, .batch-bar button, .back-to-top, .footer, .moe-brand {
+  font-variant-numeric: tabular-nums;
+  -moz-font-feature-settings: "tnum";
+  -webkit-font-feature-settings: "tnum";
+  font-feature-settings: "tnum";
+}
+
 .header { background: linear-gradient(135deg, var(--moe-teal) 0%, var(--moe-teal-dark) 100%); padding: 16px 24px; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 20px rgba(0,0,0,0.15); border-bottom: 4px solid var(--moe-aqua); }
 .header-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
 .logo-area { display: flex; align-items: center; gap: 14px; }
@@ -33,10 +42,13 @@ body { font-family: 'Tajawal', sans-serif; background: var(--body-bg); color: va
 .theme-toggle, .lang-toggle { width: 40px; height: 40px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: white; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
 .theme-toggle:hover, .lang-toggle:hover { background: rgba(255,255,255,0.2); transform: scale(1.1); }
 
-.ticker-wrap { max-width: 1100px; margin: 0 auto; overflow: hidden; background: linear-gradient(90deg, #fff3cd, #ffeaa7); border-bottom: 1px solid #ffc107; display: none; }
-.ticker-wrap.active { display: block; }
-.ticker { display: inline-block; white-space: nowrap; padding: 10px 0; animation: ticker 25s linear infinite; }
-@keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+/* Ticker - Always visible with close button */
+.ticker-wrap { max-width: 1100px; margin: 0 auto; overflow: hidden; background: linear-gradient(90deg, #fff3cd, #ffeaa7); border-bottom: 1px solid #ffc107; position: relative; }
+.ticker-wrap.hidden { display: none; }
+.ticker-close { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.1); border: none; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; font-size: 14px; color: #856404; z-index: 10; display: flex; align-items: center; justify-content: center; }
+.ticker-close:hover { background: rgba(0,0,0,0.2); }
+.ticker { display: inline-block; white-space: nowrap; padding: 10px 0; animation: ticker 30s linear infinite; padding-left: 100%; }
+@keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 .ticker-item { display: inline-block; padding: 0 40px; color: #856404; font-size: 14px; font-weight: 700; }
 
 .loading-overlay { position: fixed; inset: 0; background: var(--body-bg); z-index: 999; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; }
@@ -78,8 +90,29 @@ body { font-family: 'Tajawal', sans-serif; background: var(--body-bg); color: va
 .admin-btn-danger { background: #dc3545; color: white; }
 .admin-btn-danger:hover { background: #c82333; }
 
+/* User Request Section */
+.user-request-section { max-width: 1100px; margin: 20px auto; padding: 0 20px; }
+.user-request-btn { width: 100%; padding: 16px; border-radius: 16px; border: 2px dashed var(--moe-aqua); background: linear-gradient(135deg, rgba(48,150,148,0.05), rgba(22,69,91,0.05)); color: var(--moe-teal); font-family: inherit; font-size: 16px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: all 0.3s; }
+.user-request-btn:hover { background: linear-gradient(135deg, rgba(48,150,148,0.1), rgba(22,69,91,0.1)); border-style: solid; transform: translateY(-2px); }
+.user-request-form { background: var(--card-bg); border-radius: 20px; padding: 28px; margin-top: 16px; border: 2px solid var(--moe-aqua); box-shadow: var(--shadow-hover); display: none; animation: slideDown 0.3s ease; }
+.user-request-form.active { display: block; }
+.user-request-form h3 { color: var(--moe-teal); font-size: 18px; margin-bottom: 16px; }
+
+/* Request list styles */
 .request-section { margin-top: 24px; padding: 20px; background: #fff8e1; border-radius: 14px; border: 1px solid #ffc107; }
 .request-section h4 { color: #856404; font-size: 16px; margin-bottom: 12px; }
+.request-list { display: flex; flex-direction: column; gap: 10px; }
+.request-list-item { background: white; border-radius: 10px; padding: 14px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; border: 1px solid #ffe082; }
+.request-item-info { flex: 1; min-width: 200px; }
+.request-item-name { font-weight: 700; color: var(--moe-text); font-size: 14px; }
+.request-item-meta { font-size: 12px; color: #888; margin-top: 4px; }
+.request-item-actions { display: flex; gap: 8px; }
+.request-approve { background: #28a745; color: white; border: none; padding: 6px 14px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; }
+.request-reject { background: #dc3545; color: white; border: none; padding: 6px 14px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; }
+.request-status { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; }
+.request-status-pending { background: #ffc107; color: #856404; }
+.request-status-approved { background: #28a745; color: white; }
+.request-status-rejected { background: #dc3545; color: white; }
 
 .forms-table-wrapper { margin-top: 24px; overflow-x: auto; }
 .forms-table { width: 100%; border-collapse: collapse; background: var(--card-bg); border-radius: 14px; overflow: hidden; box-shadow: var(--shadow); }
@@ -133,10 +166,15 @@ body { font-family: 'Tajawal', sans-serif; background: var(--body-bg); color: va
 .search-box input { width: 100%; padding: 16px 52px 16px 20px; border: 2px solid var(--moe-border); border-radius: 16px; font-size: 16px; font-family: inherit; background: var(--card-bg); color: var(--moe-text); transition: all 0.3s; }
 .search-box input:focus { outline: none; border-color: var(--moe-teal); box-shadow: 0 0 0 4px rgba(22,69,91,0.1); }
 .search-box .search-icon { position: absolute; right: 18px; top: 50%; transform: translateY(-50%); font-size: 20px; opacity: 0.5; }
-.filter-tabs { display: flex; gap: 10px; flex-wrap: wrap; }
+.filter-tabs { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
 .filter-btn { padding: 10px 22px; border-radius: 12px; border: 2px solid var(--moe-border); background: var(--card-bg); color: var(--moe-text-light); font-family: inherit; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.3s; }
 .filter-btn:hover { border-color: var(--moe-teal); color: var(--moe-teal); }
 .filter-btn.active { background: var(--moe-teal); color: white; border-color: var(--moe-teal); box-shadow: 0 4px 15px rgba(22,69,91,0.3); }
+
+/* Batch mode toggle */
+.batch-toggle-btn { padding: 10px 18px; border-radius: 12px; border: 2px solid var(--moe-aqua); background: var(--card-bg); color: var(--moe-teal); font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 6px; }
+.batch-toggle-btn:hover { background: var(--moe-aqua); color: white; }
+.batch-toggle-btn.active { background: var(--moe-aqua); color: white; }
 
 .stats-bar { max-width: 1100px; margin: 0 auto 20px; padding: 0 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
 .stat-card { background: var(--card-bg); border-radius: 14px; padding: 16px; text-align: center; border: 1px solid var(--moe-border); box-shadow: var(--shadow); border-top: 3px solid var(--moe-aqua); transition: all 0.3s; }
@@ -165,7 +203,8 @@ body { font-family: 'Tajawal', sans-serif; background: var(--body-bg); color: va
 .card-action-btn.fav-active { background: #ffc107; color: #856404; }
 .print-btn { padding: 8px 18px; border-radius: 10px; border: none; background: var(--card-color, var(--moe-teal)); color: white; font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.3s; }
 .print-btn:hover { opacity: 0.9; transform: scale(1.05); }
-.batch-checkbox { position: absolute; top: 12px; left: 12px; width: 22px; height: 22px; cursor: pointer; accent-color: var(--moe-teal); }
+.batch-checkbox { position: absolute; top: 12px; left: 12px; width: 22px; height: 22px; cursor: pointer; accent-color: var(--moe-teal); opacity: 0; transform: scale(0.8); transition: all 0.3s; pointer-events: none; }
+.batch-mode .batch-checkbox { opacity: 1; transform: scale(1); pointer-events: auto; }
 
 .empty-state { grid-column: 1 / -1; text-align: center; padding: 60px 20px; }
 .empty-state .empty-icon { font-size: 64px; margin-bottom: 16px; opacity: 0.3; }
@@ -199,11 +238,19 @@ body { font-family: 'Tajawal', sans-serif; background: var(--body-bg); color: va
 .batch-bar.active { display: flex; }
 .batch-bar button { background: white; color: var(--moe-teal); border: none; padding: 6px 16px; border-radius: 8px; font-family: inherit; font-weight: 700; cursor: pointer; }
 
+/* Toast notifications */
+.toast-container { position: fixed; top: 80px; left: 20px; z-index: 300; display: flex; flex-direction: column; gap: 10px; }
+.toast { background: var(--card-bg); border-radius: 12px; padding: 14px 20px; box-shadow: var(--shadow-hover); border-right: 4px solid var(--moe-aqua); display: flex; align-items: center; gap: 10px; animation: toastIn 0.3s ease; min-width: 280px; font-size: 14px; font-weight: 700; }
+.toast.success { border-right-color: #28a745; }
+.toast.error { border-right-color: #dc3545; }
+.toast.info { border-right-color: var(--moe-aqua); }
+@keyframes toastIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+
 .footer { text-align: center; padding: 24px; color: var(--moe-text-light); font-size: 13px; border-top: 1px solid var(--moe-border); background: var(--card-bg); }
 .footer .moe-brand { color: var(--moe-teal); font-weight: 700; }
 
 @media print {
-  .header, .controls, .stats-bar, .footer, .modal-overlay, .back-to-top, .batch-bar, .fav-bar, .popular-section, .login-panel, .admin-panel, .ticker-wrap { display: none !important; }
+  .header, .controls, .stats-bar, .footer, .modal-overlay, .back-to-top, .batch-bar, .fav-bar, .popular-section, .login-panel, .admin-panel, .ticker-wrap, .user-request-section, .toast-container { display: none !important; }
   .forms-grid { display: block; }
   .form-card { break-inside: avoid; page-break-inside: avoid; margin-bottom: 20px; box-shadow: none; border: 1px solid #ccc; }
   body { background: white; }
@@ -216,6 +263,8 @@ body { font-family: 'Tajawal', sans-serif; background: var(--body-bg); color: va
   .form-row { grid-template-columns: 1fr; }
   .forms-table th, .forms-table td { padding: 8px 6px; font-size: 11px; }
   .popular-grid { grid-template-columns: 1fr; }
+  .filter-tabs { gap: 6px; }
+  .filter-btn { padding: 8px 14px; font-size: 12px; }
 }
 </style>
 </head>
@@ -225,6 +274,9 @@ body { font-family: 'Tajawal', sans-serif; background: var(--body-bg); color: va
   <div class="spinner"></div>
   <p style="color:#555;font-size:16px;">جاري تحميل الاستمارات...</p>
 </div>
+
+<!-- Toast Container -->
+<div class="toast-container" id="toastContainer"></div>
 
 <header class="header">
   <div class="header-inner">
@@ -243,12 +295,15 @@ body { font-family: 'Tajawal', sans-serif; background: var(--body-bg); color: va
   </div>
 </header>
 
+<!-- Ticker - Always visible -->
 <div class="ticker-wrap" id="tickerWrap">
+  <button class="ticker-close" onclick="closeTicker()" title="إغلاق">✕</button>
   <div class="ticker" id="tickerContent">
     <span class="ticker-item">🔔 تم إضافة استمارات جديدة! تحقق من القائمة أدناه</span>
     <span class="ticker-item">📱 يمكنك الآن حفظ الاستمارات في المفضلة للوصول السريع</span>
     <span class="ticker-item">🌙 جرب الوضع الداكن للراحة في الليل</span>
     <span class="ticker-item">📊 شاهد أكثر الاستمارات طلباً في قسم "الأكثر زيارة"</span>
+    <span class="ticker-item">📝 يمكنك الآن طلب استمارة جديدة من خلال زر "طلب استمارة جديدة"</span>
   </div>
 </div>
 
@@ -295,7 +350,15 @@ body { font-family: 'Tajawal', sans-serif; background: var(--body-bg); color: va
       <button class="admin-btn admin-btn-secondary" onclick="exportCSV()">📊 تصدير Excel/CSV</button>
       <button class="admin-btn admin-btn-danger" onclick="clearAll()">🗑️ حذف الكل</button>
     </div>
-    <div class="request-section"><h4>📝 طلبات الاستمارات الجديدة (من الموظفين)</h4><div id="requestsList" style="color:#666;font-size:13px;">لا توجد طلبات جديدة</div></div>
+
+    <!-- Admin Requests Management -->
+    <div class="request-section">
+      <h4>📝 طلبات الاستمارات الجديدة (من الموظفين)</h4>
+      <div id="requestsList" class="request-list">
+        <div style="color:#666;font-size:13px;text-align:center;padding:10px;">لا توجد طلبات جديدة</div>
+      </div>
+    </div>
+
     <div class="json-export" id="jsonExport">
       <h4>📋 انسخ هذا الملف واحفظه باسم forms.json ثم ارفعه على GitHub</h4>
       <p>⚠️ هذا الملف يحتوي على جميع الاستمارات. ارفعه على GitHub ليظهر للجميع.</p>
@@ -309,6 +372,40 @@ body { font-family: 'Tajawal', sans-serif; background: var(--body-bg); color: va
         <thead><tr><th>#</th><th>أولوية</th><th>أيقونة</th><th>الاسم</th><th>التصنيف</th><th>الحجم</th><th>الصفحات</th><th>التحميلات</th><th>الإجراءات</th></tr></thead>
         <tbody id="adminTableBody"></tbody>
       </table>
+    </div>
+  </div>
+</div>
+
+<!-- User Request Form Section -->
+<div class="user-request-section" id="userRequestSection">
+  <button class="user-request-btn" onclick="toggleUserRequestForm()">
+    <span>📝</span>
+    <span>طلب استمارة جديدة / استمارة غير موجودة</span>
+  </button>
+  <div class="user-request-form" id="userRequestForm">
+    <h3>📝 طلب استمارة جديدة</h3>
+    <p style="color:var(--moe-text-light);font-size:14px;margin-bottom:16px;">املأ النموذج أدناه وسيتم مراجعة طلبك من قبل الإدارة</p>
+    <div class="form-row">
+      <div class="form-group"><label>الاسم *</label><input type="text" id="reqUserName" placeholder="اسمك الثلاثي"></div>
+      <div class="form-group"><label>الإدارة / القسم *</label><input type="text" id="reqUserDept" placeholder="مثال: الموارد البشرية"></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>اسم الاستمارة المطلوبة *</label><input type="text" id="reqFormName" placeholder="مثال: استمارة طلب علاوة"></div>
+      <div class="form-group"><label>نوع الاستمارة</label>
+        <select id="reqFormType">
+          <option value="requests">📨 طلب</option>
+          <option value="print">🖨️ طباعة</option>
+          <option value="reports">📊 تقرير</option>
+          <option value="other">📎 أخرى</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group" style="grid-column: 1 / -1;"><label>الوصف / التفاصيل</label><textarea id="reqFormDesc" rows="3" placeholder="اشرح بالتفصيل الاستمارة المطلوبة وسبب الحاجة إليها..."></textarea></div>
+    </div>
+    <div class="admin-actions">
+      <button class="admin-btn admin-btn-primary" onclick="submitUserRequest()">📤 إرسال الطلب</button>
+      <button class="admin-btn admin-btn-secondary" onclick="toggleUserRequestForm()">❌ إلغاء</button>
     </div>
   </div>
 </div>
@@ -331,6 +428,10 @@ body { font-family: 'Tajawal', sans-serif; background: var(--body-bg); color: va
     <button class="filter-btn" data-filter="print">🖨️ طباعة</button>
     <button class="filter-btn" data-filter="reports">📊 تقارير</button>
     <button class="filter-btn" data-filter="favorites">⭐ المفضلة</button>
+    <button class="batch-toggle-btn" id="batchToggleBtn" onclick="toggleBatchMode()">
+      <span>☐</span>
+      <span>تحديد متعدد</span>
+    </button>
   </div>
 </div>
 
@@ -366,7 +467,7 @@ body { font-family: 'Tajawal', sans-serif; background: var(--body-bg); color: va
 </div>
 
 <div class="batch-bar" id="batchBar">
-  <span id="batchCount">٠ استمارات محددة</span>
+  <span id="batchCount">0 استمارات محددة</span>
   <button onclick="downloadBatch()">⬇️ تحميل الكل</button>
   <button onclick="clearBatch()">❌ إلغاء</button>
 </div>
@@ -381,12 +482,24 @@ body { font-family: 'Tajawal', sans-serif; background: var(--body-bg); color: va
 
 <script>
 const ADMIN_PASSWORD = "Jeddah2026!";
-let formsData = [], isAdmin = getStorage('isAdmin', false), currentFilter = 'all', searchQuery = '', selectedForm = null, nextId = 1, editingId = null, favorites = getStorage('favorites', []), currentLang = getStorage('lang', 'ar'), batchSelected = [], visitorCount = getStorage('visitorCount', 0);
-const categoryNames = { ar: { all: 'الكل', requests: 'طلبات', print: 'طباعة', reports: 'تقارير', favorites: 'المفضلة' }, en: { all: 'All', requests: 'Requests', print: 'Print', reports: 'Reports', favorites: 'Favorites' } };
+let formsData = [], isAdmin = getStorage('isAdmin', false), currentFilter = 'all', searchQuery = '', selectedForm = null, nextId = 1, editingId = null, favorites = getStorage('favorites', []), currentLang = getStorage('lang', 'ar'), batchSelected = [], visitorCount = getStorage('visitorCount', 0), batchMode = false, userRequests = getStorage('userRequests', []);
+
+const categoryNames = { ar: { all: 'الكل', requests: 'طلبات', print: 'طباعة', reports: 'تقارير', favorites: 'المفضلة', other: 'أخرى' }, en: { all: 'All', requests: 'Requests', print: 'Print', reports: 'Reports', favorites: 'Favorites', other: 'Other' } };
 const tagClasses = { 'عاجل': 'tag-urgent', 'شهري': 'tag-monthly', 'شائع': 'tag-popular', 'إلزامي': 'tag-mandatory' };
 
 function getStorage(key, defaultVal) { try { const val = localStorage.getItem(key); return val ? JSON.parse(val) : defaultVal; } catch { return defaultVal; } }
 function setStorage(key, val) { try { localStorage.setItem(key, JSON.stringify(val)); } catch {} }
+
+// Toast notifications
+function showToast(message, type = 'info') {
+  const container = document.getElementById('toastContainer');
+  const toast = document.createElement('div');
+  toast.className = `toast ${type}`;
+  const icons = { success: '✅', error: '❌', info: 'ℹ️' };
+  toast.innerHTML = `<span>${icons[type] || 'ℹ️'}</span><span>${message}</span>`;
+  container.appendChild(toast);
+  setTimeout(() => { toast.style.opacity = '0'; toast.style.transform = 'translateX(-20px)'; setTimeout(() => toast.remove(), 300); }, 3000);
+}
 
 async function loadForms() {
   showLoading(true);
@@ -398,7 +511,7 @@ async function loadForms() {
   } catch (e) { formsData = getDefaultForms(); }
   nextId = Math.max(...formsData.map(f => f.id), 0) + 1;
   showLoading(false);
-  applyTheme(); applyLang(); renderFavorites(); renderPopular(); renderForms(); updateStats(); initAuth(); showTicker();
+  applyTheme(); applyLang(); renderFavorites(); renderPopular(); renderForms(); updateStats(); initAuth(); initTicker(); renderAdminRequests();
 }
 
 function getDefaultForms() {
@@ -421,23 +534,35 @@ function applyTheme() { const theme = getStorage('theme', 'light'); document.doc
 function toggleTheme() { const current = document.documentElement.getAttribute('data-theme') || 'light'; const next = current === 'dark' ? 'light' : 'dark'; document.documentElement.setAttribute('data-theme', next); setStorage('theme', next); document.getElementById('themeToggle').textContent = next === 'dark' ? '☀️' : '🌙'; }
 function applyLang() { const els = document.querySelectorAll('[data-ar][data-en]'); els.forEach(el => { el.textContent = el.getAttribute('data-' + currentLang); }); document.getElementById('langToggle').textContent = currentLang === 'ar' ? 'EN' : 'ع'; document.body.dir = currentLang === 'ar' ? 'rtl' : 'ltr'; document.querySelectorAll('.filter-btn').forEach(btn => { const filter = btn.dataset.filter; if (categoryNames[currentLang][filter]) { const icon = { all: '', requests: '📨 ', print: '🖨️ ', reports: '📊 ', favorites: '⭐ ' }[filter] || ''; btn.innerHTML = icon + categoryNames[currentLang][filter]; } }); }
 function toggleLang() { currentLang = currentLang === 'ar' ? 'en' : 'ar'; setStorage('lang', currentLang); applyLang(); renderForms(); renderFavorites(); renderPopular(); }
-function showTicker() { const ticker = document.getElementById('tickerWrap'); const lastVisit = getStorage('lastTickerVisit', 0); const now = Date.now(); if (now - lastVisit > 86400000) { ticker.classList.add('active'); setStorage('lastTickerVisit', now); } }
 
-function toggleFav(formId) { const idx = favorites.indexOf(formId); if (idx > -1) favorites.splice(idx, 1); else favorites.push(formId); setStorage('favorites', favorites); renderFavorites(); renderForms(); }
+// Ticker - Always visible with close option
+function initTicker() { 
+  const ticker = document.getElementById('tickerWrap');
+  const isClosed = getStorage('tickerClosed', false);
+  if (isClosed) { ticker.classList.add('hidden'); }
+  else { ticker.classList.remove('hidden'); }
+}
+function closeTicker() { 
+  document.getElementById('tickerWrap').classList.add('hidden'); 
+  setStorage('tickerClosed', true); 
+  showToast('تم إغلاق شريط الإشعارات', 'info');
+}
+
+function toggleFav(formId) { const idx = favorites.indexOf(formId); if (idx > -1) { favorites.splice(idx, 1); showToast('تم الإزالة من المفضلة', 'info'); } else { favorites.push(formId); showToast('تمت الإضافة للمفضلة', 'success'); } setStorage('favorites', favorites); renderFavorites(); renderForms(); }
 function toggleFavFromModal() { if (!selectedForm) return; toggleFav(selectedForm.id); updateFavButton(); }
 function updateFavButton() { if (!selectedForm) return; const btn = document.getElementById('favModalBtn'); const isFav = favorites.includes(selectedForm.id); btn.textContent = isFav ? '❌ إزالة من المفضلة' : '⭐ إضافة للمفضلة'; }
 function renderFavorites() { const bar = document.getElementById('favBar'); const chips = document.getElementById('favChips'); const favForms = formsData.filter(f => favorites.includes(f.id)); if (favForms.length === 0) { bar.classList.remove('active'); return; } bar.classList.add('active'); chips.innerHTML = favForms.map(f => `<button class="fav-chip" onclick="openModal(${f.id})">${f.icon} ${f.name}<span class="remove-fav" onclick="event.stopPropagation(); toggleFav(${f.id})">✕</span></button>`).join(''); }
 
-function renderPopular() { const section = document.getElementById('popularSection'); const grid = document.getElementById('popularGrid'); const topForms = [...formsData].sort((a, b) => (b.downloads || 0) - (a.downloads || 0)).slice(0, 3); if (topForms.length === 0) { section.classList.remove('active'); return; } section.classList.add('active'); grid.innerHTML = topForms.map((f, i) => `<div class="popular-card" onclick="openModal(${f.id})"><div class="rank">${i + 1}</div><div class="info"><div class="name">${f.name}</div><div class="count">⬇️ ${f.downloads || 0} تحميل</div></div></div>`).join(''); }
+function renderPopular() { const section = document.getElementById('popularSection'); const grid = document.getElementById('popularGrid'); const topForms = [...formsData].sort((a, b) => (b.downloads || 0) - (a.downloads || 0)).slice(0, 3); if (topForms.length === 0) { section.classList.remove('active'); return; } section.classList.add('active'); grid.innerHTML = topForms.map((f, i) => `<div class="popular-card" onclick="openModal(${f.id})"><div class="rank">${i + 1}</div><div class="info"><div class="name">${f.name}</div><div class="count">${f.downloads || 0} تحميل</div></div></div>`).join(''); }
 
 function initAuth() { if (isAdmin) { document.getElementById('loginPanel').classList.remove('active'); document.getElementById('adminPanel').classList.add('active'); } else { document.getElementById('loginPanel').classList.add('active'); document.getElementById('adminPanel').classList.remove('active'); } }
-function doLogin() { const password = document.getElementById('loginPassword').value; if (password === ADMIN_PASSWORD) { isAdmin = true; setStorage('isAdmin', true); document.getElementById('loginPanel').classList.remove('active'); document.getElementById('adminPanel').classList.add('active'); document.getElementById('loginError').classList.remove('active'); document.getElementById('loginPassword').value = ''; renderAdminTable(); } else { document.getElementById('loginError').classList.add('active'); document.getElementById('loginPassword').value = ''; } }
-function doLogout() { if (!confirm(currentLang === 'ar' ? 'هل أنت متأكد من تسجيل الخروج؟' : 'Are you sure?')) return; isAdmin = false; setStorage('isAdmin', false); document.getElementById('adminPanel').classList.remove('active'); document.getElementById('loginPanel').classList.add('active'); document.getElementById('adminForm').classList.remove('active'); }
+function doLogin() { const password = document.getElementById('loginPassword').value; if (password === ADMIN_PASSWORD) { isAdmin = true; setStorage('isAdmin', true); document.getElementById('loginPanel').classList.remove('active'); document.getElementById('adminPanel').classList.add('active'); document.getElementById('loginError').classList.remove('active'); document.getElementById('loginPassword').value = ''; renderAdminTable(); renderAdminRequests(); showToast('تم تسجيل الدخول بنجاح', 'success'); } else { document.getElementById('loginError').classList.add('active'); document.getElementById('loginPassword').value = ''; showToast('كلمة المرور غير صحيحة', 'error'); } }
+function doLogout() { if (!confirm(currentLang === 'ar' ? 'هل أنت متأكد من تسجيل الخروج؟' : 'Are you sure?')) return; isAdmin = false; setStorage('isAdmin', false); document.getElementById('adminPanel').classList.remove('active'); document.getElementById('loginPanel').classList.add('active'); document.getElementById('adminForm').classList.remove('active'); showToast('تم تسجيل الخروج', 'info'); }
 
-function toggleAdmin() { document.getElementById('adminForm').classList.toggle('active'); if (document.getElementById('adminForm').classList.contains('active')) renderAdminTable(); }
+function toggleAdmin() { document.getElementById('adminForm').classList.toggle('active'); if (document.getElementById('adminForm').classList.contains('active')) { renderAdminTable(); renderAdminRequests(); } }
 function renderAdminTable() { const tbody = document.getElementById('adminTableBody'); if (!formsData.length) { tbody.innerHTML = '<tr><td colspan="9" style="text-align:center;color:#999;padding:20px;">لا توجد استمارات</td></tr>'; return; } const sorted = [...formsData].sort((a, b) => (a.priority || 999) - (b.priority || 999)); tbody.innerHTML = sorted.map((form, idx) => `<tr><td>${idx + 1}</td><td><input type="number" class="priority-input" value="${form.priority || 1}" onchange="changePriority(${form.id}, this.value)"></td><td style="font-size:20px;text-align:center;">${form.icon}</td><td><strong>${form.name}</strong></td><td>${categoryNames.ar[form.category] || form.category}</td><td>${form.fileSize || '-'}</td><td>${form.pages || '-'}</td><td>${form.downloads || 0}</td><td><div class="table-actions"><button class="table-btn table-btn-up" onclick="moveUp(${form.id})">⬆️</button><button class="table-btn table-btn-down" onclick="moveDown(${form.id})">⬇️</button><button class="table-btn table-btn-edit" onclick="editForm(${form.id})">✏️</button><button class="table-btn table-btn-delete" onclick="deleteForm(${form.id})">🗑️</button></div></td></tr>`).join(''); }
 
-function changePriority(id, newPriority) { const form = formsData.find(f => f.id === id); if (form) { form.priority = parseInt(newPriority) || 1; formsData.sort((a, b) => (a.priority || 999) - (b.priority || 999)); renderForms(); renderAdminTable(); exportJSON(); } }
+function changePriority(id, newPriority) { const form = formsData.find(f => f.id === id); if (form) { form.priority = parseInt(newPriority) || 1; formsData.sort((a, b) => (a.priority || 999) - (b.priority || 999)); renderForms(); renderAdminTable(); exportJSON(); showToast('تم تحديث الأولوية', 'success'); } }
 function moveUp(id) { const form = formsData.find(f => f.id === id); if (!form) return; form.priority = Math.max(1, (form.priority || 1) - 1); formsData.sort((a, b) => (a.priority || 999) - (b.priority || 999)); renderForms(); renderAdminTable(); exportJSON(); }
 function moveDown(id) { const form = formsData.find(f => f.id === id); if (!form) return; form.priority = (form.priority || 1) + 1; formsData.sort((a, b) => (a.priority || 999) - (b.priority || 999)); renderForms(); renderAdminTable(); exportJSON(); }
 
@@ -453,21 +578,93 @@ function saveForm() {
   const pages = parseInt(document.getElementById('adminPages').value) || 1;
   const fileUrl = document.getElementById('adminUrl').value.trim() || '#';
   const desc = document.getElementById('adminDesc').value.trim() || name;
-  if (!name) { alert('❌ يرجى إدخال اسم الاستمارة'); return; }
-  if (editingId) { const idx = formsData.findIndex(f => f.id === editingId); if (idx !== -1) { formsData[idx] = { ...formsData[idx], name, category, icon, color, priority, tags, fileSize, pages, fileUrl, description: desc, updatedAt: new Date().toISOString().split('T')[0] }; alert('✅ تم تعديل الاستمارة! اضغط "تصدير JSON" وارفع الملف.'); } }
-  else { formsData.push({ id: nextId++, name, category, icon, color, priority, tags, fileSize, pages, downloads: 0, fileUrl, description: desc, updatedAt: new Date().toISOString().split('T')[0], addedAt: Date.now() }); alert('✅ تمت إضافة الاستمارة! اضغط "تصدير JSON" وارفع الملف.'); }
+  if (!name) { showToast('❌ يرجى إدخال اسم الاستمارة', 'error'); return; }
+  if (editingId) { const idx = formsData.findIndex(f => f.id === editingId); if (idx !== -1) { formsData[idx] = { ...formsData[idx], name, category, icon, color, priority, tags, fileSize, pages, fileUrl, description: desc, updatedAt: new Date().toISOString().split('T')[0] }; showToast('✅ تم تعديل الاستمارة! اضغط "تصدير JSON" وارفع الملف.', 'success'); } }
+  else { formsData.push({ id: nextId++, name, category, icon, color, priority, tags, fileSize, pages, downloads: 0, fileUrl, description: desc, updatedAt: new Date().toISOString().split('T')[0], addedAt: Date.now() }); showToast('✅ تمت إضافة الاستمارة! اضغط "تصدير JSON" وارفع الملف.', 'success'); }
   formsData.sort((a, b) => (a.priority || 999) - (b.priority || 999));
   resetForm(); renderForms(); renderPopular(); renderAdminTable(); exportJSON();
 }
 
 function editForm(id) { const form = formsData.find(f => f.id === id); if (!form) return; editingId = id; document.getElementById('adminName').value = form.name; document.getElementById('adminCategory').value = form.category; document.getElementById('adminIcon').value = form.icon; document.getElementById('adminColor').value = form.color; document.getElementById('adminPriority').value = form.priority || 1; document.getElementById('adminTags').value = (form.tags || []).join(', '); document.getElementById('adminFileSize').value = form.fileSize || ''; document.getElementById('adminPages').value = form.pages || 1; document.getElementById('adminUrl').value = form.fileUrl === '#' ? '' : form.fileUrl; document.getElementById('adminDesc').value = form.description; document.getElementById('formTitle').textContent = '✏️ تعديل استمارة'; document.getElementById('saveBtn').textContent = '💾 حفظ التعديلات'; document.getElementById('adminForm').classList.add('active'); document.getElementById('adminName').focus(); }
-function deleteForm(id) { const form = formsData.find(f => f.id === id); if (!form) return; if (!confirm(`⚠️ هل أنت متأكد من حذف "${form.name}"؟`)) return; formsData = formsData.filter(f => f.id !== id); favorites = favorites.filter(fid => fid !== id); batchSelected = batchSelected.filter(fid => fid !== id); setStorage('favorites', favorites); if (editingId === id) resetForm(); renderForms(); renderFavorites(); renderPopular(); renderAdminTable(); updateBatchBar(); exportJSON(); alert('🗑️ تم حذف الاستمارة!'); }
+function deleteForm(id) { const form = formsData.find(f => f.id === id); if (!form) return; if (!confirm(`⚠️ هل أنت متأكد من حذف "${form.name}"؟`)) return; formsData = formsData.filter(f => f.id !== id); favorites = favorites.filter(fid => fid !== id); batchSelected = batchSelected.filter(fid => fid !== id); setStorage('favorites', favorites); if (editingId === id) resetForm(); renderForms(); renderFavorites(); renderPopular(); renderAdminTable(); updateBatchBar(); exportJSON(); showToast('🗑️ تم حذف الاستمارة!', 'success'); }
 function resetForm() { editingId = null; document.getElementById('adminName').value = ''; document.getElementById('adminCategory').value = 'requests'; document.getElementById('adminIcon').value = '📄'; document.getElementById('adminColor').value = '#16455B'; document.getElementById('adminPriority').value = '1'; document.getElementById('adminTags').value = ''; document.getElementById('adminFileSize').value = ''; document.getElementById('adminPages').value = '1'; document.getElementById('adminUrl').value = ''; document.getElementById('adminDesc').value = ''; document.getElementById('formTitle').textContent = '➕ إضافة استمارة جديدة'; document.getElementById('saveBtn').textContent = '💾 حفظ الاستمارة'; }
+
 function exportJSON() { const jsonStr = JSON.stringify(formsData, null, 2); document.getElementById('exportArea').value = jsonStr; document.getElementById('jsonExport').classList.add('active'); }
-function exportCSV() { const headers = ['id', 'name', 'category', 'icon', 'color', 'priority', 'downloads', 'fileSize', 'pages', 'updatedAt', 'tags', 'description', 'fileUrl']; const rows = formsData.map(f => [f.id, f.name, f.category, f.icon, f.color, f.priority, f.downloads, f.fileSize || '', f.pages || '', f.updatedAt || '', (f.tags || []).join(';'), f.description, f.fileUrl]); const csv = [headers.join(','), ...rows.map(r => r.map(v => `"${String(v).replace(/"/g, '\"')}"`).join(','))].join('\n'); const blob = new Blob(["\uFEFF" + csv], { type: 'text/csv;charset=utf-8;' }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = 'forms_export.csv'; a.click(); URL.revokeObjectURL(url); alert('✅ تم تصدير ملف Excel/CSV!'); }
-function copyJSON() { const area = document.getElementById('exportArea'); area.select(); document.execCommand('copy'); alert('✅ تم نسخ JSON!'); }
-function downloadJSON() { const jsonStr = JSON.stringify(formsData, null, 2); const blob = new Blob([jsonStr], { type: 'application/json' }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = 'forms.json'; a.click(); URL.revokeObjectURL(url); alert('✅ تم تحميل ملف forms.json!'); }
-function clearAll() { if (!confirm('⚠️ هل أنت متأكد من حذف جميع الاستمارات؟')) return; formsData = []; favorites = []; batchSelected = []; setStorage('favorites', favorites); nextId = 1; resetForm(); renderForms(); renderFavorites(); renderPopular(); renderAdminTable(); updateBatchBar(); exportJSON(); alert('🗑️ تم حذف جميع الاستمارات!'); }
+
+function exportCSV() {
+  // FIX: Use semicolon separator and add BOM + sep declaration for Excel compatibility
+  const separator = ';';
+  const headers = ['id', 'name', 'category', 'icon', 'color', 'priority', 'downloads', 'fileSize', 'pages', 'updatedAt', 'tags', 'description', 'fileUrl'];
+  const rows = formsData.map(f => [f.id, f.name, f.category, f.icon, f.color, f.priority, f.downloads, f.fileSize || '', f.pages || '', f.updatedAt || '', (f.tags || []).join(';'), f.description, f.fileUrl]);
+  const csvContent = [headers.join(separator), ...rows.map(r => r.map(v => `"${String(v).replace(/"/g, '""')}"`).join(separator))].join('\n');
+  const bom = "\uFEFF";
+  const sepLine = `sep=${separator}\n`;
+  const blob = new Blob([bom + sepLine + csvContent], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'forms_export.csv';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  showToast('✅ تم تصدير ملف Excel/CSV بنجاح!', 'success');
+}
+
+function copyJSON() { const area = document.getElementById('exportArea'); area.select(); document.execCommand('copy'); showToast('✅ تم نسخ JSON!', 'success'); }
+function downloadJSON() { const jsonStr = JSON.stringify(formsData, null, 2); const blob = new Blob([jsonStr], { type: 'application/json' }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = 'forms.json'; document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url); showToast('✅ تم تحميل ملف forms.json!', 'success'); }
+function clearAll() { if (!confirm('⚠️ هل أنت متأكد من حذف جميع الاستمارات؟')) return; formsData = []; favorites = []; batchSelected = []; setStorage('favorites', favorites); nextId = 1; resetForm(); renderForms(); renderFavorites(); renderPopular(); renderAdminTable(); updateBatchBar(); exportJSON(); showToast('🗑️ تم حذف جميع الاستمارات!', 'success'); }
+
+// User Request Functions
+function toggleUserRequestForm() { document.getElementById('userRequestForm').classList.toggle('active'); }
+function submitUserRequest() {
+  const name = document.getElementById('reqUserName').value.trim();
+  const dept = document.getElementById('reqUserDept').value.trim();
+  const formName = document.getElementById('reqFormName').value.trim();
+  const formType = document.getElementById('reqFormType').value;
+  const formDesc = document.getElementById('reqFormDesc').value.trim();
+  if (!name || !dept || !formName) { showToast('❌ يرجى ملء جميع الحقول المطلوبة', 'error'); return; }
+  const request = { id: Date.now(), userName: name, dept, formName, formType, formDesc, status: 'pending', date: new Date().toISOString().split('T')[0], time: new Date().toLocaleTimeString('en-US') };
+  userRequests.push(request);
+  setStorage('userRequests', userRequests);
+  document.getElementById('reqUserName').value = '';
+  document.getElementById('reqUserDept').value = '';
+  document.getElementById('reqFormName').value = '';
+  document.getElementById('reqFormDesc').value = '';
+  document.getElementById('userRequestForm').classList.remove('active');
+  showToast('📤 تم إرسال طلبك بنجاح! سيتم مراجعته من قبل الإدارة', 'success');
+  if (isAdmin) renderAdminRequests();
+}
+function renderAdminRequests() {
+  const container = document.getElementById('requestsList');
+  if (!userRequests.length) { container.innerHTML = '<div style="color:#666;font-size:13px;text-align:center;padding:10px;">لا توجد طلبات جديدة</div>'; return; }
+  const pending = userRequests.filter(r => r.status === 'pending');
+  if (!pending.length) { container.innerHTML = '<div style="color:#666;font-size:13px;text-align:center;padding:10px;">لا توجد طلبات قيد الانتظار</div>'; return; }
+  container.innerHTML = pending.map(req => `
+    <div class="request-list-item">
+      <div class="request-item-info">
+        <div class="request-item-name">${req.formName}</div>
+        <div class="request-item-meta">👤 ${req.userName} | 🏢 ${req.dept} | 📅 ${req.date} ${req.time} | <span class="request-status request-status-pending">قيد الانتظار</span></div>
+        ${req.formDesc ? `<div style="font-size:12px;color:#666;margin-top:4px;">📝 ${req.formDesc}</div>` : ''}
+      </div>
+      <div class="request-item-actions">
+        <button class="request-approve" onclick="approveRequest(${req.id})">✅ موافقة</button>
+        <button class="request-reject" onclick="rejectRequest(${req.id})">❌ رفض</button>
+      </div>
+    </div>
+  `).join('');
+}
+function approveRequest(id) { const req = userRequests.find(r => r.id === id); if (!req) return; req.status = 'approved'; setStorage('userRequests', userRequests); renderAdminRequests(); showToast('✅ تمت الموافقة على الطلب', 'success'); }
+function rejectRequest(id) { const req = userRequests.find(r => r.id === id); if (!req) return; req.status = 'rejected'; setStorage('userRequests', userRequests); renderAdminRequests(); showToast('❌ تم رفض الطلب', 'info'); }
+
+// Batch Mode
+function toggleBatchMode() {
+  batchMode = !batchMode;
+  const btn = document.getElementById('batchToggleBtn');
+  const grid = document.getElementById('formsGrid');
+  if (batchMode) { btn.classList.add('active'); btn.innerHTML = '<span>☑</span><span>إلغاء التحديد</span>'; grid.classList.add('batch-mode'); showToast('وضع التحديد المتعدد مفعل. اختر الاستمارات المطلوبة.', 'info'); }
+  else { btn.classList.remove('active'); btn.innerHTML = '<span>☐</span><span>تحديد متعدد</span>'; grid.classList.remove('batch-mode'); batchSelected = []; updateBatchBar(); renderForms(); }
+}
 
 function getFilteredForms() {
   let filtered = formsData;
@@ -486,29 +683,91 @@ function renderForms() {
     const isBatch = batchSelected.includes(form.id);
     const delay = idx * 0.05;
     const tagsHtml = (form.tags || []).map(t => { const cls = tagClasses[t] || ''; return `<span class="tag ${cls}">${t}</span>`; }).join('');
-    return `<div class="form-card" style="--card-color: ${form.color}; --card-color-bg: ${form.color}15; animation-delay: ${delay}s;" onclick="openModal(${form.id})"><input type="checkbox" class="batch-checkbox" ${isBatch ? 'checked' : ''} onclick="event.stopPropagation(); toggleBatch(${form.id})" title="تحديد للتنزيل المتعدد"><div class="card-header"><div class="card-icon">${form.icon}</div><div class="card-info"><h3>${form.name}</h3><span class="category-tag">${categoryNames[currentLang][form.category] || form.category}</span><div class="card-meta">${form.fileSize ? `<span class="card-meta-item">📄 ${form.fileSize}</span>` : ''}${form.pages ? `<span class="card-meta-item">📑 ${form.pages} صفحة</span>` : ''}${form.updatedAt ? `<span class="card-meta-item">📅 ${form.updatedAt}</span>` : ''}</div><div class="card-tags">${tagsHtml}</div></div></div><div class="card-footer"><span class="download-count">⬇️ ${(form.downloads || 0).toLocaleString(currentLang === 'ar' ? 'ar-SA' : 'en')}</span><div class="card-actions"><button class="card-action-btn ${isFav ? 'fav-active' : ''}" onclick="event.stopPropagation(); toggleFav(${form.id})" title="${isFav ? 'إزالة من المفضلة' : 'إضافة للمفضلة'}">${isFav ? '★' : '☆'}</button><button class="card-action-btn" onclick="event.stopPropagation(); shareFormById(${form.id})" title="مشاركة">📤</button></div></div></div>`;
+    return `<div class="form-card" style="--card-color: ${form.color}; --card-color-bg: ${form.color}15; animation-delay: ${delay}s;" onclick="${batchMode ? 'event.stopPropagation(); toggleBatch(' + form.id + ')' : 'openModal(' + form.id + ')'}"><input type="checkbox" class="batch-checkbox" ${isBatch ? 'checked' : ''} onclick="event.stopPropagation(); toggleBatch(${form.id})" title="تحديد للتنزيل المتعدد"><div class="card-header"><div class="card-icon">${form.icon}</div><div class="card-info"><h3>${form.name}</h3><span class="category-tag">${categoryNames[currentLang][form.category] || form.category}</span><div class="card-meta">${form.fileSize ? `<span class="card-meta-item">📄 ${form.fileSize}</span>` : ''}${form.pages ? `<span class="card-meta-item">📑 ${form.pages} صفحة</span>` : ''}${form.updatedAt ? `<span class="card-meta-item">📅 ${form.updatedAt}</span>` : ''}</div><div class="card-tags">${tagsHtml}</div></div></div><div class="card-footer"><span class="download-count">${(form.downloads || 0).toLocaleString('en-US')} تحميل</span><div class="card-actions"><button class="card-action-btn ${isFav ? 'fav-active' : ''}" onclick="event.stopPropagation(); toggleFav(${form.id})" title="${isFav ? 'إزالة من المفضلة' : 'إضافة للمفضلة'}">${isFav ? '★' : '☆'}</button><button class="card-action-btn" onclick="event.stopPropagation(); shareFormById(${form.id})" title="مشاركة">📤</button></div></div></div>`;
   }).join('');
   updateStats();
 }
 
-function updateStats() { const total = formsData.length; const totalDownloads = formsData.reduce((sum, f) => sum + (f.downloads || 0), 0); document.getElementById('statTotal').textContent = total; document.getElementById('statDownloads').textContent = totalDownloads.toLocaleString(currentLang === 'ar' ? 'ar-SA' : 'en'); document.getElementById('statToday').textContent = getStorage('todayDownloads', { count: 0 }).count; document.getElementById('statFavs').textContent = favorites.length; document.getElementById('statVisitors').textContent = visitorCount; }
+function updateStats() { 
+  const total = formsData.length; 
+  const totalDownloads = formsData.reduce((sum, f) => sum + (f.downloads || 0), 0); 
+  document.getElementById('statTotal').textContent = total.toLocaleString('en-US'); 
+  document.getElementById('statDownloads').textContent = totalDownloads.toLocaleString('en-US'); 
+  document.getElementById('statToday').textContent = getStorage('todayDownloads', { count: 0 }).count.toLocaleString('en-US'); 
+  document.getElementById('statFavs').textContent = favorites.length.toLocaleString('en-US'); 
+  document.getElementById('statVisitors').textContent = visitorCount.toLocaleString('en-US'); 
+}
 
-function toggleBatch(id) { const idx = batchSelected.indexOf(id); if (idx > -1) batchSelected.splice(idx, 1); else batchSelected.push(id); updateBatchBar(); }
-function updateBatchBar() { const bar = document.getElementById('batchBar'); const count = document.getElementById('batchCount'); if (batchSelected.length === 0) { bar.classList.remove('active'); return; } bar.classList.add('active'); count.textContent = `${batchSelected.length} استمارة محددة`; }
-function downloadBatch() { const selected = formsData.filter(f => batchSelected.includes(f.id)); if (selected.length === 0) return; let downloaded = 0; selected.forEach(form => { if (form.fileUrl && form.fileUrl !== '#') { const a = document.createElement('a'); a.href = form.fileUrl; a.download = form.name + '.pdf'; a.click(); downloaded++; form.downloads = (form.downloads || 0) + 1; } }); if (downloaded === 0) { alert('ℹ️ روابط الملفات غير متوفرة. يرجى إضافة روابط PDF أولاً.'); return; } batchSelected = []; updateBatchBar(); renderForms(); renderPopular(); updateStats(); exportJSON(); alert(`✅ تم تحميل ${downloaded} استمارة!`); }
-function clearBatch() { batchSelected = []; updateBatchBar(); renderForms(); }
+function toggleBatch(id) { 
+  if (!batchMode) return;
+  const idx = batchSelected.indexOf(id); 
+  if (idx > -1) batchSelected.splice(idx, 1); 
+  else batchSelected.push(id); 
+  updateBatchBar(); 
+  renderForms();
+}
+function updateBatchBar() { 
+  const bar = document.getElementById('batchBar'); 
+  const count = document.getElementById('batchCount'); 
+  if (batchSelected.length === 0) { bar.classList.remove('active'); return; } 
+  bar.classList.add('active'); 
+  count.textContent = `${batchSelected.length.toLocaleString('en-US')} استمارة محددة`; 
+}
+function downloadBatch() { 
+  const selected = formsData.filter(f => batchSelected.includes(f.id)); 
+  if (selected.length === 0) return; 
+  let downloaded = 0; 
+  selected.forEach(form => { 
+    if (form.fileUrl && form.fileUrl !== '#') { 
+      const a = document.createElement('a'); 
+      a.href = form.fileUrl; 
+      a.download = form.name + '.pdf'; 
+      a.target = '_blank';
+      document.body.appendChild(a);
+      a.click(); 
+      document.body.removeChild(a);
+      downloaded++; 
+      form.downloads = (form.downloads || 0) + 1; 
+    } 
+  }); 
+  if (downloaded === 0) { showToast('ℹ️ روابط الملفات غير متوفرة. يرجى إضافة روابط PDF أولاً.', 'info'); return; } 
+  batchSelected = []; 
+  updateBatchBar(); 
+  renderForms(); 
+  renderPopular(); 
+  updateStats(); 
+  exportJSON(); 
+  showToast(`✅ تم تحميل ${downloaded.toLocaleString('en-US')} استمارة!`, 'success'); 
+}
+function clearBatch() { batchSelected = []; updateBatchBar(); renderForms(); showToast('تم إلغاء التحديد', 'info'); }
 
 document.querySelectorAll('.filter-btn').forEach(btn => { btn.addEventListener('click', () => { document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); currentFilter = btn.dataset.filter; renderForms(); }); });
 document.getElementById('searchInput').addEventListener('input', (e) => { searchQuery = e.target.value.trim(); renderForms(); });
 
-function openModal(formId) { selectedForm = formsData.find(f => f.id === formId); if (!selectedForm) return; document.getElementById('modalIcon').textContent = selectedForm.icon; document.getElementById('modalIcon').style.background = selectedForm.color + '20'; document.getElementById('modalTitle').textContent = selectedForm.name; document.getElementById('modalDesc').textContent = selectedForm.description; const meta = []; if (selectedForm.fileSize) meta.push(`📄 ${selectedForm.fileSize}`); if (selectedForm.pages) meta.push(`📑 ${selectedForm.pages} صفحة`); if (selectedForm.updatedAt) meta.push(`📅 ${selectedForm.updatedAt}`); document.getElementById('modalMeta').innerHTML = meta.map(m => `<span>${m}</span>`).join(''); updateFavButton(); document.getElementById('modalOverlay').classList.add('active'); document.body.style.overflow = 'hidden'; }
+function openModal(formId) { 
+  if (batchMode) return;
+  selectedForm = formsData.find(f => f.id === formId); 
+  if (!selectedForm) return; 
+  document.getElementById('modalIcon').textContent = selectedForm.icon; 
+  document.getElementById('modalIcon').style.background = selectedForm.color + '20'; 
+  document.getElementById('modalTitle').textContent = selectedForm.name; 
+  document.getElementById('modalDesc').textContent = selectedForm.description; 
+  const meta = []; 
+  if (selectedForm.fileSize) meta.push(`📄 ${selectedForm.fileSize}`); 
+  if (selectedForm.pages) meta.push(`📑 ${selectedForm.pages} صفحة`); 
+  if (selectedForm.updatedAt) meta.push(`📅 ${selectedForm.updatedAt}`); 
+  document.getElementById('modalMeta').innerHTML = meta.map(m => `<span>${m}</span>`).join(''); 
+  updateFavButton(); 
+  document.getElementById('modalOverlay').classList.add('active'); 
+  document.body.style.overflow = 'hidden'; 
+}
 function closeModal() { document.getElementById('modalOverlay').classList.remove('active'); document.body.style.overflow = ''; selectedForm = null; }
 document.getElementById('modalOverlay').addEventListener('click', (e) => { if (e.target === document.getElementById('modalOverlay')) closeModal(); });
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
-function handlePrint() { if (!selectedForm) return; if (selectedForm.fileUrl && selectedForm.fileUrl !== '#') { const win = window.open(selectedForm.fileUrl, '_blank'); if (win) win.onload = () => win.print(); } else { alert(currentLang === 'ar' ? 'ℹ️ رابط الملف غير متوفر حاليًا.' : 'File URL not available.'); } closeModal(); }
-function handleDownload() { if (!selectedForm) return; if (selectedForm.fileUrl && selectedForm.fileUrl !== '#') { const a = document.createElement('a'); a.href = selectedForm.fileUrl; a.download = selectedForm.name + '.pdf'; a.click(); selectedForm.downloads = (selectedForm.downloads || 0) + 1; renderForms(); renderPopular(); updateStats(); exportJSON(); } else { alert(currentLang === 'ar' ? 'ℹ️ رابط الملف غير متوفر حاليًا.' : 'File URL not available.'); } closeModal(); }
-function handlePreview() { if (!selectedForm) return; if (selectedForm.fileUrl && selectedForm.fileUrl !== '#') { window.open(selectedForm.fileUrl, '_blank'); } else { alert(currentLang === 'ar' ? 'ℹ️ رابط الملف غير متوفر حاليًا.' : 'File URL not available.'); } closeModal(); }
+function handlePrint() { if (!selectedForm) return; if (selectedForm.fileUrl && selectedForm.fileUrl !== '#') { const win = window.open(selectedForm.fileUrl, '_blank'); if (win) win.onload = () => win.print(); } else { showToast('ℹ️ رابط الملف غير متوفر حاليًا.', 'info'); } closeModal(); }
+function handleDownload() { if (!selectedForm) return; if (selectedForm.fileUrl && selectedForm.fileUrl !== '#') { const a = document.createElement('a'); a.href = selectedForm.fileUrl; a.download = selectedForm.name + '.pdf'; a.target = '_blank'; document.body.appendChild(a); a.click(); document.body.removeChild(a); selectedForm.downloads = (selectedForm.downloads || 0) + 1; renderForms(); renderPopular(); updateStats(); exportJSON(); showToast('تم التحميل بنجاح', 'success'); } else { showToast('ℹ️ رابط الملف غير متوفر حاليًا.', 'info'); } closeModal(); }
+function handlePreview() { if (!selectedForm) return; if (selectedForm.fileUrl && selectedForm.fileUrl !== '#') { window.open(selectedForm.fileUrl, '_blank'); } else { showToast('ℹ️ رابط الملف غير متوفر حاليًا.', 'info'); } closeModal(); }
 function shareForm() { if (!selectedForm) return; shareFormById(selectedForm.id); closeModal(); }
 function shareFormById(id) { const form = formsData.find(f => f.id === id); if (!form) return; const text = `${form.name} - ${form.description}\n${form.fileUrl !== '#' ? form.fileUrl : 'https://x1xhanix1x.github.io/forms-portal/'}`; if (navigator.share) { navigator.share({ title: form.name, text: form.description, url: form.fileUrl !== '#' ? form.fileUrl : 'https://x1xhanix1x.github.io/forms-portal/' }); } else { const waUrl = `https://wa.me/?text=${encodeURIComponent(text)}`; window.open(waUrl, '_blank'); } }
 
