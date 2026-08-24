@@ -139,6 +139,22 @@ body, .stat-num, .download-count, .priority-input, .ticker-item, .card-meta-item
 .table-btn-down { background: #17a2b8; color: white; }
 .priority-input { width: 60px !important; text-align: center; padding: 6px !important; }
 
+/* Icon Picker */
+.icon-picker { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+.icon-option { width: 40px; height: 40px; border-radius: 10px; border: 2px solid var(--moe-border); background: var(--card-bg); font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+.icon-option:hover { transform: scale(1.15); border-color: var(--moe-aqua); }
+.icon-option.selected { border-color: var(--moe-teal); background: var(--moe-teal); box-shadow: 0 4px 12px rgba(22,69,91,0.3); }
+
+/* Color Picker */
+.color-picker { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+.color-option { width: 36px; height: 36px; border-radius: 10px; border: 3px solid transparent; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; position: relative; }
+.color-option:hover { transform: scale(1.15); }
+.color-option.selected { border-color: var(--moe-text); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+.color-option.selected::after { content: '✓'; color: white; font-size: 14px; font-weight: 800; text-shadow: 0 1px 3px rgba(0,0,0,0.5); }
+.color-custom { display: flex; align-items: center; gap: 8px; }
+.color-custom input { width: 120px; }
+.color-preview-box { width: 36px; height: 36px; border-radius: 10px; border: 2px solid var(--moe-border); flex-shrink: 0; }
+
 /* Tags Input System */
 .tags-input-container { display: flex; flex-direction: column; gap: 8px; }
 .tags-selected { display: flex; flex-wrap: wrap; gap: 6px; min-height: 36px; padding: 6px; border: 2px solid var(--moe-border); border-radius: 10px; background: var(--card-bg); align-items: center; }
@@ -477,8 +493,51 @@ body, .stat-num, .download-count, .priority-input, .ticker-item, .card-meta-item
       <div class="form-group"><label>التصنيف *</label><select id="adminCategory"><option value="requests">📨 طلبات</option><option value="print">🖨️ طباعة</option><option value="reports">📊 تقارير</option></select></div>
     </div>
     <div class="form-row">
-      <div class="form-group"><label>الأيقونة (Emoji)</label><input type="text" id="adminIcon" placeholder="📄" value="📄"></div>
-      <div class="form-group"><label>اللون (Hex Code)</label><input type="text" id="adminColor" placeholder="#16455B" value="#16455B"></div>
+      <div class="form-group">
+        <label>الأيقونة (اختر سريعاً)</label>
+        <div class="icon-picker" id="iconPicker">
+          <button type="button" class="icon-option" data-icon="📋" onclick="selectIcon(this)">📋</button>
+          <button type="button" class="icon-option" data-icon="📄" onclick="selectIcon(this)">📄</button>
+          <button type="button" class="icon-option" data-icon="📃" onclick="selectIcon(this)">📃</button>
+          <button type="button" class="icon-option" data-icon="📝" onclick="selectIcon(this)">📝</button>
+          <button type="button" class="icon-option" data-icon="📑" onclick="selectIcon(this)">📑</button>
+          <button type="button" class="icon-option" data-icon="📊" onclick="selectIcon(this)">📊</button>
+          <button type="button" class="icon-option" data-icon="📈" onclick="selectIcon(this)">📈</button>
+          <button type="button" class="icon-option" data-icon="💰" onclick="selectIcon(this)">💰</button>
+          <button type="button" class="icon-option" data-icon="🎫" onclick="selectIcon(this)">🎫</button>
+          <button type="button" class="icon-option" data-icon="🏦" onclick="selectIcon(this)">🏦</button>
+          <button type="button" class="icon-option" data-icon="⚖️" onclick="selectIcon(this)">⚖️</button>
+          <button type="button" class="icon-option" data-icon="🗺️" onclick="selectIcon(this)">🗺️</button>
+          <button type="button" class="icon-option" data-icon="🚚" onclick="selectIcon(this)">🚚</button>
+          <button type="button" class="icon-option" data-icon="⏰" onclick="selectIcon(this)">⏰</button>
+          <button type="button" class="icon-option" data-icon="🏖️" onclick="selectIcon(this)">🏖️</button>
+          <button type="button" class="icon-option" data-icon="🎓" onclick="selectIcon(this)">🎓</button>
+          <button type="button" class="icon-option" data-icon="📧" onclick="selectIcon(this)">📧</button>
+          <button type="button" class="icon-option" data-icon="📎" onclick="selectIcon(this)">📎</button>
+        </div>
+        <input type="hidden" id="adminIcon" value="📄">
+      </div>
+      <div class="form-group">
+        <label>اللون (اختر سريعاً)</label>
+        <div class="color-picker" id="colorPicker">
+          <button type="button" class="color-option" data-color="#16455B" style="background:#16455B;" onclick="selectColor(this)"></button>
+          <button type="button" class="color-option" data-color="#309694" style="background:#309694;" onclick="selectColor(this)"></button>
+          <button type="button" class="color-option" data-color="#38A18A" style="background:#38A18A;" onclick="selectColor(this)"></button>
+          <button type="button" class="color-option" data-color="#216273" style="background:#216273;" onclick="selectColor(this)"></button>
+          <button type="button" class="color-option" data-color="#0f3548" style="background:#0f3548;" onclick="selectColor(this)"></button>
+          <button type="button" class="color-option" data-color="#C5A059" style="background:#C5A059;" onclick="selectColor(this)"></button>
+          <button type="button" class="color-option" data-color="#e94560" style="background:#e94560;" onclick="selectColor(this)"></button>
+          <button type="button" class="color-option" data-color="#667eea" style="background:#667eea;" onclick="selectColor(this)"></button>
+          <button type="button" class="color-option" data-color="#f9a825" style="background:#f9a825;" onclick="selectColor(this)"></button>
+          <button type="button" class="color-option" data-color="#28a745" style="background:#28a745;" onclick="selectColor(this)"></button>
+          <button type="button" class="color-option" data-color="#17a2b8" style="background:#17a2b8;" onclick="selectColor(this)"></button>
+          <button type="button" class="color-option" data-color="#8e44ad" style="background:#8e44ad;" onclick="selectColor(this)"></button>
+        </div>
+        <div class="color-custom">
+          <input type="text" id="adminColor" placeholder="#16455B" value="#16455B" oninput="updateColorPreview()">
+          <div class="color-preview-box" id="colorPreviewBox" style="background:#16455B;"></div>
+        </div>
+      </div>
       <div class="form-group"><label>الأولوية (رقم أصغر = أولاً)</label><input type="number" id="adminPriority" placeholder="1" value="1" min="1"></div>
     </div>
     <div class="form-row">
@@ -763,7 +822,7 @@ async function loadForms() {
   nextId = Math.max(...formsData.map(f => f.id), 0) + 1;
   applySort();
   showLoading(false);
-  applyTheme(); applyLang(); initViewMode(); renderFavorites(); renderRecent(); renderPopular(); renderForms(); updateStats(); initAuth(); initTicker(); renderAdminRequests(); renderNotifications();
+  applyTheme(); applyLang(); initViewMode(); renderFavorites(); renderRecent(); renderPopular(); renderForms(); updateStats(); initAuth(); initTicker(); renderAdminRequests(); renderNotifications(); initPickers();
 }
 
 /* ===== Notification System ===== */
@@ -1133,6 +1192,42 @@ document.addEventListener('keydown', (e) => {
 window.addEventListener('scroll', () => { const btn = document.getElementById('backToTop'); btn.classList.toggle('visible', window.scrollY > 400); });
 function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
 
+/* ===== Icon & Color Pickers ===== */
+function selectIcon(btn) {
+  document.querySelectorAll('.icon-option').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  document.getElementById('adminIcon').value = btn.dataset.icon;
+}
+function selectColor(btn) {
+  document.querySelectorAll('.color-option').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  document.getElementById('adminColor').value = btn.dataset.color;
+  document.getElementById('colorPreviewBox').style.background = btn.dataset.color;
+}
+function updateColorPreview() {
+  const val = document.getElementById('adminColor').value;
+  if (/^#[0-9A-Fa-f]{6}$/.test(val)) {
+    document.getElementById('colorPreviewBox').style.background = val;
+  }
+}
+function initPickers() {
+  // Select default icon
+  const defaultIcon = document.getElementById('adminIcon').value || '📄';
+  document.querySelectorAll('.icon-option').forEach(b => {
+    if (b.dataset.icon === defaultIcon) b.classList.add('selected');
+  });
+  // Select default color
+  const defaultColor = document.getElementById('adminColor').value || '#16455B';
+  let found = false;
+  document.querySelectorAll('.color-option').forEach(b => {
+    if (b.dataset.color.toLowerCase() === defaultColor.toLowerCase()) {
+      b.classList.add('selected');
+      found = true;
+    }
+  });
+  if (!found) document.getElementById('colorPreviewBox').style.background = defaultColor;
+}
+
 /* ===== Tags Input System ===== */
 const ALL_TAGS = ['عاجل','شهري','شائع','إلزامي','مالي','فوري','بنكي','إداري','قانوني','تطوير','سنوي','اختياري'];
 const TAG_COLORS = { 'عاجل': '#e94560', 'شهري': '#667eea', 'شائع': '#f9a825', 'إلزامي': '#43e97b', 'مالي': '#38A18A', 'فوري': '#ff6b6b', 'بنكي': '#4ecdc4', 'إداري': '#95a5a6', 'قانوني': '#8e44ad', 'تطوير': '#e67e22', 'سنوي': '#3498db', 'اختياري': '#bdc3c7' };
@@ -1235,6 +1330,7 @@ editForm = function(id) {
     selectedTags = [...form.tags];
     renderSelectedTags();
   }
+  initPickers();
 };
 
 // Override resetForm to clear tags
@@ -1243,6 +1339,7 @@ resetForm = function() {
   originalResetForm();
   selectedTags = [];
   renderSelectedTags();
+  initPickers();
 };
 
 // Override saveForm to use selectedTags
