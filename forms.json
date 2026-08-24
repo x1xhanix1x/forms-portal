@@ -1,0 +1,102 @@
+[
+  {
+    "id": 1,
+    "name": "استمارة طلب انتداب",
+    "category": "requests",
+    "icon": "📋",
+    "color": "#16455B",
+    "downloads": 234,
+    "fileUrl": "#",
+    "description": "استمارة رسمية لتقديم طلب انتداب وظيفي"
+  },
+  {
+    "id": 2,
+    "name": "استمارة طلب بدل",
+    "category": "requests",
+    "icon": "💰",
+    "color": "#309694",
+    "downloads": 189,
+    "fileUrl": "#",
+    "description": "نموذج طلب صرف بدل مالي للموظفين"
+  },
+  {
+    "id": 3,
+    "name": "استمارة طلب إجازة",
+    "category": "requests",
+    "icon": "🏖️",
+    "color": "#38A18A",
+    "downloads": 156,
+    "fileUrl": "#",
+    "description": "استمارة تقديم طلب إجازة سنوية أو استثنائية"
+  },
+  {
+    "id": 4,
+    "name": "شهادة راتب",
+    "category": "prints",
+    "icon": "📄",
+    "color": "#16455B",
+    "downloads": 412,
+    "fileUrl": "#",
+    "description": "شهادة رسمية بقيمة الراتب الشهري"
+  },
+  {
+    "id": 5,
+    "name": "تعريف بالراتب",
+    "category": "prints",
+    "icon": "📃",
+    "color": "#309694",
+    "downloads": 378,
+    "fileUrl": "#",
+    "description": "خطاب تعريف بالراتب للجهات الخارجية"
+  },
+  {
+    "id": 6,
+    "name": "تقرير أداء شهري",
+    "category": "reports",
+    "icon": "📊",
+    "color": "#216273",
+    "downloads": 98,
+    "fileUrl": "#",
+    "description": "نموذج تقييم الأداء الوظيفي الشهري"
+  },
+  {
+    "id": 7,
+    "name": "استمارة طلب نقل",
+    "category": "requests",
+    "icon": "🚚",
+    "color": "#16455B",
+    "downloads": 67,
+    "fileUrl": "#",
+    "description": "استمارة طلب نقل وظيفي أو إداري"
+  },
+  {
+    "id": 8,
+    "name": "عقد عمل",
+    "category": "prints",
+    "icon": "📝",
+    "color": "#309694",
+    "downloads": 145,
+    "fileUrl": "#",
+    "description": "نسخة من عقد العمل للمراجعين"
+  },
+  {
+    "id": 9,
+    "name": "تقرير إنجاز سنوي",
+    "category": "reports",
+    "icon": "📈",
+    "color": "#16455B",
+    "downloads": 54,
+    "fileUrl": "#",
+    "description": "تقرير ملخص الإنجازات السنوية"
+  },
+  {
+    "id": 10,
+    "name": "استمارة طلب تدريب",
+    "category": "requests",
+    "icon": "🎓",
+    "color": "#309694",
+    "downloads": 123,
+    "fileUrl": "#",
+    "description": "طلب الالتحاق بدورة تدريبية"
+  }
+]
