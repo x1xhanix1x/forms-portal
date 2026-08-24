@@ -3,341 +3,74 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>الإدارة العامة للتعليم بجدة - بوابة الاستمارات</title>
+<title>الإدارة العامة للتعليم بجدة - بوابة الاستمارات الذكية</title>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
-/* ============================================
-   هوية وزارة التعليم السعودية + تحسينات شاملة
-   أزرق داكن: #16455B | أخضر مائي: #309694 | أخضر: #38A18A
-   ============================================ */
 :root {
-  --moe-teal: #16455B;
-  --moe-teal-light: #216273;
-  --moe-teal-dark: #0f3548;
-  --moe-green: #38A18A;
-  --moe-green-light: #4DB89F;
-  --moe-aqua: #309694;
-  --moe-aqua-light: #3CB5B3;
-  --moe-white: #ffffff;
-  --moe-cream: #f5f7f6;
-  --moe-gray: #eef1f0;
-  --moe-text: #1a1a1a;
-  --moe-text-light: #555555;
-  --moe-border: #d8e0dc;
-  --shadow: 0 4px 20px rgba(22,69,91,0.08);
-  --shadow-hover: 0 12px 40px rgba(22,69,91,0.15);
-  --card-bg: #ffffff;
-  --body-bg: #f5f7f6;
+  --moe-teal: #16455B; --moe-teal-light: #216273; --moe-teal-dark: #0f3548;
+  --moe-green: #38A18A; --moe-aqua: #309694; --moe-aqua-light: #3CB5B3;
+  --moe-white: #ffffff; --moe-cream: #f5f7f6; --moe-gray: #eef1f0;
+  --moe-text: #1a1a1a; --moe-text-light: #555555; --moe-border: #d8e0dc;
+  --shadow: 0 4px 20px rgba(22,69,91,0.08); --shadow-hover: 0 12px 40px rgba(22,69,91,0.15);
+  --card-bg: #ffffff; --body-bg: #f5f7f6; --gold: #C5A059;
 }
-
-/* Dark Mode */
 [data-theme="dark"] {
-  --moe-white: #1a1a2e;
-  --moe-cream: #16213e;
-  --moe-gray: #1f2a40;
-  --moe-text: #e0e0e0;
-  --moe-text-light: #a0a0a0;
-  --moe-border: #2a3a55;
-  --card-bg: #1a1a2e;
-  --body-bg: #16213e;
-  --shadow: 0 4px 20px rgba(0,0,0,0.3);
-  --shadow-hover: 0 12px 40px rgba(0,0,0,0.4);
+  --moe-white: #1a1a2e; --moe-cream: #16213e; --moe-gray: #1f2a40;
+  --moe-text: #e0e0e0; --moe-text-light: #a0a0a0; --moe-border: #2a3a55;
+  --card-bg: #1a1a2e; --body-bg: #16213e;
+  --shadow: 0 4px 20px rgba(0,0,0,0.3); --shadow-hover: 0 12px 40px rgba(0,0,0,0.4);
 }
-
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body {
-  font-family: 'Tajawal', sans-serif;
-  background: var(--body-bg);
-  color: var(--moe-text);
-  min-height: 100vh;
-  transition: background 0.3s, color 0.3s;
-}
+body { font-family: 'Tajawal', sans-serif; background: var(--body-bg); color: var(--moe-text); min-height: 100vh; transition: background 0.3s, color 0.3s; }
+.header { background: linear-gradient(135deg, var(--moe-teal) 0%, var(--moe-teal-dark) 100%); padding: 16px 24px; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 20px rgba(0,0,0,0.15); border-bottom: 4px solid var(--moe-aqua); }
+.header-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.logo-area { display: flex; align-items: center; gap: 14px; }
+.logo-icon { width: 48px; height: 48px; background: var(--moe-aqua); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; border: 2px solid rgba(255,255,255,0.3); }
+.logo-text h1 { color: var(--moe-white); font-size: 17px; font-weight: 800; line-height: 1.4; }
+.logo-text p { color: rgba(255,255,255,0.75); font-size: 11px; margin-top: 2px; }
+.header-actions { display: flex; align-items: center; gap: 10px; }
+.status-badge { background: rgba(48,150,148,0.2); color: var(--moe-aqua-light); padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; display: flex; align-items: center; gap: 6px; border: 1px solid var(--moe-aqua); }
+.theme-toggle, .lang-toggle { width: 40px; height: 40px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: white; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
+.theme-toggle:hover, .lang-toggle:hover { background: rgba(255,255,255,0.2); transform: scale(1.1); }
 
-/* ===== Header ===== */
-.header {
-  background: linear-gradient(135deg, var(--moe-teal) 0%, var(--moe-teal-dark) 100%);
-  padding: 16px 24px;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-  border-bottom: 4px solid var(--moe-aqua);
-}
-.header-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-.logo-area {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-.logo-icon {
-  width: 48px; height: 48px;
-  background: var(--moe-aqua);
-  border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 24px;
-  border: 2px solid rgba(255,255,255,0.3);
-}
-.logo-text h1 {
-  color: var(--moe-white);
-  font-size: 17px;
-  font-weight: 800;
-  line-height: 1.4;
-}
-.logo-text p {
-  color: rgba(255,255,255,0.75);
-  font-size: 11px;
-  margin-top: 2px;
-}
-.header-actions {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.status-badge {
-  background: rgba(48,150,148,0.2);
-  color: var(--moe-aqua-light);
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 700;
-  display: flex; align-items: center;
-  gap: 6px;
-  border: 1px solid var(--moe-aqua);
-}
-.theme-toggle, .lang-toggle {
-  width: 40px; height: 40px;
-  border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.3);
-  background: rgba(255,255,255,0.1);
-  color: white;
-  font-size: 18px;
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  transition: all 0.3s;
-}
-.theme-toggle:hover, .lang-toggle:hover {
-  background: rgba(255,255,255,0.2);
-  transform: scale(1.1);
-}
+.ticker-wrap { max-width: 1100px; margin: 0 auto; overflow: hidden; background: linear-gradient(90deg, #fff3cd, #ffeaa7); border-bottom: 1px solid #ffc107; display: none; }
+.ticker-wrap.active { display: block; }
+.ticker { display: inline-block; white-space: nowrap; padding: 10px 0; animation: ticker 25s linear infinite; }
+@keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+.ticker-item { display: inline-block; padding: 0 40px; color: #856404; font-size: 14px; font-weight: 700; }
 
-/* ===== Loading ===== */
-.loading-overlay {
-  position: fixed;
-  inset: 0;
-  background: var(--body-bg);
-  z-index: 999;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-}
+.loading-overlay { position: fixed; inset: 0; background: var(--body-bg); z-index: 999; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; }
 .loading-overlay.hidden { display: none; }
-.spinner {
-  width: 48px; height: 48px;
-  border: 4px solid var(--moe-border);
-  border-top-color: var(--moe-teal);
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
+.spinner { width: 48px; height: 48px; border: 4px solid var(--moe-border); border-top-color: var(--moe-teal); border-radius: 50%; animation: spin 1s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* ===== Notification Banner ===== */
-.notif-banner {
-  max-width: 1100px;
-  margin: 16px auto 0;
-  padding: 0 20px;
-  display: none;
-}
-.notif-banner.active { display: block; animation: slideDown 0.4s ease; }
-.notif-box {
-  background: linear-gradient(135deg, #fff3cd, #ffeaa7);
-  border: 1px solid #ffc107;
-  border-radius: 14px;
-  padding: 14px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-.notif-box p { color: #856404; font-size: 14px; font-weight: 700; margin: 0; }
-.notif-close {
-  background: none; border: none; font-size: 20px; cursor: pointer;
-  color: #856404; padding: 0; width: 32px; height: 32px;
-  border-radius: 8px; display: flex; align-items: center; justify-content: center;
-}
-.notif-close:hover { background: rgba(0,0,0,0.05); }
-
-/* ===== Login Panel ===== */
-.login-panel {
-  max-width: 1100px;
-  margin: 24px auto;
-  padding: 0 20px;
-  display: none;
-}
+.login-panel { max-width: 1100px; margin: 24px auto; padding: 0 20px; display: none; }
 .login-panel.active { display: block; }
-.login-box {
-  background: var(--card-bg);
-  border-radius: 20px;
-  padding: 32px;
-  max-width: 400px;
-  margin: 0 auto;
-  border: 2px solid var(--moe-aqua);
-  box-shadow: var(--shadow-hover);
-  text-align: center;
-}
+.login-box { background: var(--card-bg); border-radius: 20px; padding: 32px; max-width: 400px; margin: 0 auto; border: 2px solid var(--moe-aqua); box-shadow: var(--shadow-hover); text-align: center; }
 .login-box h3 { color: var(--moe-teal); font-size: 20px; margin-bottom: 8px; }
 .login-box p { color: var(--moe-text-light); font-size: 14px; margin-bottom: 20px; }
-.login-box input {
-  width: 100%;
-  padding: 14px 16px;
-  border: 2px solid var(--moe-border);
-  border-radius: 12px;
-  font-family: inherit;
-  font-size: 16px;
-  margin-bottom: 12px;
-  text-align: center;
-  letter-spacing: 4px;
-  background: var(--card-bg);
-  color: var(--moe-text);
-}
+.login-box input { width: 100%; padding: 14px 16px; border: 2px solid var(--moe-border); border-radius: 12px; font-family: inherit; font-size: 16px; margin-bottom: 12px; text-align: center; letter-spacing: 4px; background: var(--card-bg); color: var(--moe-text); }
 .login-box input:focus { outline: none; border-color: var(--moe-teal); }
-.login-box button {
-  width: 100%;
-  padding: 14px;
-  border: none;
-  border-radius: 12px;
-  background: var(--moe-teal);
-  color: white;
-  font-family: inherit;
-  font-size: 16px;
-  font-weight: 700;
-  cursor: pointer;
-}
+.login-box button { width: 100%; padding: 14px; border: none; border-radius: 12px; background: var(--moe-teal); color: white; font-family: inherit; font-size: 16px; font-weight: 700; cursor: pointer; }
 .login-box button:hover { background: var(--moe-teal-dark); }
 .login-error { color: #dc3545; font-size: 13px; margin-top: 8px; display: none; }
 .login-error.active { display: block; }
 
-/* ===== Admin Panel ===== */
-.admin-panel {
-  max-width: 1100px;
-  margin: 0 auto 24px;
-  padding: 0 20px;
-  display: none;
-}
+.admin-panel { max-width: 1100px; margin: 0 auto 24px; padding: 0 20px; display: none; }
 .admin-panel.active { display: block; }
-.admin-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 16px;
-}
-.admin-toggle {
-  background: linear-gradient(135deg, var(--moe-aqua) 0%, var(--moe-teal-light) 100%);
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 12px;
-  font-family: inherit;
-  font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  box-shadow: 0 4px 15px rgba(48,150,148,0.3);
-}
-.logout-btn {
-  background: #dc3545;
-  color: white;
-  border: none;
-  padding: 8px 18px;
-  border-radius: 10px;
-  font-family: inherit;
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
-}
-.admin-form {
-  background: var(--card-bg);
-  border-radius: 20px;
-  padding: 28px;
-  margin-top: 16px;
-  border: 2px solid var(--moe-aqua);
-  box-shadow: var(--shadow-hover);
-  display: none;
-}
+.admin-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
+.admin-toggle { background: linear-gradient(135deg, var(--moe-aqua) 0%, var(--moe-teal-light) 100%); color: white; border: none; padding: 12px 24px; border-radius: 12px; font-family: inherit; font-size: 14px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 15px rgba(48,150,148,0.3); }
+.logout-btn { background: #dc3545; color: white; border: none; padding: 8px 18px; border-radius: 10px; font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; }
+.admin-form { background: var(--card-bg); border-radius: 20px; padding: 28px; margin-top: 16px; border: 2px solid var(--moe-aqua); box-shadow: var(--shadow-hover); display: none; }
 .admin-form.active { display: block; animation: slideDown 0.3s ease; }
-@keyframes slideDown {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.admin-form h3 {
-  color: var(--moe-teal);
-  font-size: 18px;
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.form-row {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 14px;
-  margin-bottom: 14px;
-}
-.form-group label {
-  display: block;
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--moe-text-light);
-  margin-bottom: 6px;
-}
-.form-group input,
-.form-group select,
-.form-group textarea {
-  width: 100%;
-  padding: 12px 14px;
-  border: 2px solid var(--moe-border);
-  border-radius: 10px;
-  font-family: inherit;
-  font-size: 14px;
-  transition: all 0.3s;
-  background: var(--card-bg);
-  color: var(--moe-text);
-}
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-  outline: none;
-  border-color: var(--moe-teal);
-}
-.admin-actions {
-  display: flex;
-  gap: 10px;
-  margin-top: 20px;
-  flex-wrap: wrap;
-}
-.admin-btn {
-  padding: 12px 24px;
-  border-radius: 10px;
-  border: none;
-  font-family: inherit;
-  font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.3s;
-}
+@keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+.admin-form h3 { color: var(--moe-teal); font-size: 18px; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+.form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 14px; }
+.form-group label { display: block; font-size: 13px; font-weight: 700; color: var(--moe-text-light); margin-bottom: 6px; }
+.form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px 14px; border: 2px solid var(--moe-border); border-radius: 10px; font-family: inherit; font-size: 14px; transition: all 0.3s; background: var(--card-bg); color: var(--moe-text); }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--moe-teal); }
+.admin-actions { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+.admin-btn { padding: 12px 24px; border-radius: 10px; border: none; font-family: inherit; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.3s; }
 .admin-btn-primary { background: var(--moe-teal); color: white; }
 .admin-btn-primary:hover { background: var(--moe-teal-dark); }
 .admin-btn-secondary { background: var(--moe-gray); color: var(--moe-text); }
@@ -345,462 +78,136 @@ body {
 .admin-btn-danger { background: #dc3545; color: white; }
 .admin-btn-danger:hover { background: #c82333; }
 
-/* Forms Table */
+.request-section { margin-top: 24px; padding: 20px; background: #fff8e1; border-radius: 14px; border: 1px solid #ffc107; }
+.request-section h4 { color: #856404; font-size: 16px; margin-bottom: 12px; }
+
 .forms-table-wrapper { margin-top: 24px; overflow-x: auto; }
-.forms-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: var(--card-bg);
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: var(--shadow);
-}
-.forms-table th {
-  background: var(--moe-teal);
-  color: white;
-  padding: 14px 12px;
-  font-size: 13px;
-  font-weight: 700;
-  text-align: right;
-}
-.forms-table td {
-  padding: 10px 12px;
-  border-bottom: 1px solid var(--moe-border);
-  font-size: 13px;
-  color: var(--moe-text);
-}
+.forms-table { width: 100%; border-collapse: collapse; background: var(--card-bg); border-radius: 14px; overflow: hidden; box-shadow: var(--shadow); }
+.forms-table th { background: var(--moe-teal); color: white; padding: 14px 12px; font-size: 13px; font-weight: 700; text-align: right; }
+.forms-table td { padding: 10px 12px; border-bottom: 1px solid var(--moe-border); font-size: 13px; color: var(--moe-text); }
 .forms-table tr:hover td { background: var(--moe-cream); }
 .table-actions { display: flex; gap: 4px; flex-wrap: wrap; }
-.table-btn {
-  padding: 5px 10px;
-  border-radius: 6px;
-  border: none;
-  font-family: inherit;
-  font-size: 11px;
-  font-weight: 700;
-  cursor: pointer;
-}
+.table-btn { padding: 5px 10px; border-radius: 6px; border: none; font-family: inherit; font-size: 11px; font-weight: 700; cursor: pointer; }
 .table-btn-edit { background: var(--moe-aqua); color: white; }
 .table-btn-edit:hover { background: var(--moe-teal); }
 .table-btn-delete { background: #dc3545; color: white; }
 .table-btn-delete:hover { background: #c82333; }
 .table-btn-up { background: #28a745; color: white; }
-.table-btn-up:hover { background: #218838; }
 .table-btn-down { background: #17a2b8; color: white; }
-.table-btn-down:hover { background: #138496; }
+.priority-input { width: 60px !important; text-align: center; padding: 6px !important; }
 
-/* Priority input */
-.priority-input {
-  width: 60px !important;
-  text-align: center;
-  padding: 6px !important;
-}
+.tag { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; margin: 2px; background: var(--moe-aqua); color: white; }
+.tag-urgent { background: #e94560; }
+.tag-monthly { background: #667eea; }
+.tag-popular { background: #f9a825; }
+.tag-mandatory { background: #43e97b; color: #1a1a2e; }
 
-/* JSON Export */
-.json-export {
-  margin-top: 24px;
-  padding: 20px;
-  background: #16455B;
-  border-radius: 14px;
-  display: none;
-}
+.json-export { margin-top: 24px; padding: 20px; background: #16455B; border-radius: 14px; display: none; }
 .json-export.active { display: block; }
 .json-export h4 { color: var(--moe-aqua-light); font-size: 14px; margin-bottom: 12px; }
 .json-export p { color: #B0C4DE; font-size: 13px; margin-bottom: 12px; line-height: 1.6; }
-.json-export textarea {
-  width: 100%;
-  height: 250px;
-  background: #0f3548;
-  color: #4DB89F;
-  border: 1px solid #216273;
-  border-radius: 10px;
-  padding: 14px;
-  font-family: 'Courier New', monospace;
-  font-size: 12px;
-  resize: vertical;
-  direction: ltr;
-}
-.json-export .copy-btn {
-  margin-top: 12px;
-  margin-left: 8px;
-  background: var(--moe-aqua);
-  color: white;
-  border: none;
-  padding: 10px 24px;
-  border-radius: 10px;
-  font-family: inherit;
-  font-weight: 700;
-  cursor: pointer;
-}
+.json-export textarea { width: 100%; height: 250px; background: #0f3548; color: #4DB89F; border: 1px solid #216273; border-radius: 10px; padding: 14px; font-family: 'Courier New', monospace; font-size: 12px; resize: vertical; direction: ltr; }
+.json-export .copy-btn { margin-top: 12px; margin-left: 8px; background: var(--moe-aqua); color: white; border: none; padding: 10px 24px; border-radius: 10px; font-family: inherit; font-weight: 700; cursor: pointer; }
 
-/* ===== Favorites Bar ===== */
-.fav-bar {
-  max-width: 1100px;
-  margin: 16px auto 0;
-  padding: 0 20px;
-  display: none;
-}
+.fav-bar { max-width: 1100px; margin: 16px auto 0; padding: 0 20px; display: none; }
 .fav-bar.active { display: block; }
-.fav-bar-title {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--moe-teal);
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.fav-chips {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-.fav-chip {
-  background: linear-gradient(135deg, var(--moe-aqua), var(--moe-teal));
-  color: white;
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  border: none;
-  font-family: inherit;
-  transition: all 0.3s;
-}
+.fav-bar-title { font-size: 14px; font-weight: 700; color: var(--moe-teal); margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+.fav-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.fav-chip { background: linear-gradient(135deg, var(--moe-aqua), var(--moe-teal)); color: white; padding: 8px 16px; border-radius: 20px; font-size: 13px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; border: none; font-family: inherit; transition: all 0.3s; }
 .fav-chip:hover { transform: scale(1.05); box-shadow: 0 4px 15px rgba(48,150,148,0.3); }
-.fav-chip .remove-fav {
-  background: rgba(255,255,255,0.2);
-  border-radius: 50%;
-  width: 18px; height: 18px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 11px;
-}
+.fav-chip .remove-fav { background: rgba(255,255,255,0.2); border-radius: 50%; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; font-size: 11px; }
 
-/* ===== Controls ===== */
-.controls {
-  max-width: 1100px;
-  margin: 24px auto;
-  padding: 0 20px;
-}
-.search-box {
-  position: relative;
-  margin-bottom: 16px;
-}
-.search-box input {
-  width: 100%;
-  padding: 16px 52px 16px 20px;
-  border: 2px solid var(--moe-border);
-  border-radius: 16px;
-  font-size: 16px;
-  font-family: inherit;
-  background: var(--card-bg);
-  color: var(--moe-text);
-  transition: all 0.3s;
-}
-.search-box input:focus {
-  outline: none;
-  border-color: var(--moe-teal);
-  box-shadow: 0 0 0 4px rgba(22,69,91,0.1);
-}
-.search-box .search-icon {
-  position: absolute;
-  right: 18px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 20px;
-  opacity: 0.5;
-}
-.filter-tabs {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-.filter-btn {
-  padding: 10px 22px;
-  border-radius: 12px;
-  border: 2px solid var(--moe-border);
-  background: var(--card-bg);
-  color: var(--moe-text-light);
-  font-family: inherit;
-  font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-.filter-btn:hover {
-  border-color: var(--moe-teal);
-  color: var(--moe-teal);
-}
-.filter-btn.active {
-  background: var(--moe-teal);
-  color: white;
-  border-color: var(--moe-teal);
-  box-shadow: 0 4px 15px rgba(22,69,91,0.3);
-}
+.popular-section { max-width: 1100px; margin: 20px auto 0; padding: 0 20px; display: none; }
+.popular-section.active { display: block; }
+.popular-title { font-size: 16px; font-weight: 800; color: var(--moe-teal); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.popular-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+.popular-card { background: linear-gradient(135deg, var(--moe-teal), var(--moe-aqua)); color: white; border-radius: 14px; padding: 16px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 12px; }
+.popular-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+.popular-card .rank { width: 36px; height: 36px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 800; }
+.popular-card .info { flex: 1; }
+.popular-card .info .name { font-size: 14px; font-weight: 700; }
+.popular-card .info .count { font-size: 12px; opacity: 0.9; }
 
-/* ===== Stats Bar ===== */
-.stats-bar {
-  max-width: 1100px;
-  margin: 0 auto 20px;
-  padding: 0 20px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 12px;
-}
-.stat-card {
-  background: var(--card-bg);
-  border-radius: 14px;
-  padding: 16px;
-  text-align: center;
-  border: 1px solid var(--moe-border);
-  box-shadow: var(--shadow);
-  border-top: 3px solid var(--moe-aqua);
-  transition: all 0.3s;
-}
+.controls { max-width: 1100px; margin: 24px auto; padding: 0 20px; }
+.search-box { position: relative; margin-bottom: 16px; }
+.search-box input { width: 100%; padding: 16px 52px 16px 20px; border: 2px solid var(--moe-border); border-radius: 16px; font-size: 16px; font-family: inherit; background: var(--card-bg); color: var(--moe-text); transition: all 0.3s; }
+.search-box input:focus { outline: none; border-color: var(--moe-teal); box-shadow: 0 0 0 4px rgba(22,69,91,0.1); }
+.search-box .search-icon { position: absolute; right: 18px; top: 50%; transform: translateY(-50%); font-size: 20px; opacity: 0.5; }
+.filter-tabs { display: flex; gap: 10px; flex-wrap: wrap; }
+.filter-btn { padding: 10px 22px; border-radius: 12px; border: 2px solid var(--moe-border); background: var(--card-bg); color: var(--moe-text-light); font-family: inherit; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.3s; }
+.filter-btn:hover { border-color: var(--moe-teal); color: var(--moe-teal); }
+.filter-btn.active { background: var(--moe-teal); color: white; border-color: var(--moe-teal); box-shadow: 0 4px 15px rgba(22,69,91,0.3); }
+
+.stats-bar { max-width: 1100px; margin: 0 auto 20px; padding: 0 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
+.stat-card { background: var(--card-bg); border-radius: 14px; padding: 16px; text-align: center; border: 1px solid var(--moe-border); box-shadow: var(--shadow); border-top: 3px solid var(--moe-aqua); transition: all 0.3s; }
 .stat-card:hover { transform: translateY(-3px); }
-.stat-card .stat-num {
-  font-size: 28px;
-  font-weight: 800;
-  color: var(--moe-teal);
-}
-.stat-card .stat-label {
-  font-size: 13px;
-  color: var(--moe-text-light);
-  margin-top: 4px;
-}
+.stat-card .stat-num { font-size: 28px; font-weight: 800; color: var(--moe-teal); }
+.stat-card .stat-label { font-size: 13px; color: var(--moe-text-light); margin-top: 4px; }
 
-/* ===== Grid ===== */
-.forms-grid {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 20px 40px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 20px;
-}
-.form-card {
-  background: var(--card-bg);
-  border-radius: 18px;
-  padding: 24px;
-  border: 1px solid var(--moe-border);
-  box-shadow: var(--shadow);
-  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.5s ease forwards;
-}
-@keyframes fadeInUp {
-  to { opacity: 1; transform: translateY(0); }
-}
-.form-card::before {
-  content: '';
-  position: absolute;
-  top: 0; right: 0;
-  width: 5px; height: 100%;
-  background: var(--card-color, var(--moe-teal));
-  transition: width 0.3s;
-}
-.form-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-hover);
-}
+.forms-grid { max-width: 1100px; margin: 0 auto; padding: 0 20px 40px; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+.form-card { background: var(--card-bg); border-radius: 18px; padding: 24px; border: 1px solid var(--moe-border); box-shadow: var(--shadow); transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; cursor: pointer; opacity: 0; transform: translateY(20px); animation: fadeInUp 0.5s ease forwards; }
+@keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+.form-card::before { content: ''; position: absolute; top: 0; right: 0; width: 5px; height: 100%; background: var(--card-color, var(--moe-teal)); transition: width 0.3s; }
+.form-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
 .form-card:hover::before { width: 8px; }
-
-.card-header {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  margin-bottom: 16px;
-}
-.card-icon {
-  width: 52px; height: 52px;
-  border-radius: 14px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 26px;
-  flex-shrink: 0;
-  background: var(--card-color-bg, rgba(22,69,91,0.1));
-}
-.card-info h3 {
-  font-size: 16px;
-  font-weight: 800;
-  color: var(--moe-text);
-  line-height: 1.4;
-}
-.card-info .category-tag {
-  display: inline-block;
-  margin-top: 6px;
-  padding: 3px 12px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 700;
-  background: var(--card-color-bg, rgba(22,69,91,0.1));
-  color: var(--card-color, var(--moe-teal));
-}
-
-.card-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 4px;
-}
-.download-count {
-  font-size: 13px;
-  color: var(--moe-text-light);
-  display: flex; align-items: center; gap: 4px;
-}
-.card-actions {
-  display: flex;
-  gap: 6px;
-}
-.card-action-btn {
-  width: 32px; height: 32px;
-  border-radius: 8px;
-  border: none;
-  background: var(--moe-gray);
-  color: var(--moe-text-light);
-  font-size: 16px;
-  cursor: pointer;
-  display: flex; align-items: center;
-  justify-content: center;
-  transition: all 0.2s;
-}
+.card-header { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px; }
+.card-icon { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 26px; flex-shrink: 0; background: var(--card-color-bg, rgba(22,69,91,0.1)); }
+.card-info h3 { font-size: 16px; font-weight: 800; color: var(--moe-text); line-height: 1.4; }
+.card-info .category-tag { display: inline-block; margin-top: 6px; padding: 3px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; background: var(--card-color-bg, rgba(22,69,91,0.1)); color: var(--card-color, var(--moe-teal)); }
+.card-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+.card-meta-item { font-size: 11px; color: #888; display: flex; align-items: center; gap: 3px; }
+.card-tags { margin-top: 6px; }
+.card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 4px; }
+.download-count { font-size: 13px; color: var(--moe-text-light); display: flex; align-items: center; gap: 4px; }
+.card-actions { display: flex; gap: 6px; }
+.card-action-btn { width: 32px; height: 32px; border-radius: 8px; border: none; background: var(--moe-gray); color: var(--moe-text-light); font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
 .card-action-btn:hover { background: var(--moe-border); transform: scale(1.1); }
 .card-action-btn.fav-active { background: #ffc107; color: #856404; }
-.print-btn {
-  padding: 8px 18px;
-  border-radius: 10px;
-  border: none;
-  background: var(--card-color, var(--moe-teal));
-  color: white;
-  font-family: inherit;
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.3s;
-}
+.print-btn { padding: 8px 18px; border-radius: 10px; border: none; background: var(--card-color, var(--moe-teal)); color: white; font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.3s; }
 .print-btn:hover { opacity: 0.9; transform: scale(1.05); }
+.batch-checkbox { position: absolute; top: 12px; left: 12px; width: 22px; height: 22px; cursor: pointer; accent-color: var(--moe-teal); }
 
-/* ===== Empty State ===== */
-.empty-state {
-  grid-column: 1 / -1;
-  text-align: center;
-  padding: 60px 20px;
-}
+.empty-state { grid-column: 1 / -1; text-align: center; padding: 60px 20px; }
 .empty-state .empty-icon { font-size: 64px; margin-bottom: 16px; opacity: 0.3; }
 .empty-state h3 { font-size: 20px; color: var(--moe-text-light); }
 
-/* ===== Modal ===== */
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.5);
-  backdrop-filter: blur(8px);
-  z-index: 200;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(8px); z-index: 200; display: none; align-items: center; justify-content: center; padding: 20px; }
 .modal-overlay.active { display: flex; }
-.modal {
-  background: var(--card-bg);
-  border-radius: 24px;
-  max-width: 500px;
-  width: 100%;
-  max-height: 90vh;
-  overflow: hidden;
-  box-shadow: 0 25px 80px rgba(0,0,0,0.2);
-  animation: modalIn 0.3s ease;
-  border-top: 4px solid var(--moe-aqua);
-}
-@keyframes modalIn {
-  from { opacity: 0; transform: scale(0.9) translateY(20px); }
-  to { opacity: 1; transform: scale(1) translateY(0); }
-}
-.modal-header {
-  padding: 28px 28px 0;
-  text-align: center;
-}
-.modal-icon {
-  width: 72px; height: 72px;
-  border-radius: 20px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 36px;
-  margin: 0 auto 16px;
-  background: rgba(22,69,91,0.1);
-}
+.modal { background: var(--card-bg); border-radius: 24px; max-width: 500px; width: 100%; max-height: 90vh; overflow: hidden; box-shadow: 0 25px 80px rgba(0,0,0,0.2); animation: modalIn 0.3s ease; border-top: 4px solid var(--moe-aqua); }
+@keyframes modalIn { from { opacity: 0; transform: scale(0.9) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+.modal-header { padding: 28px 28px 0; text-align: center; }
+.modal-icon { width: 72px; height: 72px; border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 36px; margin: 0 auto 16px; background: rgba(22,69,91,0.1); }
 .modal-header h2 { font-size: 22px; font-weight: 800; color: var(--moe-text); }
 .modal-header p { color: var(--moe-text-light); font-size: 14px; margin-top: 6px; }
+.modal-meta { display: flex; gap: 12px; justify-content: center; margin-top: 10px; flex-wrap: wrap; }
+.modal-meta span { font-size: 12px; color: #888; background: var(--moe-gray); padding: 4px 12px; border-radius: 10px; }
 .modal-body { padding: 24px 28px; }
 .modal-actions { display: flex; flex-direction: column; gap: 10px; }
-.modal-btn {
-  padding: 14px 20px;
-  border-radius: 14px;
-  border: none;
-  font-family: inherit;
-  font-size: 15px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.3s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
+.modal-btn { padding: 14px 20px; border-radius: 14px; border: none; font-family: inherit; font-size: 15px; font-weight: 700; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px; }
 .modal-btn-primary { background: var(--moe-teal); color: white; }
 .modal-btn-primary:hover { background: var(--moe-teal-dark); }
 .modal-btn-secondary { background: var(--moe-gray); color: var(--moe-text); }
 .modal-btn-secondary:hover { background: var(--moe-border); }
-.modal-close {
-  padding: 12px;
-  text-align: center;
-  color: var(--moe-text-light);
-  font-size: 14px;
-  cursor: pointer;
-  border-top: 1px solid var(--moe-border);
-}
+.modal-close { padding: 12px; text-align: center; color: var(--moe-text-light); font-size: 14px; cursor: pointer; border-top: 1px solid var(--moe-border); }
 .modal-close:hover { color: var(--moe-teal); }
 
-/* ===== Back to Top ===== */
-.back-to-top {
-  position: fixed;
-  bottom: 24px;
-  left: 24px;
-  width: 48px; height: 48px;
-  border-radius: 50%;
-  background: var(--moe-teal);
-  color: white;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-  box-shadow: 0 4px 15px rgba(22,69,91,0.3);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 99;
-  transition: all 0.3s;
-}
+.back-to-top { position: fixed; bottom: 24px; left: 24px; width: 48px; height: 48px; border-radius: 50%; background: var(--moe-teal); color: white; border: none; font-size: 20px; cursor: pointer; box-shadow: 0 4px 15px rgba(22,69,91,0.3); display: none; align-items: center; justify-content: center; z-index: 99; transition: all 0.3s; }
 .back-to-top:hover { transform: translateY(-4px); background: var(--moe-teal-dark); }
 .back-to-top.visible { display: flex; }
 
-/* ===== Footer ===== */
-.footer {
-  text-align: center;
-  padding: 24px;
-  color: var(--moe-text-light);
-  font-size: 13px;
-  border-top: 1px solid var(--moe-border);
-  background: var(--card-bg);
-}
+.batch-bar { position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%); background: var(--moe-teal); color: white; padding: 12px 24px; border-radius: 30px; display: none; align-items: center; gap: 12px; box-shadow: 0 8px 25px rgba(22,69,91,0.3); z-index: 98; }
+.batch-bar.active { display: flex; }
+.batch-bar button { background: white; color: var(--moe-teal); border: none; padding: 6px 16px; border-radius: 8px; font-family: inherit; font-weight: 700; cursor: pointer; }
+
+.footer { text-align: center; padding: 24px; color: var(--moe-text-light); font-size: 13px; border-top: 1px solid var(--moe-border); background: var(--card-bg); }
 .footer .moe-brand { color: var(--moe-teal); font-weight: 700; }
 
-/* ===== Responsive ===== */
+@media print {
+  .header, .controls, .stats-bar, .footer, .modal-overlay, .back-to-top, .batch-bar, .fav-bar, .popular-section, .login-panel, .admin-panel, .ticker-wrap { display: none !important; }
+  .forms-grid { display: block; }
+  .form-card { break-inside: avoid; page-break-inside: avoid; margin-bottom: 20px; box-shadow: none; border: 1px solid #ccc; }
+  body { background: white; }
+}
 @media (max-width: 600px) {
   .header-inner { justify-content: center; text-align: center; }
   .logo-area { flex-direction: column; }
@@ -808,18 +215,17 @@ body {
   .stat-card .stat-num { font-size: 22px; }
   .form-row { grid-template-columns: 1fr; }
   .forms-table th, .forms-table td { padding: 8px 6px; font-size: 11px; }
+  .popular-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
 <body>
 
-<!-- Loading -->
 <div class="loading-overlay" id="loadingOverlay">
   <div class="spinner"></div>
   <p style="color:#555;font-size:16px;">جاري تحميل الاستمارات...</p>
 </div>
 
-<!-- Header -->
 <header class="header">
   <div class="header-inner">
     <div class="logo-area">
@@ -837,15 +243,15 @@ body {
   </div>
 </header>
 
-<!-- Notification Banner -->
-<div class="notif-banner" id="notifBanner">
-  <div class="notif-box">
-    <p>🔔 تم إضافة استمارات جديدة! تحقق من القائمة أدناه</p>
-    <button class="notif-close" onclick="closeNotif()">✕</button>
+<div class="ticker-wrap" id="tickerWrap">
+  <div class="ticker" id="tickerContent">
+    <span class="ticker-item">🔔 تم إضافة استمارات جديدة! تحقق من القائمة أدناه</span>
+    <span class="ticker-item">📱 يمكنك الآن حفظ الاستمارات في المفضلة للوصول السريع</span>
+    <span class="ticker-item">🌙 جرب الوضع الداكن للراحة في الليل</span>
+    <span class="ticker-item">📊 شاهد أكثر الاستمارات طلباً في قسم "الأكثر زيارة"</span>
   </div>
 </div>
 
-<!-- Login Panel -->
 <div class="login-panel" id="loginPanel">
   <div class="login-box">
     <h3>🔐 تسجيل دخول المشرف</h3>
@@ -856,7 +262,6 @@ body {
   </div>
 </div>
 
-<!-- Admin Panel -->
 <div class="admin-panel" id="adminPanel">
   <div class="admin-header">
     <button class="admin-toggle" onclick="toggleAdmin()">⚙️ لوحة إدارة الاستمارات</button>
@@ -866,114 +271,86 @@ body {
     <h3 id="formTitle">➕ إضافة استمارة جديدة</h3>
     <input type="hidden" id="editId" value="">
     <div class="form-row">
-      <div class="form-group">
-        <label>اسم الاستمارة *</label>
-        <input type="text" id="adminName" placeholder="مثال: استمارة طلب انتداب">
-      </div>
-      <div class="form-group">
-        <label>التصنيف *</label>
-        <select id="adminCategory">
-          <option value="requests">📨 طلبات</option>
-          <option value="prints">🖨️ طباعات</option>
-          <option value="reports">📊 تقارير</option>
-        </select>
-      </div>
+      <div class="form-group"><label>اسم الاستمارة *</label><input type="text" id="adminName" placeholder="مثال: استمارة طلب انتداب"></div>
+      <div class="form-group"><label>التصنيف *</label><select id="adminCategory"><option value="requests">📨 طلبات</option><option value="print">🖨️ طباعة</option><option value="reports">📊 تقارير</option></select></div>
     </div>
     <div class="form-row">
-      <div class="form-group">
-        <label>الأيقونة (Emoji)</label>
-        <input type="text" id="adminIcon" placeholder="📄" value="📄">
-      </div>
-      <div class="form-group">
-        <label>اللون (Hex Code)</label>
-        <input type="text" id="adminColor" placeholder="#16455B" value="#16455B">
-      </div>
-      <div class="form-group">
-        <label>الأولوية (رقم أصغر = أولاً)</label>
-        <input type="number" id="adminPriority" placeholder="1" value="1" min="1">
-      </div>
+      <div class="form-group"><label>الأيقونة (Emoji)</label><input type="text" id="adminIcon" placeholder="📄" value="📄"></div>
+      <div class="form-group"><label>اللون (Hex Code)</label><input type="text" id="adminColor" placeholder="#16455B" value="#16455B"></div>
+      <div class="form-group"><label>الأولوية (رقم أصغر = أولاً)</label><input type="number" id="adminPriority" placeholder="1" value="1" min="1"></div>
     </div>
     <div class="form-row">
-      <div class="form-group">
-        <label>رابط الملف (PDF)</label>
-        <input type="text" id="adminUrl" placeholder="https://.../file.pdf">
-      </div>
-      <div class="form-group">
-        <label>الوصف</label>
-        <input type="text" id="adminDesc" placeholder="وصف مختصر للاستمارة">
-      </div>
+      <div class="form-group"><label>الوسوم (مفصولة بفاصلة)</label><input type="text" id="adminTags" placeholder="عاجل, شهري, إلزامي"></div>
+      <div class="form-group"><label>حجم الملف (مثال: 120 KB)</label><input type="text" id="adminFileSize" placeholder="120 KB"></div>
     </div>
+    <div class="form-row">
+      <div class="form-group"><label>عدد الصفحات</label><input type="number" id="adminPages" placeholder="1" min="1" value="1"></div>
+      <div class="form-group"><label>رابط الملف (PDF)</label><input type="text" id="adminUrl" placeholder="https://.../file.pdf"></div>
+    </div>
+    <div class="form-row"><div class="form-group" style="grid-column: 1 / -1;"><label>الوصف</label><input type="text" id="adminDesc" placeholder="وصف مختصر للاستمارة"></div></div>
     <div class="admin-actions">
       <button class="admin-btn admin-btn-primary" id="saveBtn" onclick="saveForm()">💾 حفظ الاستمارة</button>
       <button class="admin-btn admin-btn-secondary" onclick="resetForm()">🔄 إعادة تعيين</button>
       <button class="admin-btn admin-btn-secondary" onclick="exportJSON()">📋 تصدير JSON</button>
+      <button class="admin-btn admin-btn-secondary" onclick="exportCSV()">📊 تصدير Excel/CSV</button>
       <button class="admin-btn admin-btn-danger" onclick="clearAll()">🗑️ حذف الكل</button>
     </div>
-
-    <!-- JSON Export -->
+    <div class="request-section"><h4>📝 طلبات الاستمارات الجديدة (من الموظفين)</h4><div id="requestsList" style="color:#666;font-size:13px;">لا توجد طلبات جديدة</div></div>
     <div class="json-export" id="jsonExport">
       <h4>📋 انسخ هذا الملف واحفظه باسم forms.json ثم ارفعه على GitHub</h4>
       <p>⚠️ هذا الملف يحتوي على جميع الاستمارات. ارفعه على GitHub ليظهر للجميع.</p>
-      <p>📤 خطوات الرفع:<br>
-      1. انسخ الكود أدناه<br>
-      2. في GitHub اضغط "Add file" → "Create new file"<br>
-      3. اسم الملف: <strong>forms.json</strong><br>
-      4. الصق الكود → Commit changes</p>
       <textarea id="exportArea" readonly></textarea>
       <button class="copy-btn" onclick="copyJSON()">📋 نسخ JSON</button>
       <button class="copy-btn" onclick="downloadJSON()">💾 تحميل ملف forms.json</button>
     </div>
-
-    <!-- Forms Table -->
     <div class="forms-table-wrapper">
       <h3 style="color:var(--moe-teal);margin:24px 0 12px;font-size:16px;">📋 الاستمارات الحالية (مرتبة حسب الأولوية)</h3>
       <table class="forms-table" id="adminTable">
-        <thead><tr><th>#</th><th>أولوية</th><th>أيقونة</th><th>الاسم</th><th>التصنيف</th><th>التحميلات</th><th>الإجراءات</th></tr></thead>
+        <thead><tr><th>#</th><th>أولوية</th><th>أيقونة</th><th>الاسم</th><th>التصنيف</th><th>الحجم</th><th>الصفحات</th><th>التحميلات</th><th>الإجراءات</th></tr></thead>
         <tbody id="adminTableBody"></tbody>
       </table>
     </div>
   </div>
 </div>
 
-<!-- Favorites Bar -->
-<div class="fav-bar" id="favBar">
-  <div class="fav-bar-title">⭐ المفضلة</div>
-  <div class="fav-chips" id="favChips"></div>
+<div class="fav-bar" id="favBar"><div class="fav-bar-title">⭐ المفضلة</div><div class="fav-chips" id="favChips"></div></div>
+
+<div class="popular-section" id="popularSection">
+  <div class="popular-title">🔥 الأكثر زيارة هذا الشهر</div>
+  <div class="popular-grid" id="popularGrid"></div>
 </div>
 
-<!-- Controls -->
 <div class="controls">
   <div class="search-box">
     <span class="search-icon">🔍</span>
-    <input type="text" id="searchInput" placeholder="ابحث عن استمارة أو مستند...">
+    <input type="text" id="searchInput" placeholder="ابحث في الاسم، الوصف، التصنيف، أو الوسوم...">
   </div>
   <div class="filter-tabs">
     <button class="filter-btn active" data-filter="all">الكل</button>
     <button class="filter-btn" data-filter="requests">📨 طلبات</button>
-    <button class="filter-btn" data-filter="prints">🖨️ طباعات</button>
+    <button class="filter-btn" data-filter="print">🖨️ طباعة</button>
     <button class="filter-btn" data-filter="reports">📊 تقارير</button>
     <button class="filter-btn" data-filter="favorites">⭐ المفضلة</button>
   </div>
 </div>
 
-<!-- Stats -->
 <div class="stats-bar">
   <div class="stat-card"><div class="stat-num" id="statTotal">0</div><div class="stat-label" data-ar="إجمالي المستندات" data-en="Total Forms">إجمالي المستندات</div></div>
   <div class="stat-card"><div class="stat-num" id="statDownloads">0</div><div class="stat-label" data-ar="إجمالي التحميلات" data-en="Total Downloads">إجمالي التحميلات</div></div>
   <div class="stat-card"><div class="stat-num" id="statToday">0</div><div class="stat-label" data-ar="تحميلات اليوم" data-en="Today">تحميلات اليوم</div></div>
   <div class="stat-card"><div class="stat-num" id="statFavs">0</div><div class="stat-label" data-ar="المفضلة" data-en="Favorites">المفضلة</div></div>
+  <div class="stat-card"><div class="stat-num" id="statVisitors">0</div><div class="stat-label" data-ar="الزيارات" data-en="Visits">الزيارات</div></div>
 </div>
 
-<!-- Grid -->
 <div class="forms-grid" id="formsGrid"></div>
 
-<!-- Modal -->
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal">
     <div class="modal-header">
       <div class="modal-icon" id="modalIcon">📄</div>
       <h2 id="modalTitle">عنوان المستند</h2>
       <p id="modalDesc">اختر الإجراء المناسب</p>
+      <div class="modal-meta" id="modalMeta"></div>
     </div>
     <div class="modal-body">
       <div class="modal-actions">
@@ -988,293 +365,81 @@ body {
   </div>
 </div>
 
-<!-- Back to Top -->
+<div class="batch-bar" id="batchBar">
+  <span id="batchCount">٠ استمارات محددة</span>
+  <button onclick="downloadBatch()">⬇️ تحميل الكل</button>
+  <button onclick="clearBatch()">❌ إلغاء</button>
+</div>
+
 <button class="back-to-top" id="backToTop" onclick="scrollToTop()">⬆️</button>
 
-<!-- Footer -->
 <footer class="footer">
-  <span class="moe-brand" data-ar="وزارة التعليم السعودية" data-en="Ministry of Education">وزارة التعليم السعودية</span> — 
+  <span class="moe-brand" data-ar="وزارة التعليم" data-en="Ministry of Education">وزارة التعليم</span> — 
   <span data-ar="الإدارة العامة للتعليم بمحافظة جدة — الموارد البشرية — الانتدابات والبدلات" data-en="Jeddah Education — HR — Delegations & Allowances">الإدارة العامة للتعليم بمحافظة جدة — الموارد البشرية — الانتدابات والبدلات</span>
   <br><span data-ar="جميع الحقوق محفوظة © 2026" data-en="All Rights Reserved © 2026">جميع الحقوق محفوظة © 2026</span>
 </footer>
 
 <script>
-// ==================== كلمة المرور ====================
 const ADMIN_PASSWORD = "Jeddah2026!";
+let formsData = [], isAdmin = getStorage('isAdmin', false), currentFilter = 'all', searchQuery = '', selectedForm = null, nextId = 1, editingId = null, favorites = getStorage('favorites', []), currentLang = getStorage('lang', 'ar'), batchSelected = [], visitorCount = getStorage('visitorCount', 0);
+const categoryNames = { ar: { all: 'الكل', requests: 'طلبات', print: 'طباعة', reports: 'تقارير', favorites: 'المفضلة' }, en: { all: 'All', requests: 'Requests', print: 'Print', reports: 'Reports', favorites: 'Favorites' } };
+const tagClasses = { 'عاجل': 'tag-urgent', 'شهري': 'tag-monthly', 'شائع': 'tag-popular', 'إلزامي': 'tag-mandatory' };
 
-// ==================== حالة التطبيق ====================
-let formsData = [];
-let isAdmin = getStorage('isAdmin', false);
-let currentFilter = 'all';
-let searchQuery = '';
-let selectedForm = null;
-let nextId = 1;
-let editingId = null;
-let favorites = getStorage('favorites', []);
-let currentLang = getStorage('lang', 'ar');
+function getStorage(key, defaultVal) { try { const val = localStorage.getItem(key); return val ? JSON.parse(val) : defaultVal; } catch { return defaultVal; } }
+function setStorage(key, val) { try { localStorage.setItem(key, JSON.stringify(val)); } catch {} }
 
-const categoryNames = {
-  ar: { all: 'الكل', requests: 'طلبات', prints: 'طباعات', reports: 'تقارير', favorites: 'المفضلة' },
-  en: { all: 'All', requests: 'Requests', prints: 'Prints', reports: 'Reports', favorites: 'Favorites' }
-};
-
-// ==================== التخزين المحلي ====================
-function getStorage(key, defaultVal) {
-  try { const val = localStorage.getItem(key); return val ? JSON.parse(val) : defaultVal; }
-  catch { return defaultVal; }
-}
-function setStorage(key, val) {
-  try { localStorage.setItem(key, JSON.stringify(val)); } catch {}
-}
-
-// ==================== تحميل البيانات ====================
 async function loadForms() {
   showLoading(true);
+  visitorCount++; setStorage('visitorCount', visitorCount);
   try {
     const response = await fetch('forms.json?v=' + Date.now());
-    if (response.ok) {
-      formsData = await response.json();
-      // Sort by priority
-      formsData.sort((a, b) => (a.priority || 999) - (b.priority || 999));
-      console.log('✅ Loaded from forms.json:', formsData.length, 'forms');
-    } else {
-      throw new Error('forms.json not found');
-    }
-  } catch (e) {
-    console.warn('⚠️ Could not load forms.json, using defaults:', e);
-    formsData = getDefaultForms();
-  }
-
+    if (response.ok) { formsData = await response.json(); formsData.sort((a, b) => (a.priority || 999) - (b.priority || 999)); }
+    else throw new Error('forms.json not found');
+  } catch (e) { formsData = getDefaultForms(); }
   nextId = Math.max(...formsData.map(f => f.id), 0) + 1;
   showLoading(false);
-  applyTheme();
-  applyLang();
-  renderFavorites();
-  renderForms();
-  initAuth();
-  checkNewForms();
+  applyTheme(); applyLang(); renderFavorites(); renderPopular(); renderForms(); updateStats(); initAuth(); showTicker();
 }
 
 function getDefaultForms() {
   return [
-    { id: 1, name: "استمارة طلب انتداب", category: "requests", icon: "📋", color: "#16455B", priority: 1, downloads: 234, fileUrl: "#", description: "استمارة رسمية لتقديم طلب انتداب وظيفي" },
-    { id: 2, name: "استمارة طلب بدل", category: "requests", icon: "💰", color: "#309694", priority: 2, downloads: 189, fileUrl: "#", description: "نموذج طلب صرف بدل مالي للموظفين" },
-    { id: 3, name: "استمارة طلب إجازة", category: "requests", icon: "🏖️", color: "#38A18A", priority: 3, downloads: 156, fileUrl: "#", description: "استمارة تقديم طلب إجازة سنوية أو استثنائية" },
-    { id: 4, name: "شهادة راتب", category: "prints", icon: "📄", color: "#16455B", priority: 4, downloads: 412, fileUrl: "#", description: "شهادة رسمية بقيمة الراتب الشهري" },
-    { id: 5, name: "تعريف بالراتب", category: "prints", icon: "📃", color: "#309694", priority: 5, downloads: 378, fileUrl: "#", description: "خطاب تعريف بالراتب للجهات الخارجية" },
-    { id: 6, name: "تقرير أداء شهري", category: "reports", icon: "📊", color: "#216273", priority: 6, downloads: 98, fileUrl: "#", description: "نموذج تقييم الأداء الوظيفي الشهري" },
-    { id: 7, name: "استمارة طلب نقل", category: "requests", icon: "🚚", color: "#16455B", priority: 7, downloads: 67, fileUrl: "#", description: "استمارة طلب نقل وظيفي أو إداري" },
-    { id: 8, name: "عقد عمل", category: "prints", icon: "📝", color: "#309694", priority: 8, downloads: 145, fileUrl: "#", description: "نسخة من عقد العمل للمراجعين" },
-    { id: 9, name: "تقرير إنجاز سنوي", category: "reports", icon: "📈", color: "#16455B", priority: 9, downloads: 54, fileUrl: "#", description: "تقرير ملخص الإنجازات السنوية" },
-    { id: 10, name: "استمارة طلب تدريب", category: "requests", icon: "🎓", color: "#309694", priority: 10, downloads: 123, fileUrl: "#", description: "طلب الالتحاق بدورة تدريبية" }
+    { id: 1, name: "استمارة طلب انتداب", category: "requests", icon: "📋", color: "#16455B", priority: 1, downloads: 234, fileUrl: "#", fileSize: "120 KB", pages: 2, updatedAt: "2026-08-20", tags: ["عاجل", "شهري"], description: "استمارة رسمية لتقديم طلب انتداب وظيفي" },
+    { id: 2, name: "استمارة طلب بدل", category: "requests", icon: "💰", color: "#309694", priority: 2, downloads: 189, fileUrl: "#", fileSize: "85 KB", pages: 1, updatedAt: "2026-08-18", tags: ["مالي", "شهري"], description: "نموذج طلب صرف بدل مالي للموظفين" },
+    { id: 3, name: "استمارة طلب إجازة", category: "requests", icon: "🏖️", color: "#38A18A", priority: 3, downloads: 156, fileUrl: "#", fileSize: "95 KB", pages: 1, updatedAt: "2026-08-15", tags: ["شائع", "إلزامي"], description: "استمارة تقديم طلب إجازة سنوية أو استثنائية" },
+    { id: 4, name: "شهادة راتب", category: "print", icon: "📄", color: "#16455B", priority: 4, downloads: 412, fileUrl: "#", fileSize: "150 KB", pages: 1, updatedAt: "2026-08-22", tags: ["شائع", "فوري"], description: "شهادة رسمية بقيمة الراتب الشهري" },
+    { id: 5, name: "تعريف بالراتب", category: "print", icon: "📃", color: "#309694", priority: 5, downloads: 378, fileUrl: "#", fileSize: "110 KB", pages: 1, updatedAt: "2026-08-21", tags: ["شائع", "بنكي"], description: "خطاب تعريف بالراتب للجهات الخارجية" },
+    { id: 6, name: "تقرير أداء شهري", category: "reports", icon: "📊", color: "#216273", priority: 6, downloads: 98, fileUrl: "#", fileSize: "200 KB", pages: 3, updatedAt: "2026-08-10", tags: ["شهري", "إداري"], description: "نموذج تقييم الأداء الوظيفي الشهري" },
+    { id: 7, name: "استمارة طلب نقل", category: "requests", icon: "🚚", color: "#16455B", priority: 7, downloads: 67, fileUrl: "#", fileSize: "130 KB", pages: 2, updatedAt: "2026-07-25", tags: ["إداري"], description: "استمارة طلب نقل وظيفي أو إداري" },
+    { id: 8, name: "عقد عمل", category: "print", icon: "📝", color: "#309694", priority: 8, downloads: 145, fileUrl: "#", fileSize: "250 KB", pages: 4, updatedAt: "2026-08-05", tags: ["قانوني", "إلزامي"], description: "نسخة من عقد العمل للمراجعين" },
+    { id: 9, name: "تقرير إنجاز سنوي", category: "reports", icon: "📈", color: "#16455B", priority: 9, downloads: 54, fileUrl: "#", fileSize: "300 KB", pages: 5, updatedAt: "2026-06-30", tags: ["سنوي", "إداري"], description: "تقرير ملخص الإنجازات السنوية" },
+    { id: 10, name: "استمارة طلب تدريب", category: "requests", icon: "🎓", color: "#309694", priority: 10, downloads: 123, fileUrl: "#", fileSize: "140 KB", pages: 2, updatedAt: "2026-08-12", tags: ["تطوير", "اختياري"], description: "طلب الالتحاق بدورة تدريبية" }
   ];
 }
 
-function showLoading(show) {
-  document.getElementById('loadingOverlay').classList.toggle('hidden', !show);
-}
+function showLoading(show) { document.getElementById('loadingOverlay').classList.toggle('hidden', !show); }
+function applyTheme() { const theme = getStorage('theme', 'light'); document.documentElement.setAttribute('data-theme', theme); document.getElementById('themeToggle').textContent = theme === 'dark' ? '☀️' : '🌙'; }
+function toggleTheme() { const current = document.documentElement.getAttribute('data-theme') || 'light'; const next = current === 'dark' ? 'light' : 'dark'; document.documentElement.setAttribute('data-theme', next); setStorage('theme', next); document.getElementById('themeToggle').textContent = next === 'dark' ? '☀️' : '🌙'; }
+function applyLang() { const els = document.querySelectorAll('[data-ar][data-en]'); els.forEach(el => { el.textContent = el.getAttribute('data-' + currentLang); }); document.getElementById('langToggle').textContent = currentLang === 'ar' ? 'EN' : 'ع'; document.body.dir = currentLang === 'ar' ? 'rtl' : 'ltr'; document.querySelectorAll('.filter-btn').forEach(btn => { const filter = btn.dataset.filter; if (categoryNames[currentLang][filter]) { const icon = { all: '', requests: '📨 ', print: '🖨️ ', reports: '📊 ', favorites: '⭐ ' }[filter] || ''; btn.innerHTML = icon + categoryNames[currentLang][filter]; } }); }
+function toggleLang() { currentLang = currentLang === 'ar' ? 'en' : 'ar'; setStorage('lang', currentLang); applyLang(); renderForms(); renderFavorites(); renderPopular(); }
+function showTicker() { const ticker = document.getElementById('tickerWrap'); const lastVisit = getStorage('lastTickerVisit', 0); const now = Date.now(); if (now - lastVisit > 86400000) { ticker.classList.add('active'); setStorage('lastTickerVisit', now); } }
 
-// ==================== Theme ====================
-function applyTheme() {
-  const theme = getStorage('theme', 'light');
-  document.documentElement.setAttribute('data-theme', theme);
-  document.getElementById('themeToggle').textContent = theme === 'dark' ? '☀️' : '🌙';
-}
-function toggleTheme() {
-  const current = document.documentElement.getAttribute('data-theme') || 'light';
-  const next = current === 'dark' ? 'light' : 'dark';
-  document.documentElement.setAttribute('data-theme', next);
-  setStorage('theme', next);
-  document.getElementById('themeToggle').textContent = next === 'dark' ? '☀️' : '🌙';
-}
+function toggleFav(formId) { const idx = favorites.indexOf(formId); if (idx > -1) favorites.splice(idx, 1); else favorites.push(formId); setStorage('favorites', favorites); renderFavorites(); renderForms(); }
+function toggleFavFromModal() { if (!selectedForm) return; toggleFav(selectedForm.id); updateFavButton(); }
+function updateFavButton() { if (!selectedForm) return; const btn = document.getElementById('favModalBtn'); const isFav = favorites.includes(selectedForm.id); btn.textContent = isFav ? '❌ إزالة من المفضلة' : '⭐ إضافة للمفضلة'; }
+function renderFavorites() { const bar = document.getElementById('favBar'); const chips = document.getElementById('favChips'); const favForms = formsData.filter(f => favorites.includes(f.id)); if (favForms.length === 0) { bar.classList.remove('active'); return; } bar.classList.add('active'); chips.innerHTML = favForms.map(f => `<button class="fav-chip" onclick="openModal(${f.id})">${f.icon} ${f.name}<span class="remove-fav" onclick="event.stopPropagation(); toggleFav(${f.id})">✕</span></button>`).join(''); }
 
-// ==================== Language ====================
-function applyLang() {
-  const els = document.querySelectorAll('[data-ar][data-en]');
-  els.forEach(el => {
-    el.textContent = el.getAttribute('data-' + currentLang);
-  });
-  document.getElementById('langToggle').textContent = currentLang === 'ar' ? 'EN' : 'ع';
-  document.body.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+function renderPopular() { const section = document.getElementById('popularSection'); const grid = document.getElementById('popularGrid'); const topForms = [...formsData].sort((a, b) => (b.downloads || 0) - (a.downloads || 0)).slice(0, 3); if (topForms.length === 0) { section.classList.remove('active'); return; } section.classList.add('active'); grid.innerHTML = topForms.map((f, i) => `<div class="popular-card" onclick="openModal(${f.id})"><div class="rank">${i + 1}</div><div class="info"><div class="name">${f.name}</div><div class="count">⬇️ ${f.downloads || 0} تحميل</div></div></div>`).join(''); }
 
-  // Update filter buttons
-  document.querySelectorAll('.filter-btn').forEach(btn => {
-    const filter = btn.dataset.filter;
-    if (categoryNames[currentLang][filter]) {
-      const icon = { all: '', requests: '📨 ', prints: '🖨️ ', reports: '📊 ', favorites: '⭐ ' }[filter] || '';
-      btn.innerHTML = icon + categoryNames[currentLang][filter];
-    }
-  });
-}
-function toggleLang() {
-  currentLang = currentLang === 'ar' ? 'en' : 'ar';
-  setStorage('lang', currentLang);
-  applyLang();
-  renderForms();
-  renderFavorites();
-}
+function initAuth() { if (isAdmin) { document.getElementById('loginPanel').classList.remove('active'); document.getElementById('adminPanel').classList.add('active'); } else { document.getElementById('loginPanel').classList.add('active'); document.getElementById('adminPanel').classList.remove('active'); } }
+function doLogin() { const password = document.getElementById('loginPassword').value; if (password === ADMIN_PASSWORD) { isAdmin = true; setStorage('isAdmin', true); document.getElementById('loginPanel').classList.remove('active'); document.getElementById('adminPanel').classList.add('active'); document.getElementById('loginError').classList.remove('active'); document.getElementById('loginPassword').value = ''; renderAdminTable(); } else { document.getElementById('loginError').classList.add('active'); document.getElementById('loginPassword').value = ''; } }
+function doLogout() { if (!confirm(currentLang === 'ar' ? 'هل أنت متأكد من تسجيل الخروج؟' : 'Are you sure?')) return; isAdmin = false; setStorage('isAdmin', false); document.getElementById('adminPanel').classList.remove('active'); document.getElementById('loginPanel').classList.add('active'); document.getElementById('adminForm').classList.remove('active'); }
 
-// ==================== Notifications ====================
-function checkNewForms() {
-  const lastVisit = getStorage('lastVisit', 0);
-  const now = Date.now();
-  const newForms = formsData.filter(f => f.addedAt && f.addedAt > lastVisit);
-  if (newForms.length > 0) {
-    document.getElementById('notifBanner').classList.add('active');
-  }
-  setStorage('lastVisit', now);
-}
-function closeNotif() {
-  document.getElementById('notifBanner').classList.remove('active');
-}
+function toggleAdmin() { document.getElementById('adminForm').classList.toggle('active'); if (document.getElementById('adminForm').classList.contains('active')) renderAdminTable(); }
+function renderAdminTable() { const tbody = document.getElementById('adminTableBody'); if (!formsData.length) { tbody.innerHTML = '<tr><td colspan="9" style="text-align:center;color:#999;padding:20px;">لا توجد استمارات</td></tr>'; return; } const sorted = [...formsData].sort((a, b) => (a.priority || 999) - (b.priority || 999)); tbody.innerHTML = sorted.map((form, idx) => `<tr><td>${idx + 1}</td><td><input type="number" class="priority-input" value="${form.priority || 1}" onchange="changePriority(${form.id}, this.value)"></td><td style="font-size:20px;text-align:center;">${form.icon}</td><td><strong>${form.name}</strong></td><td>${categoryNames.ar[form.category] || form.category}</td><td>${form.fileSize || '-'}</td><td>${form.pages || '-'}</td><td>${form.downloads || 0}</td><td><div class="table-actions"><button class="table-btn table-btn-up" onclick="moveUp(${form.id})">⬆️</button><button class="table-btn table-btn-down" onclick="moveDown(${form.id})">⬇️</button><button class="table-btn table-btn-edit" onclick="editForm(${form.id})">✏️</button><button class="table-btn table-btn-delete" onclick="deleteForm(${form.id})">🗑️</button></div></td></tr>`).join(''); }
 
-// ==================== Favorites ====================
-function toggleFav(formId) {
-  const idx = favorites.indexOf(formId);
-  if (idx > -1) {
-    favorites.splice(idx, 1);
-  } else {
-    favorites.push(formId);
-  }
-  setStorage('favorites', favorites);
-  renderFavorites();
-  renderForms();
-}
-function toggleFavFromModal() {
-  if (!selectedForm) return;
-  toggleFav(selectedForm.id);
-  updateFavButton();
-}
-function updateFavButton() {
-  if (!selectedForm) return;
-  const btn = document.getElementById('favModalBtn');
-  const isFav = favorites.includes(selectedForm.id);
-  btn.textContent = isFav ? '❌ إزالة من المفضلة' : '⭐ إضافة للمفضلة';
-}
-function renderFavorites() {
-  const bar = document.getElementById('favBar');
-  const chips = document.getElementById('favChips');
-  const favForms = formsData.filter(f => favorites.includes(f.id));
-
-  document.getElementById('statFavs').textContent = favForms.length;
-
-  if (favForms.length === 0) {
-    bar.classList.remove('active');
-    return;
-  }
-
-  bar.classList.add('active');
-  chips.innerHTML = favForms.map(f => `
-    <button class="fav-chip" onclick="openModal(${f.id})">
-      ${f.icon} ${f.name}
-      <span class="remove-fav" onclick="event.stopPropagation(); toggleFav(${f.id})">✕</span>
-    </button>
-  `).join('');
-}
-
-// ==================== Auth ====================
-function initAuth() {
-  if (isAdmin) {
-    document.getElementById('loginPanel').classList.remove('active');
-    document.getElementById('adminPanel').classList.add('active');
-  } else {
-    document.getElementById('loginPanel').classList.add('active');
-    document.getElementById('adminPanel').classList.remove('active');
-  }
-}
-function doLogin() {
-  const password = document.getElementById('loginPassword').value;
-  if (password === ADMIN_PASSWORD) {
-    isAdmin = true;
-    setStorage('isAdmin', true);
-    document.getElementById('loginPanel').classList.remove('active');
-    document.getElementById('adminPanel').classList.add('active');
-    document.getElementById('loginError').classList.remove('active');
-    document.getElementById('loginPassword').value = '';
-    renderAdminTable();
-  } else {
-    document.getElementById('loginError').classList.add('active');
-    document.getElementById('loginPassword').value = '';
-  }
-}
-function doLogout() {
-  if (!confirm(currentLang === 'ar' ? 'هل أنت متأكد من تسجيل الخروج؟' : 'Are you sure you want to logout?')) return;
-  isAdmin = false;
-  setStorage('isAdmin', false);
-  document.getElementById('adminPanel').classList.remove('active');
-  document.getElementById('loginPanel').classList.add('active');
-  document.getElementById('adminForm').classList.remove('active');
-}
-
-// ==================== Admin Panel ====================
-function toggleAdmin() {
-  document.getElementById('adminForm').classList.toggle('active');
-  if (document.getElementById('adminForm').classList.contains('active')) {
-    renderAdminTable();
-  }
-}
-
-function renderAdminTable() {
-  const tbody = document.getElementById('adminTableBody');
-  if (!formsData.length) {
-    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:#999;padding:20px;">لا توجد استمارات</td></tr>';
-    return;
-  }
-
-  // Sort by priority for admin table too
-  const sorted = [...formsData].sort((a, b) => (a.priority || 999) - (b.priority || 999));
-
-  tbody.innerHTML = sorted.map((form, idx) => `
-    <tr>
-      <td>${idx + 1}</td>
-      <td><input type="number" class="priority-input" value="${form.priority || 1}" onchange="changePriority(${form.id}, this.value)"></td>
-      <td style="font-size:20px;text-align:center;">${form.icon}</td>
-      <td><strong>${form.name}</strong></td>
-      <td>${categoryNames.ar[form.category]}</td>
-      <td>${form.downloads || 0}</td>
-      <td>
-        <div class="table-actions">
-          <button class="table-btn table-btn-up" onclick="moveUp(${form.id})">⬆️</button>
-          <button class="table-btn table-btn-down" onclick="moveDown(${form.id})">⬇️</button>
-          <button class="table-btn table-btn-edit" onclick="editForm(${form.id})">✏️</button>
-          <button class="table-btn table-btn-delete" onclick="deleteForm(${form.id})">🗑️</button>
-        </div>
-      </td>
-    </tr>
-  `).join('');
-}
-
-function changePriority(id, newPriority) {
-  const form = formsData.find(f => f.id === id);
-  if (form) {
-    form.priority = parseInt(newPriority) || 1;
-    formsData.sort((a, b) => (a.priority || 999) - (b.priority || 999));
-    renderForms();
-    renderAdminTable();
-    exportJSON();
-  }
-}
-
-function moveUp(id) {
-  const form = formsData.find(f => f.id === id);
-  if (!form) return;
-  form.priority = (form.priority || 1) - 1;
-  if (form.priority < 1) form.priority = 1;
-  formsData.sort((a, b) => (a.priority || 999) - (b.priority || 999));
-  renderForms();
-  renderAdminTable();
-  exportJSON();
-}
-
-function moveDown(id) {
-  const form = formsData.find(f => f.id === id);
-  if (!form) return;
-  form.priority = (form.priority || 1) + 1;
-  formsData.sort((a, b) => (a.priority || 999) - (b.priority || 999));
-  renderForms();
-  renderAdminTable();
-  exportJSON();
-}
+function changePriority(id, newPriority) { const form = formsData.find(f => f.id === id); if (form) { form.priority = parseInt(newPriority) || 1; formsData.sort((a, b) => (a.priority || 999) - (b.priority || 999)); renderForms(); renderAdminTable(); exportJSON(); } }
+function moveUp(id) { const form = formsData.find(f => f.id === id); if (!form) return; form.priority = Math.max(1, (form.priority || 1) - 1); formsData.sort((a, b) => (a.priority || 999) - (b.priority || 999)); renderForms(); renderAdminTable(); exportJSON(); }
+function moveDown(id) { const form = formsData.find(f => f.id === id); if (!form) return; form.priority = (form.priority || 1) + 1; formsData.sort((a, b) => (a.priority || 999) - (b.priority || 999)); renderForms(); renderAdminTable(); exportJSON(); }
 
 function saveForm() {
   const name = document.getElementById('adminName').value.trim();
@@ -1282,292 +447,75 @@ function saveForm() {
   const icon = document.getElementById('adminIcon').value.trim() || '📄';
   const color = document.getElementById('adminColor').value.trim() || '#16455B';
   const priority = parseInt(document.getElementById('adminPriority').value) || 1;
+  const tagsStr = document.getElementById('adminTags').value.trim();
+  const tags = tagsStr ? tagsStr.split(',').map(t => t.trim()).filter(t => t) : [];
+  const fileSize = document.getElementById('adminFileSize').value.trim() || '';
+  const pages = parseInt(document.getElementById('adminPages').value) || 1;
   const fileUrl = document.getElementById('adminUrl').value.trim() || '#';
   const desc = document.getElementById('adminDesc').value.trim() || name;
-
   if (!name) { alert('❌ يرجى إدخال اسم الاستمارة'); return; }
-
-  if (editingId) {
-    const idx = formsData.findIndex(f => f.id === editingId);
-    if (idx !== -1) {
-      formsData[idx] = { ...formsData[idx], name, category, icon, color, priority, fileUrl, description: desc };
-      alert('✅ تم تعديل الاستمارة! اضغط "تصدير JSON" وارفع الملف.');
-    }
-  } else {
-    formsData.push({ id: nextId++, name, category, icon, color, priority, downloads: 0, fileUrl, description: desc, addedAt: Date.now() });
-    alert('✅ تمت إضافة الاستمارة! اضغط "تصدير JSON" وارفع الملف.');
-  }
-
+  if (editingId) { const idx = formsData.findIndex(f => f.id === editingId); if (idx !== -1) { formsData[idx] = { ...formsData[idx], name, category, icon, color, priority, tags, fileSize, pages, fileUrl, description: desc, updatedAt: new Date().toISOString().split('T')[0] }; alert('✅ تم تعديل الاستمارة! اضغط "تصدير JSON" وارفع الملف.'); } }
+  else { formsData.push({ id: nextId++, name, category, icon, color, priority, tags, fileSize, pages, downloads: 0, fileUrl, description: desc, updatedAt: new Date().toISOString().split('T')[0], addedAt: Date.now() }); alert('✅ تمت إضافة الاستمارة! اضغط "تصدير JSON" وارفع الملف.'); }
   formsData.sort((a, b) => (a.priority || 999) - (b.priority || 999));
-  resetForm();
-  renderForms();
-  renderAdminTable();
-  exportJSON();
+  resetForm(); renderForms(); renderPopular(); renderAdminTable(); exportJSON();
 }
 
-function editForm(id) {
-  const form = formsData.find(f => f.id === id);
-  if (!form) return;
-  editingId = id;
-  document.getElementById('adminName').value = form.name;
-  document.getElementById('adminCategory').value = form.category;
-  document.getElementById('adminIcon').value = form.icon;
-  document.getElementById('adminColor').value = form.color;
-  document.getElementById('adminPriority').value = form.priority || 1;
-  document.getElementById('adminUrl').value = form.fileUrl === '#' ? '' : form.fileUrl;
-  document.getElementById('adminDesc').value = form.description;
-  document.getElementById('formTitle').textContent = '✏️ تعديل استمارة';
-  document.getElementById('saveBtn').textContent = '💾 حفظ التعديلات';
-  document.getElementById('adminForm').classList.add('active');
-  document.getElementById('adminName').focus();
-}
+function editForm(id) { const form = formsData.find(f => f.id === id); if (!form) return; editingId = id; document.getElementById('adminName').value = form.name; document.getElementById('adminCategory').value = form.category; document.getElementById('adminIcon').value = form.icon; document.getElementById('adminColor').value = form.color; document.getElementById('adminPriority').value = form.priority || 1; document.getElementById('adminTags').value = (form.tags || []).join(', '); document.getElementById('adminFileSize').value = form.fileSize || ''; document.getElementById('adminPages').value = form.pages || 1; document.getElementById('adminUrl').value = form.fileUrl === '#' ? '' : form.fileUrl; document.getElementById('adminDesc').value = form.description; document.getElementById('formTitle').textContent = '✏️ تعديل استمارة'; document.getElementById('saveBtn').textContent = '💾 حفظ التعديلات'; document.getElementById('adminForm').classList.add('active'); document.getElementById('adminName').focus(); }
+function deleteForm(id) { const form = formsData.find(f => f.id === id); if (!form) return; if (!confirm(`⚠️ هل أنت متأكد من حذف "${form.name}"؟`)) return; formsData = formsData.filter(f => f.id !== id); favorites = favorites.filter(fid => fid !== id); batchSelected = batchSelected.filter(fid => fid !== id); setStorage('favorites', favorites); if (editingId === id) resetForm(); renderForms(); renderFavorites(); renderPopular(); renderAdminTable(); updateBatchBar(); exportJSON(); alert('🗑️ تم حذف الاستمارة!'); }
+function resetForm() { editingId = null; document.getElementById('adminName').value = ''; document.getElementById('adminCategory').value = 'requests'; document.getElementById('adminIcon').value = '📄'; document.getElementById('adminColor').value = '#16455B'; document.getElementById('adminPriority').value = '1'; document.getElementById('adminTags').value = ''; document.getElementById('adminFileSize').value = ''; document.getElementById('adminPages').value = '1'; document.getElementById('adminUrl').value = ''; document.getElementById('adminDesc').value = ''; document.getElementById('formTitle').textContent = '➕ إضافة استمارة جديدة'; document.getElementById('saveBtn').textContent = '💾 حفظ الاستمارة'; }
+function exportJSON() { const jsonStr = JSON.stringify(formsData, null, 2); document.getElementById('exportArea').value = jsonStr; document.getElementById('jsonExport').classList.add('active'); }
+function exportCSV() { const headers = ['id', 'name', 'category', 'icon', 'color', 'priority', 'downloads', 'fileSize', 'pages', 'updatedAt', 'tags', 'description', 'fileUrl']; const rows = formsData.map(f => [f.id, f.name, f.category, f.icon, f.color, f.priority, f.downloads, f.fileSize || '', f.pages || '', f.updatedAt || '', (f.tags || []).join(';'), f.description, f.fileUrl]); const csv = [headers.join(','), ...rows.map(r => r.map(v => `"${String(v).replace(/"/g, '\"')}"`).join(','))].join('\n'); const blob = new Blob(["\uFEFF" + csv], { type: 'text/csv;charset=utf-8;' }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = 'forms_export.csv'; a.click(); URL.revokeObjectURL(url); alert('✅ تم تصدير ملف Excel/CSV!'); }
+function copyJSON() { const area = document.getElementById('exportArea'); area.select(); document.execCommand('copy'); alert('✅ تم نسخ JSON!'); }
+function downloadJSON() { const jsonStr = JSON.stringify(formsData, null, 2); const blob = new Blob([jsonStr], { type: 'application/json' }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = 'forms.json'; a.click(); URL.revokeObjectURL(url); alert('✅ تم تحميل ملف forms.json!'); }
+function clearAll() { if (!confirm('⚠️ هل أنت متأكد من حذف جميع الاستمارات؟')) return; formsData = []; favorites = []; batchSelected = []; setStorage('favorites', favorites); nextId = 1; resetForm(); renderForms(); renderFavorites(); renderPopular(); renderAdminTable(); updateBatchBar(); exportJSON(); alert('🗑️ تم حذف جميع الاستمارات!'); }
 
-function deleteForm(id) {
-  const form = formsData.find(f => f.id === id);
-  if (!form) return;
-  if (!confirm(`⚠️ هل أنت متأكد من حذف "${form.name}"؟`)) return;
-  formsData = formsData.filter(f => f.id !== id);
-  favorites = favorites.filter(fid => fid !== id);
-  setStorage('favorites', favorites);
-  if (editingId === id) resetForm();
-  renderForms();
-  renderFavorites();
-  renderAdminTable();
-  exportJSON();
-  alert('🗑️ تم حذف الاستمارة!');
-}
-
-function resetForm() {
-  editingId = null;
-  document.getElementById('adminName').value = '';
-  document.getElementById('adminCategory').value = 'requests';
-  document.getElementById('adminIcon').value = '📄';
-  document.getElementById('adminColor').value = '#16455B';
-  document.getElementById('adminPriority').value = '1';
-  document.getElementById('adminUrl').value = '';
-  document.getElementById('adminDesc').value = '';
-  document.getElementById('formTitle').textContent = '➕ إضافة استمارة جديدة';
-  document.getElementById('saveBtn').textContent = '💾 حفظ الاستمارة';
-}
-
-function exportJSON() {
-  const jsonStr = JSON.stringify(formsData, null, 2);
-  document.getElementById('exportArea').value = jsonStr;
-  document.getElementById('jsonExport').classList.add('active');
-}
-
-function copyJSON() {
-  const area = document.getElementById('exportArea');
-  area.select();
-  document.execCommand('copy');
-  alert('✅ تم نسخ JSON!');
-}
-
-function downloadJSON() {
-  const jsonStr = JSON.stringify(formsData, null, 2);
-  const blob = new Blob([jsonStr], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'forms.json';
-  a.click();
-  URL.revokeObjectURL(url);
-  alert('✅ تم تحميل ملف forms.json!');
-}
-
-function clearAll() {
-  if (!confirm('⚠️ هل أنت متأكد من حذف جميع الاستمارات؟')) return;
-  formsData = [];
-  favorites = [];
-  setStorage('favorites', favorites);
-  nextId = 1;
-  resetForm();
-  renderForms();
-  renderFavorites();
-  renderAdminTable();
-  exportJSON();
-  alert('🗑️ تم حذف جميع الاستمارات!');
-}
-
-// ==================== Render Forms ====================
 function getFilteredForms() {
   let filtered = formsData;
-
-  if (currentFilter === 'favorites') {
-    filtered = formsData.filter(f => favorites.includes(f.id));
-  } else if (currentFilter !== 'all') {
-    filtered = formsData.filter(f => f.category === currentFilter);
-  }
-
-  if (searchQuery) {
-    filtered = filtered.filter(form => 
-      form.name.includes(searchQuery) || 
-      (form.description && form.description.includes(searchQuery))
-    );
-  }
-
-  // Already sorted by priority from loadForms
+  if (currentFilter === 'favorites') filtered = formsData.filter(f => favorites.includes(f.id));
+  else if (currentFilter !== 'all') filtered = formsData.filter(f => f.category === currentFilter);
+  if (searchQuery) { const q = searchQuery.toLowerCase(); filtered = filtered.filter(form => { const inName = form.name.toLowerCase().includes(q); const inDesc = (form.description || '').toLowerCase().includes(q); const inCat = (form.category || '').toLowerCase().includes(q); const inTags = (form.tags || []).some(t => t.toLowerCase().includes(q)); return inName || inDesc || inCat || inTags; }); }
   return filtered;
 }
 
 function renderForms() {
   const grid = document.getElementById('formsGrid');
   const filtered = getFilteredForms();
-
-  if (filtered.length === 0) {
-    grid.innerHTML = `<div class="empty-state"><div class="empty-icon">🔍</div><h3>${currentLang === 'ar' ? 'لا توجد نتائج' : 'No results found'}</h3></div>`;
-    updateStats();
-    return;
-  }
-
+  if (filtered.length === 0) { grid.innerHTML = `<div class="empty-state"><div class="empty-icon">🔍</div><h3>${currentLang === 'ar' ? 'لا توجد نتائج' : 'No results found'}</h3></div>`; updateStats(); return; }
   grid.innerHTML = filtered.map((form, idx) => {
     const isFav = favorites.includes(form.id);
+    const isBatch = batchSelected.includes(form.id);
     const delay = idx * 0.05;
-    return `
-      <div class="form-card" style="--card-color: ${form.color}; --card-color-bg: ${form.color}15; animation-delay: ${delay}s;" onclick="openModal(${form.id})">
-        <div class="card-header">
-          <div class="card-icon">${form.icon}</div>
-          <div class="card-info">
-            <h3>${form.name}</h3>
-            <span class="category-tag">${categoryNames[currentLang][form.category]}</span>
-          </div>
-        </div>
-        <div class="card-footer">
-          <span class="download-count">⬇️ ${(form.downloads || 0).toLocaleString(currentLang === 'ar' ? 'ar-SA' : 'en')}</span>
-          <div class="card-actions">
-            <button class="card-action-btn ${isFav ? 'fav-active' : ''}" onclick="event.stopPropagation(); toggleFav(${form.id})" title="${isFav ? 'إزالة من المفضلة' : 'إضافة للمفضلة'}">
-              ${isFav ? '★' : '☆'}
-            </button>
-            <button class="card-action-btn" onclick="event.stopPropagation(); shareFormById(${form.id})" title="مشاركة">📤</button>
-          </div>
-        </div>
-      </div>
-    `;
+    const tagsHtml = (form.tags || []).map(t => { const cls = tagClasses[t] || ''; return `<span class="tag ${cls}">${t}</span>`; }).join('');
+    return `<div class="form-card" style="--card-color: ${form.color}; --card-color-bg: ${form.color}15; animation-delay: ${delay}s;" onclick="openModal(${form.id})"><input type="checkbox" class="batch-checkbox" ${isBatch ? 'checked' : ''} onclick="event.stopPropagation(); toggleBatch(${form.id})" title="تحديد للتنزيل المتعدد"><div class="card-header"><div class="card-icon">${form.icon}</div><div class="card-info"><h3>${form.name}</h3><span class="category-tag">${categoryNames[currentLang][form.category] || form.category}</span><div class="card-meta">${form.fileSize ? `<span class="card-meta-item">📄 ${form.fileSize}</span>` : ''}${form.pages ? `<span class="card-meta-item">📑 ${form.pages} صفحة</span>` : ''}${form.updatedAt ? `<span class="card-meta-item">📅 ${form.updatedAt}</span>` : ''}</div><div class="card-tags">${tagsHtml}</div></div></div><div class="card-footer"><span class="download-count">⬇️ ${(form.downloads || 0).toLocaleString(currentLang === 'ar' ? 'ar-SA' : 'en')}</span><div class="card-actions"><button class="card-action-btn ${isFav ? 'fav-active' : ''}" onclick="event.stopPropagation(); toggleFav(${form.id})" title="${isFav ? 'إزالة من المفضلة' : 'إضافة للمفضلة'}">${isFav ? '★' : '☆'}</button><button class="card-action-btn" onclick="event.stopPropagation(); shareFormById(${form.id})" title="مشاركة">📤</button></div></div></div>`;
   }).join('');
-
   updateStats();
 }
 
-function updateStats() {
-  const total = formsData.length;
-  const totalDownloads = formsData.reduce((sum, f) => sum + (f.downloads || 0), 0);
-  document.getElementById('statTotal').textContent = total;
-  document.getElementById('statDownloads').textContent = totalDownloads.toLocaleString(currentLang === 'ar' ? 'ar-SA' : 'en');
-  document.getElementById('statToday').textContent = getStorage('todayDownloads', { count: 0 }).count;
-  document.getElementById('statFavs').textContent = favorites.length;
-}
+function updateStats() { const total = formsData.length; const totalDownloads = formsData.reduce((sum, f) => sum + (f.downloads || 0), 0); document.getElementById('statTotal').textContent = total; document.getElementById('statDownloads').textContent = totalDownloads.toLocaleString(currentLang === 'ar' ? 'ar-SA' : 'en'); document.getElementById('statToday').textContent = getStorage('todayDownloads', { count: 0 }).count; document.getElementById('statFavs').textContent = favorites.length; document.getElementById('statVisitors').textContent = visitorCount; }
 
-// ==================== Filters ====================
-document.querySelectorAll('.filter-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    currentFilter = btn.dataset.filter;
-    renderForms();
-  });
-});
+function toggleBatch(id) { const idx = batchSelected.indexOf(id); if (idx > -1) batchSelected.splice(idx, 1); else batchSelected.push(id); updateBatchBar(); }
+function updateBatchBar() { const bar = document.getElementById('batchBar'); const count = document.getElementById('batchCount'); if (batchSelected.length === 0) { bar.classList.remove('active'); return; } bar.classList.add('active'); count.textContent = `${batchSelected.length} استمارة محددة`; }
+function downloadBatch() { const selected = formsData.filter(f => batchSelected.includes(f.id)); if (selected.length === 0) return; let downloaded = 0; selected.forEach(form => { if (form.fileUrl && form.fileUrl !== '#') { const a = document.createElement('a'); a.href = form.fileUrl; a.download = form.name + '.pdf'; a.click(); downloaded++; form.downloads = (form.downloads || 0) + 1; } }); if (downloaded === 0) { alert('ℹ️ روابط الملفات غير متوفرة. يرجى إضافة روابط PDF أولاً.'); return; } batchSelected = []; updateBatchBar(); renderForms(); renderPopular(); updateStats(); exportJSON(); alert(`✅ تم تحميل ${downloaded} استمارة!`); }
+function clearBatch() { batchSelected = []; updateBatchBar(); renderForms(); }
 
-// ==================== Search ====================
-document.getElementById('searchInput').addEventListener('input', (e) => {
-  searchQuery = e.target.value.trim();
-  renderForms();
-});
+document.querySelectorAll('.filter-btn').forEach(btn => { btn.addEventListener('click', () => { document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); currentFilter = btn.dataset.filter; renderForms(); }); });
+document.getElementById('searchInput').addEventListener('input', (e) => { searchQuery = e.target.value.trim(); renderForms(); });
 
-// ==================== Modal ====================
-function openModal(formId) {
-  selectedForm = formsData.find(f => f.id === formId);
-  if (!selectedForm) return;
-  document.getElementById('modalIcon').textContent = selectedForm.icon;
-  document.getElementById('modalIcon').style.background = selectedForm.color + '20';
-  document.getElementById('modalTitle').textContent = selectedForm.name;
-  document.getElementById('modalDesc').textContent = selectedForm.description;
-  updateFavButton();
-  document.getElementById('modalOverlay').classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeModal() {
-  document.getElementById('modalOverlay').classList.remove('active');
-  document.body.style.overflow = '';
-  selectedForm = null;
-}
-
-document.getElementById('modalOverlay').addEventListener('click', (e) => {
-  if (e.target === document.getElementById('modalOverlay')) closeModal();
-});
+function openModal(formId) { selectedForm = formsData.find(f => f.id === formId); if (!selectedForm) return; document.getElementById('modalIcon').textContent = selectedForm.icon; document.getElementById('modalIcon').style.background = selectedForm.color + '20'; document.getElementById('modalTitle').textContent = selectedForm.name; document.getElementById('modalDesc').textContent = selectedForm.description; const meta = []; if (selectedForm.fileSize) meta.push(`📄 ${selectedForm.fileSize}`); if (selectedForm.pages) meta.push(`📑 ${selectedForm.pages} صفحة`); if (selectedForm.updatedAt) meta.push(`📅 ${selectedForm.updatedAt}`); document.getElementById('modalMeta').innerHTML = meta.map(m => `<span>${m}</span>`).join(''); updateFavButton(); document.getElementById('modalOverlay').classList.add('active'); document.body.style.overflow = 'hidden'; }
+function closeModal() { document.getElementById('modalOverlay').classList.remove('active'); document.body.style.overflow = ''; selectedForm = null; }
+document.getElementById('modalOverlay').addEventListener('click', (e) => { if (e.target === document.getElementById('modalOverlay')) closeModal(); });
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
-// ==================== Actions ====================
-function handlePrint() {
-  if (!selectedForm) return;
-  if (selectedForm.fileUrl && selectedForm.fileUrl !== '#') {
-    const win = window.open(selectedForm.fileUrl, '_blank');
-    if (win) win.onload = () => win.print();
-  } else {
-    alert(currentLang === 'ar' ? 'ℹ️ رابط الملف غير متوفر حاليًا.' : 'ℹ️ File URL not available.');
-  }
-  closeModal();
-}
+function handlePrint() { if (!selectedForm) return; if (selectedForm.fileUrl && selectedForm.fileUrl !== '#') { const win = window.open(selectedForm.fileUrl, '_blank'); if (win) win.onload = () => win.print(); } else { alert(currentLang === 'ar' ? 'ℹ️ رابط الملف غير متوفر حاليًا.' : 'File URL not available.'); } closeModal(); }
+function handleDownload() { if (!selectedForm) return; if (selectedForm.fileUrl && selectedForm.fileUrl !== '#') { const a = document.createElement('a'); a.href = selectedForm.fileUrl; a.download = selectedForm.name + '.pdf'; a.click(); selectedForm.downloads = (selectedForm.downloads || 0) + 1; renderForms(); renderPopular(); updateStats(); exportJSON(); } else { alert(currentLang === 'ar' ? 'ℹ️ رابط الملف غير متوفر حاليًا.' : 'File URL not available.'); } closeModal(); }
+function handlePreview() { if (!selectedForm) return; if (selectedForm.fileUrl && selectedForm.fileUrl !== '#') { window.open(selectedForm.fileUrl, '_blank'); } else { alert(currentLang === 'ar' ? 'ℹ️ رابط الملف غير متوفر حاليًا.' : 'File URL not available.'); } closeModal(); }
+function shareForm() { if (!selectedForm) return; shareFormById(selectedForm.id); closeModal(); }
+function shareFormById(id) { const form = formsData.find(f => f.id === id); if (!form) return; const text = `${form.name} - ${form.description}\n${form.fileUrl !== '#' ? form.fileUrl : 'https://x1xhanix1x.github.io/forms-portal/'}`; if (navigator.share) { navigator.share({ title: form.name, text: form.description, url: form.fileUrl !== '#' ? form.fileUrl : 'https://x1xhanix1x.github.io/forms-portal/' }); } else { const waUrl = `https://wa.me/?text=${encodeURIComponent(text)}`; window.open(waUrl, '_blank'); } }
 
-function handleDownload() {
-  if (!selectedForm) return;
-  if (selectedForm.fileUrl && selectedForm.fileUrl !== '#') {
-    const a = document.createElement('a');
-    a.href = selectedForm.fileUrl;
-    a.download = selectedForm.name + '.pdf';
-    a.click();
-  } else {
-    alert(currentLang === 'ar' ? 'ℹ️ رابط الملف غير متوفر حاليًا.' : 'ℹ️ File URL not available.');
-  }
-  closeModal();
-}
+window.addEventListener('scroll', () => { const btn = document.getElementById('backToTop'); btn.classList.toggle('visible', window.scrollY > 400); });
+function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
 
-function handlePreview() {
-  if (!selectedForm) return;
-  if (selectedForm.fileUrl && selectedForm.fileUrl !== '#') {
-    window.open(selectedForm.fileUrl, '_blank');
-  } else {
-    alert(currentLang === 'ar' ? 'ℹ️ رابط الملف غير متوفر حاليًا.' : 'ℹ️ File URL not available.');
-  }
-  closeModal();
-}
-
-function shareForm() {
-  if (!selectedForm) return;
-  shareFormById(selectedForm.id);
-  closeModal();
-}
-
-function shareFormById(id) {
-  const form = formsData.find(f => f.id === id);
-  if (!form) return;
-  const text = `${form.name} - ${form.description}\n${form.fileUrl !== '#' ? form.fileUrl : 'https://x1xhanix1x.github.io/forms-portal/'}`;
-
-  if (navigator.share) {
-    navigator.share({ title: form.name, text: form.description, url: form.fileUrl !== '#' ? form.fileUrl : 'https://x1xhanix1x.github.io/forms-portal/' });
-  } else {
-    // WhatsApp share
-    const waUrl = `https://wa.me/?text=${encodeURIComponent(text)}`;
-    window.open(waUrl, '_blank');
-  }
-}
-
-// ==================== Back to Top ====================
-window.addEventListener('scroll', () => {
-  const btn = document.getElementById('backToTop');
-  if (window.scrollY > 400) {
-    btn.classList.add('visible');
-  } else {
-    btn.classList.remove('visible');
-  }
-});
-function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-// ==================== Run ====================
 loadForms();
 </script>
-
 </body>
 </html>
