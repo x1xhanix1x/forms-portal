@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الإدارة العامة للتعليم بجدة - بوابة الاستمارات</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   هوية وزارة التعليم السعودية
+   أزرق داكن: #16455B | أخضر مائي: #309694 | أخضر: #38A18A
+   ============================================ */
+:root {
+  --moe-teal: #16455B;
+  --moe-teal-light: #216273;
+  --moe-teal-dark: #0f3548;
+  --moe-green: #38A18A;
+  --moe-green-light: #4DB89F;
+  --moe-aqua: #309694;
+  --moe-aqua-light: #3CB5B3;
+  --moe-white: #ffffff;
+  --moe-cream: #f5f7f6;
+  --moe-gray: #eef1f0;
+  --moe-text: #1a1a1a;
+  --moe-text-light: #555555;
+  --moe-border: #d8e0dc;
+  --shadow: 0 4px 20px rgba(22,69,91,0.08);
+  --shadow-hover: 0 12px 40px rgba(22,69,91,0.15);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Tajawal', sans-serif;
+  background: var(--moe-cream);
+  color: var(--moe-text);
+  min-height: 100vh;
+}
+
+/* ===== Header ===== */
+.header {
+  background: linear-gradient(135deg, var(--moe-teal) 0%, var(--moe-teal-dark) 100%);
+  padding: 20px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  border-bottom: 4px solid var(--moe-aqua);
+}
+.header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.logo-icon {
+  width: 52px; height: 52px;
+  background: var(--moe-aqua);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px;
+  border: 2px solid var(--moe-white);
+}
+.logo-text h1 {
+  color: var(--moe-white);
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.4;
+}
+.logo-text p {
+  color: rgba(255,255,255,0.8);
+  font-size: 12px;
+  margin-top: 2px;
+}
+.status-badge {
+  background: rgba(48,150,148,0.2);
+  color: var(--moe-aqua-light);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex; align-items: center; gap: 6px;
+  border: 1px solid var(--moe-aqua);
+}
+
+/* ===== Login Panel ===== */
+.login-panel {
+  max-width: 1100px;
+  margin: 24px auto;
+  padding: 0 20px;
+  display: none;
+}
+.login-panel.active { display: block; }
+.login-box {
+  background: var(--moe-white);
+  border-radius: 20px;
+  padding: 32px;
+  max-width: 400px;
+  margin: 0 auto;
+  border: 2px solid var(--moe-aqua);
+  box-shadow: var(--shadow-hover);
+  text-align: center;
+}
+.login-box h3 {
+  color: var(--moe-teal);
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+.login-box p {
+  color: var(--moe-text-light);
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+.login-box input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid var(--moe-border);
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 16px;
+  margin-bottom: 12px;
+  text-align: center;
+  letter-spacing: 4px;
+}
+.login-box input:focus {
+  outline: none;
+  border-color: var(--moe-teal);
+}
+.login-box button {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  background: var(--moe-teal);
+  color: white;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.login-box button:hover { background: var(--moe-teal-dark); }
+.login-error {
+  color: #dc3545;
+  font-size: 13px;
+  margin-top: 8px;
+  display: none;
+}
+.login-error.active { display: block; }
+
+/* ===== Admin Panel ===== */
+.admin-panel {
+  max-width: 1100px;
+  margin: 0 auto 24px;
+  padding: 0 20px;
+  display: none;
+}
+.admin-panel.active { display: block; }
+.admin-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.admin-toggle {
+  background: linear-gradient(135deg, var(--moe-aqua) 0%, var(--moe-teal-light) 100%);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 15px rgba(48,150,148,0.3);
+  transition: all 0.3s;
+}
+.admin-toggle:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(48,150,148,0.4);
+}
+.logout-btn {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.logout-btn:hover { background: #c82333; }
+.admin-form {
+  background: var(--moe-white);
+  border-radius: 20px;
+  padding: 28px;
+  margin-top: 16px;
+  border: 2px solid var(--moe-aqua);
+  box-shadow: var(--shadow-hover);
+  display: none;
+}
+.admin-form.active { display: block; animation: slideDown 0.3s ease; }
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.admin-form h3 {
+  color: var(--moe-teal);
+  font-size: 18px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+  margin-bottom: 14px;
+}
+.form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--moe-text-light);
+  margin-bottom: 6px;
+}
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 2px solid var(--moe-border);
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 14px;
+  transition: all 0.3s;
+}
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--moe-teal);
+}
+.admin-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+.admin-btn {
+  padding: 12px 24px;
+  border-radius: 10px;
+  border: none;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.admin-btn-primary {
+  background: var(--moe-teal);
+  color: white;
+}
+.admin-btn-primary:hover { background: var(--moe-teal-dark); }
+.admin-btn-secondary {
+  background: var(--moe-gray);
+  color: var(--moe-text);
+}
+.admin-btn-secondary:hover { background: var(--moe-border); }
+.admin-btn-danger {
+  background: #dc3545;
+  color: white;
+}
+.admin-btn-danger:hover { background: #c82333; }
+.admin-btn-warning {
+  background: #f0ad4e;
+  color: white;
+}
+.admin-btn-warning:hover { background: #ec971f; }
+
+/* Forms Table */
+.forms-table-wrapper {
+  margin-top: 24px;
+  overflow-x: auto;
+}
+.forms-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--moe-white);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.forms-table th {
+  background: var(--moe-teal);
+  color: white;
+  padding: 14px 16px;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: right;
+}
+.forms-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--moe-border);
+  font-size: 14px;
+}
+.forms-table tr:hover td {
+  background: var(--moe-cream);
+}
+.forms-table .table-actions {
+  display: flex;
+  gap: 6px;
+}
+.table-btn {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: none;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.table-btn-edit {
+  background: var(--moe-aqua);
+  color: white;
+}
+.table-btn-edit:hover { background: var(--moe-teal); }
+.table-btn-delete {
+  background: #dc3545;
+  color: white;
+}
+.table-btn-delete:hover { background: #c82333; }
+
+/* Code Export Area */
+.code-export {
+  margin-top: 20px;
+  padding: 16px;
+  background: #16455B;
+  border-radius: 12px;
+  display: none;
+}
+.code-export.active { display: block; }
+.code-export h4 {
+  color: var(--moe-aqua-light);
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.code-export textarea {
+  width: 100%;
+  height: 200px;
+  background: #0f3548;
+  color: #4DB89F;
+  border: 1px solid #216273;
+  border-radius: 8px;
+  padding: 12px;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  resize: vertical;
+  direction: ltr;
+}
+.code-export .copy-btn {
+  margin-top: 10px;
+  background: var(--moe-aqua);
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* ===== Controls ===== */
+.controls {
+  max-width: 1100px;
+  margin: 24px auto;
+  padding: 0 20px;
+}
+.search-box {
+  position: relative;
+  margin-bottom: 16px;
+}
+.search-box input {
+  width: 100%;
+  padding: 16px 52px 16px 20px;
+  border: 2px solid var(--moe-border);
+  border-radius: 16px;
+  font-size: 16px;
+  font-family: inherit;
+  background: var(--moe-white);
+  transition: all 0.3s;
+}
+.search-box input:focus {
+  outline: none;
+  border-color: var(--moe-teal);
+  box-shadow: 0 0 0 4px rgba(22,69,91,0.1);
+}
+.search-box .search-icon {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  opacity: 0.5;
+}
+.filter-tabs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.filter-btn {
+  padding: 10px 22px;
+  border-radius: 12px;
+  border: 2px solid var(--moe-border);
+  background: var(--moe-white);
+  color: var(--moe-text-light);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.filter-btn:hover {
+  border-color: var(--moe-teal);
+  color: var(--moe-teal);
+}
+.filter-btn.active {
+  background: var(--moe-teal);
+  color: white;
+  border-color: var(--moe-teal);
+  box-shadow: 0 4px 15px rgba(22,69,91,0.3);
+}
+
+/* ===== Stats Bar ===== */
+.stats-bar {
+  max-width: 1100px;
+  margin: 0 auto 20px;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+}
+.stat-card {
+  background: var(--moe-white);
+  border-radius: 14px;
+  padding: 16px;
+  text-align: center;
+  border: 1px solid var(--moe-border);
+  box-shadow: var(--shadow);
+  border-top: 3px solid var(--moe-aqua);
+}
+.stat-card .stat-num {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--moe-teal);
+}
+.stat-card .stat-label {
+  font-size: 13px;
+  color: var(--moe-text-light);
+  margin-top: 4px;
+}
+
+/* ===== Grid ===== */
+.forms-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.form-card {
+  background: var(--moe-white);
+  border-radius: 18px;
+  padding: 24px;
+  border: 1px solid var(--moe-border);
+  box-shadow: var(--shadow);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.form-card::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 5px; height: 100%;
+  background: var(--card-color, var(--moe-teal));
+  transition: width 0.3s;
+}
+.form-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+}
+.form-card:hover::before {
+  width: 8px;
+}
+
+.card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+.card-icon {
+  width: 52px; height: 52px;
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px;
+  flex-shrink: 0;
+  background: var(--card-color-bg, rgba(22,69,91,0.1));
+}
+.card-info h3 {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--moe-text);
+  line-height: 1.4;
+}
+.card-info .category-tag {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 3px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  background: var(--card-color-bg, rgba(22,69,91,0.1));
+  color: var(--card-color, var(--moe-teal));
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+.download-count {
+  font-size: 13px;
+  color: var(--moe-text-light);
+  display: flex; align-items: center; gap: 4px;
+}
+.print-btn {
+  padding: 8px 18px;
+  border-radius: 10px;
+  border: none;
+  background: var(--card-color, var(--moe-teal));
+  color: white;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.print-btn:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+}
+
+/* ===== Empty State ===== */
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+}
+.empty-state .empty-icon {
+  font-size: 64px;
+  margin-bottom: 16px;
+  opacity: 0.3;
+}
+.empty-state h3 {
+  font-size: 20px;
+  color: var(--moe-text-light);
+}
+
+/* ===== Modal ===== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(8px);
+  z-index: 200;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.modal-overlay.active { display: flex; }
+.modal {
+  background: var(--moe-white);
+  border-radius: 24px;
+  max-width: 500px;
+  width: 100%;
+  max-height: 90vh;
+  overflow: hidden;
+  box-shadow: 0 25px 80px rgba(0,0,0,0.2);
+  animation: modalIn 0.3s ease;
+  border-top: 4px solid var(--moe-aqua);
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.9) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.modal-header {
+  padding: 28px 28px 0;
+  text-align: center;
+}
+.modal-icon {
+  width: 72px; height: 72px;
+  border-radius: 20px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 36px;
+  margin: 0 auto 16px;
+  background: rgba(22,69,91,0.1);
+}
+.modal-header h2 {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--moe-text);
+}
+.modal-header p {
+  color: var(--moe-text-light);
+  font-size: 14px;
+  margin-top: 6px;
+}
+.modal-body {
+  padding: 24px 28px;
+}
+.modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.modal-btn {
+  padding: 14px 20px;
+  border-radius: 14px;
+  border: none;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.modal-btn-primary {
+  background: var(--moe-teal);
+  color: white;
+}
+.modal-btn-primary:hover { background: var(--moe-teal-dark); }
+.modal-btn-secondary {
+  background: var(--moe-gray);
+  color: var(--moe-text);
+}
+.modal-btn-secondary:hover { background: var(--moe-border); }
+.modal-close {
+  padding: 12px;
+  text-align: center;
+  color: var(--moe-text-light);
+  font-size: 14px;
+  cursor: pointer;
+  border-top: 1px solid var(--moe-border);
+}
+.modal-close:hover { color: var(--moe-teal); }
+
+/* ===== Footer ===== */
+.footer {
+  text-align: center;
+  padding: 24px;
+  color: var(--moe-text-light);
+  font-size: 13px;
+  border-top: 1px solid var(--moe-border);
+  background: var(--moe-white);
+}
+.footer .moe-brand {
+  color: var(--moe-teal);
+  font-weight: 700;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 600px) {
+  .header-inner { justify-content: center; text-align: center; }
+  .logo-area { flex-direction: column; }
+  .forms-grid { grid-template-columns: 1fr; }
+  .stat-card .stat-num { font-size: 22px; }
+  .form-row { grid-template-columns: 1fr; }
+  .forms-table th, .forms-table td { padding: 10px 8px; font-size: 12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+  <div class="header-inner">
+    <div class="logo-area">
+      <div class="logo-icon">📋</div>
+      <div class="logo-text">
+        <h1>الإدارة العامة للتعليم بمحافظة جدة</h1>
+        <p>الموارد البشرية — الانتدابات والبدلات</p>
+      </div>
+    </div>
+    <div class="status-badge">
+      <span>🟢</span> النظام متاح
+    </div>
+  </div>
+</header>
+
+<!-- Login Panel (for non-admin) -->
+<div class="login-panel" id="loginPanel">
+  <div class="login-box">
+    <h3>🔐 تسجيل دخول المشرف</h3>
+    <p>الوصول إلى لوحة إدارة الاستمارات</p>
+    <input type="password" id="loginPassword" placeholder="••••••" onkeypress="if(event.key==='Enter')doLogin()">
+    <button onclick="doLogin()">دخول</button>
+    <div class="login-error" id="loginError">❌ كلمة المرور غير صحيحة</div>
+  </div>
+</div>
+
+<!-- Admin Panel (protected) -->
+<div class="admin-panel" id="adminPanel">
+  <div class="admin-header">
+    <button class="admin-toggle" onclick="toggleAdmin()">
+      ⚙️ لوحة إدارة الاستمارات
+    </button>
+    <button class="logout-btn" onclick="doLogout()">🔒 خروج</button>
+  </div>
+  <div class="admin-form" id="adminForm">
+    <h3 id="formTitle">➕ إضافة استمارة جديدة</h3>
+    <input type="hidden" id="editId" value="">
+    <div class="form-row">
+      <div class="form-group">
+        <label>اسم الاستمارة *</label>
+        <input type="text" id="adminName" placeholder="مثال: استمارة طلب انتداب">
+      </div>
+      <div class="form-group">
+        <label>التصنيف *</label>
+        <select id="adminCategory">
+          <option value="requests">📨 طلبات</option>
+          <option value="prints">🖨️ طباعات</option>
+          <option value="reports">📊 تقارير</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>الأيقونة (Emoji)</label>
+        <input type="text" id="adminIcon" placeholder="📄" value="📄">
+      </div>
+      <div class="form-group">
+        <label>اللون (Hex Code)</label>
+        <input type="text" id="adminColor" placeholder="#16455B" value="#16455B">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>رابط الملف (PDF)</label>
+        <input type="text" id="adminUrl" placeholder="https://.../file.pdf">
+      </div>
+      <div class="form-group">
+        <label>الوصف</label>
+        <input type="text" id="adminDesc" placeholder="وصف مختصر للاستمارة">
+      </div>
+    </div>
+    <div class="admin-actions">
+      <button class="admin-btn admin-btn-primary" id="saveBtn" onclick="saveForm()">💾 حفظ الاستمارة</button>
+      <button class="admin-btn admin-btn-secondary" onclick="resetForm()">🔄 إعادة تعيين</button>
+      <button class="admin-btn admin-btn-secondary" onclick="exportData()">📋 تصدير البيانات</button>
+      <button class="admin-btn admin-btn-danger" onclick="clearAll()">🗑️ حذف الكل</button>
+    </div>
+
+    <!-- Forms Table -->
+    <div class="forms-table-wrapper">
+      <h3 style="color:var(--moe-teal);margin:24px 0 12px;font-size:16px;">📋 الاستمارات الحالية</h3>
+      <table class="forms-table" id="adminTable">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>الأيقونة</th>
+            <th>الاسم</th>
+            <th>التصنيف</th>
+            <th>التحميلات</th>
+            <th>الإجراءات</th>
+          </tr>
+        </thead>
+        <tbody id="adminTableBody"></tbody>
+      </table>
+    </div>
+
+    <div class="code-export" id="codeExport">
+      <h4>📋 انسخ هذا الكود والصقه في ملف HTML (استبدل قسم formsData)</h4>
+      <textarea id="exportArea" readonly></textarea>
+      <button class="copy-btn" onclick="copyCode()">📋 نسخ الكود</button>
+    </div>
+  </div>
+</div>
+
+<!-- Controls -->
+<div class="controls">
+  <div class="search-box">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="searchInput" placeholder="ابحث عن استمارة أو مستند...">
+  </div>
+  <div class="filter-tabs">
+    <button class="filter-btn active" data-filter="all">الكل</button>
+    <button class="filter-btn" data-filter="requests">📨 طلبات</button>
+    <button class="filter-btn" data-filter="prints">🖨️ طباعات</button>
+    <button class="filter-btn" data-filter="reports">📊 تقارير</button>
+  </div>
+</div>
+
+<!-- Stats -->
+<div class="stats-bar">
+  <div class="stat-card">
+    <div class="stat-num" id="statTotal">0</div>
+    <div class="stat-label">إجمالي المستندات</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num" id="statDownloads">0</div>
+    <div class="stat-label">إجمالي التحميلات</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num" id="statToday">0</div>
+    <div class="stat-label">تحميلات اليوم</div>
+  </div>
+</div>
+
+<!-- Grid -->
+<div class="forms-grid" id="formsGrid"></div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-icon" id="modalIcon">📄</div>
+      <h2 id="modalTitle">عنوان المستند</h2>
+      <p id="modalDesc">اختر الإجراء المناسب</p>
+    </div>
+    <div class="modal-body">
+      <div class="modal-actions">
+        <button class="modal-btn modal-btn-primary" onclick="handlePrint()">🖨️ طباعة المستند</button>
+        <button class="modal-btn modal-btn-secondary" onclick="handleDownload()">⬇️ تحميل PDF</button>
+        <button class="modal-btn modal-btn-secondary" onclick="handlePreview()">👁️ معاينة المستند</button>
+      </div>
+    </div>
+    <div class="modal-close" onclick="closeModal()">إغلاق</div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <span class="moe-brand">وزارة التعليم السعودية</span> — الإدارة العامة للتعليم بمحافظة جدة — الموارد البشرية — الانتدابات والبدلات
+  <br>جميع الحقوق محفوظة © 2026
+</footer>
+
+<script>
+// ==================== كلمة المرور ====================
+// ✅ عدّل هنا: غيّر كلمة المرور اللي تبيها
+const ADMIN_PASSWORD = "Jeddah2026!";
+
+// ==================== البيانات الافتراضية ====================
+let formsData = [
+  {
+    id: 1,
+    name: 'استمارة طلب انتداب',
+    category: 'requests',
+    icon: '📋',
+    color: '#16455B',
+    downloads: 234,
+    fileUrl: '#',
+    description: 'استمارة رسمية لتقديم طلب انتداب وظيفي'
+  },
+  {
+    id: 2,
+    name: 'استمارة طلب بدل',
+    category: 'requests',
+    icon: '💰',
+    color: '#309694',
+    downloads: 189,
+    fileUrl: '#',
+    description: 'نموذج طلب صرف بدل مالي للموظفين'
+  },
+  {
+    id: 3,
+    name: 'استمارة طلب إجازة',
+    category: 'requests',
+    icon: '🏖️',
+    color: '#38A18A',
+    downloads: 156,
+    fileUrl: '#',
+    description: 'استمارة تقديم طلب إجازة سنوية أو استثنائية'
+  },
+  {
+    id: 4,
+    name: 'شهادة راتب',
+    category: 'prints',
+    icon: '📄',
+    color: '#16455B',
+    downloads: 412,
+    fileUrl: '#',
+    description: 'شهادة رسمية بقيمة الراتب الشهري'
+  },
+  {
+    id: 5,
+    name: 'تعريف بالراتب',
+    category: 'prints',
+    icon: '📃',
+    color: '#309694',
+    downloads: 378,
+    fileUrl: '#',
+    description: 'خطاب تعريف بالراتب للجهات الخارجية'
+  },
+  {
+    id: 6,
+    name: 'تقرير أداء شهري',
+    category: 'reports',
+    icon: '📊',
+    color: '#216273',
+    downloads: 98,
+    fileUrl: '#',
+    description: 'نموذج تقييم الأداء الوظيفي الشهري'
+  },
+  {
+    id: 7,
+    name: 'استمارة طلب نقل',
+    category: 'requests',
+    icon: '🚚',
+    color: '#16455B',
+    downloads: 67,
+    fileUrl: '#',
+    description: 'استمارة طلب نقل وظيفي أو إداري'
+  },
+  {
+    id: 8,
+    name: 'عقد عمل',
+    category: 'prints',
+    icon: '📝',
+    color: '#309694',
+    downloads: 145,
+    fileUrl: '#',
+    description: 'نسخة من عقد العمل للمراجعين'
+  },
+  {
+    id: 9,
+    name: 'تقرير إنجاز سنوي',
+    category: 'reports',
+    icon: '📈',
+    color: '#16455B',
+    downloads: 54,
+    fileUrl: '#',
+    description: 'تقرير ملخص الإنجازات السنوية'
+  },
+  {
+    id: 10,
+    name: 'استمارة طلب تدريب',
+    category: 'requests',
+    icon: '🎓',
+    color: '#309694',
+    downloads: 123,
+    fileUrl: '#',
+    description: 'طلب الالتحاق بدورة تدريبية'
+  }
+];
+
+const categoryNames = {
+  all: 'الكل',
+  requests: 'طلبات',
+  prints: 'طباعات',
+  reports: 'تقارير'
+};
+
+// ==================== التخزين المحلي ====================
+function getStorage(key, defaultVal) {
+  try {
+    const val = localStorage.getItem(key);
+    return val ? JSON.parse(val) : defaultVal;
+  } catch { return defaultVal; }
+}
+function setStorage(key, val) {
+  try { localStorage.setItem(key, JSON.stringify(val)); } catch {}
+}
+
+const savedForms = getStorage('formsData', null);
+if (savedForms) formsData = savedForms;
+
+let downloadCounts = getStorage('downloadCounts', {});
+let todayDownloads = getStorage('todayDownloads', { date: new Date().toDateString(), count: 0 });
+
+if (todayDownloads.date !== new Date().toDateString()) {
+  todayDownloads = { date: new Date().toDateString(), count: 0 };
+  setStorage('todayDownloads', todayDownloads);
+}
+
+// ==================== حالة المشرف ====================
+let isAdmin = getStorage('isAdmin', false);
+let currentFilter = 'all';
+let searchQuery = '';
+let selectedForm = null;
+let nextId = Math.max(...formsData.map(f => f.id), 0) + 1;
+let editingId = null;
+
+// ==================== تسجيل الدخول ====================
+function initAuth() {
+  if (isAdmin) {
+    document.getElementById('loginPanel').classList.remove('active');
+    document.getElementById('adminPanel').classList.add('active');
+  } else {
+    document.getElementById('loginPanel').classList.add('active');
+    document.getElementById('adminPanel').classList.remove('active');
+  }
+}
+
+function doLogin() {
+  const password = document.getElementById('loginPassword').value;
+  if (password === ADMIN_PASSWORD) {
+    isAdmin = true;
+    setStorage('isAdmin', true);
+    document.getElementById('loginPanel').classList.remove('active');
+    document.getElementById('adminPanel').classList.add('active');
+    document.getElementById('loginError').classList.remove('active');
+    document.getElementById('loginPassword').value = '';
+    renderAdminTable();
+  } else {
+    document.getElementById('loginError').classList.add('active');
+    document.getElementById('loginPassword').value = '';
+  }
+}
+
+function doLogout() {
+  if (!confirm('هل أنت متأكد من تسجيل الخروج؟')) return;
+  isAdmin = false;
+  setStorage('isAdmin', false);
+  document.getElementById('adminPanel').classList.remove('active');
+  document.getElementById('loginPanel').classList.add('active');
+  document.getElementById('adminForm').classList.remove('active');
+}
+
+// ==================== لوحة الإدارة ====================
+function toggleAdmin() {
+  document.getElementById('adminForm').classList.toggle('active');
+  if (document.getElementById('adminForm').classList.contains('active')) {
+    renderAdminTable();
+  }
+}
+
+function renderAdminTable() {
+  const tbody = document.getElementById('adminTableBody');
+  if (!formsData.length) {
+    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:#999;padding:20px;">لا توجد استمارات</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = formsData.map((form, idx) => {
+    const count = downloadCounts[form.id] || form.downloads || 0;
+    return `
+      <tr>
+        <td>${idx + 1}</td>
+        <td style="font-size:20px;text-align:center;">${form.icon}</td>
+        <td><strong>${form.name}</strong></td>
+        <td>${categoryNames[form.category]}</td>
+        <td>${count}</td>
+        <td>
+          <div class="table-actions">
+            <button class="table-btn table-btn-edit" onclick="editForm(${form.id})">✏️ تعديل</button>
+            <button class="table-btn table-btn-delete" onclick="deleteForm(${form.id})">🗑️ حذف</button>
+          </div>
+        </td>
+      </tr>
+    `;
+  }).join('');
+}
+
+function saveForm() {
+  const name = document.getElementById('adminName').value.trim();
+  const category = document.getElementById('adminCategory').value;
+  const icon = document.getElementById('adminIcon').value.trim() || '📄';
+  const color = document.getElementById('adminColor').value.trim() || '#16455B';
+  const fileUrl = document.getElementById('adminUrl').value.trim() || '#';
+  const desc = document.getElementById('adminDesc').value.trim() || name;
+
+  if (!name) {
+    alert('❌ يرجى إدخال اسم الاستمارة');
+    return;
+  }
+
+  if (editingId) {
+    // تعديل موجود
+    const idx = formsData.findIndex(f => f.id === editingId);
+    if (idx !== -1) {
+      formsData[idx] = {
+        ...formsData[idx],
+        name, category, icon, color, fileUrl,
+        description: desc
+      };
+      alert('✅ تم تعديل الاستمارة بنجاح!');
+    }
+  } else {
+    // إضافة جديدة
+    const newForm = {
+      id: nextId++,
+      name, category, icon, color,
+      downloads: 0,
+      fileUrl, description: desc
+    };
+    formsData.push(newForm);
+    alert('✅ تمت إضافة الاستمارة بنجاح!');
+  }
+
+  setStorage('formsData', formsData);
+  resetForm();
+  renderForms();
+  renderAdminTable();
+}
+
+function editForm(id) {
+  const form = formsData.find(f => f.id === id);
+  if (!form) return;
+
+  editingId = id;
+  document.getElementById('adminName').value = form.name;
+  document.getElementById('adminCategory').value = form.category;
+  document.getElementById('adminIcon').value = form.icon;
+  document.getElementById('adminColor').value = form.color;
+  document.getElementById('adminUrl').value = form.fileUrl === '#' ? '' : form.fileUrl;
+  document.getElementById('adminDesc').value = form.description;
+
+  document.getElementById('formTitle').textContent = '✏️ تعديل استمارة';
+  document.getElementById('saveBtn').textContent = '💾 حفظ التعديلات';
+
+  document.getElementById('adminForm').classList.add('active');
+  document.getElementById('adminName').focus();
+}
+
+function deleteForm(id) {
+  const form = formsData.find(f => f.id === id);
+  if (!form) return;
+
+  if (!confirm(`⚠️ هل أنت متأكد من حذف "${form.name}"؟`)) return;
+
+  formsData = formsData.filter(f => f.id !== id);
+  setStorage('formsData', formsData);
+
+  // إذا كنا نعدّل نفس الاستمارة المحذوفة، نعيد التعيين
+  if (editingId === id) resetForm();
+
+  renderForms();
+  renderAdminTable();
+  alert('🗑️ تم حذف الاستمارة');
+}
+
+function resetForm() {
+  editingId = null;
+  document.getElementById('adminName').value = '';
+  document.getElementById('adminCategory').value = 'requests';
+  document.getElementById('adminIcon').value = '📄';
+  document.getElementById('adminColor').value = '#16455B';
+  document.getElementById('adminUrl').value = '';
+  document.getElementById('adminDesc').value = '';
+  document.getElementById('formTitle').textContent = '➕ إضافة استمارة جديدة';
+  document.getElementById('saveBtn').textContent = '💾 حفظ الاستمارة';
+}
+
+function exportData() {
+  const dataStr = JSON.stringify(formsData, null, 2);
+  document.getElementById('exportArea').value = `const formsData = ${dataStr};`;
+  document.getElementById('codeExport').classList.add('active');
+}
+
+function copyCode() {
+  const area = document.getElementById('exportArea');
+  area.select();
+  document.execCommand('copy');
+  alert('✅ تم نسخ الكود!');
+}
+
+function clearAll() {
+  if (!confirm('⚠️ هل أنت متأكد من حذف جميع الاستمارات؟')) return;
+  formsData = [];
+  setStorage('formsData', formsData);
+  nextId = 1;
+  resetForm();
+  renderForms();
+  renderAdminTable();
+  alert('🗑️ تم حذف جميع الاستمارات');
+}
+
+// ==================== العرض ====================
+function getFilteredForms() {
+  return formsData.filter(form => {
+    const matchesCategory = currentFilter === 'all' || form.category === currentFilter;
+    const matchesSearch = form.name.includes(searchQuery) || (form.description && form.description.includes(searchQuery));
+    return matchesCategory && matchesSearch;
+  });
+}
+
+function renderForms() {
+  const grid = document.getElementById('formsGrid');
+  const filtered = getFilteredForms();
+
+  if (filtered.length === 0) {
+    grid.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-icon">🔍</div>
+        <h3>لا توجد نتائج مطابقة للبحث</h3>
+      </div>
+    `;
+    updateStats(filtered);
+    return;
+  }
+
+  grid.innerHTML = filtered.map(form => {
+    const count = downloadCounts[form.id] || form.downloads || 0;
+    return `
+      <div class="form-card" 
+           style="--card-color: ${form.color}; --card-color-bg: ${form.color}15;"
+           onclick="openModal(${form.id})">
+        <div class="card-header">
+          <div class="card-icon">${form.icon}</div>
+          <div class="card-info">
+            <h3>${form.name}</h3>
+            <span class="category-tag">${categoryNames[form.category]}</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <span class="download-count">⬇️ ${count.toLocaleString('ar-SA')}</span>
+          <button class="print-btn">اطبع الآن</button>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  updateStats(filtered);
+}
+
+function updateStats(filtered) {
+  const total = formsData.length;
+  const totalDownloads = formsData.reduce((sum, f) => sum + (downloadCounts[f.id] || f.downloads || 0), 0);
+
+  document.getElementById('statTotal').textContent = total;
+  document.getElementById('statDownloads').textContent = totalDownloads.toLocaleString('ar-SA');
+  document.getElementById('statToday').textContent = todayDownloads.count;
+}
+
+// ==================== الفلاتر ====================
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentFilter = btn.dataset.filter;
+    renderForms();
+  });
+});
+
+// ==================== البحث ====================
+document.getElementById('searchInput').addEventListener('input', (e) => {
+  searchQuery = e.target.value.trim();
+  renderForms();
+});
+
+// ==================== Modal ====================
+function openModal(formId) {
+  selectedForm = formsData.find(f => f.id === formId);
+  if (!selectedForm) return;
+
+  document.getElementById('modalIcon').textContent = selectedForm.icon;
+  document.getElementById('modalIcon').style.background = selectedForm.color + '20';
+  document.getElementById('modalTitle').textContent = selectedForm.name;
+  document.getElementById('modalDesc').textContent = selectedForm.description;
+
+  document.getElementById('modalOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+  selectedForm = null;
+}
+
+document.getElementById('modalOverlay').addEventListener('click', (e) => {
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeModal();
+});
+
+// ==================== الإجراءات ====================
+function recordDownload(formId) {
+  downloadCounts[formId] = (downloadCounts[formId] || formsData.find(f => f.id === formId)?.downloads || 0) + 1;
+  todayDownloads.count++;
+  setStorage('downloadCounts', downloadCounts);
+  setStorage('todayDownloads', todayDownloads);
+  renderForms();
+}
+
+function handlePrint() {
+  if (!selectedForm) return;
+  recordDownload(selectedForm.id);
+
+  if (selectedForm.fileUrl && selectedForm.fileUrl !== '#') {
+    const win = window.open(selectedForm.fileUrl, '_blank');
+    if (win) win.onload = () => win.print();
+  } else {
+    alert('ℹ️ رابط الملف غير متوفر حاليًا.\n\nيرجى إضافة رابط الملف PDF في إعدادات الاستمارة.');
+  }
+  closeModal();
+}
+
+function handleDownload() {
+  if (!selectedForm) return;
+  recordDownload(selectedForm.id);
+
+  if (selectedForm.fileUrl && selectedForm.fileUrl !== '#') {
+    const a = document.createElement('a');
+    a.href = selectedForm.fileUrl;
+    a.download = selectedForm.name + '.pdf';
+    a.click();
+  } else {
+    alert('ℹ️ رابط الملف غير متوفر حاليًا.\n\nيرجى إضافة رابط الملف PDF في إعدادات الاستمارة.');
+  }
+  closeModal();
+}
+
+function handlePreview() {
+  if (!selectedForm) return;
+
+  if (selectedForm.fileUrl && selectedForm.fileUrl !== '#') {
+    window.open(selectedForm.fileUrl, '_blank');
+  } else {
+    alert('ℹ️ رابط الملف غير متوفر حاليًا.\n\nيرجى إضافة رابط الملف PDF في إعدادات الاستمارة.');
+  }
+  closeModal();
+}
+
+// ==================== التشغيل ====================
+initAuth();
+renderForms();
+</script>
+
+</body>
+</html>
