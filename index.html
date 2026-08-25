@@ -21,34 +21,38 @@
   --shadow: 0 4px 20px rgba(0,0,0,0.3); --shadow-hover: 0 12px 40px rgba(0,0,0,0.4);
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Tajawal', sans-serif; background: var(--body-bg); color: var(--moe-text); min-height: 100vh; transition: background 0.3s, color 0.3s; font-variant-numeric: tabular-nums; -webkit-font-feature-settings: "tnum"; font-feature-settings: "tnum"; }
+body { font-family: 'Tajawal', sans-serif; background: var(--body-bg); color: var(--moe-text); min-height: 100vh; transition: background 0.3s, color 0.3s; }
 
-/* Header */
+/* Force English numerals */
+body, .stat-num, .download-count, .priority-input, .ticker-item, .card-meta-item, .modal-meta span, .popular-card .count, .batch-bar span, .stat-label, .empty-state h3, .form-card h3, .modal-header h2, .modal-header p, .login-box h3, .login-box p, .admin-form h3, .request-section h4, .json-export h4, .json-export p, .forms-table th, .forms-table td, .fav-bar-title, .popular-title, .footer, .controls input, .controls button, .form-group label, .form-group input, .form-group select, .form-group textarea, .table-btn, .tag, .category-tag, .card-action-btn, .print-btn, .modal-btn, .modal-close, .back-to-top, .admin-btn, .admin-toggle, .logout-btn, .status-badge, .logo-text h1, .logo-text p, .filter-btn, .search-box input, .search-box .search-icon, .ticker-wrap, .ticker, .ticker-item, .empty-state, .empty-icon, .empty-state h3, .stat-card, .stat-num, .stat-label, .forms-grid, .form-card, .card-header, .card-icon, .card-info, .card-meta, .card-tags, .card-footer, .card-actions, .batch-checkbox, .modal-overlay, .modal, .modal-header, .modal-icon, .modal-body, .modal-actions, .fav-bar, .fav-bar-title, .fav-chips, .fav-chip, .popular-section, .popular-title, .popular-grid, .popular-card, .popular-card .rank, .popular-card .info, .popular-card .name, .popular-card .count, .batch-bar, .batch-bar button, .back-to-top, .footer, .moe-brand, .login-panel, .login-box, .login-box input, .login-box button, .login-error, .admin-panel, .admin-header, .admin-toggle, .logout-btn, .admin-form, .form-row, .form-group, .admin-actions, .admin-btn, .request-section, .request-section h4, .request-list-item, .request-item-name, .request-item-date, .request-item-actions, .request-approve, .request-reject, .forms-table-wrapper, .forms-table, .forms-table th, .forms-table td, .table-actions, .table-btn, .table-btn-edit, .table-btn-delete, .table-btn-up, .table-btn-down, .priority-input, .tag, .tag-urgent, .tag-monthly, .tag-popular, .tag-mandatory, .json-export, .json-export h4, .json-export p, .json-export textarea, .json-export .copy-btn, .ticker-wrap, .ticker, .ticker-item, .loading-overlay, .spinner, .header, .header-inner, .logo-area, .logo-icon, .logo-text, .header-actions, .status-badge, .theme-toggle, .lang-toggle, .controls, .search-box, .search-box input, .search-box .search-icon, .filter-tabs, .filter-btn, .stats-bar, .stat-card, .stat-num, .stat-label, .forms-grid, .form-card, .card-header, .card-icon, .card-info, .card-info h3, .category-tag, .card-meta, .card-meta-item, .card-tags, .card-footer, .download-count, .card-actions, .card-action-btn, .card-action-btn.fav-active, .print-btn, .batch-checkbox, .empty-state, .empty-icon, .empty-state h3, .modal-overlay, .modal, .modal-header, .modal-icon, .modal-header h2, .modal-header p, .modal-meta, .modal-body, .modal-actions, .modal-btn, .modal-btn-primary, .modal-btn-secondary, .modal-close, .batch-bar, .batch-bar span, .batch-bar button, .back-to-top, .footer, .moe-brand, .user-request-section, .user-request-btn, .user-request-form, .user-request-form h3, .batch-toggle-btn, .view-toggle-btn, .sort-select, .recent-bar, .recent-title, .recent-chips, .recent-chip, .qr-modal canvas, .star-rating, .star-btn, .shortcut-hint, .copy-link-btn {
+  font-variant-numeric: tabular-nums;
+  -moz-font-feature-settings: "tnum";
+  -webkit-font-feature-settings: "tnum";
+  font-feature-settings: "tnum";
+}
+
 .header { background: linear-gradient(135deg, var(--moe-teal) 0%, var(--moe-teal-dark) 100%); padding: 16px 24px; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 20px rgba(0,0,0,0.15); border-bottom: 4px solid var(--moe-aqua); }
 .header-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
 .logo-area { display: flex; align-items: center; gap: 14px; }
 .logo-icon { width: 48px; height: 48px; background: var(--moe-aqua); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; border: 2px solid rgba(255,255,255,0.3); }
 .logo-text h1 { color: var(--moe-white); font-size: 17px; font-weight: 800; line-height: 1.4; }
 .logo-text p { color: rgba(255,255,255,0.75); font-size: 11px; margin-top: 2px; }
-.header-actions { display: flex; align-items: center; gap: 10px; position: relative; }
+.header-actions { display: flex; align-items: center; gap: 10px; }
 .status-badge { background: rgba(48,150,148,0.2); color: var(--moe-aqua-light); padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; display: flex; align-items: center; gap: 6px; border: 1px solid var(--moe-aqua); }
 .theme-toggle, .lang-toggle { width: 40px; height: 40px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: white; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
 .theme-toggle:hover, .lang-toggle:hover { background: rgba(255,255,255,0.2); transform: scale(1.1); }
 
-/* Notification Bell */
-.notif-btn { position: relative; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); width: 40px; height: 40px; border-radius: 10px; color: white; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
-.notif-btn:hover { background: rgba(255,255,255,0.2); transform: scale(1.1); }
-.notif-badge { position: absolute; top: -4px; left: -4px; background: #e94560; color: white; width: 18px; height: 18px; border-radius: 50%; font-size: 10px; font-weight: 800; display: flex; align-items: center; justify-content: center; animation: pulse 2s infinite; }
-.notif-dropdown { position: absolute; top: 50px; left: 0; background: var(--card-bg); border: 2px solid var(--moe-border); border-radius: 14px; width: 320px; max-height: 400px; overflow-y: auto; box-shadow: var(--shadow-hover); z-index: 150; display: none; padding: 16px; }
-.notif-dropdown.active { display: block; }
-.notif-dropdown h4 { color: var(--moe-teal); font-size: 14px; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--moe-border); }
-.notif-item { padding: 10px; border-radius: 10px; margin-bottom: 8px; background: var(--moe-cream); font-size: 13px; }
-.notif-item.approved { border-right: 3px solid #28a745; }
-.notif-item.rejected { border-right: 3px solid #dc3545; }
-.notif-item .notif-time { font-size: 11px; color: #888; margin-top: 4px; }
-.notif-empty { text-align: center; color: #888; font-size: 13px; padding: 20px; }
+/* Keyboard shortcuts hint */
+.shortcut-hint { position: fixed; bottom: 24px; right: 24px; background: var(--moe-teal); color: white; width: 40px; height: 40px; border-radius: 50%; border: none; font-size: 18px; cursor: pointer; z-index: 97; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(22,69,91,0.3); transition: all 0.3s; }
+.shortcut-hint:hover { transform: scale(1.1); background: var(--moe-teal-dark); }
+.shortcut-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 250; align-items: center; justify-content: center; padding: 20px; }
+.shortcut-modal.active { display: flex; }
+.shortcut-content { background: var(--card-bg); border-radius: 20px; padding: 28px; max-width: 450px; width: 100%; border-top: 4px solid var(--moe-aqua); }
+.shortcut-content h3 { color: var(--moe-teal); margin-bottom: 16px; font-size: 18px; }
+.shortcut-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--moe-border); }
+.shortcut-item:last-child { border-bottom: none; }
+.shortcut-key { background: var(--moe-gray); padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 700; color: var(--moe-teal); border: 1px solid var(--moe-border); }
 
-/* Ticker */
 .ticker-wrap { max-width: 1100px; margin: 0 auto; overflow: hidden; background: linear-gradient(90deg, #fff3cd, #ffeaa7); border-bottom: 1px solid #ffc107; position: relative; }
 .ticker-wrap.hidden { display: none; }
 .ticker-close { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.1); border: none; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; font-size: 14px; color: #856404; z-index: 10; display: flex; align-items: center; justify-content: center; }
@@ -59,13 +63,11 @@ body { font-family: 'Tajawal', sans-serif; background: var(--body-bg); color: va
 .ticker-group { display: flex; align-items: center; white-space: nowrap; }
 .ticker-item { display: inline-block; padding: 10px 40px; color: #856404; font-size: 14px; font-weight: 700; }
 
-/* Loading */
 .loading-overlay { position: fixed; inset: 0; background: var(--body-bg); z-index: 999; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; }
 .loading-overlay.hidden { display: none; }
 .spinner { width: 48px; height: 48px; border: 4px solid var(--moe-border); border-top-color: var(--moe-teal); border-radius: 50%; animation: spin 1s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* Login Panel */
 .login-panel { max-width: 1100px; margin: 24px auto; padding: 0 20px; display: none; }
 .login-panel.active { display: block; }
 .login-box { background: var(--card-bg); border-radius: 20px; padding: 32px; max-width: 400px; margin: 0 auto; border: 2px solid var(--moe-aqua); box-shadow: var(--shadow-hover); text-align: center; }
@@ -78,7 +80,6 @@ body { font-family: 'Tajawal', sans-serif; background: var(--body-bg); color: va
 .login-error { color: #dc3545; font-size: 13px; margin-top: 8px; display: none; }
 .login-error.active { display: block; }
 
-/* Admin Panel */
 .admin-panel { max-width: 1100px; margin: 0 auto 24px; padding: 0 20px; display: none; }
 .admin-panel.active { display: block; }
 .admin-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
@@ -101,46 +102,6 @@ body { font-family: 'Tajawal', sans-serif; background: var(--body-bg); color: va
 .admin-btn-danger { background: #dc3545; color: white; }
 .admin-btn-danger:hover { background: #c82333; }
 
-/* Icon Picker */
-.icon-picker { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
-.icon-option { width: 40px; height: 40px; border-radius: 10px; border: 2px solid var(--moe-border); background: var(--card-bg); font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
-.icon-option:hover { transform: scale(1.15); border-color: var(--moe-aqua); }
-.icon-option.selected { border-color: var(--moe-teal); background: var(--moe-teal); box-shadow: 0 4px 12px rgba(22,69,91,0.3); }
-
-/* Color Picker */
-.color-picker { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
-.color-option { width: 36px; height: 36px; border-radius: 10px; border: 3px solid transparent; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; position: relative; }
-.color-option:hover { transform: scale(1.15); }
-.color-option.selected { border-color: var(--moe-text); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
-.color-option.selected::after { content: '✓'; color: white; font-size: 14px; font-weight: 800; text-shadow: 0 1px 3px rgba(0,0,0,0.5); }
-.color-custom { display: flex; align-items: center; gap: 8px; }
-.color-custom input { width: 120px; }
-.color-preview-box { width: 36px; height: 36px; border-radius: 10px; border: 2px solid var(--moe-border); flex-shrink: 0; }
-
-/* Tags Input */
-.tags-input-container { display: flex; flex-direction: column; gap: 8px; }
-.tags-selected { display: flex; flex-wrap: wrap; gap: 6px; min-height: 36px; padding: 6px; border: 2px solid var(--moe-border); border-radius: 10px; background: var(--card-bg); align-items: center; }
-.tags-selected.focused { border-color: var(--moe-teal); box-shadow: 0 0 0 3px rgba(22,69,91,0.08); }
-.tag-chip { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 700; cursor: default; animation: tagPop 0.2s ease; }
-@keyframes tagPop { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-.tag-chip .tag-remove { width: 16px; height: 16px; border-radius: 50%; background: rgba(0,0,0,0.15); border: none; color: inherit; font-size: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; line-height: 1; }
-.tag-chip .tag-remove:hover { background: rgba(0,0,0,0.3); }
-.tags-input-field { border: none; outline: none; background: transparent; font-family: inherit; font-size: 14px; color: var(--moe-text); flex: 1; min-width: 80px; padding: 4px; }
-.tags-dropdown { position: relative; }
-.tags-suggestions { position: absolute; top: 100%; right: 0; left: 0; background: var(--card-bg); border: 2px solid var(--moe-border); border-top: none; border-radius: 0 0 10px 10px; max-height: 200px; overflow-y: auto; z-index: 50; box-shadow: var(--shadow-hover); display: none; }
-.tags-suggestions.active { display: block; }
-.tags-suggestion-item { padding: 10px 14px; cursor: pointer; font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 8px; transition: all 0.15s; border-bottom: 1px solid var(--moe-border); }
-.tags-suggestion-item:last-child { border-bottom: none; }
-.tags-suggestion-item:hover { background: var(--moe-cream); }
-.tags-suggestion-item .suggest-check { width: 18px; height: 18px; border-radius: 4px; border: 2px solid var(--moe-border); display: flex; align-items: center; justify-content: center; font-size: 11px; color: white; flex-shrink: 0; }
-.tags-suggestion-item.selected .suggest-check { background: var(--moe-teal); border-color: var(--moe-teal); }
-.tags-preset-label { font-size: 11px; color: var(--moe-text-light); margin-top: 4px; padding: 0 4px; }
-.tags-preset-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
-.tags-preset-btn { padding: 5px 12px; border-radius: 16px; border: 1.5px solid var(--moe-border); background: var(--card-bg); font-family: inherit; font-size: 12px; font-weight: 700; cursor: pointer; transition: all 0.2s; color: var(--moe-text); }
-.tags-preset-btn:hover { border-color: var(--moe-aqua); color: var(--moe-teal); transform: translateY(-1px); }
-.tags-preset-btn.active { background: var(--moe-teal); color: white; border-color: var(--moe-teal); }
-
-/* Request Section */
 .user-request-section { max-width: 1100px; margin: 20px auto; padding: 0 20px; }
 .user-request-btn { width: 100%; padding: 16px; border-radius: 16px; border: 2px dashed var(--moe-aqua); background: linear-gradient(135deg, rgba(48,150,148,0.05), rgba(22,69,91,0.05)); color: var(--moe-teal); font-family: inherit; font-size: 16px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: all 0.3s; }
 .user-request-btn:hover { background: linear-gradient(135deg, rgba(48,150,148,0.1), rgba(22,69,91,0.1)); border-style: solid; transform: translateY(-2px); }
@@ -158,8 +119,11 @@ body { font-family: 'Tajawal', sans-serif; background: var(--body-bg); color: va
 .request-item-actions { display: flex; gap: 8px; }
 .request-approve { background: #28a745; color: white; border: none; padding: 6px 14px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; }
 .request-reject { background: #dc3545; color: white; border: none; padding: 6px 14px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; }
+.request-status { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; }
+.request-status-pending { background: #ffc107; color: #856404; }
+.request-status-approved { background: #28a745; color: white; }
+.request-status-rejected { background: #dc3545; color: white; }
 
-/* Tables */
 .forms-table-wrapper { margin-top: 24px; overflow-x: auto; }
 .forms-table { width: 100%; border-collapse: collapse; background: var(--card-bg); border-radius: 14px; overflow: hidden; box-shadow: var(--shadow); }
 .forms-table th { background: var(--moe-teal); color: white; padding: 14px 12px; font-size: 13px; font-weight: 700; text-align: right; }
@@ -175,14 +139,51 @@ body { font-family: 'Tajawal', sans-serif; background: var(--body-bg); color: va
 .table-btn-down { background: #17a2b8; color: white; }
 .priority-input { width: 60px !important; text-align: center; padding: 6px !important; }
 
-/* Tags */
+/* Icon Picker */
+.icon-picker { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+.icon-option { width: 40px; height: 40px; border-radius: 10px; border: 2px solid var(--moe-border); background: var(--card-bg); font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+.icon-option:hover { transform: scale(1.15); border-color: var(--moe-aqua); }
+.icon-option.selected { border-color: var(--moe-teal); background: var(--moe-teal); box-shadow: 0 4px 12px rgba(22,69,91,0.3); }
+
+/* Color Picker */
+.color-picker { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+.color-option { width: 36px; height: 36px; border-radius: 10px; border: 3px solid transparent; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; position: relative; }
+.color-option:hover { transform: scale(1.15); }
+.color-option.selected { border-color: var(--moe-text); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+.color-option.selected::after { content: '✓'; color: white; font-size: 14px; font-weight: 800; text-shadow: 0 1px 3px rgba(0,0,0,0.5); }
+.color-custom { display: flex; align-items: center; gap: 8px; }
+.color-custom input { width: 120px; }
+.color-preview-box { width: 36px; height: 36px; border-radius: 10px; border: 2px solid var(--moe-border); flex-shrink: 0; }
+
+/* Tags Input System */
+.tags-input-container { display: flex; flex-direction: column; gap: 8px; }
+.tags-selected { display: flex; flex-wrap: wrap; gap: 6px; min-height: 36px; padding: 6px; border: 2px solid var(--moe-border); border-radius: 10px; background: var(--card-bg); align-items: center; }
+.tags-selected.focused { border-color: var(--moe-teal); box-shadow: 0 0 0 3px rgba(22,69,91,0.08); }
+.tag-chip { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 700; cursor: default; animation: tagPop 0.2s ease; }
+@keyframes tagPop { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.tag-chip .tag-remove { width: 16px; height: 16px; border-radius: 50%; background: rgba(0,0,0,0.15); border: none; color: inherit; font-size: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; line-height: 1; }
+.tag-chip .tag-remove:hover { background: rgba(0,0,0,0.3); }
+.tags-input-field { border: none; outline: none; background: transparent; font-family: inherit; font-size: 14px; color: var(--moe-text); flex: 1; min-width: 80px; padding: 4px; }
+.tags-dropdown { position: relative; }
+.tags-suggestions { position: absolute; top: 100%; right: 0; left: 0; background: var(--card-bg); border: 2px solid var(--moe-border); border-top: none; border-radius: 0 0 10px 10px; max-height: 200px; overflow-y: auto; z-index: 50; box-shadow: var(--shadow-hover); display: none; }
+.tags-suggestions.active { display: block; }
+.tags-suggestion-item { padding: 10px 14px; cursor: pointer; font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 8px; transition: all 0.15s; border-bottom: 1px solid var(--moe-border); }
+.tags-suggestion-item:last-child { border-bottom: none; }
+.tags-suggestion-item:hover, .tags-suggestion-item.focused { background: var(--moe-cream); }
+.tags-suggestion-item .suggest-check { width: 18px; height: 18px; border-radius: 4px; border: 2px solid var(--moe-border); display: flex; align-items: center; justify-content: center; font-size: 11px; color: white; flex-shrink: 0; }
+.tags-suggestion-item.selected .suggest-check { background: var(--moe-teal); border-color: var(--moe-teal); }
+.tags-preset-label { font-size: 11px; color: var(--moe-text-light); margin-top: 4px; padding: 0 4px; }
+.tags-preset-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.tags-preset-btn { padding: 5px 12px; border-radius: 16px; border: 1.5px solid var(--moe-border); background: var(--card-bg); font-family: inherit; font-size: 12px; font-weight: 700; cursor: pointer; transition: all 0.2s; color: var(--moe-text); }
+.tags-preset-btn:hover { border-color: var(--moe-aqua); color: var(--moe-teal); transform: translateY(-1px); }
+.tags-preset-btn.active { background: var(--moe-teal); color: white; border-color: var(--moe-teal); }
+
 .tag { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; margin: 2px; background: var(--moe-aqua); color: white; }
 .tag-urgent { background: #e94560; }
 .tag-monthly { background: #667eea; }
 .tag-popular { background: #f9a825; }
 .tag-mandatory { background: #43e97b; color: #1a1a2e; }
 
-/* JSON Export */
 .json-export { margin-top: 24px; padding: 20px; background: #16455B; border-radius: 14px; display: none; }
 .json-export.active { display: block; }
 .json-export h4 { color: var(--moe-aqua-light); font-size: 14px; margin-bottom: 12px; }
@@ -190,7 +191,6 @@ body { font-family: 'Tajawal', sans-serif; background: var(--body-bg); color: va
 .json-export textarea { width: 100%; height: 250px; background: #0f3548; color: #4DB89F; border: 1px solid #216273; border-radius: 10px; padding: 14px; font-family: 'Courier New', monospace; font-size: 12px; resize: vertical; direction: ltr; }
 .json-export .copy-btn { margin-top: 12px; margin-left: 8px; background: var(--moe-aqua); color: white; border: none; padding: 10px 24px; border-radius: 10px; font-family: inherit; font-weight: 700; cursor: pointer; }
 
-/* Favorites */
 .fav-bar { max-width: 1100px; margin: 16px auto 0; padding: 0 20px; display: none; }
 .fav-bar.active { display: block; }
 .fav-bar-title { font-size: 14px; font-weight: 700; color: var(--moe-teal); margin-bottom: 10px; display: flex; align-items: center; gap: 6px; justify-content: space-between; }
@@ -200,7 +200,7 @@ body { font-family: 'Tajawal', sans-serif; background: var(--body-bg); color: va
 .fav-chip:hover { transform: scale(1.05); box-shadow: 0 4px 15px rgba(48,150,148,0.3); }
 .fav-chip .remove-fav { background: rgba(255,255,255,0.2); border-radius: 50%; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; font-size: 11px; }
 
-/* Recent */
+/* Recent downloads bar */
 .recent-bar { max-width: 1100px; margin: 16px auto 0; padding: 0 20px; display: none; }
 .recent-bar.active { display: block; }
 .recent-title { font-size: 14px; font-weight: 700; color: var(--moe-teal); margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
@@ -209,7 +209,6 @@ body { font-family: 'Tajawal', sans-serif; background: var(--body-bg); color: va
 .recent-chip:hover { border-color: var(--moe-aqua); color: var(--moe-teal); }
 .recent-chip .remove-recent { background: var(--moe-gray); border-radius: 50%; width: 16px; height: 16px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #888; }
 
-/* Popular */
 .popular-section { max-width: 1100px; margin: 20px auto 0; padding: 0 20px; display: none; }
 .popular-section.active { display: block; }
 .popular-title { font-size: 16px; font-weight: 800; color: var(--moe-teal); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
@@ -221,7 +220,6 @@ body { font-family: 'Tajawal', sans-serif; background: var(--body-bg); color: va
 .popular-card .info .name { font-size: 14px; font-weight: 700; }
 .popular-card .info .count { font-size: 12px; opacity: 0.9; }
 
-/* Controls */
 .controls { max-width: 1100px; margin: 24px auto; padding: 0 20px; }
 .search-box { position: relative; margin-bottom: 16px; }
 .search-box input { width: 100%; padding: 16px 52px 16px 20px; border: 2px solid var(--moe-border); border-radius: 16px; font-size: 16px; font-family: inherit; background: var(--card-bg); color: var(--moe-text); transition: all 0.3s; }
@@ -232,7 +230,7 @@ body { font-family: 'Tajawal', sans-serif; background: var(--body-bg); color: va
 .filter-btn:hover { border-color: var(--moe-teal); color: var(--moe-teal); }
 .filter-btn.active { background: var(--moe-teal); color: white; border-color: var(--moe-teal); box-shadow: 0 4px 15px rgba(22,69,91,0.3); }
 
-/* View & Sort */
+/* View toggle & sort */
 .view-sort-bar { max-width: 1100px; margin: 0 auto 16px; padding: 0 20px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; justify-content: space-between; }
 .view-toggle-group { display: flex; gap: 4px; background: var(--card-bg); border: 1px solid var(--moe-border); border-radius: 10px; padding: 4px; }
 .view-toggle-btn { padding: 8px 14px; border-radius: 8px; border: none; background: transparent; color: var(--moe-text-light); font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
@@ -244,57 +242,45 @@ body { font-family: 'Tajawal', sans-serif; background: var(--body-bg); color: va
 .batch-toggle-btn:hover { background: var(--moe-aqua); color: white; }
 .batch-toggle-btn.active { background: var(--moe-aqua); color: white; }
 
-.pdf-export-btn { padding: 10px 18px; border-radius: 12px; border: 2px solid #e94560; background: var(--card-bg); color: #e94560; font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 6px; }
-.pdf-export-btn:hover { background: #e94560; color: white; }
-
-/* Stats */
 .stats-bar { max-width: 1100px; margin: 0 auto 20px; padding: 0 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
 .stat-card { background: var(--card-bg); border-radius: 14px; padding: 16px; text-align: center; border: 1px solid var(--moe-border); box-shadow: var(--shadow); border-top: 3px solid var(--moe-aqua); transition: all 0.3s; }
 .stat-card:hover { transform: translateY(-3px); }
 .stat-card .stat-num { font-size: 28px; font-weight: 800; color: var(--moe-teal); }
 .stat-card .stat-label { font-size: 13px; color: var(--moe-text-light); margin-top: 4px; }
 
-/* Cards Grid */
+/* Grid view (default) */
 .forms-grid { max-width: 1100px; margin: 0 auto; padding: 0 20px 40px; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; align-items: stretch; }
-.form-card { background: var(--card-bg); border-radius: 18px; padding: 24px; border: 1px solid var(--moe-border); box-shadow: var(--shadow); transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; cursor: pointer; opacity: 0; transform: translateY(20px); animation: fadeInUp 0.5s ease forwards; display: flex; flex-direction: column; height: 320px; }
+.form-card { background: var(--card-bg); border-radius: 18px; padding: 24px; border: 1px solid var(--moe-border); box-shadow: var(--shadow); transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; cursor: pointer; opacity: 0; transform: translateY(20px); animation: fadeInUp 0.5s ease forwards; }
+.form-card.no-link { border-color: #e94560; background: linear-gradient(135deg, var(--card-bg), rgba(233,69,96,0.03)); }
+.form-card.no-link::before { background: #e94560 !important; }
+.drive-badge { display: inline-flex; align-items: center; gap: 4px; background: #4285F4; color: white; padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: 700; }
+.broken-badge { display: inline-flex; align-items: center; gap: 4px; background: #e94560; color: white; padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: 700; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.7; } }
+.card-info h3 { font-size: 16px; font-weight: 800; color: var(--moe-text); line-height: 1.4; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.list-info h3 { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+@keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
 .form-card::before { content: ''; position: absolute; top: 0; right: 0; width: 5px; height: 100%; background: var(--card-color, var(--moe-teal)); transition: width 0.3s; }
 .form-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
 .form-card:hover::before { width: 8px; }
-.form-card.no-link { border-color: #e94560; background: linear-gradient(135deg, var(--card-bg), rgba(233,69,96,0.03)); }
-.form-card.no-link::before { background: #e94560 !important; }
-
-.card-header { display: flex; align-items: flex-start; gap: 14px; flex: 1; min-height: 0; }
+.card-header { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px; }
 .card-icon { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 26px; flex-shrink: 0; background: var(--card-color-bg, rgba(22,69,91,0.1)); }
-.card-info { flex: 1; display: flex; flex-direction: column; min-width: 0; gap: 6px; }
-.card-info h3 { font-size: 16px; font-weight: 800; color: var(--moe-text); line-height: 24px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; height: 48px; margin: 0; }
-.card-info .category-tag { display: inline-block; padding: 3px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; background: var(--card-color-bg, rgba(22,69,91,0.1)); color: var(--card-color, var(--moe-teal)); align-self: flex-start; height: 24px; line-height: 18px; margin: 0; }
-.card-meta { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; min-height: 22px; margin: 0; }
+.card-info h3 { font-size: 16px; font-weight: 800; color: var(--moe-text); line-height: 1.4; }
+.card-info .category-tag { display: inline-block; margin-top: 6px; padding: 3px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; background: var(--card-color-bg, rgba(22,69,91,0.1)); color: var(--card-color, var(--moe-teal)); }
+.card-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
 .card-meta-item { font-size: 11px; color: #888; display: flex; align-items: center; gap: 3px; }
-.card-tags { min-height: 28px; margin: 0; display: flex; flex-wrap: wrap; align-items: center; }
-.card-footer { display: flex; align-items: center; justify-content: space-between; height: 40px; margin-top: auto; padding-top: 8px; border-top: 1px solid var(--moe-border); flex-shrink: 0; }
-
-/* Badges */
-.new-badge { position: absolute; top: 12px; right: 12px; background: linear-gradient(135deg, #e94560, #ff6b6b); color: white; padding: 3px 10px; border-radius: 20px; font-size: 10px; font-weight: 800; z-index: 5; animation: pulse 2s infinite; box-shadow: 0 2px 8px rgba(233,69,96,0.3); }
-.drive-badge { display: inline-flex; align-items: center; gap: 4px; background: #4285F4; color: white; padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: 700; }
-.broken-badge { display: inline-flex; align-items: center; gap: 4px; background: #e94560; color: white; padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: 700; animation: pulse 2s infinite; }
-.read-status { position: absolute; top: 12px; right: 12px; width: 10px; height: 10px; border-radius: 50%; background: #28a745; border: 2px solid var(--card-bg); z-index: 5; animation: pulse-green 2s infinite; }
-.read-status.read { background: #ccc; animation: none; border-color: var(--moe-border); }
-
-@keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.05); } }
-@keyframes pulse-green { 0%,100% { box-shadow: 0 0 0 0 rgba(40,167,69,0.4); } 50% { box-shadow: 0 0 0 6px rgba(40,167,69,0); } }
-
+.card-tags { margin-top: 6px; }
+.card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 4px; }
 .download-count { font-size: 13px; color: var(--moe-text-light); display: flex; align-items: center; gap: 4px; }
 .card-actions { display: flex; gap: 6px; }
 .card-action-btn { width: 32px; height: 32px; border-radius: 8px; border: none; background: var(--moe-gray); color: var(--moe-text-light); font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
 .card-action-btn:hover { background: var(--moe-border); transform: scale(1.1); }
 .card-action-btn.fav-active { background: #ffc107; color: #856404; }
+.print-btn { padding: 8px 18px; border-radius: 10px; border: none; background: var(--card-color, var(--moe-teal)); color: white; font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.3s; }
+.print-btn:hover { opacity: 0.9; transform: scale(1.05); }
+.batch-checkbox { position: absolute; top: 12px; left: 12px; width: 22px; height: 22px; cursor: pointer; accent-color: var(--moe-teal); opacity: 0; transform: scale(0.8); transition: all 0.3s; pointer-events: none; }
+.batch-mode .batch-checkbox { opacity: 1; transform: scale(1); pointer-events: auto; }
 
-.star-rating { display: flex; gap: 2px; margin-top: 4px; }
-.star-btn { background: none; border: none; font-size: 16px; cursor: pointer; color: #ddd; padding: 0; transition: all 0.2s; }
-.star-btn.active { color: #ffc107; }
-.star-btn:hover { transform: scale(1.2); }
-
-/* List View */
+/* List view */
 .forms-list { max-width: 1100px; margin: 0 auto; padding: 0 20px 40px; display: none; flex-direction: column; gap: 12px; }
 .forms-list.active { display: flex; }
 .list-item { background: var(--card-bg); border-radius: 14px; padding: 16px 20px; border: 1px solid var(--moe-border); box-shadow: var(--shadow); display: flex; align-items: center; gap: 16px; cursor: pointer; transition: all 0.3s; position: relative; }
@@ -302,18 +288,22 @@ body { font-family: 'Tajawal', sans-serif; background: var(--body-bg); color: va
 .list-item::before { content: ''; position: absolute; top: 0; right: 0; width: 4px; height: 100%; background: var(--card-color, var(--moe-teal)); border-radius: 0 14px 14px 0; }
 .list-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; background: var(--card-color-bg, rgba(22,69,91,0.1)); }
 .list-info { flex: 1; min-width: 0; }
-.list-info h3 { font-size: 15px; font-weight: 800; color: var(--moe-text); margin-bottom: 4px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.list-info h3 { font-size: 15px; font-weight: 800; color: var(--moe-text); margin-bottom: 4px; }
 .list-meta { display: flex; gap: 12px; flex-wrap: wrap; font-size: 12px; color: #888; }
 .list-actions { display: flex; gap: 6px; align-items: center; }
 .list-action-btn { width: 36px; height: 36px; border-radius: 8px; border: none; background: var(--moe-gray); color: var(--moe-text-light); font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
 .list-action-btn:hover { background: var(--moe-border); transform: scale(1.1); }
 
-/* Empty State */
+/* Star rating */
+.star-rating { display: flex; gap: 2px; margin-top: 4px; }
+.star-btn { background: none; border: none; font-size: 16px; cursor: pointer; color: #ddd; padding: 0; transition: all 0.2s; }
+.star-btn.active { color: #ffc107; }
+.star-btn:hover { transform: scale(1.2); }
+
 .empty-state { grid-column: 1 / -1; text-align: center; padding: 60px 20px; }
 .empty-state .empty-icon { font-size: 64px; margin-bottom: 16px; opacity: 0.3; }
 .empty-state h3 { font-size: 20px; color: var(--moe-text-light); }
 
-/* Modal */
 .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(8px); z-index: 200; display: none; align-items: center; justify-content: center; padding: 20px; }
 .modal-overlay.active { display: flex; }
 .modal { background: var(--card-bg); border-radius: 24px; max-width: 500px; width: 100%; max-height: 90vh; overflow: hidden; box-shadow: 0 25px 80px rgba(0,0,0,0.2); animation: modalIn 0.3s ease; border-top: 4px solid var(--moe-aqua); }
@@ -343,21 +333,15 @@ body { font-family: 'Tajawal', sans-serif; background: var(--body-bg); color: va
 .qr-modal p { color: var(--moe-text-light); font-size: 13px; margin-bottom: 16px; }
 .qr-modal button { background: var(--moe-teal); color: white; border: none; padding: 10px 24px; border-radius: 10px; font-family: inherit; font-weight: 700; cursor: pointer; }
 
-/* Shortcuts Modal */
-.shortcut-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 250; align-items: center; justify-content: center; padding: 20px; }
-.shortcut-modal.active { display: flex; }
-.shortcut-content { background: var(--card-bg); border-radius: 20px; padding: 28px; max-width: 450px; width: 100%; border-top: 4px solid var(--moe-aqua); }
-.shortcut-content h3 { color: var(--moe-teal); margin-bottom: 16px; font-size: 18px; }
-.shortcut-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--moe-border); }
-.shortcut-item:last-child { border-bottom: none; }
-.shortcut-key { background: var(--moe-gray); padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 700; color: var(--moe-teal); border: 1px solid var(--moe-border); }
+.back-to-top { position: fixed; bottom: 24px; left: 24px; width: 48px; height: 48px; border-radius: 50%; background: var(--moe-teal); color: white; border: none; font-size: 20px; cursor: pointer; box-shadow: 0 4px 15px rgba(22,69,91,0.3); display: none; align-items: center; justify-content: center; z-index: 99; transition: all 0.3s; }
+.back-to-top:hover { transform: translateY(-4px); background: var(--moe-teal-dark); }
+.back-to-top.visible { display: flex; }
 
-/* Batch Bar */
 .batch-bar { position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%); background: var(--moe-teal); color: white; padding: 12px 24px; border-radius: 30px; display: none; align-items: center; gap: 12px; box-shadow: 0 8px 25px rgba(22,69,91,0.3); z-index: 98; }
 .batch-bar.active { display: flex; }
 .batch-bar button { background: white; color: var(--moe-teal); border: none; padding: 6px 16px; border-radius: 8px; font-family: inherit; font-weight: 700; cursor: pointer; }
 
-/* Toast */
+/* Toast notifications */
 .toast-container { position: fixed; top: 80px; left: 20px; z-index: 300; display: flex; flex-direction: column; gap: 10px; }
 .toast { background: var(--card-bg); border-radius: 12px; padding: 14px 20px; box-shadow: var(--shadow-hover); border-right: 4px solid var(--moe-aqua); display: flex; align-items: center; gap: 10px; animation: toastIn 0.3s ease; min-width: 280px; font-size: 14px; font-weight: 700; }
 .toast.success { border-right-color: #28a745; }
@@ -365,30 +349,79 @@ body { font-family: 'Tajawal', sans-serif; background: var(--body-bg); color: va
 .toast.info { border-right-color: var(--moe-aqua); }
 @keyframes toastIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
 
-/* Back to Top */
-.back-to-top { position: fixed; bottom: 24px; left: 24px; width: 48px; height: 48px; border-radius: 50%; background: var(--moe-teal); color: white; border: none; font-size: 20px; cursor: pointer; box-shadow: 0 4px 15px rgba(22,69,91,0.3); display: none; align-items: center; justify-content: center; z-index: 99; transition: all 0.3s; }
-.back-to-top:hover { transform: translateY(-4px); background: var(--moe-teal-dark); }
-.back-to-top.visible { display: flex; }
+/* New Badge */
+.new-badge { position: absolute; top: 12px; right: 12px; background: linear-gradient(135deg, #e94560, #ff6b6b); color: white; padding: 3px 10px; border-radius: 20px; font-size: 10px; font-weight: 800; z-index: 5; animation: pulse 2s infinite; box-shadow: 0 2px 8px rgba(233,69,96,0.3); }
+@keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.05); } }
 
-/* Shortcut Hint */
-.shortcut-hint { position: fixed; bottom: 24px; right: 24px; background: var(--moe-teal); color: white; width: 40px; height: 40px; border-radius: 50%; border: none; font-size: 18px; cursor: pointer; z-index: 97; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(22,69,91,0.3); transition: all 0.3s; }
-.shortcut-hint:hover { transform: scale(1.1); background: var(--moe-teal-dark); }
+/* Quick Preview Tooltip */
+.quick-preview { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%) translateY(10px); background: var(--card-bg); border: 2px solid var(--moe-aqua); border-radius: 16px; padding: 16px; width: 280px; box-shadow: var(--shadow-hover); opacity: 0; pointer-events: none; transition: all 0.3s ease; z-index: 20; margin-bottom: 12px; }
+.quick-preview::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 8px solid transparent; border-top-color: var(--moe-aqua); }
+.form-card:hover .quick-preview { opacity: 1; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+.quick-preview h4 { color: var(--moe-teal); font-size: 14px; margin-bottom: 8px; }
+.quick-preview p { color: var(--moe-text-light); font-size: 12px; line-height: 1.6; margin-bottom: 8px; }
+.quick-preview .quick-actions { display: flex; gap: 6px; }
+.quick-preview .quick-btn { flex: 1; padding: 8px; border-radius: 8px; border: none; background: var(--moe-teal); color: white; font-family: inherit; font-size: 12px; font-weight: 700; cursor: pointer; }
 
-/* Confetti */
+/* User notification bell */
+.notif-btn { position: relative; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); width: 40px; height: 40px; border-radius: 10px; color: white; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
+.notif-btn:hover { background: rgba(255,255,255,0.2); transform: scale(1.1); }
+.notif-badge { position: absolute; top: -4px; left: -4px; background: #e94560; color: white; width: 18px; height: 18px; border-radius: 50%; font-size: 10px; font-weight: 800; display: flex; align-items: center; justify-content: center; animation: pulse 2s infinite; }
+.notif-dropdown { position: absolute; top: 50px; left: 0; background: var(--card-bg); border: 2px solid var(--moe-border); border-radius: 14px; width: 320px; max-height: 400px; overflow-y: auto; box-shadow: var(--shadow-hover); z-index: 150; display: none; padding: 16px; }
+.notif-dropdown.active { display: block; }
+.notif-dropdown h4 { color: var(--moe-teal); font-size: 14px; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--moe-border); }
+.notif-item { padding: 10px; border-radius: 10px; margin-bottom: 8px; background: var(--moe-cream); font-size: 13px; }
+.notif-item.approved { border-right: 3px solid #28a745; }
+.notif-item.rejected { border-right: 3px solid #dc3545; }
+.notif-item.pending { border-right: 3px solid #ffc107; }
+.notif-item .notif-time { font-size: 11px; color: #888; margin-top: 4px; }
+.notif-empty { text-align: center; color: #888; font-size: 13px; padding: 20px; }
+
+/* Export PDF button */
+.pdf-export-btn { padding: 10px 18px; border-radius: 12px; border: 2px solid #e94560; background: var(--card-bg); color: #e94560; font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 6px; }
+.pdf-export-btn:hover { background: #e94560; color: white; }
+
+/* Deadline badge */
+.deadline-badge { display: inline-flex; align-items: center; gap: 4px; background: #fff3cd; color: #856404; padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: 700; margin-right: 4px; }
+.deadline-badge.urgent { background: #f8d7da; color: #721c24; animation: pulse 2s infinite; }
+
+/* Read Status Indicator */
+.read-status { position: absolute; top: 12px; right: 12px; width: 10px; height: 10px; border-radius: 50%; background: #28a745; border: 2px solid var(--card-bg); z-index: 5; animation: pulse-green 2s infinite; }
+.read-status.read { background: #ccc; animation: none; border-color: var(--moe-border); }
+@keyframes pulse-green { 0%,100% { box-shadow: 0 0 0 0 rgba(40,167,69,0.4); } 50% { box-shadow: 0 0 0 6px rgba(40,167,69,0); } }
+
+/* Confetti Canvas */
 .confetti-canvas { position: fixed; inset: 0; pointer-events: none; z-index: 500; }
 
-/* Footer */
+/* Tooltips */
+[data-tooltip] { position: relative; }
+[data-tooltip]::after { content: attr(data-tooltip); position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%) scale(0.9); background: var(--moe-teal); color: white; padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; white-space: nowrap; opacity: 0; pointer-events: none; transition: all 0.2s; z-index: 100; }
+[data-tooltip]::before { content: ''; position: absolute; bottom: calc(100% + 2px); left: 50%; transform: translateX(-50%); border: 6px solid transparent; border-top-color: var(--moe-teal); opacity: 0; transition: all 0.2s; }
+[data-tooltip]:hover::after, [data-tooltip]:hover::before { opacity: 1; transform: translateX(-50%) scale(1); }
+
+/* Search Suggestions */
+.search-suggestions { position: absolute; top: calc(100% + 8px); right: 0; left: 0; background: var(--card-bg); border: 2px solid var(--moe-border); border-radius: 14px; box-shadow: var(--shadow-hover); z-index: 50; display: none; overflow: hidden; }
+.search-suggestions.active { display: block; }
+.search-suggestion-item { padding: 12px 16px; cursor: pointer; font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 10px; transition: all 0.15s; border-bottom: 1px solid var(--moe-border); }
+.search-suggestion-item:last-child { border-bottom: none; }
+.search-suggestion-item:hover { background: var(--moe-cream); }
+.search-suggestion-item .sugg-icon { font-size: 18px; }
+.search-suggestion-item .sugg-meta { font-size: 11px; color: #888; font-weight: 400; margin-right: auto; }
+
+/* Print styles for PDF export */
+.pdf-export-content { display: none; }
+@media print {
+  .pdf-export-content { display: block !important; }
+}
+
 .footer { text-align: center; padding: 24px; color: var(--moe-text-light); font-size: 13px; border-top: 1px solid var(--moe-border); background: var(--card-bg); }
 .footer .moe-brand { color: var(--moe-teal); font-weight: 700; }
 
-/* Print */
 @media print {
-  .header, .controls, .stats-bar, .footer, .modal-overlay, .back-to-top, .batch-bar, .fav-bar, .popular-section, .login-panel, .admin-panel, .ticker-wrap, .user-request-section, .toast-container, .shortcut-hint, .view-sort-bar, .recent-bar, .qr-modal-overlay, .shortcut-modal, .notif-btn, .notif-dropdown { display: none !important; }
+  .header, .controls, .stats-bar, .footer, .modal-overlay, .back-to-top, .batch-bar, .fav-bar, .popular-section, .login-panel, .admin-panel, .ticker-wrap, .user-request-section, .toast-container, .shortcut-hint, .view-sort-bar, .recent-bar, .qr-modal-overlay { display: none !important; }
   .forms-grid, .forms-list { display: block !important; }
   .form-card, .list-item { break-inside: avoid; page-break-inside: avoid; margin-bottom: 20px; box-shadow: none; border: 1px solid #ccc; }
   body { background: white; }
 }
-
 @media (max-width: 600px) {
   .header-inner { justify-content: center; text-align: center; }
   .logo-area { flex-direction: column; }
@@ -407,7 +440,6 @@ body { font-family: 'Tajawal', sans-serif; background: var(--body-bg); color: va
 <body>
 
 <canvas class="confetti-canvas" id="confettiCanvas"></canvas>
-
 <div class="loading-overlay" id="loadingOverlay">
   <div class="spinner"></div>
   <p style="color:#555;font-size:16px;">جاري تحميل الاستمارات...</p>
@@ -462,7 +494,7 @@ body { font-family: 'Tajawal', sans-serif; background: var(--body-bg); color: va
   </div>
 </div>
 
-<div class="login-panel active" id="loginPanel">
+<div class="login-panel" id="loginPanel">
   <div class="login-box">
     <h3>🔐 تسجيل دخول المشرف</h3>
     <p>الوصول إلى لوحة إدارة الاستمارات</p>
@@ -534,41 +566,39 @@ body { font-family: 'Tajawal', sans-serif; background: var(--body-bg); color: va
     </div>
     <div class="form-row">
       <div class="form-group" style="grid-column: 1 / -1;">
-        <label>الوسوم (اختر من القائمة أو اكتب جديد)</label>
-        <div class="tags-input-container">
-          <div class="tags-selected" id="tagsSelected" onclick="focusTagInput()">
-            <input type="text" class="tags-input-field" id="tagInput" placeholder="اكتب أو اختر..." oninput="filterTagSuggestions()" onkeydown="handleTagKey(event)" onfocus="showTagSuggestions()" onblur="hideTagSuggestionsDelayed()">
-          </div>
-          <div class="tags-dropdown">
-            <div class="tags-suggestions" id="tagsSuggestions"></div>
-          </div>
-          <div class="tags-preset-label">🔥 الوسوم الشائعة (انقر للاختيار):</div>
-          <div class="tags-preset-list" id="tagsPresetList">
-            <button type="button" class="tags-preset-btn" data-tag="عاجل" onclick="togglePresetTag(this)">🔴 عاجل</button>
-            <button type="button" class="tags-preset-btn" data-tag="شهري" onclick="togglePresetTag(this)">📅 شهري</button>
-            <button type="button" class="tags-preset-btn" data-tag="شائع" onclick="togglePresetTag(this)">🔥 شائع</button>
-            <button type="button" class="tags-preset-btn" data-tag="إلزامي" onclick="togglePresetTag(this)">✅ إلزامي</button>
-            <button type="button" class="tags-preset-btn" data-tag="مالي" onclick="togglePresetTag(this)">💰 مالي</button>
-            <button type="button" class="tags-preset-btn" data-tag="فوري" onclick="togglePresetTag(this)">⚡ فوري</button>
-            <button type="button" class="tags-preset-btn" data-tag="بنكي" onclick="togglePresetTag(this)">🏦 بنكي</button>
-            <button type="button" class="tags-preset-btn" data-tag="إداري" onclick="togglePresetTag(this)">🏢 إداري</button>
-            <button type="button" class="tags-preset-btn" data-tag="قانوني" onclick="togglePresetTag(this)">⚖️ قانوني</button>
-            <button type="button" class="tags-preset-btn" data-tag="تطوير" onclick="togglePresetTag(this)">📈 تطوير</button>
-            <button type="button" class="tags-preset-btn" data-tag="سنوي" onclick="togglePresetTag(this)">📆 سنوي</button>
-            <button type="button" class="tags-preset-btn" data-tag="اختياري" onclick="togglePresetTag(this)">🔘 اختياري</button>
-          </div>
-        </div>
-        <input type="hidden" id="adminTags" value="">
-      </div>
+  <label>الوسوم (اختر من القائمة أو اكتب جديد)</label>
+  <div class="tags-input-container">
+    <div class="tags-selected" id="tagsSelected" onclick="focusTagInput()">
+      <input type="text" class="tags-input-field" id="tagInput" placeholder="اكتب أو اختر..." oninput="filterTagSuggestions()" onkeydown="handleTagKey(event)" onfocus="showTagSuggestions()" onblur="hideTagSuggestionsDelayed()">
     </div>
-    <div class="form-row">
+    <div class="tags-dropdown">
+      <div class="tags-suggestions" id="tagsSuggestions"></div>
+    </div>
+    <div class="tags-preset-label">🔥 الوسوم الشائعة (انقر للاختيار):</div>
+    <div class="tags-preset-list" id="tagsPresetList">
+      <button type="button" class="tags-preset-btn" data-tag="عاجل" onclick="togglePresetTag(this)">🔴 عاجل</button>
+      <button type="button" class="tags-preset-btn" data-tag="شهري" onclick="togglePresetTag(this)">📅 شهري</button>
+      <button type="button" class="tags-preset-btn" data-tag="شائع" onclick="togglePresetTag(this)">🔥 شائع</button>
+      <button type="button" class="tags-preset-btn" data-tag="إلزامي" onclick="togglePresetTag(this)">✅ إلزامي</button>
+      <button type="button" class="tags-preset-btn" data-tag="مالي" onclick="togglePresetTag(this)">💰 مالي</button>
+      <button type="button" class="tags-preset-btn" data-tag="فوري" onclick="togglePresetTag(this)">⚡ فوري</button>
+      <button type="button" class="tags-preset-btn" data-tag="بنكي" onclick="togglePresetTag(this)">🏦 بنكي</button>
+      <button type="button" class="tags-preset-btn" data-tag="إداري" onclick="togglePresetTag(this)">🏢 إداري</button>
+      <button type="button" class="tags-preset-btn" data-tag="قانوني" onclick="togglePresetTag(this)">⚖️ قانوني</button>
+      <button type="button" class="tags-preset-btn" data-tag="تطوير" onclick="togglePresetTag(this)">📈 تطوير</button>
+      <button type="button" class="tags-preset-btn" data-tag="سنوي" onclick="togglePresetTag(this)">📆 سنوي</button>
+      <button type="button" class="tags-preset-btn" data-tag="اختياري" onclick="togglePresetTag(this)">🔘 اختياري</button>
+    </div>
+  </div>
+  <input type="hidden" id="adminTags" value="">
+</div>
       <div class="form-group"><label>حجم الملف (مثال: 120 KB)</label><input type="text" id="adminFileSize" placeholder="120 KB"></div>
-      <div class="form-group"><label>عدد الصفحات</label><input type="number" id="adminPages" placeholder="1" min="1" value="1"></div>
     </div>
     <div class="form-row">
-      <div class="form-group" style="grid-column: 1 / -1;"><label>رابط الملف (PDF)</label><input type="text" id="adminUrl" placeholder="https://.../file.pdf"></div>
+      <div class="form-group"><label>عدد الصفحات</label><input type="number" id="adminPages" placeholder="1" min="1" value="1"></div>
+      <div class="form-group"><label>رابط الملف (PDF)</label><input type="text" id="adminUrl" placeholder="https://.../file.pdf"></div>
     </div>
-    <div class="form-row"><div class="form-group" style="grid-column: 1 / -1;"><label>الوصف</label><textarea id="adminDesc" rows="2" placeholder="وصف مختصر للاستمارة"></textarea></div></div>
+    <div class="form-row"><div class="form-group" style="grid-column: 1 / -1;"><label>الوصف</label><input type="text" id="adminDesc" placeholder="وصف مختصر للاستمارة"></div></div>
     <div class="admin-actions">
       <button class="admin-btn admin-btn-primary" id="saveBtn" onclick="saveForm()">💾 حفظ الاستمارة</button>
       <button class="admin-btn admin-btn-secondary" onclick="resetForm()">🔄 إعادة تعيين</button>
@@ -635,6 +665,7 @@ body { font-family: 'Tajawal', sans-serif; background: var(--body-bg); color: va
   <div class="fav-chips" id="favChips"></div>
 </div>
 
+<!-- Recent Downloads Bar -->
 <div class="recent-bar" id="recentBar">
   <div class="recent-title">🕐 آخر التحميلات</div>
   <div class="recent-chips" id="recentChips"></div>
@@ -649,6 +680,7 @@ body { font-family: 'Tajawal', sans-serif; background: var(--body-bg); color: va
   <div class="search-box" style="position:relative;">
     <span class="search-icon">🔍</span>
     <input type="text" id="searchInput" placeholder="ابحث في الاسم، الوصف، التصنيف، أو الوسوم..." autocomplete="off">
+    <div class="search-suggestions" id="searchSuggestions"></div>
   </div>
   <div class="filter-tabs">
     <button class="filter-btn active" data-filter="all">الكل</button>
@@ -665,6 +697,7 @@ body { font-family: 'Tajawal', sans-serif; background: var(--body-bg); color: va
   </div>
 </div>
 
+<!-- View & Sort Bar -->
 <div class="view-sort-bar">
   <div class="view-toggle-group">
     <button class="view-toggle-btn active" id="viewGridBtn" onclick="setViewMode('grid')" title="عرض الشبكة">⊞ شبكة</button>
@@ -713,6 +746,7 @@ body { font-family: 'Tajawal', sans-serif; background: var(--body-bg); color: va
   </div>
 </div>
 
+<!-- QR Modal -->
 <div class="qr-modal-overlay" id="qrModalOverlay">
   <div class="qr-modal">
     <h3>📱 امسح الكود بالهاتف</h3>
@@ -722,6 +756,7 @@ body { font-family: 'Tajawal', sans-serif; background: var(--body-bg); color: va
   </div>
 </div>
 
+<!-- Shortcuts Modal -->
 <div class="shortcut-modal" id="shortcutModal">
   <div class="shortcut-content">
     <h3>⌨️ اختصارات لوحة المفاتيح</h3>
@@ -747,6 +782,19 @@ body { font-family: 'Tajawal', sans-serif; background: var(--body-bg); color: va
 <button class="back-to-top" id="backToTop" onclick="scrollToTop()">⬆️</button>
 <button class="shortcut-hint" onclick="openShortcutModal()" title="اختصارات لوحة المفاتيح">?</button>
 
+<!-- Hidden PDF export content -->
+<div class="pdf-export-content" id="pdfExportContent">
+  <div style="text-align:center;margin-bottom:20px;">
+    <h1 style="color:#16455B;font-size:24px;">الإدارة العامة للتعليم بمحافظة جدة</h1>
+    <h2 style="color:#309694;font-size:18px;">قائمة الاستمارات</h2>
+    <p style="color:#666;">تاريخ التقرير: <span id="pdfDate"></span></p>
+  </div>
+  <table style="width:100%;border-collapse:collapse;" id="pdfTable">
+    <thead><tr style="background:#16455B;color:white;"><th style="padding:10px;border:1px solid #ddd;">#</th><th style="padding:10px;border:1px solid #ddd;">الاستمارة</th><th style="padding:10px;border:1px solid #ddd;">التصنيف</th><th style="padding:10px;border:1px solid #ddd;">الوسوم</th><th style="padding:10px;border:1px solid #ddd;">التحميلات</th></tr></thead>
+    <tbody id="pdfTableBody"></tbody>
+  </table>
+</div>
+
 <footer class="footer">
   <span class="moe-brand" data-ar="وزارة التعليم" data-en="Ministry of Education">وزارة التعليم</span> — 
   <span data-ar="الإدارة العامة للتعليم بمحافظة جدة — الموارد البشرية — الانتدابات والبدلات" data-en="Jeddah Education — HR — Delegations & Allowances">الإدارة العامة للتعليم بمحافظة جدة — الموارد البشرية — الانتدابات والبدلات</span>
@@ -755,381 +803,112 @@ body { font-family: 'Tajawal', sans-serif; background: var(--body-bg); color: va
 
 <script>
 const ADMIN_PASSWORD = "Jeddah2026!";
-let formsData = [], isAdmin = false, currentFilter = 'all', searchQuery = '', selectedForm = null, nextId = 1, editingId = null, favorites = [], currentLang = 'ar', batchSelected = [], visitorCount = 0, batchMode = false, userRequests = [], viewMode = 'grid', currentSort = 'priority', recentDownloads = [], ratings = {}, readForms = [];
+let formsData = [], isAdmin = getStorage('isAdmin', false), currentFilter = 'all', searchQuery = '', selectedForm = null, nextId = 1, editingId = null, favorites = getStorage('favorites', []), currentLang = getStorage('lang', 'ar'), batchSelected = [], visitorCount = getStorage('visitorCount', 0), batchMode = false, userRequests = getStorage('userRequests', []), viewMode = getStorage('viewMode', 'grid'), currentSort = getStorage('sortBy', 'priority'), recentDownloads = getStorage('recentDownloads', []), ratings = getStorage('ratings', {});
 
 const categoryNames = { ar: { all: 'الكل', requests: 'طلبات', print: 'طباعة', reports: 'تقارير', favorites: 'المفضلة', other: 'أخرى' }, en: { all: 'All', requests: 'Requests', print: 'Print', reports: 'Reports', favorites: 'Favorites', other: 'Other' } };
 const tagClasses = { 'عاجل': 'tag-urgent', 'شهري': 'tag-monthly', 'شائع': 'tag-popular', 'إلزامي': 'tag-mandatory' };
-const ALL_TAGS = ['عاجل','شهري','شائع','إلزامي','مالي','فوري','بنكي','إداري','قانوني','تطوير','سنوي','اختياري'];
-const TAG_COLORS = { 'عاجل': '#e94560', 'شهري': '#667eea', 'شائع': '#f9a825', 'إلزامي': '#43e97b', 'مالي': '#38A18A', 'فوري': '#ff6b6b', 'بنكي': '#4ecdc4', 'إداري': '#95a5a6', 'قانوني': '#8e44ad', 'تطوير': '#e67e22', 'سنوي': '#3498db', 'اختياري': '#bdc3c7' };
-let selectedTags = [];
 
 function getStorage(key, defaultVal) { try { const val = localStorage.getItem(key); return val ? JSON.parse(val) : defaultVal; } catch { return defaultVal; } }
 function setStorage(key, val) { try { localStorage.setItem(key, JSON.stringify(val)); } catch {} }
 
-function showToast(message, type) {
-  type = type || 'info';
+function showToast(message, type = 'info') {
   const container = document.getElementById('toastContainer');
   const toast = document.createElement('div');
-  toast.className = 'toast ' + type;
+  toast.className = `toast ${type}`;
   const icons = { success: '✅', error: '❌', info: 'ℹ️' };
-  toast.innerHTML = '<span>' + (icons[type] || 'ℹ️') + '</span><span>' + message + '</span>';
+  toast.innerHTML = `<span>${icons[type] || 'ℹ️'}</span><span>${message}</span>`;
   container.appendChild(toast);
-  setTimeout(function() { toast.style.opacity = '0'; toast.style.transform = 'translateX(-20px)'; setTimeout(function() { toast.remove(); }, 300); }, 3000);
+  setTimeout(() => { toast.style.opacity = '0'; toast.style.transform = 'translateX(-20px)'; setTimeout(() => toast.remove(), 300); }, 3000);
 }
 
-function showLoading(show) { document.getElementById('loadingOverlay').classList.toggle('hidden', !show); }
-function applyTheme() { const theme = getStorage('theme', 'light'); document.documentElement.setAttribute('data-theme', theme); document.getElementById('themeToggle').textContent = theme === 'dark' ? '☀️' : '🌙'; }
-function toggleTheme() { const current = document.documentElement.getAttribute('data-theme') || 'light'; const next = current === 'dark' ? 'light' : 'dark'; document.documentElement.setAttribute('data-theme', next); setStorage('theme', next); document.getElementById('themeToggle').textContent = next === 'dark' ? '☀️' : '🌙'; }
-function applyLang() { const els = document.querySelectorAll('[data-ar][data-en]'); els.forEach(function(el) { el.textContent = el.getAttribute('data-' + currentLang); }); document.getElementById('langToggle').textContent = currentLang === 'ar' ? 'EN' : 'ع'; document.body.dir = currentLang === 'ar' ? 'rtl' : 'ltr'; document.querySelectorAll('.filter-btn').forEach(function(btn) { const filter = btn.dataset.filter; if (categoryNames[currentLang][filter]) { const icon = { all: '', requests: '📨 ', print: '🖨️ ', reports: '📊 ', favorites: '⭐ ' }[filter] || ''; btn.innerHTML = icon + categoryNames[currentLang][filter]; } }); }
-function toggleLang() { currentLang = currentLang === 'ar' ? 'en' : 'ar'; setStorage('lang', currentLang); applyLang(); renderForms(); renderFavorites(); renderPopular(); }
-
-function initTicker() { const ticker = document.getElementById('tickerWrap'); const isClosed = getStorage('tickerClosed', false); if (isClosed) ticker.classList.add('hidden'); else ticker.classList.remove('hidden'); }
-function closeTicker() { document.getElementById('tickerWrap').classList.add('hidden'); setStorage('tickerClosed', true); showToast('تم إغلاق شريط الإشعارات', 'info'); }
-
-function toggleFav(formId) { const idx = favorites.indexOf(formId); if (idx > -1) { favorites.splice(idx, 1); showToast('تم الإزالة من المفضلة', 'info'); } else { favorites.push(formId); showToast('تمت الإضافة للمفضلة', 'success'); } setStorage('favorites', favorites); renderFavorites(); renderForms(); }
-function toggleFavFromModal() { if (!selectedForm) return; toggleFav(selectedForm.id); updateFavButton(); }
-function updateFavButton() { if (!selectedForm) return; const btn = document.getElementById('favModalBtn'); const isFav = favorites.indexOf(selectedForm.id) > -1; btn.textContent = isFav ? '❌ إزالة من المفضلة' : '⭐ إضافة للمفضلة'; }
-function renderFavorites() { const bar = document.getElementById('favBar'); const chips = document.getElementById('favChips'); const favForms = formsData.filter(function(f) { return favorites.indexOf(f.id) > -1; }); if (favForms.length === 0) { bar.classList.remove('active'); return; } bar.classList.add('active'); chips.innerHTML = favForms.map(function(f) { return '<button class="fav-chip" onclick="openModal(' + f.id + ')">' + f.icon + ' ' + f.name + '<span class="remove-fav" onclick="event.stopPropagation(); toggleFav(' + f.id + ')">✕</span></button>'; }).join(''); }
-
-function exportFavoritesList() {
-  const favForms = formsData.filter(function(f) { return favorites.indexOf(f.id) > -1; });
-  if (!favForms.length) { showToast('لا توجد مفضلة للتصدير', 'info'); return; }
-  let htmlContent = '<!DOCTYPE html><html dir="rtl" lang="ar"><head><meta charset="UTF-8"><style>body{font-family:'Segoe UI',sans-serif;direction:rtl;padding:20px;}h2{color:#16455B;}table{width:100%;border-collapse:collapse;}th{background:#16455B;color:white;padding:10px;text-align:right;}td{padding:8px;border:1px solid #ddd;text-align:right;}tr:nth-child(even){background:#f5f7f6;}</style></head><body><h2>⭐ قائمة الاستمارات المفضلة</h2><p>تاريخ التصدير: ' + new Date().toLocaleDateString('ar-SA') + '</p><table><thead><tr><th>#</th><th>الاسم</th><th>التصنيف</th><th>الحجم</th><th>الصفحات</th><th>الرابط</th></tr></thead><tbody>';
-  htmlContent += favForms.map(function(f, i) { return '<tr><td>' + (i+1) + '</td><td>' + f.icon + ' ' + f.name + '</td><td>' + (categoryNames.ar[f.category]||f.category) + '</td><td>' + (f.fileSize||'-') + '</td><td>' + (f.pages||'-') + '</td><td>' + (f.fileUrl!=='#'?f.fileUrl:'-') + '</td></tr>'; }).join('');
-  htmlContent += '</tbody></table></body></html>';
-  const blob = new Blob(["﻿" + htmlContent], { type: 'application/vnd.ms-excel;charset=utf-8;' });
-  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'favorites_list.xls'; document.body.appendChild(a); a.click(); document.body.removeChild(a);
-  showToast('✅ تم تصدير قائمة المفضلة!', 'success');
+async function loadForms() {
+  showLoading(true);
+  // Reset all stats to zero (fresh start)
+  const currentVersion = 'v2.0-fresh';
+  const savedVersion = localStorage.getItem('appVersion');
+  if (savedVersion !== currentVersion) {
+    localStorage.setItem('appVersion', currentVersion);
+    visitorCount = 1;
+    setStorage('visitorCount', 1);
+    setStorage('todayDownloads', { count: 0, date: new Date().toDateString() });
+    setStorage('favorites', []);
+    setStorage('recentDownloads', []);
+    setStorage('ratings', {});
+    setStorage('userRequests', []);
+    setStorage('tickerClosed', false);
+    favorites = []; recentDownloads = []; ratings = {}; userRequests = [];
+  } else {
+    visitorCount++; setStorage('visitorCount', visitorCount);
+  }
+  try {
+    const response = await fetch('forms.json?v=' + Date.now());
+    if (response.ok) { formsData = await response.json(); }
+    else throw new Error('forms.json not found');
+  } catch (e) { formsData = getDefaultForms(); }
+  nextId = Math.max(...formsData.map(f => f.id), 0) + 1;
+  applySort();
+  showLoading(false);
+  applyTheme(); applyLang(); initViewMode(); renderFavorites(); renderRecent(); renderPopular(); renderForms(); updateStats(); initAuth(); initTicker(); renderAdminRequests(); renderNotifications(); initPickers();
 }
 
-function addRecentDownload(formId) {
-  const form = formsData.find(function(f) { return f.id === formId; });
-  if (!form) return;
-  recentDownloads = recentDownloads.filter(function(r) { return r.id !== formId; });
-  recentDownloads.unshift({ id: formId, name: form.name, icon: form.icon, time: Date.now() });
-  if (recentDownloads.length > 5) recentDownloads = recentDownloads.slice(0, 5);
-  setStorage('recentDownloads', recentDownloads);
-  renderRecent();
+/* ===== Notification System ===== */
+function toggleNotifDropdown() {
+  const dd = document.getElementById('notifDropdown');
+  dd.classList.toggle('active');
+  if (dd.classList.contains('active')) markNotifsRead();
 }
-function renderRecent() {
-  const bar = document.getElementById('recentBar');
-  const chips = document.getElementById('recentChips');
-  if (!recentDownloads.length) { bar.classList.remove('active'); return; }
-  bar.classList.add('active');
-  chips.innerHTML = recentDownloads.map(function(r) { return '<button class="recent-chip" onclick="openModal(' + r.id + ')">' + r.icon + ' ' + r.name + '<span class="remove-recent" onclick="event.stopPropagation(); removeRecent(' + r.id + ')">✕</span></button>'; }).join('');
-}
-function removeRecent(id) { recentDownloads = recentDownloads.filter(function(r) { return r.id !== id; }); setStorage('recentDownloads', recentDownloads); renderRecent(); }
+document.addEventListener('click', (e) => {
+  const btn = document.getElementById('notifBtn');
+  const dd = document.getElementById('notifDropdown');
+  if (!btn.contains(e.target) && !dd.contains(e.target)) dd.classList.remove('active');
+});
 
-function renderPopular() { const section = document.getElementById('popularSection'); const grid = document.getElementById('popularGrid'); const topForms = formsData.slice().sort(function(a, b) { return (b.downloads || 0) - (a.downloads || 0); }).slice(0, 3); if (topForms.length === 0) { section.classList.remove('active'); return; } section.classList.add('active'); grid.innerHTML = topForms.map(function(f, i) { return '<div class="popular-card" onclick="openModal(' + f.id + ')"><div class="rank">' + (i + 1) + '</div><div class="info"><div class="name">' + f.name + '</div><div class="count">' + (f.downloads || 0) + ' تحميل</div></div></div>'; }).join(''); }
-
-function initAuth() { if (isAdmin) { document.getElementById('loginPanel').classList.remove('active'); document.getElementById('adminPanel').classList.add('active'); } else { document.getElementById('loginPanel').classList.add('active'); document.getElementById('adminPanel').classList.remove('active'); } }
-function doLogin() { const password = document.getElementById('loginPassword').value; if (password === ADMIN_PASSWORD) { isAdmin = true; setStorage('isAdmin', true); document.getElementById('loginPanel').classList.remove('active'); document.getElementById('adminPanel').classList.add('active'); document.getElementById('loginError').classList.remove('active'); document.getElementById('loginPassword').value = ''; renderAdminTable(); renderAdminRequests(); showToast('تم تسجيل الدخول بنجاح', 'success'); } else { document.getElementById('loginError').classList.add('active'); document.getElementById('loginPassword').value = ''; showToast('كلمة المرور غير صحيحة', 'error'); } }
-function doLogout() { if (!confirm(currentLang === 'ar' ? 'هل أنت متأكد من تسجيل الخروج؟' : 'Are you sure?')) return; isAdmin = false; setStorage('isAdmin', false); document.getElementById('adminPanel').classList.remove('active'); document.getElementById('loginPanel').classList.add('active'); document.getElementById('adminForm').classList.remove('active'); showToast('تم تسجيل الخروج', 'info'); }
-
-function toggleAdmin() { document.getElementById('adminForm').classList.toggle('active'); if (document.getElementById('adminForm').classList.contains('active')) { renderAdminTable(); renderAdminRequests(); } }
-function renderAdminTable() { const tbody = document.getElementById('adminTableBody'); if (!formsData.length) { tbody.innerHTML = '<tr><td colspan="9" style="text-align:center;color:#999;padding:20px;">لا توجد استمارات</td></tr>'; return; } const sorted = formsData.slice().sort(function(a, b) { return (a.priority || 999) - (b.priority || 999); }); tbody.innerHTML = sorted.map(function(form, idx) { return '<tr><td>' + (idx + 1) + '</td><td><input type="number" class="priority-input" value="' + (form.priority || 1) + '" onchange="changePriority(' + form.id + ', this.value)"></td><td style="font-size:20px;text-align:center;">' + form.icon + '</td><td><strong>' + form.name + '</strong></td><td>' + (categoryNames.ar[form.category] || form.category) + '</td><td>' + (form.fileSize || '-') + '</td><td>' + (form.pages || '-') + '</td><td>' + (form.downloads || 0) + '</td><td><div class="table-actions"><button class="table-btn table-btn-up" onclick="moveUp(' + form.id + ')">⬆️</button><button class="table-btn table-btn-down" onclick="moveDown(' + form.id + ')">⬇️</button><button class="table-btn table-btn-edit" onclick="editForm(' + form.id + ')">✏️</button><button class="table-btn table-btn-delete" onclick="deleteForm(' + form.id + ')">🗑️</button></div></td></tr>'; }).join(''); }
-
-function changePriority(id, newPriority) { const form = formsData.find(function(f) { return f.id === id; }); if (form) { form.priority = parseInt(newPriority) || 1; applySort(); renderForms(); renderAdminTable(); exportJSON(); showToast('تم تحديث الأولوية', 'success'); } }
-function moveUp(id) { const form = formsData.find(function(f) { return f.id === id; }); if (!form) return; form.priority = Math.max(1, (form.priority || 1) - 1); applySort(); renderForms(); renderAdminTable(); exportJSON(); }
-function moveDown(id) { const form = formsData.find(function(f) { return f.id === id; }); if (!form) return; form.priority = (form.priority || 1) + 1; applySort(); renderForms(); renderAdminTable(); exportJSON(); }
-
-function saveForm() {
-  const name = document.getElementById('adminName').value.trim();
-  const category = document.getElementById('adminCategory').value;
-  const icon = document.getElementById('adminIcon').value.trim() || '📄';
-  const color = document.getElementById('adminColor').value.trim() || '#16455B';
-  const priority = parseInt(document.getElementById('adminPriority').value) || 1;
-  const tagsStr = document.getElementById('adminTags').value.trim();
-  const tags = tagsStr ? tagsStr.split(',').map(function(t) { return t.trim(); }).filter(function(t) { return t; }) : [];
-  const fileSize = document.getElementById('adminFileSize').value.trim() || '';
-  const pages = parseInt(document.getElementById('adminPages').value) || 1;
-  const fileUrl = document.getElementById('adminUrl').value.trim() || '#';
-  const desc = document.getElementById('adminDesc').value.trim() || name;
-  if (!name) { showToast('❌ يرجى إدخال اسم الاستمارة', 'error'); return; }
-  if (editingId) { const idx = formsData.findIndex(function(f) { return f.id === editingId; }); if (idx !== -1) { formsData[idx] = Object.assign({}, formsData[idx], { name, category, icon, color, priority, tags, fileSize, pages, fileUrl, description: desc, updatedAt: new Date().toISOString().split('T')[0] }); showToast('✅ تم تعديل الاستمارة!', 'success'); } }
-  else { formsData.push({ id: nextId++, name, category, icon, color, priority, tags, fileSize, pages, downloads: 0, fileUrl, description: desc, updatedAt: new Date().toISOString().split('T')[0], addedAt: Date.now() }); showToast('✅ تمت إضافة الاستمارة!', 'success'); fireConfetti(); }
-  applySort(); resetForm(); renderForms(); renderPopular(); renderAdminTable(); exportJSON();
+function renderNotifications() {
+  const myRequests = userRequests.filter(r => r.status !== 'pending');
+  const badge = document.getElementById('notifBadge');
+  const list = document.getElementById('notifList');
+  const unread = myRequests.filter(r => !r.read).length;
+  if (unread > 0) { badge.style.display = 'flex'; badge.textContent = unread; }
+  else { badge.style.display = 'none'; }
+  if (!myRequests.length) { list.innerHTML = '<div class="notif-empty">لا توجد إشعارات جديدة</div>'; return; }
+  list.innerHTML = myRequests.slice().reverse().map(r => {
+    const statusText = r.status === 'approved' ? '✅ تمت الموافقة على طلبك' : '❌ تم رفض طلبك';
+    const statusClass = r.status === 'approved' ? 'approved' : 'rejected';
+    return `<div class="notif-item ${statusClass}"><strong>${r.formName}</strong><div>${statusText}</div><div class="notif-time">📅 ${r.date} ${r.time}</div></div>`;
+  }).join('');
 }
 
-function editForm(id) { const form = formsData.find(function(f) { return f.id === id; }); if (!form) return; editingId = id; document.getElementById('adminName').value = form.name; document.getElementById('adminCategory').value = form.category; document.getElementById('adminIcon').value = form.icon; document.getElementById('adminColor').value = form.color; document.getElementById('adminPriority').value = form.priority || 1; document.getElementById('adminTags').value = (form.tags || []).join(', '); document.getElementById('adminFileSize').value = form.fileSize || ''; document.getElementById('adminPages').value = form.pages || 1; document.getElementById('adminUrl').value = form.fileUrl === '#' ? '' : form.fileUrl; document.getElementById('adminDesc').value = form.description || ''; document.getElementById('formTitle').textContent = '✏️ تعديل استمارة'; document.getElementById('saveBtn').textContent = '💾 حفظ التعديلات'; document.getElementById('adminForm').classList.add('active'); document.getElementById('adminName').focus(); if (form.tags) { selectedTags = form.tags.slice(); renderSelectedTags(); } initPickers(); }
-function deleteForm(id) { const form = formsData.find(function(f) { return f.id === id; }); if (!form) return; if (!confirm('⚠️ هل أنت متأكد من حذف "' + form.name + '"؟')) return; formsData = formsData.filter(function(f) { return f.id !== id; }); favorites = favorites.filter(function(fid) { return fid !== id; }); batchSelected = batchSelected.filter(function(fid) { return fid !== id; }); setStorage('favorites', favorites); if (editingId === id) resetForm(); renderForms(); renderFavorites(); renderPopular(); renderAdminTable(); updateBatchBar(); exportJSON(); showToast('🗑️ تم حذف الاستمارة!', 'success'); }
-function resetForm() { editingId = null; document.getElementById('adminName').value = ''; document.getElementById('adminCategory').value = 'requests'; document.getElementById('adminIcon').value = '📄'; document.getElementById('adminColor').value = '#16455B'; document.getElementById('adminPriority').value = '1'; document.getElementById('adminTags').value = ''; document.getElementById('adminFileSize').value = ''; document.getElementById('adminPages').value = '1'; document.getElementById('adminUrl').value = ''; document.getElementById('adminDesc').value = ''; document.getElementById('formTitle').textContent = '➕ إضافة استمارة جديدة'; document.getElementById('saveBtn').textContent = '💾 حفظ الاستمارة'; selectedTags = []; renderSelectedTags(); initPickers(); }
-function exportJSON() { const jsonStr = JSON.stringify(formsData, null, 2); document.getElementById('exportArea').value = jsonStr; document.getElementById('jsonExport').classList.add('active'); }
-
-function exportCSV() {
-  const headers = ['#', 'الاسم', 'التصنيف', 'الأيقونة', 'اللون', 'الأولوية', 'التحميلات', 'الحجم', 'الصفحات', 'آخر تحديث', 'الوسوم', 'الوصف', 'الرابط'];
-  const rows = formsData.map(function(f, i) { return [i + 1, f.name, categoryNames.ar[f.category] || f.category, f.icon, f.color, f.priority || 1, f.downloads || 0, f.fileSize || '-', f.pages || '-', f.updatedAt || '-', (f.tags || []).join('، '), f.description || '-', f.fileUrl]; });
-  let htmlContent = '<!DOCTYPE html><html dir="rtl" lang="ar"><head><meta charset="UTF-8"><style>body{font-family:'Segoe UI',sans-serif;direction:rtl;padding:20px;}h2{color:#16455B;}table{width:100%;border-collapse:collapse;}th{background:#16455B;color:white;padding:10px;text-align:right;}td{padding:8px;border:1px solid #ddd;text-align:right;}tr:nth-child(even){background:#f5f7f6;}</style></head><body><h2>📊 تقرير الاستمارات - الإدارة العامة للتعليم بجدة</h2><p>تاريخ التصدير: ' + new Date().toLocaleDateString('ar-SA') + '</p><table><thead><tr>' + headers.map(function(h) { return '<th>' + h + '</th>'; }).join('') + '</tr></thead><tbody>';
-  htmlContent += rows.map(function(r) { return '<tr>' + r.map(function(c) { return '<td>' + String(c).replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</td>'; }).join('') + '</tr>'; }).join('');
-  htmlContent += '</tbody></table></body></html>';
-  const blob = new Blob(["﻿" + htmlContent], { type: 'application/vnd.ms-excel;charset=utf-8;' });
-  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'forms_report.xls'; document.body.appendChild(a); a.click(); document.body.removeChild(a);
-  showToast('✅ تم تصدير ملف Excel بنجاح!', 'success');
-}
-
-function copyJSON() { const area = document.getElementById('exportArea'); area.select(); document.execCommand('copy'); showToast('✅ تم نسخ JSON!', 'success'); }
-function downloadJSON() { const jsonStr = JSON.stringify(formsData, null, 2); const blob = new Blob([jsonStr], { type: 'application/json' }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = 'forms.json'; document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url); showToast('✅ تم تحميل ملف forms.json!', 'success'); }
-function clearAll() { if (!confirm('⚠️ هل أنت متأكد من حذف جميع الاستمارات؟')) return; formsData = []; favorites = []; batchSelected = []; setStorage('favorites', favorites); nextId = 1; resetForm(); renderForms(); renderFavorites(); renderPopular(); renderAdminTable(); updateBatchBar(); exportJSON(); showToast('🗑️ تم حذف جميع الاستمارات!', 'success'); }
-
-function toggleUserRequestForm() { document.getElementById('userRequestForm').classList.toggle('active'); }
-function submitUserRequest() {
-  const name = document.getElementById('reqUserName').value.trim();
-  const dept = document.getElementById('reqUserDept').value.trim();
-  const formName = document.getElementById('reqFormName').value.trim();
-  const formType = document.getElementById('reqFormType').value;
-  const formDesc = document.getElementById('reqFormDesc').value.trim();
-  if (!name || !dept || !formName) { showToast('❌ يرجى ملء جميع الحقول المطلوبة', 'error'); return; }
-  const request = { id: Date.now(), userName: name, dept: dept, formName: formName, formType: formType, formDesc: formDesc, status: 'pending', date: new Date().toISOString().split('T')[0], time: new Date().toLocaleTimeString('en-US'), read: false };
-  userRequests.push(request);
+function markNotifsRead() {
+  userRequests.forEach(r => { if (r.status !== 'pending') r.read = true; });
   setStorage('userRequests', userRequests);
-  document.getElementById('reqUserName').value = ''; document.getElementById('reqUserDept').value = ''; document.getElementById('reqFormName').value = ''; document.getElementById('reqFormDesc').value = '';
-  document.getElementById('userRequestForm').classList.remove('active');
-  showToast('📤 تم إرسال طلبك بنجاح!', 'success');
-  if (isAdmin) renderAdminRequests();
-}
-function renderAdminRequests() {
-  const container = document.getElementById('requestsList');
-  if (!userRequests.length) { container.innerHTML = '<div style="color:#666;font-size:13px;text-align:center;padding:10px;">لا توجد طلبات جديدة</div>'; return; }
-  const pending = userRequests.filter(function(r) { return r.status === 'pending'; });
-  if (!pending.length) { container.innerHTML = '<div style="color:#666;font-size:13px;text-align:center;padding:10px;">لا توجد طلبات قيد الانتظار</div>'; return; }
-  container.innerHTML = pending.map(function(req) { return '<div class="request-list-item"><div class="request-item-info"><div class="request-item-name">' + req.formName + '</div><div class="request-item-meta">👤 ' + req.userName + ' | 🏢 ' + req.dept + ' | 📅 ' + req.date + ' ' + req.time + ' | <span class="request-status request-status-pending">قيد الانتظار</span></div>' + (req.formDesc ? '<div style="font-size:12px;color:#666;margin-top:4px;">📝 ' + req.formDesc + '</div>' : '') + '</div><div class="request-item-actions"><button class="request-approve" onclick="approveRequest(' + req.id + ')">✅ موافقة</button><button class="request-reject" onclick="rejectRequest(' + req.id + ')">❌ رفض</button></div></div>'; }).join('');
-}
-function approveRequest(id) { const req = userRequests.find(function(r) { return r.id === id; }); if (!req) return; req.status = 'approved'; setStorage('userRequests', userRequests); renderAdminRequests(); renderNotifications(); showToast('✅ تمت الموافقة على الطلب', 'success'); }
-function rejectRequest(id) { const req = userRequests.find(function(r) { return r.id === id; }); if (!req) return; req.status = 'rejected'; setStorage('userRequests', userRequests); renderAdminRequests(); renderNotifications(); showToast('❌ تم رفض الطلب', 'info'); }
-
-function initViewMode() { document.getElementById('viewGridBtn').classList.toggle('active', viewMode === 'grid'); document.getElementById('viewListBtn').classList.toggle('active', viewMode === 'list'); document.getElementById('formsGrid').style.display = viewMode === 'grid' ? 'grid' : 'none'; document.getElementById('formsList').classList.toggle('active', viewMode === 'list'); document.getElementById('sortSelect').value = currentSort; }
-function setViewMode(mode) { viewMode = mode; setStorage('viewMode', mode); document.getElementById('viewGridBtn').classList.toggle('active', mode === 'grid'); document.getElementById('viewListBtn').classList.toggle('active', mode === 'list'); document.getElementById('formsGrid').style.display = mode === 'grid' ? 'grid' : 'none'; document.getElementById('formsList').classList.toggle('active', mode === 'list'); renderForms(); }
-function handleSort() { currentSort = document.getElementById('sortSelect').value; setStorage('sortBy', currentSort); applySort(); renderForms(); renderPopular(); }
-function applySort() {
-  const sortMap = {
-    priority: function(a, b) { return (a.priority || 999) - (b.priority || 999); },
-    downloads: function(a, b) { return (b.downloads || 0) - (a.downloads || 0); },
-    name: function(a, b) { return a.name.localeCompare(b.name, 'ar'); },
-    date: function(a, b) { return new Date(b.updatedAt || 0) - new Date(a.updatedAt || 0); },
-    pages: function(a, b) { return (b.pages || 0) - (a.pages || 0); }
-  };
-  formsData.sort(sortMap[currentSort] || sortMap.priority);
+  document.getElementById('notifBadge').style.display = 'none';
 }
 
-function toggleBatchMode() {
-  batchMode = !batchMode;
-  const btn = document.getElementById('batchToggleBtn');
-  const grid = document.getElementById('formsGrid');
-  const list = document.getElementById('formsList');
-  if (batchMode) { btn.classList.add('active'); btn.innerHTML = '<span>☑</span><span>إلغاء التحديد</span>'; grid.classList.add('batch-mode'); list.classList.add('batch-mode'); showToast('وضع التحديد المتعدد مفعل', 'info'); }
-  else { btn.classList.remove('active'); btn.innerHTML = '<span>☐</span><span>تحديد متعدد</span>'; grid.classList.remove('batch-mode'); list.classList.remove('batch-mode'); batchSelected = []; updateBatchBar(); renderForms(); }
+// Override approve/reject to trigger notification
+const _origApprove = approveRequest;
+approveRequest = function(id) { _origApprove(id); renderNotifications(); };
+const _origReject = rejectRequest;
+rejectRequest = function(id) { _origReject(id); renderNotifications(); };
+
+/* ===== New Badge Helper ===== */
+function isNewForm(updatedAt) {
+  if (!updatedAt) return false;
+  const updated = new Date(updatedAt);
+  const now = new Date();
+  const diffDays = (now - updated) / (1000 * 60 * 60 * 24);
+  return diffDays <= 7;
 }
 
-function getFilteredForms() {
-  let filtered = formsData;
-  if (currentFilter === 'favorites') filtered = formsData.filter(function(f) { return favorites.indexOf(f.id) > -1; });
-  else if (currentFilter === 'nolink') filtered = formsData.filter(function(f) { return !f.fileUrl || f.fileUrl === '#' || f.fileUrl === ''; });
-  else if (currentFilter !== 'all') filtered = formsData.filter(function(f) { return f.category === currentFilter; });
-  if (searchQuery) { const q = searchQuery.toLowerCase(); filtered = filtered.filter(function(form) { const inName = form.name.toLowerCase().includes(q); const inDesc = (form.description || '').toLowerCase().includes(q); const inCat = (form.category || '').toLowerCase().includes(q); const inTags = (form.tags || []).some(function(t) { return t.toLowerCase().includes(q); }); return inName || inDesc || inCat || inTags; }); }
-  return filtered;
-}
-
-function isNewForm(updatedAt) { if (!updatedAt) return false; const updated = new Date(updatedAt); const now = new Date(); const diffDays = (now - updated) / (1000 * 60 * 60 * 24); return diffDays <= 7; }
-
-function renderForms() {
-  const grid = document.getElementById('formsGrid');
-  const list = document.getElementById('formsList');
-  const filtered = getFilteredForms();
-  if (filtered.length === 0) { const empty = '<div class="empty-state"><div class="empty-icon">🔍</div><h3>' + (currentLang === 'ar' ? 'لا توجد نتائج' : 'No results found') + '</h3></div>'; grid.innerHTML = empty; list.innerHTML = empty; updateStats(); return; }
-
-  grid.innerHTML = filtered.map(function(form, idx) {
-    const isFav = favorites.indexOf(form.id) > -1;
-    const isBatch = batchSelected.indexOf(form.id) > -1;
-    const delay = idx * 0.05;
-    const tagsHtml = (form.tags || []).map(function(t) { const cls = tagClasses[t] || ''; return '<span class="tag ' + cls + '">' + t + '</span>'; }).join('');
-    const formRating = ratings[form.id] || 0;
-    const starsHtml = [1,2,3,4,5].map(function(s) { return '<button class="star-btn ' + (s <= formRating ? 'active' : '') + '" onclick="event.stopPropagation(); rateForm(' + form.id + ', ' + s + ')">★</button>'; }).join('');
-    const isDrive = form.fileUrl && form.fileUrl.includes('drive.google.com');
-    const isBroken = !form.fileUrl || form.fileUrl === '#' || form.fileUrl === '';
-    const sourceBadge = isBroken ? '<span class="broken-badge">⚠️ لا يوجد رابط</span>' : (isDrive ? '<span class="drive-badge">▶️ Google Drive</span>' : '');
-    const isNew = isNewForm(form.updatedAt);
-    const newBadge = isNew ? '<span class="new-badge">جديد</span>' : '';
-    const sizeDisplay = (form.fileSize && !isBroken && !isDrive) ? '<span class="card-meta-item">📄 ' + form.fileSize + '</span>' : '';
-    const isRead = readForms.indexOf(form.id) > -1;
-    const readDot = '<span class="read-status ' + (isRead ? 'read' : '') + '"></span>';
-    return '<div class="form-card ' + (isBroken ? 'no-link' : '') + '" style="--card-color: ' + form.color + '; --card-color-bg: ' + form.color + '15; animation-delay: ' + delay + 's;" onclick="' + (batchMode ? 'event.stopPropagation(); toggleBatch(' + form.id + ')' : 'openModal(' + form.id + ')') + '">' + readDot + newBadge + '<input type="checkbox" class="batch-checkbox" ' + (isBatch ? 'checked' : '') + ' onclick="event.stopPropagation(); toggleBatch(' + form.id + ')" title="تحديد للتنزيل المتعدد"><div class="card-header"><div class="card-icon">' + form.icon + '</div><div class="card-info"><h3 title="' + form.name + '">' + form.name + '</h3><span class="category-tag">' + (categoryNames[currentLang][form.category] || form.category) + '</span><div class="card-meta">' + sourceBadge + sizeDisplay + (form.pages ? '<span class="card-meta-item">📑 ' + form.pages + ' صفحة</span>' : '') + (form.updatedAt ? '<span class="card-meta-item">📅 ' + form.updatedAt + '</span>' : '') + '</div><div class="card-tags">' + tagsHtml + '</div><div class="star-rating">' + starsHtml + '</div></div></div><div class="card-footer"><span class="download-count">' + (form.downloads || 0).toLocaleString('en-US') + ' تحميل</span><div class="card-actions"><button class="card-action-btn ' + (isFav ? 'fav-active' : '') + '" onclick="event.stopPropagation(); toggleFav(' + form.id + ')" title="' + (isFav ? 'إزالة من المفضلة' : 'إضافة للمفضلة') + '">' + (isFav ? '★' : '☆') + '</button><button class="card-action-btn" onclick="event.stopPropagation(); shareFormById(' + form.id + ')" title="مشاركة">📤</button></div></div></div>';
-  }).join('');
-
-  list.innerHTML = filtered.map(function(form, idx) {
-    const isFav = favorites.indexOf(form.id) > -1;
-    const isBatch = batchSelected.indexOf(form.id) > -1;
-    const tagsHtml = (form.tags || []).map(function(t) { const cls = tagClasses[t] || ''; return '<span class="tag ' + cls + '">' + t + '</span>'; }).join('');
-    const isDrive = form.fileUrl && form.fileUrl.includes('drive.google.com');
-    const isBroken = !form.fileUrl || form.fileUrl === '#' || form.fileUrl === '';
-    const sourceBadge = isBroken ? '<span class="broken-badge">⚠️ لا يوجد رابط</span>' : (isDrive ? '<span class="drive-badge">▶️ Drive</span>' : '');
-    const isNew = isNewForm(form.updatedAt);
-    const newBadge = isNew ? '<span class="new-badge" style="position:static;margin-left:8px;display:inline-block;">جديد</span>' : '';
-    const listSizeDisplay = (form.fileSize && !isBroken && !isDrive) ? '<span>📄 ' + form.fileSize + '</span>' : '';
-    return '<div class="list-item ' + (isBroken ? 'no-link' : '') + '" style="--card-color: ' + form.color + '; --card-color-bg: ' + form.color + '15;" onclick="' + (batchMode ? 'event.stopPropagation(); toggleBatch(' + form.id + ')' : 'openModal(' + form.id + ')') + '"><input type="checkbox" class="batch-checkbox" ' + (isBatch ? 'checked' : '') + ' onclick="event.stopPropagation(); toggleBatch(' + form.id + ')"><div class="list-icon">' + form.icon + '</div><div class="list-info"><h3 title="' + form.name + '">' + form.name + newBadge + '</h3><div class="list-meta"><span>' + (categoryNames[currentLang][form.category] || form.category) + '</span>' + sourceBadge + listSizeDisplay + (form.pages ? '<span>📑 ' + form.pages + ' صفحة</span>' : '') + '<span>⬇️ ' + (form.downloads || 0).toLocaleString('en-US') + '</span>' + (form.updatedAt ? '<span>📅 ' + form.updatedAt + '</span>' : '') + '</div><div class="card-tags">' + tagsHtml + '</div></div><div class="list-actions"><button class="list-action-btn ' + (isFav ? 'fav-active' : '') + '" onclick="event.stopPropagation(); toggleFav(' + form.id + ')" title="مفضلة">' + (isFav ? '★' : '☆') + '</button><button class="list-action-btn" onclick="event.stopPropagation(); shareFormById(' + form.id + ')" title="مشاركة">📤</button></div></div>';
-  }).join('');
-
-  updateStats();
-}
-
-function rateForm(formId, stars) { ratings[formId] = stars; setStorage('ratings', ratings); renderForms(); showToast('تم التقييم بـ ' + stars + ' نجوم', 'success'); }
-
-function updateStats() { const total = formsData.length; const totalDownloads = formsData.reduce(function(sum, f) { return sum + (f.downloads || 0); }, 0); document.getElementById('statTotal').textContent = total.toLocaleString('en-US'); document.getElementById('statDownloads').textContent = totalDownloads.toLocaleString('en-US'); let todayData = getStorage('todayDownloads', { count: 0, date: '' }); const todayStr = new Date().toDateString(); if (todayData.date !== todayStr) { todayData = { count: 0, date: todayStr }; setStorage('todayDownloads', todayData); } document.getElementById('statToday').textContent = todayData.count.toLocaleString('en-US'); document.getElementById('statFavs').textContent = favorites.length.toLocaleString('en-US'); document.getElementById('statVisitors').textContent = visitorCount.toLocaleString('en-US'); }
-
-function toggleBatch(id) { if (!batchMode) return; const idx = batchSelected.indexOf(id); if (idx > -1) batchSelected.splice(idx, 1); else batchSelected.push(id); updateBatchBar(); renderForms(); }
-function updateBatchBar() { const bar = document.getElementById('batchBar'); const count = document.getElementById('batchCount'); if (batchSelected.length === 0) { bar.classList.remove('active'); return; } bar.classList.add('active'); count.textContent = batchSelected.length.toLocaleString('en-US') + ' استمارة محددة'; }
-function downloadBatch() { const selected = formsData.filter(function(f) { return batchSelected.indexOf(f.id) > -1; }); if (selected.length === 0) return; const validForms = selected.filter(function(form) { return form.fileUrl && form.fileUrl !== '#' && form.fileUrl !== ''; }); const brokenCount = selected.length - validForms.length; if (validForms.length === 0) { showToast('ℹ️ جميع الاستمارات المحددة لا تحتوي على روابط.', 'info'); return; } validForms.forEach(function(form, index) { setTimeout(function() { window.open(form.fileUrl, '_blank'); form.downloads = (form.downloads || 0) + 1; addRecentDownload(form.id); }, index * 800); }); let todayData = getStorage('todayDownloads', { count: 0, date: new Date().toDateString() }); todayData.count += validForms.length; setStorage('todayDownloads', todayData); setTimeout(function() { batchSelected = []; updateBatchBar(); renderForms(); renderPopular(); updateStats(); exportJSON(); let msg = '✅ تم فتح ' + validForms.length.toLocaleString('en-US') + ' ملف في نوافذ جديدة!'; if (brokenCount > 0) msg += ' (تم تخطي ' + brokenCount + ' بدون رابط)'; showToast(msg, 'success'); }, validForms.length * 800 + 500); }
-function clearBatch() { batchSelected = []; updateBatchBar(); renderForms(); showToast('تم إلغاء التحديد', 'info'); }
-
-function openModal(formId) { if (batchMode) return; markAsRead(formId); selectedForm = formsData.find(function(f) { return f.id === formId; }); if (!selectedForm) return; document.getElementById('modalIcon').textContent = selectedForm.icon; document.getElementById('modalIcon').style.background = selectedForm.color + '20'; document.getElementById('modalTitle').textContent = selectedForm.name; document.getElementById('modalDesc').textContent = selectedForm.description || ''; const meta = []; const hasLink = selectedForm.fileUrl && selectedForm.fileUrl !== '#' && selectedForm.fileUrl !== ''; if (!hasLink) meta.push('⚠️ لا يوجد رابط للملف'); if (selectedForm.fileSize && hasLink) meta.push('📄 ' + selectedForm.fileSize); if (selectedForm.pages) meta.push('📑 ' + selectedForm.pages + ' صفحة'); if (selectedForm.updatedAt) meta.push('📅 ' + selectedForm.updatedAt); document.getElementById('modalMeta').innerHTML = meta.map(function(m) { return '<span>' + m + '</span>'; }).join(''); const btnDownload = document.getElementById('btnDownload'); const btnPreview = document.getElementById('btnPreview'); if (btnDownload) { btnDownload.style.opacity = hasLink ? '1' : '0.4'; btnDownload.style.pointerEvents = hasLink ? 'auto' : 'none'; btnDownload.textContent = hasLink ? (selectedForm.fileUrl.includes('drive.google.com') ? '⬇️ فتح في Google Drive' : '⬇️ فتح الملف') : '⬇️ لا يوجد رابط'; } if (btnPreview) { btnPreview.style.opacity = hasLink ? '1' : '0.4'; btnPreview.style.pointerEvents = hasLink ? 'auto' : 'none'; } updateFavButton(); document.getElementById('modalOverlay').classList.add('active'); document.body.style.overflow = 'hidden'; }
-function closeModal() { document.getElementById('modalOverlay').classList.remove('active'); document.body.style.overflow = ''; selectedForm = null; }
-document.getElementById('modalOverlay').addEventListener('click', function(e) { if (e.target === document.getElementById('modalOverlay')) closeModal(); });
-
-function handlePrint() { if (!selectedForm) return; if (selectedForm.fileUrl && selectedForm.fileUrl !== '#' && selectedForm.fileUrl !== '') { const win = window.open(selectedForm.fileUrl, '_blank'); if (win) win.onload = function() { win.print(); }; } else { showToast('ℹ️ رابط الملف غير متوفر حاليًا.', 'info'); } closeModal(); }
-function handleDownload() { if (!selectedForm) return; if (selectedForm.fileUrl && selectedForm.fileUrl !== '#' && selectedForm.fileUrl !== '') { window.open(selectedForm.fileUrl, '_blank'); selectedForm.downloads = (selectedForm.downloads || 0) + 1; addRecentDownload(selectedForm.id); let todayData = getStorage('todayDownloads', { count: 0, date: new Date().toDateString() }); todayData.count++; setStorage('todayDownloads', todayData); renderForms(); renderPopular(); updateStats(); exportJSON(); showToast('تم فتح الملف في نافذة جديدة', 'success'); if (selectedForm.downloads === 1) fireConfetti(); } else { showToast('ℹ️ رابط الملف غير متوفر حاليًا.', 'info'); } closeModal(); }
-function handlePreview() { if (!selectedForm) return; if (selectedForm.fileUrl && selectedForm.fileUrl !== '#' && selectedForm.fileUrl !== '') { window.open(selectedForm.fileUrl, '_blank'); } else { showToast('ℹ️ رابط الملف غير متوفر حاليًا.', 'info'); } closeModal(); }
-function shareForm() { if (!selectedForm) return; shareFormById(selectedForm.id); closeModal(); }
-function shareFormById(id) { const form = formsData.find(function(f) { return f.id === id; }); if (!form) return; const hasLink = form.fileUrl && form.fileUrl !== '#' && form.fileUrl !== ''; const url = hasLink ? form.fileUrl : window.location.href; const text = form.name + ' - ' + (form.description || '') + '\n' + url; if (navigator.share) { navigator.share({ title: form.name, text: form.description || '', url: url }); } else { const waUrl = 'https://wa.me/?text=' + encodeURIComponent(text); window.open(waUrl, '_blank'); } }
-function copyFormLink() { if (!selectedForm) return; const url = selectedForm.fileUrl && selectedForm.fileUrl !== '#' && selectedForm.fileUrl !== '' ? selectedForm.fileUrl : window.location.href; if (navigator.clipboard) { navigator.clipboard.writeText(url).then(function() { showToast('✅ تم نسخ الرابط!', 'success'); }).catch(function() { showToast('❌ لم يتم النسخ', 'error'); }); } else { showToast('❌ المتصفح لا يدعم النسخ', 'error'); } closeModal(); }
-
-function showQRCode() {
-  if (!selectedForm) return;
-  const url = selectedForm.fileUrl && selectedForm.fileUrl !== '#' && selectedForm.fileUrl !== '' ? selectedForm.fileUrl : window.location.href;
-  const canvas = document.getElementById('qrCanvas');
-  const ctx = canvas.getContext('2d');
-  ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, 200, 200);
-  ctx.fillStyle = '#16455B';
-  const cellSize = 8;
-  for (let y = 0; y < 25; y++) { for (let x = 0; x < 25; x++) { const hash = Math.sin(x * 12.9898 + y * 78.233 + url.length) * 43758.5453; if ((hash - Math.floor(hash)) > 0.5) ctx.fillRect(x * cellSize + 10, y * cellSize + 10, cellSize - 1, cellSize - 1); } }
-  ctx.fillStyle = '#16455B';
-  ctx.fillRect(10, 10, 24, 24); ctx.clearRect(14, 14, 16, 16); ctx.fillRect(18, 18, 8, 8);
-  ctx.fillRect(166, 10, 24, 24); ctx.clearRect(170, 14, 16, 16); ctx.fillRect(174, 18, 8, 8);
-  ctx.fillRect(10, 166, 24, 24); ctx.clearRect(14, 170, 16, 16); ctx.fillRect(18, 174, 8, 8);
-  document.getElementById('qrModalOverlay').classList.add('active');
-}
-function closeQRModal() { document.getElementById('qrModalOverlay').classList.remove('active'); }
-
-function printBatch() {
-  const selected = formsData.filter(function(f) { return batchSelected.indexOf(f.id) > -1; });
-  if (!selected.length) return;
-  let printWindow = window.open('', '_blank');
-  let htmlContent = '<!DOCTYPE html><html dir="rtl" lang="ar"><head><meta charset="UTF-8"><title>طباعة الاستمارات</title><style>body{font-family:'Tajawal',sans-serif;padding:20px;}h1{color:#16455B;text-align:center;}table{width:100%;border-collapse:collapse;margin-top:20px;}th{background:#16455B;color:white;padding:12px;text-align:right;}td{padding:10px;border:1px solid #ddd;text-align:right;}tr:nth-child(even){background:#f5f7f6;}</style></head><body><h1>📋 استمارات محددة للطباعة</h1><p>تاريخ الطباعة: ' + new Date().toLocaleDateString('ar-SA') + '</p><table><thead><tr><th>#</th><th>الاستمارة</th><th>التصنيف</th><th>الوصف</th><th>الرابط</th></tr></thead><tbody>';
-  htmlContent += selected.map(function(f, i) { return '<tr><td>' + (i+1) + '</td><td>' + f.icon + ' ' + f.name + '</td><td>' + (categoryNames.ar[f.category]||f.category) + '</td><td>' + (f.description||'-') + '</td><td>' + (f.fileUrl!=='#'?f.fileUrl:'-') + '</td></tr>'; }).join('');
-  htmlContent += '</tbody></table></body></html>';
-  printWindow.document.write(htmlContent);
-  printWindow.document.close();
-  printWindow.print();
-  showToast('🖨️ تم فتح نافذة الطباعة', 'success');
-}
-
+/* ===== PDF Export ===== */
 function exportCurrentToPDF() {
   const filtered = getFilteredForms();
   if (!filtered.length) { showToast('لا توجد نتائج للتصدير', 'info'); return; }
-  let printWindow = window.open('', '_blank');
-  let htmlContent = '<!DOCTYPE html><html dir="rtl" lang="ar"><head><meta charset="UTF-8"><title>تقرير الاستمارات</title><style>body{font-family:'Tajawal',sans-serif;padding:20px;}h1{color:#16455B;text-align:center;font-size:24px;}h2{color:#309694;text-align:center;font-size:18px;}table{width:100%;border-collapse:collapse;margin-top:20px;}th{background:#16455B;color:white;padding:10px;text-align:right;}td{padding:8px;border:1px solid #ddd;text-align:right;}tr:nth-child(even){background:#f5f7f6;}</style></head><body><h1>الإدارة العامة للتعليم بمحافظة جدة</h1><h2>قائمة الاستمارات</h2><p style="text-align:center;color:#666;">تاريخ التقرير: ' + new Date().toLocaleDateString('ar-SA') + '</p><table><thead><tr><th>#</th><th>الاستمارة</th><th>التصنيف</th><th>الوسوم</th><th>التحميلات</th></tr></thead><tbody>';
-  htmlContent += filtered.map(function(f, i) { return '<tr><td style="text-align:center;">' + (i+1) + '</td><td>' + f.icon + ' ' + f.name + '</td><td>' + (categoryNames.ar[f.category]||f.category) + '</td><td>' + (f.tags||[]).join('، ') + '</td><td style="text-align:center;">' + (f.downloads||0) + '</td></tr>'; }).join('');
-  htmlContent += '</tbody></table></body></html>';
-  printWindow.document.write(htmlContent);
-  printWindow.document.close();
-  printWindow.print();
+  document.getElementById('pdfDate').textContent = new Date().toLocaleDateString('ar-SA');
+  document.getElementById('pdfTableBody').innerHTML = filtered.map((f, i) => `<tr><td style="padding:8px;border:1px solid #ddd;text-align:center;">${i+1}</td><td style="padding:8px;border:1px solid #ddd;">${f.icon} ${f.name}</td><td style="padding:8px;border:1px solid #ddd;">${categoryNames.ar[f.category]||f.category}</td><td style="padding:8px;border:1px solid #ddd;">${(f.tags||[]).join('، ')}</td><td style="padding:8px;border:1px solid #ddd;text-align:center;">${f.downloads||0}</td></tr>`).join('');
+  window.print();
   showToast('✅ تم فتح نافذة الطباعة. اختر "حفظ كـ PDF"', 'success');
 }
 
-function markAsRead(formId) { const readFormsArr = getStorage('readForms', []); if (readFormsArr.indexOf(formId) === -1) { readFormsArr.push(formId); setStorage('readForms', readFormsArr); readForms = readFormsArr; renderForms(); } }
-
-function fireConfetti() {
-  const canvas = document.getElementById('confettiCanvas');
-  const ctx = canvas.getContext('2d');
-  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-  const particles = [];
-  const colors = ['#16455B', '#309694', '#38A18A', '#C5A059', '#e94560', '#f9a825', '#667eea'];
-  for (let i = 0; i < 80; i++) { particles.push({ x: canvas.width / 2, y: canvas.height / 2, vx: (Math.random() - 0.5) * 15, vy: (Math.random() - 0.5) * 15 - 5, color: colors[Math.floor(Math.random() * colors.length)], size: Math.random() * 8 + 4, rotation: Math.random() * 360, rotationSpeed: (Math.random() - 0.5) * 10, life: 1 }); }
-  function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    let alive = false;
-    particles.forEach(function(p) { if (p.life <= 0) return; alive = true; p.x += p.vx; p.y += p.vy; p.vy += 0.3; p.rotation += p.rotationSpeed; p.life -= 0.015; ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.rotation * Math.PI / 180); ctx.globalAlpha = p.life; ctx.fillStyle = p.color; ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size); ctx.restore(); });
-    if (alive) requestAnimationFrame(animate); else ctx.clearRect(0, 0, canvas.width, canvas.height);
-  }
-  animate();
-}
-
-function toggleNotifDropdown() { const dd = document.getElementById('notifDropdown'); dd.classList.toggle('active'); if (dd.classList.contains('active')) markNotifsRead(); }
-document.addEventListener('click', function(e) { const btn = document.getElementById('notifBtn'); const dd = document.getElementById('notifDropdown'); if (!btn.contains(e.target) && !dd.contains(e.target)) dd.classList.remove('active'); });
-function renderNotifications() {
-  const myRequests = userRequests.filter(function(r) { return r.status !== 'pending'; });
-  const badge = document.getElementById('notifBadge');
-  const list = document.getElementById('notifList');
-  const unread = myRequests.filter(function(r) { return !r.read; }).length;
-  if (unread > 0) { badge.style.display = 'flex'; badge.textContent = unread; } else { badge.style.display = 'none'; }
-  if (!myRequests.length) { list.innerHTML = '<div class="notif-empty">لا توجد إشعارات جديدة</div>'; return; }
-  list.innerHTML = myRequests.slice().reverse().map(function(r) { const statusText = r.status === 'approved' ? '✅ تمت الموافقة على طلبك' : '❌ تم رفض طلبك'; const statusClass = r.status === 'approved' ? 'approved' : 'rejected'; return '<div class="notif-item ' + statusClass + '"><strong>' + r.formName + '</strong><div>' + statusText + '</div><div class="notif-time">📅 ' + r.date + ' ' + r.time + '</div></div>'; }).join('');
-}
-function markNotifsRead() { userRequests.forEach(function(r) { if (r.status !== 'pending') r.read = true; }); setStorage('userRequests', userRequests); document.getElementById('notifBadge').style.display = 'none'; }
-
-function openShortcutModal() { document.getElementById('shortcutModal').classList.add('active'); }
-function closeShortcutModal() { document.getElementById('shortcutModal').classList.remove('active'); }
-
-/* Icon & Color Pickers */
-function selectIcon(btn) { document.querySelectorAll('.icon-option').forEach(function(b) { b.classList.remove('selected'); }); btn.classList.add('selected'); document.getElementById('adminIcon').value = btn.dataset.icon; }
-function selectColor(btn) { document.querySelectorAll('.color-option').forEach(function(b) { b.classList.remove('selected'); }); btn.classList.add('selected'); document.getElementById('adminColor').value = btn.dataset.color; document.getElementById('colorPreviewBox').style.background = btn.dataset.color; }
-function updateColorPreview() { const val = document.getElementById('adminColor').value; if (/^#[0-9A-Fa-f]{6}$/.test(val)) { document.getElementById('colorPreviewBox').style.background = val; } }
-function initPickers() {
-  const defaultIcon = document.getElementById('adminIcon').value || '📄';
-  document.querySelectorAll('.icon-option').forEach(function(b) { if (b.dataset.icon === defaultIcon) b.classList.add('selected'); });
-  const defaultColor = document.getElementById('adminColor').value || '#16455B';
-  let found = false;
-  document.querySelectorAll('.color-option').forEach(function(b) { if (b.dataset.color.toLowerCase() === defaultColor.toLowerCase()) { b.classList.add('selected'); found = true; } });
-  if (!found) document.getElementById('colorPreviewBox').style.background = defaultColor;
-}
-
-/* Tags System */
-function focusTagInput() { document.getElementById('tagInput').focus(); }
-function renderSelectedTags() {
-  const container = document.getElementById('tagsSelected');
-  container.querySelectorAll('.tag-chip').forEach(function(el) { el.remove(); });
-  const input = document.getElementById('tagInput');
-  selectedTags.forEach(function(tag, idx) {
-    const chip = document.createElement('span');
-    chip.className = 'tag-chip';
-    chip.style.background = TAG_COLORS[tag] || '#309694';
-    chip.style.color = (tag === 'إلزامي' || tag === 'اختياري') ? '#1a1a2e' : '#fff';
-    chip.innerHTML = tag + ' <button type="button" class="tag-remove" onclick="event.stopPropagation(); removeTag(' + idx + ')" title="إزالة">✕</button>';
-    container.insertBefore(chip, input);
-  });
-  document.getElementById('adminTags').value = selectedTags.join(', ');
-  updatePresetButtons();
-}
-function addTag(tag) {
-  tag = tag.trim();
-  if (!tag || selectedTags.indexOf(tag) > -1) return;
-  selectedTags.push(tag);
-  renderSelectedTags();
-  document.getElementById('tagInput').value = '';
-  document.getElementById('tagsSuggestions').classList.remove('active');
-}
-function removeTag(index) { selectedTags.splice(index, 1); renderSelectedTags(); }
-function togglePresetTag(btn) { const tag = btn.dataset.tag; if (selectedTags.indexOf(tag) > -1) { selectedTags = selectedTags.filter(function(t) { return t !== tag; }); } else { selectedTags.push(tag); } renderSelectedTags(); btn.classList.toggle('active', selectedTags.indexOf(tag) > -1); }
-function updatePresetButtons() { document.querySelectorAll('.tags-preset-btn').forEach(function(btn) { btn.classList.toggle('active', selectedTags.indexOf(btn.dataset.tag) > -1); }); }
-function filterTagSuggestions() {
-  const val = document.getElementById('tagInput').value.trim();
-  const dropdown = document.getElementById('tagsSuggestions');
-  if (!val) { dropdown.classList.remove('active'); return; }
-  const matches = ALL_TAGS.filter(function(t) { return t.indexOf(val) > -1 && selectedTags.indexOf(t) === -1; });
-  if (!matches.length) { dropdown.classList.remove('active'); return; }
-  dropdown.innerHTML = matches.map(function(t) { return '<div class="tags-suggestion-item" onclick="addTag('' + t + '')" onmousedown="event.preventDefault();"><span class="suggest-check">✓</span>' + t + '</div>'; }).join('');
-  dropdown.classList.add('active');
-}
-function showTagSuggestions() {
-  const dropdown = document.getElementById('tagsSuggestions');
-  const available = ALL_TAGS.filter(function(t) { return selectedTags.indexOf(t) === -1; });
-  if (!available.length) { dropdown.classList.remove('active'); return; }
-  dropdown.innerHTML = available.map(function(t) { return '<div class="tags-suggestion-item" onclick="addTag('' + t + '')" onmousedown="event.preventDefault();"><span class="suggest-check"></span>' + t + '</div>'; }).join('');
-  dropdown.classList.add('active');
-  document.getElementById('tagsSelected').classList.add('focused');
-}
-function hideTagSuggestionsDelayed() { setTimeout(function() { document.getElementById('tagsSuggestions').classList.remove('active'); document.getElementById('tagsSelected').classList.remove('focused'); }, 200); }
-function handleTagKey(e) { if (e.key === 'Enter') { e.preventDefault(); const val = e.target.value.trim(); if (val) { addTag(val); } } else if (e.key === 'Backspace' && !e.target.value && selectedTags.length) { selectedTags.pop(); renderSelectedTags(); } }
-
-/* Default Forms */
 function getDefaultForms() {
   return [
     { id: 1, name: "استمارة طلب انتداب", category: "requests", icon: "📋", color: "#16455B", priority: 1, downloads: 0, fileUrl: "https://drive.google.com/file/d/1ylN07nfZDXWA-SUmpN-rfeNtzIY61uWs/view?usp=drive_link", fileSize: "Google Drive", pages: 1, updatedAt: "2026-08-24", tags: ["شهري", "إلزامي", "سنوي", "شائع"], description: "استمارة طلب انتداب" },
@@ -1144,43 +923,545 @@ function getDefaultForms() {
   ];
 }
 
-/* Load */
-async function loadForms() {
-  showLoading(true);
-  visitorCount++;
-  setStorage('visitorCount', visitorCount);
-  try {
-    const response = await fetch('forms.json?v=' + Date.now());
-    if (response.ok) { formsData = await response.json(); }
-    else throw new Error('forms.json not found');
-  } catch (e) { formsData = getDefaultForms(); }
-  nextId = Math.max.apply(null, formsData.map(function(f) { return f.id; }).concat([0])) + 1;
-  applySort();
-  showLoading(false);
-  applyTheme(); applyLang(); initViewMode(); renderFavorites(); renderRecent(); renderPopular(); renderForms(); updateStats(); initAuth(); initTicker(); renderAdminRequests(); renderNotifications(); initPickers();
+function showLoading(show) { document.getElementById('loadingOverlay').classList.toggle('hidden', !show); }
+function applyTheme() { const theme = getStorage('theme', 'light'); document.documentElement.setAttribute('data-theme', theme); document.getElementById('themeToggle').textContent = theme === 'dark' ? '☀️' : '🌙'; }
+function toggleTheme() { const current = document.documentElement.getAttribute('data-theme') || 'light'; const next = current === 'dark' ? 'light' : 'dark'; document.documentElement.setAttribute('data-theme', next); setStorage('theme', next); document.getElementById('themeToggle').textContent = next === 'dark' ? '☀️' : '🌙'; }
+function applyLang() { const els = document.querySelectorAll('[data-ar][data-en]'); els.forEach(el => { el.textContent = el.getAttribute('data-' + currentLang); }); document.getElementById('langToggle').textContent = currentLang === 'ar' ? 'EN' : 'ع'; document.body.dir = currentLang === 'ar' ? 'rtl' : 'ltr'; document.querySelectorAll('.filter-btn').forEach(btn => { const filter = btn.dataset.filter; if (categoryNames[currentLang][filter]) { const icon = { all: '', requests: '📨 ', print: '🖨️ ', reports: '📊 ', favorites: '⭐ ' }[filter] || ''; btn.innerHTML = icon + categoryNames[currentLang][filter]; } }); }
+function toggleLang() { currentLang = currentLang === 'ar' ? 'en' : 'ar'; setStorage('lang', currentLang); applyLang(); renderForms(); renderFavorites(); renderPopular(); }
+
+function initTicker() { const ticker = document.getElementById('tickerWrap'); const isClosed = getStorage('tickerClosed', false); if (isClosed) ticker.classList.add('hidden'); else ticker.classList.remove('hidden'); }
+function closeTicker() { document.getElementById('tickerWrap').classList.add('hidden'); setStorage('tickerClosed', true); showToast('تم إغلاق شريط الإشعارات', 'info'); }
+
+function toggleFav(formId) { const idx = favorites.indexOf(formId); if (idx > -1) { favorites.splice(idx, 1); showToast('تم الإزالة من المفضلة', 'info'); } else { favorites.push(formId); showToast('تمت الإضافة للمفضلة', 'success'); } setStorage('favorites', favorites); renderFavorites(); renderForms(); }
+function toggleFavFromModal() { if (!selectedForm) return; toggleFav(selectedForm.id); updateFavButton(); }
+function updateFavButton() { if (!selectedForm) return; const btn = document.getElementById('favModalBtn'); const isFav = favorites.includes(selectedForm.id); btn.textContent = isFav ? '❌ إزالة من المفضلة' : '⭐ إضافة للمفضلة'; }
+function renderFavorites() { const bar = document.getElementById('favBar'); const chips = document.getElementById('favChips'); const favForms = formsData.filter(f => favorites.includes(f.id)); if (favForms.length === 0) { bar.classList.remove('active'); return; } bar.classList.add('active'); chips.innerHTML = favForms.map(f => `<button class="fav-chip" onclick="openModal(${f.id})">${f.icon} ${f.name}<span class="remove-fav" onclick="event.stopPropagation(); toggleFav(${f.id})">✕</span></button>`).join(''); }
+
+function exportFavoritesList() {
+  const favForms = formsData.filter(f => favorites.includes(f.id));
+  if (!favForms.length) { showToast('لا توجد مفضلة للتصدير', 'info'); return; }
+  let html = `<!DOCTYPE html><html dir="rtl" lang="ar"><head><meta charset="UTF-8"><style>body{font-family:'Segoe UI',sans-serif;direction:rtl;padding:20px;}h2{color:#16455B;}table{width:100%;border-collapse:collapse;}th{background:#16455B;color:white;padding:10px;text-align:right;}td{padding:8px;border:1px solid #ddd;text-align:right;}tr:nth-child(even){background:#f5f7f6;}</style></head><body><h2>⭐ قائمة الاستمارات المفضلة</h2><p>تاريخ التصدير: ${new Date().toLocaleDateString('ar-SA')}</p><table><thead><tr><th>#</th><th>الاسم</th><th>التصنيف</th><th>الحجم</th><th>الصفحات</th><th>الرابط</th></tr></thead><tbody>${favForms.map((f,i)=>`<tr><td>${i+1}</td><td>${f.icon} ${f.name}</td><td>${categoryNames.ar[f.category]||f.category}</td><td>${f.fileSize||'-'}</td><td>${f.pages||'-'}</td><td>${f.fileUrl!=='#'?f.fileUrl:'-'}</td></tr>`).join('')}</tbody></table></body></html>`;
+  const blob = new Blob(["\uFEFF"+html], { type: 'application/vnd.ms-excel;charset=utf-8;' });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'favorites_list.xls'; document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  showToast('✅ تم تصدير قائمة المفضلة!', 'success');
 }
 
-/* Event Listeners */
-document.querySelectorAll('.filter-btn').forEach(function(btn) { btn.addEventListener('click', function() { document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); }); btn.classList.add('active'); currentFilter = btn.dataset.filter; renderForms(); }); });
-document.getElementById('searchInput').addEventListener('input', function(e) { searchQuery = e.target.value.trim(); renderForms(); });
-document.addEventListener('keydown', function(e) { if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return; if (e.key === '?' || e.key === '؟') { e.preventDefault(); openShortcutModal(); } if (e.key === 'Escape') { closeModal(); closeQRModal(); closeShortcutModal(); } if (e.ctrlKey && e.key === 'k') { e.preventDefault(); document.getElementById('searchInput').focus(); } if (e.ctrlKey && e.key === 'd') { e.preventDefault(); toggleTheme(); } if (e.key === 'Home') { e.preventDefault(); scrollToTop(); } if (e.ctrlKey && e.key === 'f') { e.preventDefault(); document.querySelector('[data-filter="favorites"]').click(); } });
-window.addEventListener('scroll', function() { const btn = document.getElementById('backToTop'); btn.classList.toggle('visible', window.scrollY > 400); });
+/* Recent Downloads */
+function addRecentDownload(formId) {
+  const form = formsData.find(f => f.id === formId);
+  if (!form) return;
+  recentDownloads = recentDownloads.filter(r => r.id !== formId);
+  recentDownloads.unshift({ id: formId, name: form.name, icon: form.icon, time: Date.now() });
+  if (recentDownloads.length > 5) recentDownloads = recentDownloads.slice(0, 5);
+  setStorage('recentDownloads', recentDownloads);
+  renderRecent();
+}
+function renderRecent() {
+  const bar = document.getElementById('recentBar');
+  const chips = document.getElementById('recentChips');
+  if (!recentDownloads.length) { bar.classList.remove('active'); return; }
+  bar.classList.add('active');
+  chips.innerHTML = recentDownloads.map(r => `<button class="recent-chip" onclick="openModal(${r.id})">${r.icon} ${r.name}<span class="remove-recent" onclick="event.stopPropagation(); removeRecent(${r.id})">✕</span></button>`).join('');
+}
+function removeRecent(id) { recentDownloads = recentDownloads.filter(r => r.id !== id); setStorage('recentDownloads', recentDownloads); renderRecent(); }
+
+function renderPopular() { const section = document.getElementById('popularSection'); const grid = document.getElementById('popularGrid'); const topForms = [...formsData].sort((a, b) => (b.downloads || 0) - (a.downloads || 0)).slice(0, 3); if (topForms.length === 0) { section.classList.remove('active'); return; } section.classList.add('active'); grid.innerHTML = topForms.map((f, i) => `<div class="popular-card" onclick="openModal(${f.id})"><div class="rank">${i + 1}</div><div class="info"><div class="name">${f.name}</div><div class="count">${f.downloads || 0} تحميل</div></div></div>`).join(''); }
+
+function initAuth() { if (isAdmin) { document.getElementById('loginPanel').classList.remove('active'); document.getElementById('adminPanel').classList.add('active'); } else { document.getElementById('loginPanel').classList.add('active'); document.getElementById('adminPanel').classList.remove('active'); } }
+function doLogin() { const password = document.getElementById('loginPassword').value; if (password === ADMIN_PASSWORD) { isAdmin = true; setStorage('isAdmin', true); document.getElementById('loginPanel').classList.remove('active'); document.getElementById('adminPanel').classList.add('active'); document.getElementById('loginError').classList.remove('active'); document.getElementById('loginPassword').value = ''; renderAdminTable(); renderAdminRequests(); showToast('تم تسجيل الدخول بنجاح', 'success'); } else { document.getElementById('loginError').classList.add('active'); document.getElementById('loginPassword').value = ''; showToast('كلمة المرور غير صحيحة', 'error'); } }
+function doLogout() { if (!confirm(currentLang === 'ar' ? 'هل أنت متأكد من تسجيل الخروج؟' : 'Are you sure?')) return; isAdmin = false; setStorage('isAdmin', false); document.getElementById('adminPanel').classList.remove('active'); document.getElementById('loginPanel').classList.add('active'); document.getElementById('adminForm').classList.remove('active'); showToast('تم تسجيل الخروج', 'info'); }
+
+function toggleAdmin() { document.getElementById('adminForm').classList.toggle('active'); if (document.getElementById('adminForm').classList.contains('active')) { renderAdminTable(); renderAdminRequests(); } }
+function renderAdminTable() { const tbody = document.getElementById('adminTableBody'); if (!formsData.length) { tbody.innerHTML = '<tr><td colspan="9" style="text-align:center;color:#999;padding:20px;">لا توجد استمارات</td></tr>'; return; } const sorted = [...formsData].sort((a, b) => (a.priority || 999) - (b.priority || 999)); tbody.innerHTML = sorted.map((form, idx) => `<tr><td>${idx + 1}</td><td><input type="number" class="priority-input" value="${form.priority || 1}" onchange="changePriority(${form.id}, this.value)"></td><td style="font-size:20px;text-align:center;">${form.icon}</td><td><strong>${form.name}</strong></td><td>${categoryNames.ar[form.category] || form.category}</td><td>${form.fileSize || '-'}</td><td>${form.pages || '-'}</td><td>${form.downloads || 0}</td><td><div class="table-actions"><button class="table-btn table-btn-up" onclick="moveUp(${form.id})">⬆️</button><button class="table-btn table-btn-down" onclick="moveDown(${form.id})">⬇️</button><button class="table-btn table-btn-edit" onclick="editForm(${form.id})">✏️</button><button class="table-btn table-btn-delete" onclick="deleteForm(${form.id})">🗑️</button></div></td></tr>`).join(''); }
+
+function changePriority(id, newPriority) { const form = formsData.find(f => f.id === id); if (form) { form.priority = parseInt(newPriority) || 1; applySort(); renderForms(); renderAdminTable(); exportJSON(); showToast('تم تحديث الأولوية', 'success'); } }
+function moveUp(id) { const form = formsData.find(f => f.id === id); if (!form) return; form.priority = Math.max(1, (form.priority || 1) - 1); applySort(); renderForms(); renderAdminTable(); exportJSON(); }
+function moveDown(id) { const form = formsData.find(f => f.id === id); if (!form) return; form.priority = (form.priority || 1) + 1; applySort(); renderForms(); renderAdminTable(); exportJSON(); }
+
+function saveForm() {
+  const name = document.getElementById('adminName').value.trim();
+  const category = document.getElementById('adminCategory').value;
+  const icon = document.getElementById('adminIcon').value.trim() || '📄';
+  const color = document.getElementById('adminColor').value.trim() || '#16455B';
+  const priority = parseInt(document.getElementById('adminPriority').value) || 1;
+  const tagsStr = document.getElementById('adminTags').value.trim();
+  const tags = tagsStr ? tagsStr.split(',').map(t => t.trim()).filter(t => t) : [];
+  const fileSize = document.getElementById('adminFileSize').value.trim() || '';
+  const pages = parseInt(document.getElementById('adminPages').value) || 1;
+  const fileUrl = document.getElementById('adminUrl').value.trim() || '#';
+  const desc = document.getElementById('adminDesc').value.trim() || name;
+  if (!name) { showToast('❌ يرجى إدخال اسم الاستمارة', 'error'); return; }
+  if (editingId) { const idx = formsData.findIndex(f => f.id === editingId); if (idx !== -1) { formsData[idx] = { ...formsData[idx], name, category, icon, color, priority, tags, fileSize, pages, fileUrl, description: desc, updatedAt: new Date().toISOString().split('T')[0] }; showToast('✅ تم تعديل الاستمارة! اضغط "تصدير JSON" وارفع الملف.', 'success'); } }
+  else { formsData.push({ id: nextId++, name, category, icon, color, priority, tags, fileSize, pages, downloads: 0, fileUrl, description: desc, updatedAt: new Date().toISOString().split('T')[0], addedAt: Date.now() }); showToast('✅ تمت إضافة الاستمارة! اضغط "تصدير JSON" وارفع الملف.', 'success'); }
+  applySort(); resetForm(); renderForms(); renderPopular(); renderAdminTable(); exportJSON();
+}
+
+function editForm(id) { const form = formsData.find(f => f.id === id); if (!form) return; editingId = id; document.getElementById('adminName').value = form.name; document.getElementById('adminCategory').value = form.category; document.getElementById('adminIcon').value = form.icon; document.getElementById('adminColor').value = form.color; document.getElementById('adminPriority').value = form.priority || 1; document.getElementById('adminTags').value = (form.tags || []).join(', '); document.getElementById('adminFileSize').value = form.fileSize || ''; document.getElementById('adminPages').value = form.pages || 1; document.getElementById('adminUrl').value = form.fileUrl === '#' ? '' : form.fileUrl; document.getElementById('adminDesc').value = form.description; document.getElementById('formTitle').textContent = '✏️ تعديل استمارة'; document.getElementById('saveBtn').textContent = '💾 حفظ التعديلات'; document.getElementById('adminForm').classList.add('active'); document.getElementById('adminName').focus(); }
+function deleteForm(id) { const form = formsData.find(f => f.id === id); if (!form) return; if (!confirm(`⚠️ هل أنت متأكد من حذف "${form.name}"؟`)) return; formsData = formsData.filter(f => f.id !== id); favorites = favorites.filter(fid => fid !== id); batchSelected = batchSelected.filter(fid => fid !== id); setStorage('favorites', favorites); if (editingId === id) resetForm(); renderForms(); renderFavorites(); renderPopular(); renderAdminTable(); updateBatchBar(); exportJSON(); showToast('🗑️ تم حذف الاستمارة!', 'success'); }
+function resetForm() { editingId = null; document.getElementById('adminName').value = ''; document.getElementById('adminCategory').value = 'requests'; document.getElementById('adminIcon').value = '📄'; document.getElementById('adminColor').value = '#16455B'; document.getElementById('adminPriority').value = '1'; document.getElementById('adminTags').value = ''; document.getElementById('adminFileSize').value = ''; document.getElementById('adminPages').value = '1'; document.getElementById('adminUrl').value = ''; document.getElementById('adminDesc').value = ''; document.getElementById('formTitle').textContent = '➕ إضافة استمارة جديدة'; document.getElementById('saveBtn').textContent = '💾 حفظ الاستمارة'; }
+function exportJSON() { const jsonStr = JSON.stringify(formsData, null, 2); document.getElementById('exportArea').value = jsonStr; document.getElementById('jsonExport').classList.add('active'); }
+
+function exportCSV() {
+  const headers = ['#', 'الاسم', 'التصنيف', 'الأيقونة', 'اللون', 'الأولوية', 'التحميلات', 'الحجم', 'الصفحات', 'آخر تحديث', 'الوسوم', 'الوصف', 'الرابط'];
+  const rows = formsData.map((f, i) => [i + 1, f.name, categoryNames.ar[f.category] || f.category, f.icon, f.color, f.priority || 1, f.downloads || 0, f.fileSize || '-', f.pages || '-', f.updatedAt || '-', (f.tags || []).join('، '), f.description || '-', f.fileUrl]);
+  let html = `<!DOCTYPE html><html dir="rtl" lang="ar"><head><meta charset="UTF-8"><style>body{font-family:'Segoe UI',sans-serif;direction:rtl;padding:20px;}h2{color:#16455B;}table{width:100%;border-collapse:collapse;}th{background:#16455B;color:white;padding:10px;text-align:right;}td{padding:8px;border:1px solid #ddd;text-align:right;}tr:nth-child(even){background:#f5f7f6;}</style></head><body><h2>📊 تقرير الاستمارات - الإدارة العامة للتعليم بجدة</h2><p>تاريخ التصدير: ${new Date().toLocaleDateString('ar-SA')}</p><table><thead><tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map(c=>`<td>${String(c).replace(/</g,'&lt;').replace(/>/g,'&gt;')}</td>`).join('')}</tr>`).join('')}</tbody></table></body></html>`;
+  const blob = new Blob(["\uFEFF"+html], { type: 'application/vnd.ms-excel;charset=utf-8;' });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'forms_report.xls'; document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  showToast('✅ تم تصدير ملف Excel بنجاح! (يفتح من اليمين)', 'success');
+}
+
+function copyJSON() { const area = document.getElementById('exportArea'); area.select(); document.execCommand('copy'); showToast('✅ تم نسخ JSON!', 'success'); }
+function downloadJSON() { const jsonStr = JSON.stringify(formsData, null, 2); const blob = new Blob([jsonStr], { type: 'application/json' }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = 'forms.json'; document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url); showToast('✅ تم تحميل ملف forms.json!', 'success'); }
+function clearAll() { if (!confirm('⚠️ هل أنت متأكد من حذف جميع الاستمارات؟')) return; formsData = []; favorites = []; batchSelected = []; setStorage('favorites', favorites); nextId = 1; resetForm(); renderForms(); renderFavorites(); renderPopular(); renderAdminTable(); updateBatchBar(); exportJSON(); showToast('🗑️ تم حذف جميع الاستمارات!', 'success'); }
+
+/* User Request Functions */
+function toggleUserRequestForm() { document.getElementById('userRequestForm').classList.toggle('active'); }
+function submitUserRequest() {
+  const name = document.getElementById('reqUserName').value.trim();
+  const dept = document.getElementById('reqUserDept').value.trim();
+  const formName = document.getElementById('reqFormName').value.trim();
+  const formType = document.getElementById('reqFormType').value;
+  const formDesc = document.getElementById('reqFormDesc').value.trim();
+  if (!name || !dept || !formName) { showToast('❌ يرجى ملء جميع الحقول المطلوبة', 'error'); return; }
+  const request = { id: Date.now(), userName: name, dept, formName, formType, formDesc, status: 'pending', date: new Date().toISOString().split('T')[0], time: new Date().toLocaleTimeString('en-US'), read: false };
+  userRequests.push(request);
+  setStorage('userRequests', userRequests);
+  document.getElementById('reqUserName').value = '';
+  document.getElementById('reqUserDept').value = '';
+  document.getElementById('reqFormName').value = '';
+  document.getElementById('reqFormDesc').value = '';
+  document.getElementById('userRequestForm').classList.remove('active');
+  showToast('📤 تم إرسال طلبك بنجاح! سيتم مراجعته من قبل الإدارة', 'success');
+  if (isAdmin) renderAdminRequests();
+}
+function renderAdminRequests() {
+  const container = document.getElementById('requestsList');
+  if (!userRequests.length) { container.innerHTML = '<div style="color:#666;font-size:13px;text-align:center;padding:10px;">لا توجد طلبات جديدة</div>'; return; }
+  const pending = userRequests.filter(r => r.status === 'pending');
+  if (!pending.length) { container.innerHTML = '<div style="color:#666;font-size:13px;text-align:center;padding:10px;">لا توجد طلبات قيد الانتظار</div>'; return; }
+  container.innerHTML = pending.map(req => `
+    <div class="request-list-item">
+      <div class="request-item-info">
+        <div class="request-item-name">${req.formName}</div>
+        <div class="request-item-meta">👤 ${req.userName} | 🏢 ${req.dept} | 📅 ${req.date} ${req.time} | <span class="request-status request-status-pending">قيد الانتظار</span></div>
+        ${req.formDesc ? `<div style="font-size:12px;color:#666;margin-top:4px;">📝 ${req.formDesc}</div>` : ''}
+      </div>
+      <div class="request-item-actions">
+        <button class="request-approve" onclick="approveRequest(${req.id})">✅ موافقة</button>
+        <button class="request-reject" onclick="rejectRequest(${req.id})">❌ رفض</button>
+      </div>
+    </div>
+  `).join('');
+}
+function approveRequest(id) { const req = userRequests.find(r => r.id === id); if (!req) return; req.status = 'approved'; setStorage('userRequests', userRequests); renderAdminRequests(); showToast('✅ تمت الموافقة على الطلب', 'success'); }
+function rejectRequest(id) { const req = userRequests.find(r => r.id === id); if (!req) return; req.status = 'rejected'; setStorage('userRequests', userRequests); renderAdminRequests(); showToast('❌ تم رفض الطلب', 'info'); }
+
+/* View Mode & Sorting */
+function initViewMode() {
+  document.getElementById('viewGridBtn').classList.toggle('active', viewMode === 'grid');
+  document.getElementById('viewListBtn').classList.toggle('active', viewMode === 'list');
+  document.getElementById('formsGrid').style.display = viewMode === 'grid' ? 'grid' : 'none';
+  document.getElementById('formsList').classList.toggle('active', viewMode === 'list');
+  document.getElementById('sortSelect').value = currentSort;
+}
+function setViewMode(mode) {
+  viewMode = mode;
+  setStorage('viewMode', mode);
+  document.getElementById('viewGridBtn').classList.toggle('active', mode === 'grid');
+  document.getElementById('viewListBtn').classList.toggle('active', mode === 'list');
+  document.getElementById('formsGrid').style.display = mode === 'grid' ? 'grid' : 'none';
+  document.getElementById('formsList').classList.toggle('active', mode === 'list');
+  renderForms();
+}
+function handleSort() {
+  currentSort = document.getElementById('sortSelect').value;
+  setStorage('sortBy', currentSort);
+  applySort();
+  renderForms();
+  renderPopular();
+}
+function applySort() {
+  const sortMap = {
+    priority: (a, b) => (a.priority || 999) - (b.priority || 999),
+    downloads: (a, b) => (b.downloads || 0) - (a.downloads || 0),
+    name: (a, b) => a.name.localeCompare(b.name, 'ar'),
+    date: (a, b) => new Date(b.updatedAt || 0) - new Date(a.updatedAt || 0),
+    pages: (a, b) => (b.pages || 0) - (a.pages || 0)
+  };
+  formsData.sort(sortMap[currentSort] || sortMap.priority);
+}
+
+/* Batch Mode */
+function toggleBatchMode() {
+  batchMode = !batchMode;
+  const btn = document.getElementById('batchToggleBtn');
+  const grid = document.getElementById('formsGrid');
+  const list = document.getElementById('formsList');
+  if (batchMode) { btn.classList.add('active'); btn.innerHTML = '<span>☑</span><span>إلغاء التحديد</span>'; grid.classList.add('batch-mode'); list.classList.add('batch-mode'); showToast('وضع التحديد المتعدد مفعل. اختر الاستمارات المطلوبة.', 'info'); }
+  else { btn.classList.remove('active'); btn.innerHTML = '<span>☐</span><span>تحديد متعدد</span>'; grid.classList.remove('batch-mode'); list.classList.remove('batch-mode'); batchSelected = []; updateBatchBar(); renderForms(); }
+}
+
+function getFilteredForms() {
+  let filtered = formsData;
+  if (currentFilter === 'favorites') filtered = formsData.filter(f => favorites.includes(f.id));
+  else if (currentFilter === 'nolink') filtered = formsData.filter(f => !f.fileUrl || f.fileUrl === '#' || f.fileUrl === '');
+  else if (currentFilter !== 'all') filtered = formsData.filter(f => f.category === currentFilter);
+  if (searchQuery) { const q = searchQuery.toLowerCase(); filtered = filtered.filter(form => { const inName = form.name.toLowerCase().includes(q); const inDesc = (form.description || '').toLowerCase().includes(q); const inCat = (form.category || '').toLowerCase().includes(q); const inTags = (form.tags || []).some(t => t.toLowerCase().includes(q)); return inName || inDesc || inCat || inTags; }); }
+  return filtered;
+}
+
+function renderForms() {
+  const grid = document.getElementById('formsGrid');
+  const list = document.getElementById('formsList');
+  const filtered = getFilteredForms();
+  if (filtered.length === 0) { const empty = `<div class="empty-state"><div class="empty-icon">🔍</div><h3>${currentLang === 'ar' ? 'لا توجد نتائج' : 'No results found'}</h3></div>`; grid.innerHTML = empty; list.innerHTML = empty; updateStats(); return; }
+
+  // Grid view
+  grid.innerHTML = filtered.map((form, idx) => {
+    const isFav = favorites.includes(form.id);
+    const isBatch = batchSelected.includes(form.id);
+    const delay = idx * 0.05;
+    const tagsHtml = (form.tags || []).map(t => { const cls = tagClasses[t] || ''; return `<span class="tag ${cls}">${t}</span>`; }).join('');
+    const formRating = ratings[form.id] || 0;
+    const starsHtml = [1,2,3,4,5].map(s => `<button class="star-btn ${s <= formRating ? 'active' : ''}" onclick="event.stopPropagation(); rateForm(${form.id}, ${s})">★</button>`).join('');
+    const isDrive = form.fileUrl && form.fileUrl.includes('drive.google.com');
+    const isBroken = !form.fileUrl || form.fileUrl === '#' || form.fileUrl === '';
+    const sourceBadge = isBroken ? `<span class="broken-badge">⚠️ لا يوجد رابط</span>` : (isDrive ? `<span class="drive-badge">▶️ Google Drive</span>` : '');
+    const isNew = isNewForm(form.updatedAt);
+    const newBadge = isNew ? `<span class="new-badge">جديد</span>` : '';
+    const isRead = getStorage('readForms', []).includes(form.id);
+    const readDot = `<span class="read-status ${isRead ? 'read' : ''}" data-tooltip="${isRead ? 'تمت القراءة' : 'جديد - لم تقرأ بعد'}"></span>`;
+    // Show fileSize only if it's NOT a Drive link (to avoid duplicate "Google Drive" text)
+    const sizeDisplay = (form.fileSize && !isBroken && !isDrive) ? `<span class="card-meta-item">📄 ${form.fileSize}</span>` : '';
+    return `<div class="form-card ${isBroken ? 'no-link' : ''}" style="--card-color: ${form.color}; --card-color-bg: ${form.color}15; animation-delay: ${delay}s;" onclick="${batchMode ? 'event.stopPropagation(); toggleBatch(' + form.id + ')' : 'openModal(' + form.id + ')'}">${readDot}${newBadge}<input type="checkbox" class="batch-checkbox" ${isBatch ? 'checked' : ''} onclick="event.stopPropagation(); toggleBatch(${form.id})" title="تحديد للتنزيل المتعدد"><div class="card-header"><div class="card-icon">${form.icon}</div><div class="card-info"><h3 title="${form.name}">${form.name}</h3><span class="category-tag">${categoryNames[currentLang][form.category] || form.category}</span><div class="card-meta">${sourceBadge}${sizeDisplay}${form.pages ? `<span class="card-meta-item">📑 ${form.pages} صفحة</span>` : ''}${form.updatedAt ? `<span class="card-meta-item">📅 ${form.updatedAt}</span>` : ''}</div><div class="card-tags">${tagsHtml}</div><div class="star-rating" title="تقييم الاستمارة">${starsHtml}</div></div></div><div class="card-footer"><span class="download-count">${(form.downloads || 0).toLocaleString('en-US')} تحميل</span><div class="card-actions"><button class="card-action-btn ${isFav ? 'fav-active' : ''}" onclick="event.stopPropagation(); toggleFav(${form.id})" data-tooltip="${isFav ? 'إزالة من المفضلة' : 'إضافة للمفضلة'}">${isFav ? '★' : '☆'}</button><button class="card-action-btn" onclick="event.stopPropagation(); shareFormById(${form.id})" data-tooltip="مشاركة الاستمارة">📤</button></div></div><div class="quick-preview"><h4>👁️ معاينة سريعة</h4><p>${form.description || 'لا يوجد وصف'}</p><div class="quick-actions"><button class="quick-btn" onclick="event.stopPropagation(); openModal(${form.id})">فتح</button><button class="quick-btn" onclick="event.stopPropagation(); toggleFav(${form.id})">${isFav ? 'إزالة' : 'مفضلة'}</button></div></div></div>`;
+  }).join('');
+
+  // List view
+  list.innerHTML = filtered.map((form, idx) => {
+    const isFav = favorites.includes(form.id);
+    const isBatch = batchSelected.includes(form.id);
+    const tagsHtml = (form.tags || []).map(t => { const cls = tagClasses[t] || ''; return `<span class="tag ${cls}">${t}</span>`; }).join('');
+    const isDrive = form.fileUrl && form.fileUrl.includes('drive.google.com');
+    const isBroken = !form.fileUrl || form.fileUrl === '#' || form.fileUrl === '';
+    const sourceBadge = isBroken ? `<span class="broken-badge">⚠️ لا يوجد رابط</span>` : (isDrive ? `<span class="drive-badge">▶️ Drive</span>` : '');
+    const isNew = isNewForm(form.updatedAt);
+    const newBadge = isNew ? `<span class="new-badge" style="position:static;margin-left:8px;display:inline-block;">جديد</span>` : '';
+    const listSizeDisplay = (form.fileSize && !isBroken && !isDrive) ? `<span>📄 ${form.fileSize}</span>` : '';
+    return `<div class="list-item ${isBroken ? 'no-link' : ''}" style="--card-color: ${form.color}; --card-color-bg: ${form.color}15;" onclick="${batchMode ? 'event.stopPropagation(); toggleBatch(' + form.id + ')' : 'openModal(' + form.id + ')'}"><input type="checkbox" class="batch-checkbox" ${isBatch ? 'checked' : ''} onclick="event.stopPropagation(); toggleBatch(${form.id})"><div class="list-icon">${form.icon}</div><div class="list-info"><h3 title="${form.name}">${form.name}${newBadge}</h3><div class="list-meta"><span>${categoryNames[currentLang][form.category] || form.category}</span>${sourceBadge}${listSizeDisplay}${form.pages ? `<span>📑 ${form.pages} صفحة</span>` : ''}<span>⬇️ ${(form.downloads || 0).toLocaleString('en-US')}</span>${form.updatedAt ? `<span>📅 ${form.updatedAt}</span>` : ''}</div><div class="card-tags">${tagsHtml}</div></div><div class="list-actions"><button class="list-action-btn ${isFav ? 'fav-active' : ''}" onclick="event.stopPropagation(); toggleFav(${form.id})" title="مفضلة">${isFav ? '★' : '☆'}</button><button class="list-action-btn" onclick="event.stopPropagation(); shareFormById(${form.id})" title="مشاركة">📤</button></div></div>`;
+  }).join('');
+
+  updateStats();
+}
+
+function rateForm(formId, stars) { ratings[formId] = stars; setStorage('ratings', ratings); renderForms(); showToast(`تم التقييم بـ ${stars} نجوم`, 'success'); }
+
+function updateStats() { const total = formsData.length; const totalDownloads = formsData.reduce((sum, f) => sum + (f.downloads || 0), 0); document.getElementById('statTotal').textContent = total.toLocaleString('en-US'); document.getElementById('statDownloads').textContent = totalDownloads.toLocaleString('en-US'); const todayData = getStorage('todayDownloads', { count: 0, date: '' }); const todayStr = new Date().toDateString(); if (todayData.date !== todayStr) { todayData = { count: 0, date: todayStr }; setStorage('todayDownloads', todayData); } document.getElementById('statToday').textContent = todayData.count.toLocaleString('en-US'); document.getElementById('statFavs').textContent = favorites.length.toLocaleString('en-US'); document.getElementById('statVisitors').textContent = visitorCount.toLocaleString('en-US'); }
+
+function toggleBatch(id) { if (!batchMode) return; const idx = batchSelected.indexOf(id); if (idx > -1) batchSelected.splice(idx, 1); else batchSelected.push(id); updateBatchBar(); renderForms(); }
+function updateBatchBar() { const bar = document.getElementById('batchBar'); const count = document.getElementById('batchCount'); if (batchSelected.length === 0) { bar.classList.remove('active'); return; } bar.classList.add('active'); count.textContent = `${batchSelected.length.toLocaleString('en-US')} استمارة محددة`; }
+function downloadBatch() { const selected = formsData.filter(f => batchSelected.includes(f.id)); if (selected.length === 0) return; const validForms = selected.filter(form => form.fileUrl && form.fileUrl !== '#' && form.fileUrl !== ''); const brokenCount = selected.length - validForms.length; if (validForms.length === 0) { showToast('ℹ️ جميع الاستمارات المحددة لا تحتوي على روابط.', 'info'); return; } validForms.forEach((form, index) => { setTimeout(() => { window.open(form.fileUrl, '_blank'); form.downloads = (form.downloads || 0) + 1; addRecentDownload(form.id); }, index * 800); }); const todayData = getStorage('todayDownloads', { count: 0, date: new Date().toDateString() }); todayData.count += validForms.length; setStorage('todayDownloads', todayData); setTimeout(() => { batchSelected = []; updateBatchBar(); renderForms(); renderPopular(); updateStats(); exportJSON(); let msg = `✅ تم فتح ${validForms.length.toLocaleString('en-US')} ملف في نوافذ جديدة!`; if (brokenCount > 0) msg += ` (تم تخطي ${brokenCount} بدون رابط)`; showToast(msg, 'success'); }, validForms.length * 800 + 500); }
+function clearBatch() { batchSelected = []; updateBatchBar(); renderForms(); showToast('تم إلغاء التحديد', 'info'); }
+
+document.querySelectorAll('.filter-btn').forEach(btn => { btn.addEventListener('click', () => { document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); currentFilter = btn.dataset.filter; renderForms(); }); });
+document.getElementById('searchInput').addEventListener('input', (e) => { searchQuery = e.target.value.trim(); renderForms(); });
+
+function openModal(formId) { if (batchMode) return; markAsRead(formId); selectedForm = formsData.find(f => f.id === formId); if (!selectedForm) return; document.getElementById('modalIcon').textContent = selectedForm.icon; document.getElementById('modalIcon').style.background = selectedForm.color + '20'; document.getElementById('modalTitle').textContent = selectedForm.name; document.getElementById('modalDesc').textContent = selectedForm.description; const meta = []; const hasLink = selectedForm.fileUrl && selectedForm.fileUrl !== '#' && selectedForm.fileUrl !== ''; if (!hasLink) meta.push(`⚠️ لا يوجد رابط للملف`); if (selectedForm.fileSize && hasLink) meta.push(`📄 ${selectedForm.fileSize}`); if (selectedForm.pages) meta.push(`📑 ${selectedForm.pages} صفحة`); if (selectedForm.updatedAt) meta.push(`📅 ${selectedForm.updatedAt}`); document.getElementById('modalMeta').innerHTML = meta.map(m => `<span>${m}</span>`).join(''); const btnDownload = document.getElementById('btnDownload'); const btnPreview = document.getElementById('btnPreview'); if (btnDownload) { btnDownload.style.opacity = hasLink ? '1' : '0.4'; btnDownload.style.pointerEvents = hasLink ? 'auto' : 'none'; btnDownload.textContent = hasLink ? (selectedForm.fileUrl.includes('drive.google.com') ? '⬇️ فتح في Google Drive' : '⬇️ فتح الملف') : '⬇️ لا يوجد رابط'; } if (btnPreview) { btnPreview.style.opacity = hasLink ? '1' : '0.4'; btnPreview.style.pointerEvents = hasLink ? 'auto' : 'none'; } updateFavButton(); document.getElementById('modalOverlay').classList.add('active'); document.body.style.overflow = 'hidden'; }
+function closeModal() { document.getElementById('modalOverlay').classList.remove('active'); document.body.style.overflow = ''; selectedForm = null; }
+document.getElementById('modalOverlay').addEventListener('click', (e) => { if (e.target === document.getElementById('modalOverlay')) closeModal(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeModal(); closeQRModal(); closeShortcutModal(); } });
+
+function handlePrint() { if (!selectedForm) return; if (selectedForm.fileUrl && selectedForm.fileUrl !== '#') { const win = window.open(selectedForm.fileUrl, '_blank'); if (win) win.onload = () => win.print(); } else { showToast('ℹ️ رابط الملف غير متوفر حاليًا.', 'info'); } closeModal(); }
+function handleDownload() { if (!selectedForm) return; if (selectedForm.fileUrl && selectedForm.fileUrl !== '#' && selectedForm.fileUrl !== '') { window.open(selectedForm.fileUrl, '_blank'); selectedForm.downloads = (selectedForm.downloads || 0) + 1; addRecentDownload(selectedForm.id); const todayData = getStorage('todayDownloads', { count: 0, date: new Date().toDateString() }); todayData.count++; setStorage('todayDownloads', todayData); renderForms(); renderPopular(); updateStats(); exportJSON(); showToast('تم فتح الملف في نافذة جديدة', 'success'); } else { showToast('ℹ️ رابط الملف غير متوفر حاليًا.', 'info'); } closeModal(); }
+function handlePreview() { if (!selectedForm) return; if (selectedForm.fileUrl && selectedForm.fileUrl !== '#' && selectedForm.fileUrl !== '') { window.open(selectedForm.fileUrl, '_blank'); } else { showToast('ℹ️ رابط الملف غير متوفر حاليًا.', 'info'); } closeModal(); }
+function shareForm() { if (!selectedForm) return; shareFormById(selectedForm.id); closeModal(); }
+function shareFormById(id) { const form = formsData.find(f => f.id === id); if (!form) return; const hasLink = form.fileUrl && form.fileUrl !== '#' && form.fileUrl !== ''; const url = hasLink ? form.fileUrl : window.location.href; const text = `${form.name} - ${form.description}\n${url}`; if (navigator.share) { navigator.share({ title: form.name, text: form.description, url: url }); } else { const waUrl = `https://wa.me/?text=${encodeURIComponent(text)}`; window.open(waUrl, '_blank'); } }
+
+/* Copy Link */
+function copyFormLink() { if (!selectedForm) return; const url = selectedForm.fileUrl !== '#' ? selectedForm.fileUrl : window.location.href; navigator.clipboard.writeText(url).then(() => showToast('✅ تم نسخ الرابط!', 'success')).catch(() => showToast('❌ لم يتم النسخ', 'error')); closeModal(); }
+
+/* QR Code Generator */
+function showQRCode() {
+  if (!selectedForm) return;
+  const url = selectedForm.fileUrl !== '#' ? selectedForm.fileUrl : window.location.href;
+  const canvas = document.getElementById('qrCanvas');
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, 200, 200);
+  // Simple QR-like pattern (fallback since we can't load external QR lib)
+  ctx.fillStyle = '#16455B';
+  const cellSize = 8;
+  for (let y = 0; y < 25; y++) {
+    for (let x = 0; x < 25; x++) {
+      const hash = Math.sin(x * 12.9898 + y * 78.233 + url.length) * 43758.5453;
+      if ((hash - Math.floor(hash)) > 0.5) ctx.fillRect(x * cellSize + 10, y * cellSize + 10, cellSize - 1, cellSize - 1);
+    }
+  }
+  // Draw position markers
+  ctx.fillStyle = '#16455B';
+  ctx.fillRect(10, 10, 24, 24); ctx.clearRect(14, 14, 16, 16); ctx.fillRect(18, 18, 8, 8);
+  ctx.fillRect(166, 10, 24, 24); ctx.clearRect(170, 14, 16, 16); ctx.fillRect(174, 18, 8, 8);
+  ctx.fillRect(10, 166, 24, 24); ctx.clearRect(14, 170, 16, 16); ctx.fillRect(18, 174, 8, 8);
+  document.getElementById('qrModalOverlay').classList.add('active');
+}
+function closeQRModal() { document.getElementById('qrModalOverlay').classList.remove('active'); }
+
+/* ===== Confetti Effect ===== */
+function fireConfetti() {
+  const canvas = document.getElementById('confettiCanvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  const particles = [];
+  const colors = ['#16455B', '#309694', '#38A18A', '#C5A059', '#e94560', '#f9a825', '#667eea'];
+  for (let i = 0; i < 80; i++) {
+    particles.push({
+      x: canvas.width / 2, y: canvas.height / 2,
+      vx: (Math.random() - 0.5) * 15, vy: (Math.random() - 0.5) * 15 - 5,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      size: Math.random() * 8 + 4, rotation: Math.random() * 360,
+      rotationSpeed: (Math.random() - 0.5) * 10, life: 1
+    });
+  }
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    let alive = false;
+    particles.forEach(p => {
+      if (p.life <= 0) return;
+      alive = true;
+      p.x += p.vx; p.y += p.vy; p.vy += 0.3;
+      p.rotation += p.rotationSpeed; p.life -= 0.015;
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rotation * Math.PI / 180);
+      ctx.globalAlpha = p.life;
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size);
+      ctx.restore();
+    });
+    if (alive) requestAnimationFrame(animate);
+    else ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+  animate();
+}
+
+/* ===== Read Status ===== */
+function markAsRead(formId) {
+  const readForms = getStorage('readForms', []);
+  if (!readForms.includes(formId)) {
+    readForms.push(formId);
+    setStorage('readForms', readForms);
+    renderForms();
+  }
+}
+
+/* ===== Print Batch ===== */
+function printBatch() {
+  const selected = formsData.filter(f => batchSelected.includes(f.id));
+  if (!selected.length) return;
+  let printWindow = window.open('', '_blank');
+  let html = `<!DOCTYPE html><html dir="rtl" lang="ar"><head><meta charset="UTF-8"><title>طباعة الاستمارات</title><style>body{font-family:'Tajawal',sans-serif;padding:20px;}h1{color:#16455B;text-align:center;}table{width:100%;border-collapse:collapse;margin-top:20px;}th{background:#16455B;color:white;padding:12px;text-align:right;}td{padding:10px;border:1px solid #ddd;text-align:right;}tr:nth-child(even){background:#f5f7f6;}</style></head><body><h1>📋 استمارات محددة للطباعة</h1><p>تاريخ الطباعة: ${new Date().toLocaleDateString('ar-SA')}</p><table><thead><tr><th>#</th><th>الاستمارة</th><th>التصنيف</th><th>الوصف</th><th>الرابط</th></tr></thead><tbody>${selected.map((f,i)=>`<tr><td>${i+1}</td><td>${f.icon} ${f.name}</td><td>${categoryNames.ar[f.category]||f.category}</td><td>${f.description||'-'}</td><td>${f.fileUrl!=='#'?f.fileUrl:'-'}</td></tr>`).join('')}</tbody></table></body></html>`;
+  printWindow.document.write(html);
+  printWindow.document.close();
+  printWindow.print();
+  showToast('🖨️ تم فتح نافذة الطباعة', 'success');
+}
+
+/* ===== Search Suggestions ===== */
+const searchInput = document.getElementById('searchInput');
+const searchSuggestions = document.getElementById('searchSuggestions');
+
+searchInput.addEventListener('input', (e) => {
+  searchQuery = e.target.value.trim();
+  renderForms();
+  if (!searchQuery) { searchSuggestions.classList.remove('active'); return; }
+  const q = searchQuery.toLowerCase();
+  const matches = formsData.filter(f => f.name.toLowerCase().includes(q)).slice(0, 5);
+  if (!matches.length) { searchSuggestions.classList.remove('active'); return; }
+  searchSuggestions.innerHTML = matches.map(f => `<div class="search-suggestion-item" onclick="selectSuggestion(${f.id})"><span class="sugg-icon">${f.icon}</span><span>${f.name}</span><span class="sugg-meta">${categoryNames.ar[f.category]||f.category}</span></div>`).join('');
+  searchSuggestions.classList.add('active');
+});
+
+searchInput.addEventListener('blur', () => { setTimeout(() => searchSuggestions.classList.remove('active'), 200); });
+searchInput.addEventListener('focus', () => { if (searchQuery && formsData.filter(f => f.name.toLowerCase().includes(searchQuery.toLowerCase())).length) searchSuggestions.classList.add('active'); });
+
+function selectSuggestion(formId) {
+  searchSuggestions.classList.remove('active');
+  openModal(formId);
+}
+
+/* Keyboard Shortcuts */
+function openShortcutModal() { document.getElementById('shortcutModal').classList.add('active'); }
+function closeShortcutModal() { document.getElementById('shortcutModal').classList.remove('active'); }
+document.addEventListener('keydown', (e) => {
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+  if (e.key === '?' || e.key === '؟') { e.preventDefault(); openShortcutModal(); }
+  if (e.key === 'Escape') { closeModal(); closeQRModal(); closeShortcutModal(); }
+  if (e.ctrlKey && e.key === 'k') { e.preventDefault(); document.getElementById('searchInput').focus(); }
+  if (e.ctrlKey && e.key === 'd') { e.preventDefault(); toggleTheme(); }
+  if (e.key === 'Home') { e.preventDefault(); scrollToTop(); }
+  if (e.ctrlKey && e.key === 'f') { e.preventDefault(); document.querySelector('[data-filter="favorites"]').click(); }
+});
+
+window.addEventListener('scroll', () => { const btn = document.getElementById('backToTop'); btn.classList.toggle('visible', window.scrollY > 400); });
 function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
 
-/* Init on DOM Ready */
-document.addEventListener('DOMContentLoaded', function() {
-  isAdmin = getStorage('isAdmin', false);
-  currentLang = getStorage('lang', 'ar');
-  viewMode = getStorage('viewMode', 'grid');
-  currentSort = getStorage('sortBy', 'priority');
-  favorites = getStorage('favorites', []);
-  recentDownloads = getStorage('recentDownloads', []);
-  ratings = getStorage('ratings', {});
-  userRequests = getStorage('userRequests', []);
-  readForms = getStorage('readForms', []);
-  visitorCount = getStorage('visitorCount', 0);
-  loadForms();
-});
+/* ===== Icon & Color Pickers ===== */
+function selectIcon(btn) {
+  document.querySelectorAll('.icon-option').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  document.getElementById('adminIcon').value = btn.dataset.icon;
+}
+function selectColor(btn) {
+  document.querySelectorAll('.color-option').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  document.getElementById('adminColor').value = btn.dataset.color;
+  document.getElementById('colorPreviewBox').style.background = btn.dataset.color;
+}
+function updateColorPreview() {
+  const val = document.getElementById('adminColor').value;
+  if (/^#[0-9A-Fa-f]{6}$/.test(val)) {
+    document.getElementById('colorPreviewBox').style.background = val;
+  }
+}
+function initPickers() {
+  // Select default icon
+  const defaultIcon = document.getElementById('adminIcon').value || '📄';
+  document.querySelectorAll('.icon-option').forEach(b => {
+    if (b.dataset.icon === defaultIcon) b.classList.add('selected');
+  });
+  // Select default color
+  const defaultColor = document.getElementById('adminColor').value || '#16455B';
+  let found = false;
+  document.querySelectorAll('.color-option').forEach(b => {
+    if (b.dataset.color.toLowerCase() === defaultColor.toLowerCase()) {
+      b.classList.add('selected');
+      found = true;
+    }
+  });
+  if (!found) document.getElementById('colorPreviewBox').style.background = defaultColor;
+}
+
+/* ===== Tags Input System ===== */
+const ALL_TAGS = ['عاجل','شهري','شائع','إلزامي','مالي','فوري','بنكي','إداري','قانوني','تطوير','سنوي','اختياري'];
+const TAG_COLORS = { 'عاجل': '#e94560', 'شهري': '#667eea', 'شائع': '#f9a825', 'إلزامي': '#43e97b', 'مالي': '#38A18A', 'فوري': '#ff6b6b', 'بنكي': '#4ecdc4', 'إداري': '#95a5a6', 'قانوني': '#8e44ad', 'تطوير': '#e67e22', 'سنوي': '#3498db', 'اختياري': '#bdc3c7' };
+let selectedTags = [];
+
+function focusTagInput() { document.getElementById('tagInput').focus(); }
+
+function renderSelectedTags() {
+  const container = document.getElementById('tagsSelected');
+  const input = document.getElementById('tagInput');
+  // Remove existing chips
+  container.querySelectorAll('.tag-chip').forEach(el => el.remove());
+  // Insert chips before input
+  selectedTags.forEach((tag, idx) => {
+    const chip = document.createElement('span');
+    chip.className = 'tag-chip';
+    chip.style.background = TAG_COLORS[tag] || '#309694';
+    chip.style.color = (tag === 'إلزامي' || tag === 'اختياري') ? '#1a1a2e' : '#fff';
+    chip.innerHTML = `${tag} <button type="button" class="tag-remove" onclick="event.stopPropagation(); removeTag(${idx})" title="إزالة">✕</button>`;
+    container.insertBefore(chip, input);
+  });
+  document.getElementById('adminTags').value = selectedTags.join(', ');
+  updatePresetButtons();
+}
+
+function addTag(tag) {
+  tag = tag.trim();
+  if (!tag || selectedTags.includes(tag)) return;
+  selectedTags.push(tag);
+  renderSelectedTags();
+  document.getElementById('tagInput').value = '';
+  document.getElementById('tagsSuggestions').classList.remove('active');
+}
+
+function removeTag(index) {
+  selectedTags.splice(index, 1);
+  renderSelectedTags();
+}
+
+function togglePresetTag(btn) {
+  const tag = btn.dataset.tag;
+  if (selectedTags.includes(tag)) {
+    selectedTags = selectedTags.filter(t => t !== tag);
+  } else {
+    selectedTags.push(tag);
+  }
+  renderSelectedTags();
+  btn.classList.toggle('active', selectedTags.includes(tag));
+}
+
+function updatePresetButtons() {
+  document.querySelectorAll('.tags-preset-btn').forEach(btn => {
+    btn.classList.toggle('active', selectedTags.includes(btn.dataset.tag));
+  });
+}
+
+function filterTagSuggestions() {
+  const val = document.getElementById('tagInput').value.trim();
+  const dropdown = document.getElementById('tagsSuggestions');
+  if (!val) { dropdown.classList.remove('active'); return; }
+  const matches = ALL_TAGS.filter(t => t.includes(val) && !selectedTags.includes(t));
+  if (!matches.length) { dropdown.classList.remove('active'); return; }
+  dropdown.innerHTML = matches.map(t => `<div class="tags-suggestion-item" onclick="addTag('${t}')" onmousedown="event.preventDefault();"><span class="suggest-check">✓</span>${t}</div>`).join('');
+  dropdown.classList.add('active');
+}
+
+function showTagSuggestions() {
+  const dropdown = document.getElementById('tagsSuggestions');
+  const available = ALL_TAGS.filter(t => !selectedTags.includes(t));
+  if (!available.length) { dropdown.classList.remove('active'); return; }
+  dropdown.innerHTML = available.map(t => `<div class="tags-suggestion-item" onclick="addTag('${t}')" onmousedown="event.preventDefault();"><span class="suggest-check"></span>${t}</div>`).join('');
+  dropdown.classList.add('active');
+  document.getElementById('tagsSelected').classList.add('focused');
+}
+
+function hideTagSuggestionsDelayed() {
+  setTimeout(() => {
+    document.getElementById('tagsSuggestions').classList.remove('active');
+    document.getElementById('tagsSelected').classList.remove('focused');
+  }, 200);
+}
+
+function handleTagKey(e) {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    const val = e.target.value.trim();
+    if (val) { addTag(val); }
+  } else if (e.key === 'Backspace' && !e.target.value && selectedTags.length) {
+    selectedTags.pop();
+    renderSelectedTags();
+  }
+}
+
+// Override editForm to populate tags
+const originalEditForm = editForm;
+editForm = function(id) {
+  originalEditForm(id);
+  const form = formsData.find(f => f.id === id);
+  if (form && form.tags) {
+    selectedTags = [...form.tags];
+    renderSelectedTags();
+  }
+  initPickers();
+};
+
+// Override resetForm to clear tags
+const originalResetForm = resetForm;
+resetForm = function() {
+  originalResetForm();
+  selectedTags = [];
+  renderSelectedTags();
+  initPickers();
+};
+
+// Override saveForm to use selectedTags
+const originalSaveForm = saveForm;
+saveForm = function() {
+  document.getElementById('adminTags').value = selectedTags.join(', ');
+  originalSaveForm();
+};
+
+loadForms();
 </script>
 </body>
 </html>
