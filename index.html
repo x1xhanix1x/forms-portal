@@ -1457,9 +1457,9 @@ resetForm = function() {
 // Override saveForm to use selectedTags
 const originalSaveForm = saveForm;
 saveForm = function() {
-  document.getElementById('adminTags').value = selectedTags.join(', ');
-  originalSaveForm();
-};
+document.addEventListener('DOMContentLoaded', function() {
+  loadForms();
+});
 
 loadForms();
 </script>
