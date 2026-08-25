@@ -402,7 +402,6 @@ body { font-family: 'Tajawal', sans-serif; background: var(--body-bg); color: va
   .view-sort-bar { flex-direction: column; align-items: stretch; }
 }
 </style>
-<base target="_blank">
 </head>
 <body>
 
@@ -1144,59 +1143,95 @@ function getDefaultForms() {
   ];
 }
 
-/* Load */
-async function loadForms() {
-  showLoading(true);
-  visitorCount++;
-  setStorage('visitorCount', visitorCount);
-
-  // Safety timeout: hide loading after 3 seconds no matter what
-  const safetyTimeout = setTimeout(function() { showLoading(false); }, 3000);
-
+/* Load - Bulletproof */
+function loadForms() {
   try {
-    // Try to fetch forms.json with a 2-second timeout
-    const controller = new AbortController();
-    const fetchTimeout = setTimeout(function() { controller.abort(); }, 2000);
-    const response = await fetch('forms.json?v=' + Date.now(), { signal: controller.signal });
-    clearTimeout(fetchTimeout);
-    if (response.ok) { formsData = await response.json(); }
-    else throw new Error('forms.json not found');
-  } catch (e) {
-    console.log('Using default forms (forms.json not found or fetch failed)');
+    showLoading(true);
+    visitorCount++;
+    setStorage('visitorCount', visitorCount);
+
+    // Always use default forms embedded in code (fetch fails on file://)
     formsData = getDefaultForms();
-  }
 
-  clearTimeout(safetyTimeout);
+    nextId = Math.max.apply(null, formsData.map(function(f) { return f.id; }).concat([0])) + 1;
+    applySort();
 
-  if (!formsData || !formsData.length) {
+    applyTheme();
+    applyLang();
+    initViewMode();
+    renderFavorites();
+    renderRecent();
+    renderPopular();
+    renderForms();
+    updateStats();
+    initAuth();
+    initTicker();
+    renderAdminRequests();
+    renderNotifications();
+    initPickers();
+  } catch (err) {
+    console.error('Error in loadForms:', err);
     formsData = getDefaultForms();
+    renderForms();
+    updateStats();
+    initAuth();
+  } finally {
+    showLoading(false);
   }
-
-  nextId = Math.max.apply(null, formsData.map(function(f) { return f.id; }).concat([0])) + 1;
-  applySort();
-  showLoading(false);
-  applyTheme(); applyLang(); initViewMode(); renderFavorites(); renderRecent(); renderPopular(); renderForms(); updateStats(); initAuth(); initTicker(); renderAdminRequests(); renderNotifications(); initPickers();
 }
 
 /* Event Listeners */
-document.querySelectorAll('.filter-btn').forEach(function(btn) { btn.addEventListener('click', function() { document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); }); btn.classList.add('active'); currentFilter = btn.dataset.filter; renderForms(); }); });
-document.getElementById('searchInput').addEventListener('input', function(e) { searchQuery = e.target.value.trim(); renderForms(); });
-document.addEventListener('keydown', function(e) { if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return; if (e.key === '?' || e.key === '؟') { e.preventDefault(); openShortcutModal(); } if (e.key === 'Escape') { closeModal(); closeQRModal(); closeShortcutModal(); } if (e.ctrlKey && e.key === 'k') { e.preventDefault(); document.getElementById('searchInput').focus(); } if (e.ctrlKey && e.key === 'd') { e.preventDefault(); toggleTheme(); } if (e.key === 'Home') { e.preventDefault(); scrollToTop(); } if (e.ctrlKey && e.key === 'f') { e.preventDefault(); document.querySelector('[data-filter="favorites"]').click(); } });
-window.addEventListener('scroll', function() { const btn = document.getElementById('backToTop'); btn.classList.toggle('visible', window.scrollY > 400); });
+document.querySelectorAll('.filter-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    currentFilter = btn.dataset.filter;
+    renderForms();
+  });
+});
+
+document.getElementById('searchInput').addEventListener('input', function(e) {
+  searchQuery = e.target.value.trim();
+  renderForms();
+});
+
+document.addEventListener('keydown', function(e) {
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+  if (e.key === '?' || e.key === '؟') { e.preventDefault(); openShortcutModal(); }
+  if (e.key === 'Escape') { closeModal(); closeQRModal(); closeShortcutModal(); }
+  if (e.ctrlKey && e.key === 'k') { e.preventDefault(); document.getElementById('searchInput').focus(); }
+  if (e.ctrlKey && e.key === 'd') { e.preventDefault(); toggleTheme(); }
+  if (e.key === 'Home') { e.preventDefault(); scrollToTop(); }
+  if (e.ctrlKey && e.key === 'f') {
+    e.preventDefault();
+    var favBtn = document.querySelector('[data-filter="favorites"]');
+    if (favBtn) favBtn.click();
+  }
+});
+
+window.addEventListener('scroll', function() {
+  var btn = document.getElementById('backToTop');
+  if (btn) btn.classList.toggle('visible', window.scrollY > 400);
+});
+
 function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
 
-/* Init on DOM Ready */
+/* Init */
 document.addEventListener('DOMContentLoaded', function() {
-  isAdmin = getStorage('isAdmin', false);
-  currentLang = getStorage('lang', 'ar');
-  viewMode = getStorage('viewMode', 'grid');
-  currentSort = getStorage('sortBy', 'priority');
-  favorites = getStorage('favorites', []);
-  recentDownloads = getStorage('recentDownloads', []);
-  ratings = getStorage('ratings', {});
-  userRequests = getStorage('userRequests', []);
-  readForms = getStorage('readForms', []);
-  visitorCount = getStorage('visitorCount', 0);
+  try {
+    isAdmin = getStorage('isAdmin', false);
+    currentLang = getStorage('lang', 'ar');
+    viewMode = getStorage('viewMode', 'grid');
+    currentSort = getStorage('sortBy', 'priority');
+    favorites = getStorage('favorites', []);
+    recentDownloads = getStorage('recentDownloads', []);
+    ratings = getStorage('ratings', {});
+    userRequests = getStorage('userRequests', []);
+    readForms = getStorage('readForms', []);
+    visitorCount = getStorage('visitorCount', 0);
+  } catch (e) {
+    console.log('Storage init error, using defaults');
+  }
   loadForms();
 });
 </script>
