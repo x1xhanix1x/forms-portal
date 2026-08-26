@@ -2,7 +2,7 @@
   {
     "id": 1,
     "name": "استمارة طلب انتداب",
-    "category": "requests",
+    "category": "print",
     "icon": "📋",
     "color": "#16455B",
     "priority": 1,
@@ -10,7 +10,7 @@
     "fileUrl": "https://drive.google.com/file/d/1ylN07nfZDXWA-SUmpN-rfeNtzIY61uWs/view?usp=drive_link",
     "fileSize": "Google Drive",
     "pages": 1,
-    "updatedAt": "2026-08-24",
+    "updatedAt": "2026-08-26",
     "tags": [
       "شهري",
       "إلزامي",
@@ -22,7 +22,7 @@
   {
     "id": 2,
     "name": "وثيقة أداء مهمة انتداب",
-    "category": "requests",
+    "category": "print",
     "icon": "📄",
     "color": "#309694",
     "priority": 2,
@@ -30,7 +30,7 @@
     "fileUrl": "https://drive.google.com/file/d/1sUhkt74Ag8fQFiAdO2fs037uchhK4rmP/view?usp=drive_link",
     "fileSize": "Google Drive",
     "pages": 1,
-    "updatedAt": "2026-08-24",
+    "updatedAt": "2026-08-26",
     "tags": [
       "شهري",
       "مالي",
@@ -42,7 +42,7 @@
   {
     "id": 3,
     "name": "نماذج صرف بدل ضرر",
-    "category": "requests",
+    "category": "print",
     "icon": "💰",
     "color": "#38A18A",
     "priority": 3,
@@ -81,7 +81,7 @@
   {
     "id": 5,
     "name": "نموذج طلب صرف تعويض تذاكر",
-    "category": "requests",
+    "category": "print",
     "icon": "🎫",
     "color": "#309694",
     "priority": 5,
@@ -89,7 +89,7 @@
     "fileUrl": "https://drive.google.com/file/d/1SYDCCX-XGwmkDxWX60uG6ETUmGnhhf6g/view?usp=drive_link",
     "fileSize": "Google Drive",
     "pages": 1,
-    "updatedAt": "2026-08-24",
+    "updatedAt": "2026-08-26",
     "tags": [
       "فوري",
       "بنكي",
