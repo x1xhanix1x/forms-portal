@@ -1,0 +1,234 @@
+[
+  {
+    "id": 1,
+    "name": "استمارة طلب انتداب",
+    "category": "requests",
+    "icon": "📋",
+    "color": "#16455B",
+    "priority": 1,
+    "downloads": 0,
+    "fileUrl": "https://drive.google.com/file/d/1ylN07nfZDXWA-SUmpN-rfeNtzIY61uWs/view?usp=drive_link",
+    "fileSize": "Google Drive",
+    "pages": 1,
+    "updatedAt": "2026-08-24",
+    "tags": [
+      "شهري",
+      "إلزامي",
+      "سنوي",
+      "شائع"
+    ],
+    "description": "استمارة طلب انتداب"
+  },
+  {
+    "id": 2,
+    "name": "وثيقة أداء مهمة انتداب",
+    "category": "requests",
+    "icon": "📄",
+    "color": "#309694",
+    "priority": 2,
+    "downloads": 0,
+    "fileUrl": "https://drive.google.com/file/d/1sUhkt74Ag8fQFiAdO2fs037uchhK4rmP/view?usp=drive_link",
+    "fileSize": "Google Drive",
+    "pages": 1,
+    "updatedAt": "2026-08-24",
+    "tags": [
+      "شهري",
+      "مالي",
+      "إلزامي",
+      "سنوي"
+    ],
+    "description": "وثيقة أداء مهمة انتداب"
+  },
+  {
+    "id": 3,
+    "name": "نماذج صرف بدل ضرر",
+    "category": "requests",
+    "icon": "💰",
+    "color": "#38A18A",
+    "priority": 3,
+    "downloads": 0,
+    "fileUrl": "https://drive.google.com/file/d/1R6_2XICk73H5WrlAECwH5eCcizMDu1Yk/view?usp=sharing",
+    "fileSize": "Google Drive",
+    "pages": 3,
+    "updatedAt": "2026-08-26",
+    "tags": [
+      "إلزامي",
+      "مالي",
+      "بنكي"
+    ],
+    "description": "نماذج صرف بدل ضرر"
+  },
+  {
+    "id": 7,
+    "name": "استمارة صرف علاوة التربية الخاصة",
+    "category": "print",
+    "icon": "🚚",
+    "color": "#16455B",
+    "priority": 4,
+    "downloads": 0,
+    "fileUrl": "https://drive.google.com/file/d/11sccxw86RdUcutLfPy243_4hljfeC783/view?usp=sharing",
+    "fileSize": "—",
+    "pages": 2,
+    "updatedAt": "2026-08-26",
+    "tags": [
+      "إلزامي",
+      "مالي",
+      "بنكي",
+      "شهري"
+    ],
+    "description": "استمارة صرف علاوة التربية الخاصة"
+  },
+  {
+    "id": 5,
+    "name": "نموذج طلب صرف تعويض تذاكر",
+    "category": "requests",
+    "icon": "🎫",
+    "color": "#309694",
+    "priority": 5,
+    "downloads": 0,
+    "fileUrl": "https://drive.google.com/file/d/1SYDCCX-XGwmkDxWX60uG6ETUmGnhhf6g/view?usp=drive_link",
+    "fileSize": "Google Drive",
+    "pages": 1,
+    "updatedAt": "2026-08-24",
+    "tags": [
+      "فوري",
+      "بنكي",
+      "مالي",
+      "عاجل"
+    ],
+    "description": "نموذج طلب صرف تعويض تذاكر"
+  },
+  {
+    "id": 4,
+    "name": "نموذج طلب صرف بدل مناطق نائية",
+    "category": "requests",
+    "icon": "🗺️",
+    "color": "#16455B",
+    "priority": 6,
+    "downloads": 0,
+    "fileUrl": "https://drive.google.com/file/d/1BDCA6i_evwNA229rzPZyScTl-CvtdD_S/view?usp=drive_link",
+    "fileSize": "Google Drive",
+    "pages": 1,
+    "updatedAt": "2026-08-24",
+    "tags": [
+      "قانوني",
+      "مالي",
+      "بنكي",
+      "شهري"
+    ],
+    "description": "نموذج طلب صرف بدل مناطق نائية"
+  },
+  {
+    "id": 6,
+    "name": "نموذج انهاء مهمة خارج دوام",
+    "category": "requests",
+    "icon": "⏰",
+    "color": "#216273",
+    "priority": 7,
+    "downloads": 0,
+    "fileUrl": "https://drive.google.com/file/d/1qW12jgemzpqzxgJIB3jlKtYp1SH3cnqa/view?usp=drive_link",
+    "fileSize": "Google Drive",
+    "pages": 1,
+    "updatedAt": "2026-08-24",
+    "tags": [
+      "سنوي",
+      "مالي"
+    ],
+    "description": "نموذج انهاء مهمة خارج دوام"
+  },
+  {
+    "id": 8,
+    "name": "الالئحة التنفيذية للموارد البشرية",
+    "category": "reports",
+    "icon": "📑",
+    "color": "#309694",
+    "priority": 8,
+    "downloads": 0,
+    "fileUrl": "https://drive.google.com/file/d/1rey6G0HLPdK8M-q3KCvy5u4TUTN1OwHg/view?usp=sharing",
+    "fileSize": "Google Drive",
+    "pages": 1,
+    "updatedAt": "2026-08-24",
+    "tags": [
+      "قانوني",
+      "تطوير",
+      "إداري"
+    ],
+    "description": "الالئحة التنفيذية للموارد البشرية في الخدمة المدنية"
+  },
+  {
+    "id": 9,
+    "name": "لائحة الحقوق والمزايا المالية",
+    "category": "reports",
+    "icon": "⚖️",
+    "color": "#16455B",
+    "priority": 9,
+    "downloads": 0,
+    "fileUrl": "https://drive.google.com/file/d/12MHofIhzHpzpeO0XDgtokf7-OmLOkdtA/view?usp=sharing",
+    "fileSize": "Google Drive",
+    "pages": 1,
+    "updatedAt": "2026-08-24",
+    "tags": [
+      "قانوني",
+      "تطوير",
+      "سنوي",
+      "مالي"
+    ],
+    "description": "لائحة الحقوق والمزايا المالية"
+  },
+  {
+    "id": 10,
+    "name": "خطوات طلب صلاحية بدل التربية الخاصة لمدير المدرسة",
+    "category": "reports",
+    "icon": "🗺️",
+    "color": "#16455B",
+    "priority": 10,
+    "tags": [
+      "تطوير"
+    ],
+    "fileSize": "",
+    "pages": 1,
+    "downloads": 0,
+    "fileUrl": "https://drive.google.com/file/d/1l9b9mAq2927kUHGXr23nVEiELdo2t7sq/view?usp=sharing",
+    "description": "خطوات طلب صلاحية بدل التربية الخاصة لمدير المدرسة",
+    "updatedAt": "2026-08-26",
+    "addedAt": 1787732128259
+  },
+  {
+    "id": 11,
+    "name": "دليل المستخدم البدلات (نائي - جبلي)",
+    "category": "reports",
+    "icon": "🗺️",
+    "color": "#16455B",
+    "priority": 11,
+    "tags": [
+      "تطوير",
+      "إداري"
+    ],
+    "fileSize": "",
+    "pages": 6,
+    "downloads": 0,
+    "fileUrl": "https://drive.google.com/file/d/1n76VL1tHbqcW0F3vwGN9VN8S2T6IYc5b/view?usp=sharing",
+    "description": "دليل المستخدم البدلات (نائي - جبلي)",
+    "updatedAt": "2026-08-26",
+    "addedAt": 1787732222730
+  },
+  {
+    "id": 12,
+    "name": "دليل المستخدم بدل ضرر",
+    "category": "reports",
+    "icon": "🗺️",
+    "color": "#16455B",
+    "priority": 12,
+    "tags": [
+      "إداري",
+      "تطوير"
+    ],
+    "fileSize": "",
+    "pages": 6,
+    "downloads": 0,
+    "fileUrl": "https://drive.google.com/file/d/1AJMUuSp_kilaAwqOF4C5efWoDit6gd_3/view?usp=sharing",
+    "description": "دليل المستخدم بدل ضرر",
+    "updatedAt": "2026-08-26",
+    "addedAt": 1787732341521
+  }
+]
