@@ -230,5 +230,21 @@
     "description": "دليل المستخدم بدل ضرر",
     "updatedAt": "2026-08-26",
     "addedAt": 1787732341521
+  },
+  {
+    "id": 13,
+    "name": "دليل المستخدم لخدمة بدل التربية الخاصة",
+    "category": "reports",
+    "icon": "📄",
+    "color": "#16455B",
+    "priority": 13,
+    "tags": [],
+    "fileSize": "",
+    "pages": 6,
+    "downloads": 0,
+    "fileUrl": "https://drive.google.com/file/d/1CO3wtHpFSVLTrH-l1Fup7C0w3kpJzEHi/view?usp=sharing",
+    "description": "دليل المستخدم لخدمة بدل التربية الخاصة",
+    "updatedAt": "2026-08-26",
+    "addedAt": 1787732943780
   }
 ]
