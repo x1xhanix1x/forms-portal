@@ -402,6 +402,7 @@ body { font-family: 'Tajawal', sans-serif; background: var(--body-bg); color: va
   .view-sort-bar { flex-direction: column; align-items: stretch; }
 }
 </style>
+<base target="_blank">
 </head>
 <body>
 
@@ -793,9 +794,10 @@ function renderFavorites() { const bar = document.getElementById('favBar'); cons
 function exportFavoritesList() {
   const favForms = formsData.filter(function(f) { return favorites.indexOf(f.id) > -1; });
   if (!favForms.length) { showToast('لا توجد مفضلة للتصدير', 'info'); return; }
-  let htmlContent = '<!DOCTYPE html><html dir="rtl" lang="ar"><head><meta charset="UTF-8"><style>body{font-family:'Segoe UI',sans-serif;direction:rtl;padding:20px;}h2{color:#16455B;}table{width:100%;border-collapse:collapse;}th{background:#16455B;color:white;padding:10px;text-align:right;}td{padding:8px;border:1px solid #ddd;text-align:right;}tr:nth-child(even){background:#f5f7f6;}</style></head><body><h2>⭐ قائمة الاستمارات المفضلة</h2><p>تاريخ التصدير: ' + new Date().toLocaleDateString('ar-SA') + '</p><table><thead><tr><th>#</th><th>الاسم</th><th>التصنيف</th><th>الحجم</th><th>الصفحات</th><th>الرابط</th></tr></thead><tbody>';
-  htmlContent += favForms.map(function(f, i) { return '<tr><td>' + (i+1) + '</td><td>' + f.icon + ' ' + f.name + '</td><td>' + (categoryNames.ar[f.category]||f.category) + '</td><td>' + (f.fileSize||'-') + '</td><td>' + (f.pages||'-') + '</td><td>' + (f.fileUrl!=='#'?f.fileUrl:'-') + '</td></tr>'; }).join('');
-  htmlContent += '</tbody></table></body></html>';
+  var css = "body{font-family:Arial,sans-serif;direction:rtl;padding:20px;}h2{color:#16455B;}table{width:100%;border-collapse:collapse;}th{background:#16455B;color:white;padding:10px;text-align:right;}td{padding:8px;border:1px solid #ddd;text-align:right;}tr:nth-child(even){background:#f5f7f6;}";
+  var htmlContent = "<!DOCTYPE html><html dir="rtl" lang="ar"><head><meta charset="UTF-8"><style>" + css + "</style></head><body><h2>⭐ قائمة الاستمارات المفضلة</h2><p>تاريخ التصدير: " + new Date().toLocaleDateString('ar-SA') + "</p><table><thead><tr><th>#</th><th>الاسم</th><th>التصنيف</th><th>الحجم</th><th>الصفحات</th><th>الرابط</th></tr></thead><tbody>";
+  htmlContent += favForms.map(function(f, i) { return "<tr><td>" + (i+1) + "</td><td>" + f.icon + " " + f.name + "</td><td>" + (categoryNames.ar[f.category]||f.category) + "</td><td>" + (f.fileSize||'-') + "</td><td>" + (f.pages||'-') + "</td><td>" + (f.fileUrl!=='#'?f.fileUrl:'-') + "</td></tr>"; }).join('');
+  htmlContent += "</tbody></table></body></html>";
   const blob = new Blob(["﻿" + htmlContent], { type: 'application/vnd.ms-excel;charset=utf-8;' });
   const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'favorites_list.xls'; document.body.appendChild(a); a.click(); document.body.removeChild(a);
   showToast('✅ تم تصدير قائمة المفضلة!', 'success');
@@ -858,9 +860,10 @@ function exportJSON() { const jsonStr = JSON.stringify(formsData, null, 2); docu
 function exportCSV() {
   const headers = ['#', 'الاسم', 'التصنيف', 'الأيقونة', 'اللون', 'الأولوية', 'التحميلات', 'الحجم', 'الصفحات', 'آخر تحديث', 'الوسوم', 'الوصف', 'الرابط'];
   const rows = formsData.map(function(f, i) { return [i + 1, f.name, categoryNames.ar[f.category] || f.category, f.icon, f.color, f.priority || 1, f.downloads || 0, f.fileSize || '-', f.pages || '-', f.updatedAt || '-', (f.tags || []).join('، '), f.description || '-', f.fileUrl]; });
-  let htmlContent = '<!DOCTYPE html><html dir="rtl" lang="ar"><head><meta charset="UTF-8"><style>body{font-family:'Segoe UI',sans-serif;direction:rtl;padding:20px;}h2{color:#16455B;}table{width:100%;border-collapse:collapse;}th{background:#16455B;color:white;padding:10px;text-align:right;}td{padding:8px;border:1px solid #ddd;text-align:right;}tr:nth-child(even){background:#f5f7f6;}</style></head><body><h2>📊 تقرير الاستمارات - الإدارة العامة للتعليم بجدة</h2><p>تاريخ التصدير: ' + new Date().toLocaleDateString('ar-SA') + '</p><table><thead><tr>' + headers.map(function(h) { return '<th>' + h + '</th>'; }).join('') + '</tr></thead><tbody>';
-  htmlContent += rows.map(function(r) { return '<tr>' + r.map(function(c) { return '<td>' + String(c).replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</td>'; }).join('') + '</tr>'; }).join('');
-  htmlContent += '</tbody></table></body></html>';
+  var css = "body{font-family:Arial,sans-serif;direction:rtl;padding:20px;}h2{color:#16455B;}table{width:100%;border-collapse:collapse;}th{background:#16455B;color:white;padding:10px;text-align:right;}td{padding:8px;border:1px solid #ddd;text-align:right;}tr:nth-child(even){background:#f5f7f6;}";
+  var htmlContent = "<!DOCTYPE html><html dir="rtl" lang="ar"><head><meta charset="UTF-8"><style>" + css + "</style></head><body><h2>📊 تقرير الاستمارات - الإدارة العامة للتعليم بجدة</h2><p>تاريخ التصدير: " + new Date().toLocaleDateString('ar-SA') + "</p><table><thead><tr>" + headers.map(function(h) { return "<th>" + h + "</th>"; }).join('') + "</tr></thead><tbody>";
+  htmlContent += rows.map(function(r) { return "<tr>" + r.map(function(c) { return "<td>" + String(c).replace(/</g, '&lt;').replace(/>/g, '&gt;') + "</td>"; }).join('') + "</tr>"; }).join('');
+  htmlContent += "</tbody></table></body></html>";
   const blob = new Blob(["﻿" + htmlContent], { type: 'application/vnd.ms-excel;charset=utf-8;' });
   const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'forms_report.xls'; document.body.appendChild(a); a.click(); document.body.removeChild(a);
   showToast('✅ تم تصدير ملف Excel بنجاح!', 'success');
@@ -1010,10 +1013,11 @@ function closeQRModal() { document.getElementById('qrModalOverlay').classList.re
 function printBatch() {
   const selected = formsData.filter(function(f) { return batchSelected.indexOf(f.id) > -1; });
   if (!selected.length) return;
-  let printWindow = window.open('', '_blank');
-  let htmlContent = '<!DOCTYPE html><html dir="rtl" lang="ar"><head><meta charset="UTF-8"><title>طباعة الاستمارات</title><style>body{font-family:'Tajawal',sans-serif;padding:20px;}h1{color:#16455B;text-align:center;}table{width:100%;border-collapse:collapse;margin-top:20px;}th{background:#16455B;color:white;padding:12px;text-align:right;}td{padding:10px;border:1px solid #ddd;text-align:right;}tr:nth-child(even){background:#f5f7f6;}</style></head><body><h1>📋 استمارات محددة للطباعة</h1><p>تاريخ الطباعة: ' + new Date().toLocaleDateString('ar-SA') + '</p><table><thead><tr><th>#</th><th>الاستمارة</th><th>التصنيف</th><th>الوصف</th><th>الرابط</th></tr></thead><tbody>';
-  htmlContent += selected.map(function(f, i) { return '<tr><td>' + (i+1) + '</td><td>' + f.icon + ' ' + f.name + '</td><td>' + (categoryNames.ar[f.category]||f.category) + '</td><td>' + (f.description||'-') + '</td><td>' + (f.fileUrl!=='#'?f.fileUrl:'-') + '</td></tr>'; }).join('');
-  htmlContent += '</tbody></table></body></html>';
+  var printWindow = window.open('', '_blank');
+  var css = "body{font-family:Arial,sans-serif;padding:20px;}h1{color:#16455B;text-align:center;}table{width:100%;border-collapse:collapse;margin-top:20px;}th{background:#16455B;color:white;padding:12px;text-align:right;}td{padding:10px;border:1px solid #ddd;text-align:right;}tr:nth-child(even){background:#f5f7f6;}";
+  var htmlContent = "<!DOCTYPE html><html dir="rtl" lang="ar"><head><meta charset="UTF-8"><title>طباعة الاستمارات</title><style>" + css + "</style></head><body><h1>📋 استمارات محددة للطباعة</h1><p>تاريخ الطباعة: " + new Date().toLocaleDateString('ar-SA') + "</p><table><thead><tr><th>#</th><th>الاستمارة</th><th>التصنيف</th><th>الوصف</th><th>الرابط</th></tr></thead><tbody>";
+  htmlContent += selected.map(function(f, i) { return "<tr><td>" + (i+1) + "</td><td>" + f.icon + " " + f.name + "</td><td>" + (categoryNames.ar[f.category]||f.category) + "</td><td>" + (f.description||'-') + "</td><td>" + (f.fileUrl!=='#'?f.fileUrl:'-') + "</td></tr>"; }).join('');
+  htmlContent += "</tbody></table></body></html>";
   printWindow.document.write(htmlContent);
   printWindow.document.close();
   printWindow.print();
@@ -1023,10 +1027,11 @@ function printBatch() {
 function exportCurrentToPDF() {
   const filtered = getFilteredForms();
   if (!filtered.length) { showToast('لا توجد نتائج للتصدير', 'info'); return; }
-  let printWindow = window.open('', '_blank');
-  let htmlContent = '<!DOCTYPE html><html dir="rtl" lang="ar"><head><meta charset="UTF-8"><title>تقرير الاستمارات</title><style>body{font-family:'Tajawal',sans-serif;padding:20px;}h1{color:#16455B;text-align:center;font-size:24px;}h2{color:#309694;text-align:center;font-size:18px;}table{width:100%;border-collapse:collapse;margin-top:20px;}th{background:#16455B;color:white;padding:10px;text-align:right;}td{padding:8px;border:1px solid #ddd;text-align:right;}tr:nth-child(even){background:#f5f7f6;}</style></head><body><h1>الإدارة العامة للتعليم بمحافظة جدة</h1><h2>قائمة الاستمارات</h2><p style="text-align:center;color:#666;">تاريخ التقرير: ' + new Date().toLocaleDateString('ar-SA') + '</p><table><thead><tr><th>#</th><th>الاستمارة</th><th>التصنيف</th><th>الوسوم</th><th>التحميلات</th></tr></thead><tbody>';
-  htmlContent += filtered.map(function(f, i) { return '<tr><td style="text-align:center;">' + (i+1) + '</td><td>' + f.icon + ' ' + f.name + '</td><td>' + (categoryNames.ar[f.category]||f.category) + '</td><td>' + (f.tags||[]).join('، ') + '</td><td style="text-align:center;">' + (f.downloads||0) + '</td></tr>'; }).join('');
-  htmlContent += '</tbody></table></body></html>';
+  var printWindow = window.open('', '_blank');
+  var css = "body{font-family:Arial,sans-serif;padding:20px;}h1{color:#16455B;text-align:center;font-size:24px;}h2{color:#309694;text-align:center;font-size:18px;}table{width:100%;border-collapse:collapse;margin-top:20px;}th{background:#16455B;color:white;padding:10px;text-align:right;}td{padding:8px;border:1px solid #ddd;text-align:right;}tr:nth-child(even){background:#f5f7f6;}";
+  var htmlContent = "<!DOCTYPE html><html dir="rtl" lang="ar"><head><meta charset="UTF-8"><title>تقرير الاستمارات</title><style>" + css + "</style></head><body><h1>الإدارة العامة للتعليم بمحافظة جدة</h1><h2>قائمة الاستمارات</h2><p style="text-align:center;color:#666;">تاريخ التقرير: " + new Date().toLocaleDateString('ar-SA') + "</p><table><thead><tr><th>#</th><th>الاستمارة</th><th>التصنيف</th><th>الوسوم</th><th>التحميلات</th></tr></thead><tbody>";
+  htmlContent += filtered.map(function(f, i) { return "<tr><td style="text-align:center;">" + (i+1) + "</td><td>" + f.icon + " " + f.name + "</td><td>" + (categoryNames.ar[f.category]||f.category) + "</td><td>" + (f.tags||[]).join('، ') + "</td><td style="text-align:center;">" + (f.downloads||0) + "</td></tr>"; }).join('');
+  htmlContent += "</tbody></table></body></html>";
   printWindow.document.write(htmlContent);
   printWindow.document.close();
   printWindow.print();
