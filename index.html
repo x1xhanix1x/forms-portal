@@ -435,7 +435,6 @@ body, .stat-num, .download-count, .priority-input, .ticker-item, .card-meta-item
   .view-sort-bar { flex-direction: column; align-items: stretch; }
 }
 </style>
-<base target="_blank">
 </head>
 <body>
 
@@ -1155,7 +1154,18 @@ function renderForms() {
 
 function rateForm(formId, stars) { ratings[formId] = stars; setStorage('ratings', ratings); renderForms(); showToast(`تم التقييم بـ ${stars} نجوم`, 'success'); }
 
-function updateStats() { const total = formsData.length; const totalDownloads = formsData.reduce((sum, f) => sum + (f.downloads || 0), 0); document.getElementById('statTotal').textContent = total.toLocaleString('en-US'); document.getElementById('statDownloads').textContent = totalDownloads.toLocaleString('en-US'); const todayData = getStorage('todayDownloads', { count: 0, date: '' }); const todayStr = new Date().toDateString(); if (todayData.date !== todayStr) { todayData = { count: 0, date: todayStr }; setStorage('todayDownloads', todayData); } document.getElementById('statToday').textContent = todayData.count.toLocaleString('en-US'); document.getElementById('statFavs').textContent = favorites.length.toLocaleString('en-US'); document.getElementById('statVisitors').textContent = visitorCount.toLocaleString('en-US'); }
+function updateStats() { const total = formsData.length; const totalDownloads = formsData.reduce((sum, f) => sum + (f.downloads || 0), 0); document.getElementById('statTotal').textContent = total.toLocaleString('en-US'); document.getElementById('statDownloads').textContent = totalDownloads.toLocaleString('en-US'); 
+  // ✅ الإصلاح: const → let
+  let todayData = getStorage('todayDownloads', { count: 0, date: '' });
+  const todayStr = new Date().toDateString();
+  if (todayData.date !== todayStr) {
+    todayData = { count: 0, date: todayStr };
+    setStorage('todayDownloads', todayData);
+  }
+  document.getElementById('statToday').textContent = todayData.count.toLocaleString('en-US');
+  document.getElementById('statFavs').textContent = favorites.length.toLocaleString('en-US');
+  document.getElementById('statVisitors').textContent = visitorCount.toLocaleString('en-US');
+}
 
 function toggleBatch(id) { if (!batchMode) return; const idx = batchSelected.indexOf(id); if (idx > -1) batchSelected.splice(idx, 1); else batchSelected.push(id); updateBatchBar(); renderForms(); }
 function updateBatchBar() { const bar = document.getElementById('batchBar'); const count = document.getElementById('batchCount'); if (batchSelected.length === 0) { bar.classList.remove('active'); return; } bar.classList.add('active'); count.textContent = `${batchSelected.length.toLocaleString('en-US')} استمارة محددة`; }
